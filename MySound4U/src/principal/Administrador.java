@@ -14,14 +14,14 @@ public class Administrador extends Usuario {
 	/** Nombre por defecto para el administrador */
 	private static final String NOMBRE = "admin";
 	
-	/** Contraseña por defecto para el administrador */
-	private static final String CONTRASEÑA = "admin";
+	/** Contrasena por defecto para el administrador */
+	private static final String CONTRASENA = "admin";
 
 	/**
 	 * Este constructor genera un nuevo administrador, asignandole unos valores
-	 * establecidos por defecto para el nombre y la contraseña. 
+	 * establecidos por defecto para el nombre y la contrasena. 
 	 */
 	public Administrador() {
-		super(NOMBRE, CONTRASEÑA);
+		super(NOMBRE, CONTRASENA);
 	}
 }

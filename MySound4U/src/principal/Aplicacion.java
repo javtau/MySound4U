@@ -34,7 +34,7 @@ public class Aplicacion {
 		usuarios = new ArrayList<>();
 	}
 
-	public void loguarse(String usuario, String contraseña) {
+	public void loguarse(String usuario, String contrasena) {
 	}
 
 	public void desloguearse() {

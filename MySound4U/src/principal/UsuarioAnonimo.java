@@ -15,14 +15,14 @@ public class UsuarioAnonimo extends Usuario {
 	private static final String NOMBRE = "anonimo";
 	
 	/** Contraseña por defecto para el usuario anonimo */
-	private static final String CONTRASEÑA = "anonimo";
+	private static final String CONTRASENA = "anonimo";
 
 	/**
 	 * Este constructor genera un nuevo usuario anonimo, asignandole unos valores
 	 * establecidos por defecto para el nombre y la contraseña. 
 	 */
 	public UsuarioAnonimo() {
-		super(NOMBRE, CONTRASEÑA);
+		super(NOMBRE, CONTRASENA);
 	}
 	
 	

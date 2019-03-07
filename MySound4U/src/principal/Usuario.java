@@ -14,8 +14,8 @@ public abstract class Usuario {
 	/** nombre del usuario */
 	private String nombre;
 	
-	/** contraseña del usuario */
-	private String contraseña;
+	/** contrasena del usuario */
+	private String contrasena;
 
 	/**
 	 * Cantidad de reproducciones que ha realizadoun usuario dentro del periodo
@@ -29,12 +29,12 @@ public abstract class Usuario {
 	 * ya que no se puede instanciar un usuario
 	 * 
 	 * @param nombre     nombre del usuario
-	 * @param contraseña contraseña del usuario
+	 * @param contrasena contrasena del usuario
 	 */
-	public Usuario(String nombre, String contraseña) {
+	public Usuario(String nombre, String contrasena) {
 		super();
 		this.nombre = nombre;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		reproducidas = 0;
 	}
 
@@ -48,12 +48,12 @@ public abstract class Usuario {
 	}
 
 	/**
-	 * Este método devuelve la contraseña del usuario
+	 * Este método devuelve la contrasena del usuario
 	 * 
-	 * @return contraseña
+	 * @return contrasena
 	 */
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
 	/**
@@ -66,17 +66,17 @@ public abstract class Usuario {
 	}
 
 	/**
-	 * Este método recive un nombre y contraseña y devuelve true si coinciden con
+	 * Este método recive un nombre y contrasena y devuelve true si coinciden con
 	 * los del usuario
 	 * 
 	 * @param nombre     nombre que se quiere verificar
-	 * @param contraseña contraseña que se quiere verificar
+	 * @param contrasena contrasena que se quiere verificar
 	 * @return Boolean true en caso de que ambos valores coincidan con los del
 	 *         usuario
 	 */
-	public Boolean validar(String nombre, String contraseña) {
+	public Boolean validar(String nombre, String contrasena) {
 
-		return (this.nombre.equalsIgnoreCase(nombre) && this.contraseña.equals(contraseña));
+		return (this.nombre.equalsIgnoreCase(nombre) && this.contrasena.equals(contrasena));
 	}
 
 }

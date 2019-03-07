@@ -40,7 +40,7 @@ public class Album {
 		return nombre;
 	}
 
-	public void añadirCancion(Cancion cancion) {
+	public void anadirCancion(Cancion cancion) {
 		canciones.add(cancion);
 	}
 	

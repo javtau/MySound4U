@@ -51,7 +51,7 @@ public class Lista {
 
 
 
-	public void añadirCancion(Cancion cancion) {
+	public void anadirCancion(Cancion cancion) {
 		canciones.add(cancion);
 	}
 

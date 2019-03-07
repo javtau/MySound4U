@@ -46,11 +46,11 @@ public class UsuarioRegistrado extends Usuario {
 	 * como argumentos. se hara uso del constructor del padre
 	 * 
 	 * @param nombre     nombre del usuario
-	 * @param contraseña contraseña del usuario
+	 * @param contrasena contrasena del usuario
 	 * @param fechanac   fecha de nacimiento del usuario
 	 */
-	public UsuarioRegistrado(String nombre, String contraseña, Date fechanac) {
-		super(nombre, contraseña);
+	public UsuarioRegistrado(String nombre, String contrasena, Date fechanac) {
+		super(nombre, contrasena);
 		this.fechanac = fechanac;
 
 		bloqueado = false;
@@ -109,11 +109,11 @@ public class UsuarioRegistrado extends Usuario {
 	}
 
 	/**
-	 * Este método añade una nueva cancion a la lista de canciones del usuario
+	 * Este método anade una nueva cancion a la lista de canciones del usuario
 	 * 
-	 * @param cancion cancion a añadir
+	 * @param cancion cancion a anadir
 	 */
-	public void añadirCancion(Cancion cancion) {
+	public void anadirCancion(Cancion cancion) {
 		canciones.add(cancion);
 	}
 
@@ -145,10 +145,10 @@ public class UsuarioRegistrado extends Usuario {
 	}
 
 	/**
-	 * Este método añade un usuario registrado a la lista de usuarios seguidos
+	 * Este método anade un usuario registrado a la lista de usuarios seguidos
 	 * 
-	 * @param usuario usuario que se quiere añadir
-	 * @return Boolean true si se a añadido la cancion, false en caso contrario
+	 * @param usuario usuario que se quiere anadir
+	 * @return Boolean true si se a anadido la cancion, false en caso contrario
 	 */
 	public Boolean seguir(UsuarioRegistrado usuario) {
 
@@ -158,34 +158,34 @@ public class UsuarioRegistrado extends Usuario {
 	public void editarCancion(Cancion cancion) {
 	}
 
-	/** Este metodo crea una nueva lista y la añade a lista de listas */
+	/** Este metodo crea una nueva lista y la anade a lista de listas */
 	public void crearLista() {
 	}
 
-	/** Este metodo crea un nuevo album y lo añade a lista de albummes */
+	/** Este metodo crea un nuevo album y lo anade a lista de albummes */
 	public void crearAlbum() {
 	}
 
 	/**
-	 * Este método añade un nuevo cancion a un album
+	 * Este método anade un nuevo cancion a un album
 	 * 
-	 * @param cancion cancion que se quiere añadir al album
-	 * @return Boolean true si se a añadido la cancion, false en caso contrario
+	 * @param cancion cancion que se quiere anadir al album
+	 * @return Boolean true si se a anadido la cancion, false en caso contrario
 	 */
-	public Boolean añadiraAlbum(Cancion cancion) {
+	public Boolean anadiraAlbum(Cancion cancion) {
 
 		return true;
 	}
 
 	/**
-	 * Este método añade un nuevo elemento a una lista, se comprobara el tipo de
+	 * Este método anade un nuevo elemento a una lista, se comprobara el tipo de
 	 * elemento y se usara el metodo correspondiente. En caso de que introducca un
 	 * elemento incompatible no se hara nada
 	 * 
-	 * @param object objeto que se quiere añadir a la lista
-	 * @return Boolean true si se a añadido el elemento, false en caso contrario
+	 * @param object objeto que se quiere anadir a la lista
+	 * @return Boolean true si se a anadido el elemento, false en caso contrario
 	 */
-	public Boolean añadirALista(Object object) {
+	public Boolean anadirALista(Object object) {
 		String tipo = object.getClass().getName();
 
 		switch (tipo) {
@@ -209,8 +209,8 @@ public class UsuarioRegistrado extends Usuario {
 	/**
 	 * Este método Borra una cancion de un album
 	 * 
-	 * @param object objeto que se quiere añadir a la lista
-	 * @return Boolean true si se a añadido el elemento, false en caso contrario
+	 * @param object objeto que se quiere anadir a la lista
+	 * @return Boolean true si se a anadido el elemento, false en caso contrario
 	 */
 	public Boolean borrarAlbum(Album album) {
 
