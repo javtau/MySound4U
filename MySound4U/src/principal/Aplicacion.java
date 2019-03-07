@@ -21,6 +21,17 @@ public class Aplicacion {
 	private Sesion sesion;
 	private ArrayList<UsuarioRegistrado> usuarios;
 	/*private Mp3Player reproductor = new Mp3Player(mp3s);*/
+	
+	/**
+	 * Este constructor genera una nueva sesion de administrador e inicializa todas
+	 * las listas.
+	 * 
+	 */
+	public Aplicacion(Usuario logueado) {
+		super();
+		canciones = new ArrayList<>();
+		usuarios = new ArrayList<>();
+	}
 
 	public void loguarse(String usuario, String contraseña) {
 	}
