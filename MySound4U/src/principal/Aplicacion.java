@@ -29,6 +29,7 @@ public class Aplicacion {
 	 */
 	public Aplicacion(Usuario logueado) {
 		super();
+		this.logueado = logueado;
 		canciones = new ArrayList<>();
 		usuarios = new ArrayList<>();
 	}
