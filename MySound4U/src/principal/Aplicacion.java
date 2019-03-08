@@ -7,6 +7,7 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import pads.musicPlayer.Mp3Player;
 
@@ -20,8 +21,8 @@ public class Aplicacion {
 	private ArrayList<Cancion> canciones;
 	private Sesion sesion;
 	private ArrayList<UsuarioRegistrado> usuarios;
-	/*private Mp3Player reproductor = new Mp3Player(mp3s);*/
-	
+	/* private Mp3Player reproductor = new Mp3Player(mp3s); */
+
 	/**
 	 * Este constructor genera una nueva sesion de administrador e inicializa todas
 	 * las listas.
@@ -44,7 +45,7 @@ public class Aplicacion {
 	}
 
 	public ArrayList buscar(String busqueda, TIPO_BUSQUEDA tipo) {
-		
+
 		return null;
 	}
 

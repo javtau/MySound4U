@@ -11,10 +11,7 @@ import java.util.ArrayList;
 /**
  * Esta clase contiene todos los atributos y metodos de un Album
  */
-public class Album {
-
-	/** nombre del album */
-	private String nombre;
+public class Album extends Element {
 
 	/** lista con las canciones del album */
 	private ArrayList<Cancion> canciones;
@@ -26,24 +23,14 @@ public class Album {
 	 * @param nombre
 	 */
 	public Album(String nombre) {
-		super();
-		this.nombre = nombre;
+		super(nombre);
 		canciones = new ArrayList<>();
-	}
-	
-	/**
-	 * Este método devuelve el nombre del album
-	 * 
-	 * @return nombre
-	 */
-	public String getNombre() {
-		return nombre;
 	}
 
 	public void anadirCancion(Cancion cancion) {
 		canciones.add(cancion);
 	}
-	
+
 	public void borrarCancion(Cancion cancion) {
 		canciones.remove(cancion);
 	}

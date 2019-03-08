@@ -185,23 +185,8 @@ public class UsuarioRegistrado extends Usuario {
 	 * @param object objeto que se quiere anadir a la lista
 	 * @return Boolean true si se a anadido el elemento, false en caso contrario
 	 */
-	public Boolean anadirALista(Object object) {
-		String tipo = object.getClass().getName();
-
-		switch (tipo) {
-		case "Cancion":
-
-			break;
-		case "Album":
-
-			break;
-		case "Lista":
-
-			break;
-
-		default:
-			break;
-		}
+	public Boolean anadirALista(Element elemen) {
+		
 
 		return true;
 	}

@@ -9,10 +9,7 @@ package principal;
 /**
  * Esta clase contiene todos los atributos y metodos de una cancion
  */
-public class Cancion {
-
-	/** Nombre de la cancion */
-	private String nombre;
+public class Cancion extends Element {
 
 	/** Duracion de la cancion */
 	private Double duracion;
@@ -56,8 +53,7 @@ public class Cancion {
 	 * @param autor    nombre de la cancion
 	 */
 	public Cancion(String nombre, Double duracion, String ruta, UsuarioRegistrado autor) {
-		super();
-		this.nombre = nombre;
+		super(nombre);
 		this.duracion = duracion;
 		this.ruta = ruta;
 		this.autor = autor;
