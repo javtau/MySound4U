@@ -11,6 +11,11 @@ package principal;
  */
 public class SesionUsuarios extends Sesion {
 
+	public SesionUsuarios(UsuarioRegistrado usuario) {
+		super(usuario);
+		// TODO Auto-generated constructor stub
+	}
+
 	public void subirCancion(Cancion cancion, Usuario usuario) {
 	}
 

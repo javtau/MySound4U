@@ -14,22 +14,15 @@ import java.util.ArrayList;
  */
 public class SesionAdmin extends Sesion {
 
-	/** lista de denuncias pendientes */
-	private ArrayList<Denuncia> denuncias;
-
-	/** lista de validaciones pendientes */
-	private ArrayList<Validacion> validaciones;
+	
 
 	/**
 	 * Este constructor genera una nueva sesion de administrador e inicializa todas
 	 * las listas.
 	 * 
 	 */
-	public SesionAdmin() {
-		super();
-
-		validaciones = new ArrayList<>();
-		denuncias = new ArrayList<>();
+	public SesionAdmin(Administrador usuario) {
+		super(usuario);
 	}
 
 	/**

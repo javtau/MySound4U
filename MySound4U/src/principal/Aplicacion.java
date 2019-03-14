@@ -21,6 +21,14 @@ public class Aplicacion {
 	private ArrayList<Cancion> canciones;
 	private Sesion sesion;
 	private ArrayList<UsuarioRegistrado> usuarios;
+	private ArrayList<Album> albumes;
+
+	/** lista de denuncias pendientes */
+	private ArrayList<Denuncia> denuncias;
+
+	/** lista de validaciones pendientes */
+	private ArrayList<Validacion> validaciones;
+
 	/* private Mp3Player reproductor = new Mp3Player(mp3s); */
 
 	/**
@@ -33,6 +41,8 @@ public class Aplicacion {
 		this.logueado = logueado;
 		canciones = new ArrayList<>();
 		usuarios = new ArrayList<>();
+		validaciones = new ArrayList<>();
+		denuncias = new ArrayList<>();
 	}
 
 	public void loguarse(String usuario, String contrasena) {

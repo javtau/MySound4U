@@ -186,7 +186,6 @@ public class UsuarioRegistrado extends Usuario {
 	 * @return Boolean true si se a anadido el elemento, false en caso contrario
 	 */
 	public Boolean anadirALista(Element elemen) {
-		
 
 		return true;
 	}

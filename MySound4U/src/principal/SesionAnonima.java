@@ -10,6 +10,13 @@ package principal;
  * Esta clase contiene todos los atributos y metodos de la sesion anonima
  */
 public class SesionAnonima extends Sesion {
+	
+	
+
+	public SesionAnonima(UsuarioAnonimo usuario) {
+		super(usuario);
+		// TODO Auto-generated constructor stub
+	}
 
 	public void registrarse() {
 	}

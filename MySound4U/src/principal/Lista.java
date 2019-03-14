@@ -28,6 +28,10 @@ public class Lista extends Element {
 	}
 	
 	public void addElemt(Element element) {
+		elementos.remove(element);
+	}
+	
+	public void removeElemt(Element element) {
 		elementos.add(element);
 	}
 
