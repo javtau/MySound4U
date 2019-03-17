@@ -22,6 +22,7 @@ public class Lista extends Element {
 	 * 
 	 * @param nombre
 	 */
+
 	public Lista(String nombre) {
 		super(nombre); 
 		elementos = new ArrayList<>();

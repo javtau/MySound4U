@@ -17,7 +17,7 @@ public class Album extends Element {
 	private ArrayList<Cancion> canciones;
 
 	/**
-	 * Este constructor genera un nuevo album con los datos recividos como
+	 * Este constructor genera un nuevo album con los datos recibidos como
 	 * argumentos.
 	 * 
 	 * @param nombre
@@ -33,6 +33,10 @@ public class Album extends Element {
 
 	public void borrarCancion(Cancion cancion) {
 		canciones.remove(cancion);
+	}
+	
+	public Boolean isEmpty() {
+		return canciones.isEmpty();
 	}
 
 }

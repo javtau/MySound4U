@@ -6,10 +6,13 @@
 
 package principal;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import pads.musicPlayer.Mp3Player;
+import pads.musicPlayer.exceptions.Mp3PlayerException;
+import sun.awt.RepaintArea;
 
 /**
  * Esta clase contiene todos los atributos y metodos de la aplicacion
@@ -28,12 +31,11 @@ public class Aplicacion {
 
 	/** lista de validaciones pendientes */
 	private ArrayList<Validacion> validaciones;
-
-	/* private Mp3Player reproductor = new Mp3Player(mp3s); */
+	
 
 	/**
 	 * Este constructor genera una nueva sesion de administrador e inicializa todas
-	 * las listas.
+	 * las listas
 	 * 
 	 */
 	public Aplicacion(Usuario logueado) {
@@ -49,6 +51,10 @@ public class Aplicacion {
 	}
 
 	public void desloguearse() {
+		
+		 
+		
+
 	}
 
 	public void cierreMes() {

@@ -23,7 +23,7 @@ public class SesionAnonima extends Sesion {
 
 	/**
 	 * Este metodo reproduce una cancion. La cancion no se reproducira si la cancion
-	 * esta bloqueada,o es explicita o si el usuario a pasado de su limite de
+	 * esta bloqueada o es explicita o si el usuario a pasado de su limite de
 	 * reoroducciones. 
 	 * 
 	 * @param cancion cancion que se quiere reproducir

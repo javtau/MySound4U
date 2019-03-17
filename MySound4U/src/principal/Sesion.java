@@ -32,11 +32,9 @@ public abstract class Sesion {
 	
 	
 	/**
-	 * Este metodo reproduce una cancion. Este metodo solo es una declaracion, se
-	 * implementara de forma mas especialida en las clases que extiendan de esta
+	 * Este metodo devuelve el usuario de esta sesion
 	 * 
-	 * @param cancion cancion que se quiere reproducir
-	 * @param usuario usuario que solicita la reproduccion
+	 * @return usuario usuario que solicita la reproduccion
 	 */
 	public  Usuario getUsuario() {
 		return usuario;

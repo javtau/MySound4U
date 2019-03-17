@@ -9,6 +9,8 @@ package principal;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
+
 /**
  * Esta clase contiene todos los atributos y metodos de un usuario registrado
  */
@@ -114,7 +116,8 @@ public class UsuarioRegistrado extends Usuario {
 	 * @param cancion cancion a anadir
 	 */
 	public void anadirCancion(Cancion cancion) {
-		canciones.add(cancion);
+		if (cancion != null)
+			canciones.add(cancion);
 	}
 
 	/**
@@ -125,23 +128,31 @@ public class UsuarioRegistrado extends Usuario {
 	 * @param cancion Cancion que se desea borrar
 	 * @return Boolean true si se a borrado la cancion, false en caso contrario
 	 */
-	public Boolean borrarCancion(Cancion cancion) {
-
-		return true;
+	public void borrarCancion(Cancion cancion) {
+		canciones.remove(cancion);
+		Album album = cancion.getAlbum();
+		if (album.isEmpty()) {
+			albumes.remove(album);
+		}
 	}
 
 	/** Este metodo pone a cero los contadores de reproducciones y reproducidas */
 	public void resetearContadores() {
+		reproducciones = 0;
+		super.resetearreproducidas();
 	}
 
 	/** Este metodo aumenta en 1 el numero de reproducciones totales */
 	public void aumentarReproducciones() {
+		reproducciones++;
 	}
 
 	/**
 	 * Este metodo aumenta en 1 el numero de canciones reproducidas por el susuario
 	 */
 	public void aumentarReproducidas() {
+		super.aumentarReproducidas();
+
 	}
 
 	/**
@@ -151,54 +162,39 @@ public class UsuarioRegistrado extends Usuario {
 	 * @return Boolean true si se a anadido la cancion, false en caso contrario
 	 */
 	public Boolean seguir(UsuarioRegistrado usuario) {
-
-		return true;
-	}
-
-	public void editarCancion(Cancion cancion) {
-	}
-
-	/** Este metodo crea una nueva lista y la anade a lista de listas */
-	public void crearLista() {
-	}
-
-	/** Este metodo crea un nuevo album y lo anade a lista de albummes */
-	public void crearAlbum() {
+		if (usuario != null) {
+			seguidos.add(usuario);
+			return true;
+		}
+		return false;
 	}
 
 	/**
-	 * Este método anade un nuevo cancion a un album
+	 * Este metodo crea una nueva lista y la anade a lista de listas
 	 * 
-	 * @param cancion cancion que se quiere anadir al album
-	 * @return Boolean true si se a anadido la cancion, false en caso contrario
+	 * @param nombre nombre de la lista
 	 */
-	public Boolean anadiraAlbum(Cancion cancion) {
-
-		return true;
+	public void crearLista(String nombre) {
+		listas.add(new Lista(nombre));
 	}
 
 	/**
-	 * Este método anade un nuevo elemento a una lista, se comprobara el tipo de
-	 * elemento y se usara el metodo correspondiente. En caso de que introducca un
-	 * elemento incompatible no se hara nada
+	 * Este metodo crea un nuevo album y lo anade a lista de albummes
 	 * 
-	 * @param object objeto que se quiere anadir a la lista
-	 * @return Boolean true si se a anadido el elemento, false en caso contrario
+	 * @param nombre nombre del album
 	 */
-	public Boolean anadirALista(Element elemen) {
-
-		return true;
+	public void crearAlbum(String nombre) {
+		albumes.add(new Album(nombre));
 	}
 
-	/**
-	 * Este método Borra una cancion de un album
-	 * 
-	 * @param object objeto que se quiere anadir a la lista
-	 * @return Boolean true si se a anadido el elemento, false en caso contrario
-	 */
-	public Boolean borrarAlbum(Album album) {
+	
 
-		return true;
+
+	@Override
+	public String toString() {
+		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
+				+ ", fecha de nacimiento= " + fechanac + ", reproducidas= " + super.getReproducidas()
+				+ ", reproducciones= " + reproducciones + "]";
 	}
 
 }

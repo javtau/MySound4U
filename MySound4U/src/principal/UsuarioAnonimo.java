@@ -24,6 +24,11 @@ public class UsuarioAnonimo extends Usuario {
 	public UsuarioAnonimo() {
 		super(NOMBRE, CONTRASENA);
 	}
+
+	@Override
+	public String toString() {
+		return "UsuarioAnonimo";
+	}
 	
 	
 	

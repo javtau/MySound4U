@@ -23,7 +23,7 @@ public class Denuncia {
 	private String comentario;
 
 	/**
-	 * Este constructor genera una nueva denuncia con los datos recividos como
+	 * Este constructor genera una nueva denuncia con los datos recibidos como
 	 * argumentos.
 	 * 
 	 * @param cancion

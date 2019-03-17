@@ -43,10 +43,10 @@ public class SesionAdmin extends Sesion {
 	public void rechazarDenuncia( Denuncia denuncia) {
   }
 
-	public void validar( Cancion cancion) {
+	public void validar(Cancion cancion) {
   }
 
-	public void invalidar( Cancion cancion) {
+	public void invalidar(Cancion cancion) {
   }
 
 	public void setLimiteReproducciones(int lim) {
@@ -55,7 +55,7 @@ public class SesionAdmin extends Sesion {
 	public void setUmbralPremium(int lim) {
   }
 
-	public void marcarExplicita( Cancion cancion) {
+	public void marcarExplicita(Cancion cancion) {
   }
 
 }

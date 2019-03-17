@@ -59,7 +59,7 @@ public abstract class Usuario {
 	/**
 	 * Este método devuelve la cantidad de canciones reproducidas por el usuario
 	 * 
-	 * @return energia
+	 * @return reproducidas
 	 */
 	public Integer getReproducidas() {
 		return reproducidas;
@@ -78,5 +78,19 @@ public abstract class Usuario {
 
 		return (this.nombre.equalsIgnoreCase(nombre) && this.contrasena.equals(contrasena));
 	}
+	
+	/** Este metodo pone a cero el contador de canciones reproducidas */
+	public void resetearreproducidas() {
+		reproducidas = 0;
+	}
+	
+	/** Este metodo aumenta en 1 el numero de canciones reproducidas */
+	public void aumentarReproducidas() {
+		reproducidas++;
+	}
+
+	
+	
+	
 
 }

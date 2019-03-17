@@ -41,5 +41,31 @@ public class SesionUsuarios extends Sesion {
 		// TODO Auto-generated method stub
 
 	}
+	
+	// TODO metodo para editar canciones
+	
+	/**
+	 * Este método anade un nuevo cancion a un album
+	 * 
+	 * @param cancion cancion que se quiere anadir al album
+	 * @return Boolean true si se a anadido la cancion, false en caso contrario
+	 */
+	public Boolean anadiraAlbum(Album album,Cancion cancion) {
+
+		return true;
+	}
+
+	/**
+	 * Este método anade un nuevo elemento a una lista, se comprobara el tipo de
+	 * elemento y se usara el metodo correspondiente. En caso de que introducca un
+	 * elemento incompatible no se hara nada
+	 * 
+	 * @param elemen objeto que se quiere anadir a la lista
+	 * @return Boolean true si se a anadido el elemento, false en caso contrario
+	 */
+	public Boolean anadirALista(Lista lista,Element elemen) {
+
+		return true;
+	}
 
 }
