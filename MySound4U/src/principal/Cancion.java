@@ -62,7 +62,6 @@ public class Cancion extends Element {
 	 */
 	public Cancion(String nombre, String ruta, UsuarioRegistrado autor) {
 		super(nombre);
-		System.out.println(PATH + ruta);
 		this.ruta = PATH + ruta;
 		this.autor = autor;
 
@@ -73,13 +72,9 @@ public class Cancion extends Element {
 		revision = false;
 
 		try {
-			reproductor = new Mp3Player(this.ruta);
 			duracion = (double) ((int) Mp3Player.getDuration(this.ruta) / 60);
 			duracion += (double) ((int) Mp3Player.getDuration(this.ruta)) % 60 / 100;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Mp3PlayerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -105,36 +100,29 @@ public class Cancion extends Element {
 		explicita = true;
 	}
 
-	public void reproducir() {
-		try {
-			reproductor.stop();
-			reproductor.play();
-		} catch (Mp3PlayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	public Double getDuracion() {
+		return duracion;
 	}
-	
-	
+
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = PATH + ruta;
+	}
 
 	public Album getAlbum() {
 		return album;
 	}
 
-	public void stop() {
-		reproductor.stop();
-
-	}
-
 	@Override
 	public String toString() {
-		return "Cancion [Nombre: " + super.getNombre() + ", duracion= " + duracion + ", numero de reproducciones= " + numreproducciones
-				+ ((explicita) ? ", es " : ", no es ") + "explicita,\n\t"
-				+ ((bloqueada) ? "esta " : "no esta ") + "bloqueada" 
-				+ ((validada) ? ", esta " : ", no esta ") + "validada"
-				+ ((revision) ? ", pendiente de revision" : "") + ", autor" 
-				+ autor.getNombre() + ((album == null) ? "" : ", album=" + album.getNombre() ) + "]";
+		return "Cancion [Nombre: " + super.getNombre() + ", duracion= " + duracion + ", numero de reproducciones= "
+				+ numreproducciones + ((explicita) ? ", es " : ", no es ") + "explicita,\n\t"
+				+ ((bloqueada) ? "esta " : "no esta ") + "bloqueada" + ((validada) ? ", esta " : ", no esta ")
+				+ "validada" + ((revision) ? ", pendiente de revision" : "") + ", autor" + autor.getNombre()
+				+ ((album == null) ? "" : ", album=" + album.getNombre()) + "]";
 	}
 
 }

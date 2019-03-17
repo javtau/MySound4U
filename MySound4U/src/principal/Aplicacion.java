@@ -31,29 +31,34 @@ public class Aplicacion {
 
 	/** lista de validaciones pendientes */
 	private ArrayList<Validacion> validaciones;
-	
 
 	/**
 	 * Este constructor genera una nueva sesion de administrador e inicializa todas
 	 * las listas
 	 * 
 	 */
-	public Aplicacion(Usuario logueado) {
+	public Aplicacion() {
 		super();
 		this.logueado = logueado;
 		canciones = new ArrayList<>();
 		usuarios = new ArrayList<>();
 		validaciones = new ArrayList<>();
 		denuncias = new ArrayList<>();
+		sesion = new SesionAnonima(new UsuarioAnonimo(), this);
+		UsuarioRegistrado yo = new UsuarioRegistrado("SYSTEM", "1234", new Date());
+		Cancion c1 = new Cancion("CorePride", "UVERworld_CorePride.mp3",yo);
+		Cancion c2 = new Cancion("RookiezisPunk", "RookiezisPunk'd_InMyWorld.mp3",yo);
+		Cancion c3 = new Cancion("avicii", "avicii-levels.mp3",yo);
+		canciones.add(c1);
+		canciones.add(c2);
+		canciones.add(c3);
+		
 	}
 
-	public void loguarse(String usuario, String contrasena) {
+	public void loguearse(String usuario, String contrasena) {
 	}
 
 	public void desloguearse() {
-		
-		 
-		
 
 	}
 
@@ -66,6 +71,32 @@ public class Aplicacion {
 	}
 
 	public void comprobarRevisiones() {
+	}
+
+	public Boolean gestionAplicacion() {
+		return sesion.programControl();
+	}
+
+	public ArrayList<Cancion> getLastSongs() {
+		if (canciones.size() < 7) {
+			return new ArrayList<Cancion>(canciones);
+		}
+		ArrayList<Cancion> songs = new ArrayList<>();
+		
+		for (int c = 6, i = canciones.size() -1; i >=0; i--, c-- ) {
+			songs.add(canciones.get(c));
+		}
+			
+		return songs;
+	}
+	
+	public void addUsuario(UsuarioRegistrado usuario) {
+		if (usuario != null) usuarios.add(usuario);
+	}
+	public void print() {
+		for (UsuarioRegistrado u : usuarios) {
+			System.out.println(u);
+		}
 	}
 
 }

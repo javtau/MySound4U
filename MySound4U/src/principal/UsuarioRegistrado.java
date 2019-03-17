@@ -6,6 +6,7 @@
 
 package principal;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -187,13 +188,11 @@ public class UsuarioRegistrado extends Usuario {
 		albumes.add(new Album(nombre));
 	}
 
-	
-
-
 	@Override
 	public String toString() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
-				+ ", fecha de nacimiento= " + fechanac + ", reproducidas= " + super.getReproducidas()
+				+ ", fecha de nacimiento: " + dateFormat.format(fechanac) + ", reproducidas= " + super.getReproducidas()
 				+ ", reproducciones= " + reproducciones + "]";
 	}
 

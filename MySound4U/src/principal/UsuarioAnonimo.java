@@ -27,7 +27,7 @@ public class UsuarioAnonimo extends Usuario {
 
 	@Override
 	public String toString() {
-		return "UsuarioAnonimo";
+		return "UsuarioAnonimo" + "canciones reproducidas"+ getReproducidas();
 	}
 	
 	
