@@ -18,7 +18,14 @@ import utils.ConsolaAnonimo;
  */
 public class SesionAnonima extends Sesion {
 	static java.util.Scanner sc;
-	String nombre, pass, fecha;
+
+	String filtro;
+	TIPO_BUSQUEDA filtro1 = TIPO_BUSQUEDA.TODO;
+	TIPO_BUSQUEDA filtro2 = TIPO_BUSQUEDA.AUTOR;
+	TIPO_BUSQUEDA filtro3 = TIPO_BUSQUEDA.ALBUM;
+	TIPO_BUSQUEDA filtro4 = TIPO_BUSQUEDA.TITULO;
+
+	String nombre, pass, fecha, busqueda;
 	Date d;
 
 	/**
@@ -90,7 +97,6 @@ public class SesionAnonima extends Sesion {
 		boolean exit = true;
 
 		while (exit) {
-			consola.clearConsole();
 			consola.printOptions(canciones);
 			opcion = sc.nextLine();
 			switch (opcion.toLowerCase()) {
@@ -108,14 +114,35 @@ public class SesionAnonima extends Sesion {
 				}
 				break;
 			case "buscar":
+				System.out.print("Introduzca busqueda: ");
+				busqueda = sc.nextLine();
+				System.out.print("Introduzca filtro de búsqueda: (todo, autor, album o titulo): ");
+				filtro = sc.nextLine();
+				if (filtro.equalsIgnoreCase("todo"))
+					api.buscar(busqueda, filtro1);
+				else if (filtro.equalsIgnoreCase("autor"))
+					api.buscar(busqueda, filtro2);
+				else if (filtro.equalsIgnoreCase("album"))
+					api.buscar(busqueda, filtro3);
+				else if (filtro.equalsIgnoreCase("titulo"))
+					api.buscar(busqueda, filtro4);
+				else {
+					System.out.println("\nEl filtro introducido no coincide con ninguno de los filtros disponibles\n");
+					try {
+						TimeUnit.SECONDS.sleep(2);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
 				break;
 
 			case "loguearse":
 				System.out.print("Introduzca nombre: ");
 				nombre = sc.nextLine();
-				System.out.print("Introduzca contraseña: ");
+				System.out.print("Introduzca contrasena: ");
 				pass = sc.nextLine();
 				api.loguearse(nombre, pass);
+				// No esta terminado
 				break;
 
 			case "registrarse":

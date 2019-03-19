@@ -8,6 +8,7 @@ package utils;
 import java.util.ArrayList;
 
 import principal.Cancion;
+import principal.UsuarioRegistrado;
 
 /**
  * Clase para los mensajes de consola del usuario anonimo
@@ -20,10 +21,11 @@ public class ConsolaAnonimo extends Consola {
 	@Override
 	public void printOptions(ArrayList<Cancion> canciones) {
 		int i = 0;
+		
 		System.out.println("**************************************************************************");
 		System.out.println("* Canciones:                                                             *");
 		for (Cancion c : canciones) {
-			System.out.println("*   " + i + ". " + c.getNombre() + "  " + c.getDuracion()
+			System.out.println("*   " + i + ". " + c.getNombre() + "  " + "Duracion: " + c.getDuracion() + " " + "Autor: " + c.getAutor()
 					+ "\t                                    *");
 			i++;
 		}

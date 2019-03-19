@@ -115,12 +115,16 @@ public class Cancion extends Element {
 		return album;
 	}
 
+	public String getAutor() {
+		return autor.getNombre();
+	}
+
 	@Override
 	public String toString() {
-		return "Cancion [Nombre: " + super.getNombre() + ", duracion= " + duracion + ", numero de reproducciones= "
+		return "Cancion [Nombre: " + super.getNombre() + ", duracion = " + duracion + ", numero de reproducciones= "
 				+ numreproducciones + ((explicita) ? ", es " : ", no es ") + "explicita,\n\t"
 				+ ((bloqueada) ? "esta " : "no esta ") + "bloqueada" + ((validada) ? ", esta " : ", no esta ")
-				+ "validada" + ((revision) ? ", pendiente de revision" : "") + ", autor" + autor.getNombre()
-				+ ((album == null) ? "" : ", album=" + album.getNombre()) + "]";
+				+ "validada" + ((revision) ? ", pendiente de revision" : "") + ", autor: " + autor.getNombre()
+				+ ((album == null) ? "" : ", album : " + album.getNombre()) + "]";
 	}
 }

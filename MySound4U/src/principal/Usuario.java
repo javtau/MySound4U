@@ -74,7 +74,6 @@ public abstract class Usuario {
 	 * usuario
 	 */
 	public Boolean validar(String nombre, String contrasena) {
-
 		return (this.nombre.equalsIgnoreCase(nombre) && this.contrasena.equals(contrasena));
 	}
 

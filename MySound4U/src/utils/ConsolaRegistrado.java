@@ -24,8 +24,8 @@ public class ConsolaRegistrado extends Consola {
 		System.out.println("**************************************************************************");
 		System.out.println("* Canciones:                                                             *");
 		for (Cancion c : canciones) {
-			System.out.println("*   " + i + ". " + c.getNombre() + "  " + c.getDuracion()
-					+ "\t                                    *");
+			System.out.println("*   " + i + ". " + c.getNombre() + "  " + "Duracion: " + c.getDuracion() + " " + "Autor: " + c.getAutor()
+			+ "\t                                    *");
 			i++;
 		}
 		System.out.println("*                                                                        *");
@@ -39,7 +39,7 @@ public class ConsolaRegistrado extends Consola {
 		System.out.println("*   - Mis listas                                                         *");
 		System.out.println("*   - Denunciar                                                          *");
 		System.out.println("*   - Pendientes                                                         *");
-		System.out.println("*   - Desloguearse                                                       *");
+		System.out.println("*   - Logout                                                             *");
 		System.out.println("*   - Salir                                                              *");
 		System.out.println("**************************************************************************");
 		System.out.print("\nIntroduzca la opcion deseada: ");

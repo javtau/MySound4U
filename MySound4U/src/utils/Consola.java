@@ -29,11 +29,4 @@ public abstract class Consola {
 		System.out.print("Introduzca el numero de la cancion a reproducir: ");
 	}
 
-	public void clearConsole() {
-		try {
-			Runtime.getRuntime().exec("cmd /c cls");
-		} catch (final Exception e) {
-			System.out.print(e);
-		}
-	}
 }

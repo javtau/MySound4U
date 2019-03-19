@@ -7,6 +7,7 @@ package principal;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -60,13 +61,13 @@ public class Aplicacion {
 		}
 		if (d == false)
 			System.out.println("\nUsuario y/o contraseña erroneos\n");
-		
+
 		try {
 			TimeUnit.SECONDS.sleep(1);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//Pasar a la consola del usuario registrado
+		// Pasar a la consola del usuario registrado
 	}
 
 	public void desloguearse() {
@@ -76,9 +77,52 @@ public class Aplicacion {
 	public void cierreMes() {
 	}
 
-	public ArrayList buscar(String busqueda, TIPO_BUSQUEDA tipo) {
+	public ArrayList<Cancion> buscar(String busqueda, TIPO_BUSQUEDA tipo) {
+		ArrayList<Cancion> match = new ArrayList<Cancion>();
+		for (Cancion c : canciones) {
+			switch (tipo) {
+			case ALBUM:
+				//
+				match.add(c);
+				break;
 
-		return null;
+			case AUTOR:
+				if (c.getAutor().toLowerCase().contains(busqueda.toLowerCase()))
+					match.add(c);
+				break;
+
+			case TITULO:
+				if (c.getNombre().toLowerCase().contains(busqueda.toLowerCase())) {
+					match.add(c);
+				}
+				break;
+
+			case TODO:
+				if ((c.getAutor().toLowerCase().contains(busqueda.toLowerCase())) || (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()))) {
+					match.add(c);
+				}
+
+				break;
+
+			default:
+				break;
+			}
+		}
+		if (match.isEmpty())
+			System.out.println("\nNo se han encontrado coincidencias\n");
+		else {
+			Iterator<Cancion> iter = match.iterator();
+			while (iter.hasNext()) {
+				System.out.print("\n" + iter.next() + "\n");
+				System.out.print("\n\n");
+			}
+			try {
+				TimeUnit.SECONDS.sleep(2);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		return match;
 	}
 
 	public void comprobarRevisiones() {

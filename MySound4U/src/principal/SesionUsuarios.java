@@ -5,12 +5,15 @@
 
 package principal;
 
-import utils.ConsolaAnonimo;
+import java.util.ArrayList;
+
+import utils.ConsolaRegistrado;
 
 /**
  * Esta clase contiene todos los atributos y metodos de la sesion de usuario
  */
 public class SesionUsuarios extends Sesion {
+	static java.util.Scanner sc;
 
 	/**
 	 * Este constructor genera una nueva sesion de administrador
@@ -19,7 +22,7 @@ public class SesionUsuarios extends Sesion {
 	 * @param Aplicacion Propietaria de esta sesion
 	 */
 	public SesionUsuarios(UsuarioRegistrado usuario, Aplicacion api) {
-		super(usuario, api, new ConsolaAnonimo());
+		super(usuario, api, new ConsolaRegistrado());
 	}
 
 	public void subirCancion(Cancion cancion, Usuario usuario) {
@@ -57,8 +60,7 @@ public class SesionUsuarios extends Sesion {
 	 * @return Boolean True si se ha anadido la cancion, false en caso contrario
 	 */
 	public Boolean anadiraAlbum(Album album, Cancion cancion) {
-
-		return true;
+		return false;
 	}
 
 	/**
@@ -67,11 +69,10 @@ public class SesionUsuarios extends Sesion {
 	 * elemento incompatible no se hara nada
 	 * 
 	 * @param elemen Objeto que se quiere anadir a la lista
-	 * @return Boolean True si se a anadido el elemento, false en caso contrario
+	 * @return Boolean True si se ha anadido el elemento, false en caso contrario
 	 */
 	public Boolean anadirALista(Lista lista, Element elemen) {
-
-		return true;
+		return false;
 	}
 
 	/**
