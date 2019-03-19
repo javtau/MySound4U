@@ -1,7 +1,6 @@
 /**
 * Clase Denuncia
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
@@ -9,7 +8,7 @@ package principal;
 import java.util.ArrayList;
 
 /**
- * Esta clase contiene todos los atributos y metodos de uana denuncia
+ * Esta clase contiene todos los atributos y metodos de una denuncia
  */
 public class Denuncia {
 
@@ -24,7 +23,7 @@ public class Denuncia {
 
 	/**
 	 * Este constructor genera una nueva denuncia con los datos recibidos como
-	 * argumentos.
+	 * argumentos
 	 * 
 	 * @param cancion
 	 * @param denunciante
@@ -38,7 +37,7 @@ public class Denuncia {
 	}
 
 	/**
-	 * Este método devuelve la cancio que se quiere denunciar
+	 * Este metodo devuelve la cancion que se quiere denunciar
 	 * 
 	 * @return cancion
 	 */
@@ -47,7 +46,7 @@ public class Denuncia {
 	}
 
 	/**
-	 * Este método devuelve el usuario que realizo la dennuncia
+	 * Este metodo devuelve el usuario que realizo la denuncia
 	 * 
 	 * @return denunciante
 	 */
@@ -56,14 +55,11 @@ public class Denuncia {
 	}
 
 	/**
-	 * Este método devuelve el comentario de la denuncia
+	 * Este metodo devuelve el comentario de la denuncia
 	 * 
 	 * @return comentario
 	 */
 	public String getComentario() {
 		return comentario;
 	}
-	
-	
-
 }

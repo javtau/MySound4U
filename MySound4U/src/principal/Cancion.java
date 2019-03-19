@@ -1,7 +1,6 @@
 /**
 * Clase Cancion
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
@@ -28,17 +27,17 @@ public class Cancion extends Element {
 	 */
 	private Integer numreproducciones;
 
-	/** Variable que indica si una cancion es explicita ( True = explicita) */
+	/** Variable que indica si una cancion es explicita (True = explicita) */
 	private Boolean explicita;
 
-	/** Variable que indica si una cancion esta bloqueada ( True = bloqueada) */
+	/** Variable que indica si una cancion esta bloqueada (True = bloqueada) */
 	private Boolean bloqueada;
 
-	/** Variable que indica si una cancion esta validada ( True = validada) */
+	/** Variable que indica si una cancion esta validada (True = validada) */
 	private Boolean validada;
 
 	/**
-	 * Variable que indica si una cancion esta pendiente de revision ( True =
+	 * Variable que indica si una cancion esta pendiente de revision (True =
 	 * pendiente)
 	 */
 	private Boolean revision;
@@ -54,11 +53,11 @@ public class Cancion extends Element {
 
 	/**
 	 * Este constructor genera una nueva cancion con los datos recibidos como
-	 * argumentos.
+	 * argumentos
 	 * 
-	 * @param nombre nombre de la cancion
-	 * @param ruta   ruta en la que se encuentra de la cancion
-	 * @param autor  nombre de la cancion
+	 * @param nombre Nombre de la cancion
+	 * @param ruta   Ruta en la que se encuentra de la cancion
+	 * @param autor  Nombre de la cancion
 	 */
 	public Cancion(String nombre, String ruta, UsuarioRegistrado autor) {
 		super(nombre);
@@ -124,5 +123,4 @@ public class Cancion extends Element {
 				+ "validada" + ((revision) ? ", pendiente de revision" : "") + ", autor" + autor.getNombre()
 				+ ((album == null) ? "" : ", album=" + album.getNombre()) + "]";
 	}
-
 }

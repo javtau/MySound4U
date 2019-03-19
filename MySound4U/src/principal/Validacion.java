@@ -1,7 +1,6 @@
 /**
-* Clase VAlidacion
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* Clase Validacion
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Esta clase contiene todos los atributos y metodos de una Validacion
+ * Esta clase contiene todos los atributos y metodos de una validacion
  */
 public class Validacion {
 
@@ -21,8 +20,8 @@ public class Validacion {
 	private Date plazo;
 
 	/**
-	 * Este constructor genera una nueva validacion con los datos recividos como
-	 * argumentos.
+	 * Este constructor genera una nueva validacion con los datos recibidos como
+	 * argumentos
 	 * 
 	 * @param cancion
 	 */
@@ -57,5 +56,4 @@ public class Validacion {
 	public Cancion getCancion() {
 		return cancion;
 	}
-
 }

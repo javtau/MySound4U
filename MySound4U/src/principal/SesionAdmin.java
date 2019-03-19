@@ -1,7 +1,6 @@
 /**
-* Clase Sesion de administrador
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* Clase SesionAdmin
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
@@ -20,17 +19,17 @@ public class SesionAdmin extends Sesion {
 	 * Este constructor genera una nueva sesion de administrador
 	 * 
 	 * @param usuario    Usuario asociado a esta sesion
-	 * @param Aplicacion propietaria de esta sesion
+	 * @param Aplicacion Propietaria de esta sesion
 	 */
 	public SesionAdmin(Administrador usuario, Aplicacion api) {
 		super(usuario, api, new ConsolaAnonimo());
 	}
 
 	/**
-	 * Este metodo reproduce una cancion.
+	 * Este metodo reproduce una cancion
 	 * 
-	 * @param cancion cancion que se quiere reproducir
-	 * @param usuario usuario que solicita la reproduccion
+	 * @param cancion Cancion que se quiere reproducir
+	 * @param usuario Usuario que solicita la reproduccion
 	 */
 	@Override
 	public void reproducir(Cancion cancion) {
@@ -60,14 +59,13 @@ public class SesionAdmin extends Sesion {
 	}
 
 	/**
-	 * Este metodo muestra las opciones para el administrador, y espera a que este
-	 * introduzca la accion a realizar.
+	 * Este metodo muestra las opciones para el administrador y espera a que este
+	 * introduzca la accion a realizar
 	 * 
-	 * @return Boolean true si el usuario desea finalizar el programa
+	 * @return Boolean True si el usuario desea finalizar el programa
 	 */
 	@Override
 	public Boolean programControl() {
 		return false;
 	}
-
 }

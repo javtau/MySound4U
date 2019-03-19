@@ -1,7 +1,6 @@
 /**
-* Clase usuario anonimo
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* Clase UsuarioAnonimo
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
@@ -13,13 +12,13 @@ public class UsuarioAnonimo extends Usuario {
 
 	/** Nombre por defecto para el usuario anonimo */
 	private static final String NOMBRE = "anonimo";
-	
-	/** Contraseña por defecto para el usuario anonimo */
+
+	/** Contrasena por defecto para el usuario anonimo */
 	private static final String CONTRASENA = "anonimo";
 
 	/**
 	 * Este constructor genera un nuevo usuario anonimo, asignandole unos valores
-	 * establecidos por defecto para el nombre y la contraseña. 
+	 * establecidos por defecto para el nombre y la contrasena.
 	 */
 	public UsuarioAnonimo() {
 		super(NOMBRE, CONTRASENA);
@@ -27,10 +26,6 @@ public class UsuarioAnonimo extends Usuario {
 
 	@Override
 	public String toString() {
-		return "UsuarioAnonimo" + "canciones reproducidas"+ getReproducidas();
+		return "UsuarioAnonimo" + "canciones reproducidas" + getReproducidas();
 	}
-	
-	
-	
-	
 }

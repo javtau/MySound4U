@@ -1,7 +1,6 @@
 /**
 * Clase Album
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
@@ -13,12 +12,12 @@ import java.util.ArrayList;
  */
 public class Album extends Element {
 
-	/** lista con las canciones del album */
+	/** Lista con las canciones del album */
 	private ArrayList<Cancion> canciones;
 
 	/**
 	 * Este constructor genera un nuevo album con los datos recibidos como
-	 * argumentos.
+	 * argumentos
 	 * 
 	 * @param nombre
 	 */
@@ -34,9 +33,8 @@ public class Album extends Element {
 	public void borrarCancion(Cancion cancion) {
 		canciones.remove(cancion);
 	}
-	
+
 	public Boolean isEmpty() {
 		return canciones.isEmpty();
 	}
-
 }

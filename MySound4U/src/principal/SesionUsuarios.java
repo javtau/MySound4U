@@ -1,7 +1,6 @@
 /**
-* Clase Sesion de usuario
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* Clase SesionUsuarios
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
@@ -17,7 +16,7 @@ public class SesionUsuarios extends Sesion {
 	 * Este constructor genera una nueva sesion de administrador
 	 * 
 	 * @param usuario    Usuario asociado a esta sesion
-	 * @param Aplicacion propietaria de esta sesion
+	 * @param Aplicacion Propietaria de esta sesion
 	 */
 	public SesionUsuarios(UsuarioRegistrado usuario, Aplicacion api) {
 		super(usuario, api, new ConsolaAnonimo());
@@ -36,12 +35,12 @@ public class SesionUsuarios extends Sesion {
 	}
 
 	/**
-	 * Este metodo reproduce una cancion. La cancion no se reproducira si la cancion
-	 * es explicita, si la cancion es de otro autor y esta bloqueada o si el usuario
-	 * a pasado de su limite de reoroducciones en el periodo vigente.
+	 * Este metodo reproduce una cancion. No se reproducira si es explicita, si es
+	 * de otro autor y esta bloqueada o si el usuario ha pasado su limite de
+	 * reoroducciones en el periodo vigente.
 	 * 
-	 * @param cancion cancion que se quiere reproducir
-	 * @param usuario usuario que solicita la reproduccion
+	 * @param cancion Cancion que se quiere reproducir
+	 * @param usuario Usuario que solicita la reproduccion
 	 */
 	@Override
 	public void reproducir(Cancion cancion) {
@@ -52,10 +51,10 @@ public class SesionUsuarios extends Sesion {
 	// TODO metodo para editar canciones
 
 	/**
-	 * Este método anade un nuevo cancion a un album
+	 * Este metodo anade una nueva cancion a un album
 	 * 
-	 * @param cancion cancion que se quiere anadir al album
-	 * @return Boolean true si se a anadido la cancion, false en caso contrario
+	 * @param cancion Cancion que se quiere anadir al album
+	 * @return Boolean True si se ha anadido la cancion, false en caso contrario
 	 */
 	public Boolean anadiraAlbum(Album album, Cancion cancion) {
 
@@ -63,12 +62,12 @@ public class SesionUsuarios extends Sesion {
 	}
 
 	/**
-	 * Este método anade un nuevo elemento a una lista, se comprobara el tipo de
-	 * elemento y se usara el metodo correspondiente. En caso de que introducca un
+	 * Este metodo anade un nuevo elemento a una lista, se comprobara el tipo de
+	 * elemento y se usara el metodo correspondiente. En caso de que introduzca un
 	 * elemento incompatible no se hara nada
 	 * 
-	 * @param elemen objeto que se quiere anadir a la lista
-	 * @return Boolean true si se a anadido el elemento, false en caso contrario
+	 * @param elemen Objeto que se quiere anadir a la lista
+	 * @return Boolean True si se a anadido el elemento, false en caso contrario
 	 */
 	public Boolean anadirALista(Lista lista, Element elemen) {
 
@@ -76,10 +75,10 @@ public class SesionUsuarios extends Sesion {
 	}
 
 	/**
-	 * Este metodo muestra las opciones para el usuario registrado, y espera a que
+	 * Este metodo muestra las opciones para el usuario registrado y espera a que
 	 * este introduzca la accion a realizar.
 	 * 
-	 * @return Boolean true si el usuario desea finalizar el programa
+	 * @return Boolean True si el usuario desea finalizar el programa
 	 */
 	@Override
 	public Boolean programControl() {
