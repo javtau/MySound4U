@@ -96,14 +96,29 @@ public class SesionAnonima extends Sesion {
 				fecha = sc.nextLine();
 
 				try {
-					d=format.parse(fecha);
+					d = format.parse(fecha);
 					api.addUsuario(new UsuarioRegistrado(nombre, pass, d));
 					api.print();
-					
+
 				} catch (java.text.ParseException e) {
 					System.out.println("formato de fecha incorrecto");
 				}
+
+				break;
+			case "loguearse":
+				System.out.print("Introduzca nombre: ");
+				nombre = sc.nextLine();
+				System.out.print("Introduzca contraseña: ");
+				pass = sc.nextLine();
+				if (api.checkUser(nombre, pass)) {
+					System.out.println("Bienvenido");
+				} else {
+					System.out.println("El usuario o la contraseña son incorrectos");
+				}
 				
+				break;
+			case "stop":
+				reproductor.stop();
 				break;
 			case "salir":
 				reproductor.stop();

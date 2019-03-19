@@ -90,13 +90,31 @@ public class Aplicacion {
 		return songs;
 	}
 	
+	/**
+	 * Metodo que añade un nuevo usuario registrado a la lista de usuarios
+	 * @param usuario
+	 */
 	public void addUsuario(UsuarioRegistrado usuario) {
 		if (usuario != null) usuarios.add(usuario);
 	}
+	
+	
+	
+	/**
+	 * Metodo que imprime por consola todos los usuarios del sistema
+	 */
 	public void print() {
 		for (UsuarioRegistrado u : usuarios) {
 			System.out.println(u);
 		}
+	}
+	
+	public Boolean checkUser(String name, String pass) {
+		for (UsuarioRegistrado u : usuarios) {
+			if (u.validar(name,  pass)) return true;
+		}
+		
+		return false;
 	}
 
 }

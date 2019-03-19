@@ -25,12 +25,13 @@ public class ConsolaAnonimo extends Consola {
 		System.out.println("**************************************************************************");
 		System.out.println("*Canciones:                                                              *");
 		for (Cancion c : canciones) {
-			System.out.println("*  "+i+"."+c.getNombre()+"  "+c.getDuracion()+"\t\t*");
+			System.out.println("*  "+i+"."+c.getNombre()+"  "+c.getDuracion()+"\t\t\t*");
 			i++;
 		}		
 		System.out.println("*                                                                        *");
 		System.out.println("* Opciones:                                                              *");
 		System.out.println("*  - Reproducir                                                          *");
+		System.out.println("*  - Stop                                                                *");
 		System.out.println("*  - Buscar                                                              *");
 		System.out.println("*  - Loguearse                                                           *");
 		System.out.println("*  - Registrarse                                                         *");

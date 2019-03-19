@@ -24,13 +24,7 @@ public class TEster {
 		System.out.println(usu.get(0));
 		usu.get(0).setPremium(true);
 		System.out.println(yo);
-		cancion3.reproducir();
 		TimeUnit.SECONDS.sleep(15);
-		cancion2.stop();
-		cancion3.stop();
-		cancion3.reproducir();
-		TimeUnit.SECONDS.sleep(15);
-		cancion3.stop();
 		
 	}
 
