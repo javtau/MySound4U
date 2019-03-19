@@ -1,7 +1,6 @@
 /**
 * Clase SesionAnonima
 * @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
-*
 */
 
 package principal;
