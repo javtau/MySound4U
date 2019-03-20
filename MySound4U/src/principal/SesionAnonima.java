@@ -110,23 +110,20 @@ public class SesionAnonima extends Sesion {
 			case "buscar":
 				String filtro;
 				String busqueda;
-				TIPO_BUSQUEDA filtro1 = TIPO_BUSQUEDA.TODO;
-				TIPO_BUSQUEDA filtro2 = TIPO_BUSQUEDA.AUTOR;
-				TIPO_BUSQUEDA filtro3 = TIPO_BUSQUEDA.ALBUM;
-				TIPO_BUSQUEDA filtro4 = TIPO_BUSQUEDA.TITULO;
-				
+
 				System.out.print("Introduzca busqueda: ");
 				busqueda = sc.nextLine();
-				System.out.print("Introduzca filtro de búsqueda: (todo, autor, album o titulo): ");
+				System.out.print("Introduzca filtro de busqueda: (todo, autor, album o titulo): ");
 				filtro = sc.nextLine();
+				
 				if (filtro.equalsIgnoreCase("todo"))
-					api.buscar(busqueda, filtro1);
+					api.buscar(busqueda, TIPO_BUSQUEDA.TODO);
 				else if (filtro.equalsIgnoreCase("autor"))
-					api.buscar(busqueda, filtro2);
+					api.buscar(busqueda, TIPO_BUSQUEDA.AUTOR);
 				else if (filtro.equalsIgnoreCase("album"))
-					api.buscar(busqueda, filtro3);
+					api.buscar(busqueda, TIPO_BUSQUEDA.ALBUM);
 				else if (filtro.equalsIgnoreCase("titulo"))
-					api.buscar(busqueda, filtro4);
+					api.buscar(busqueda, TIPO_BUSQUEDA.TITULO);
 				else {
 					System.out.println("\nEl filtro introducido no coincide con ninguno de los filtros disponibles\n");
 					try {
