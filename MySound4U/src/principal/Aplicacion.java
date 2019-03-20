@@ -82,8 +82,8 @@ public class Aplicacion {
 		for (Cancion c : canciones) {
 			switch (tipo) {
 			case ALBUM:
-				//
-				match.add(c);
+				if (c.getAlbum() != null && c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase()))
+					match.add(c);
 				break;
 
 			case AUTOR:
@@ -99,10 +99,10 @@ public class Aplicacion {
 
 			case TODO:
 				if ((c.getAutor().toLowerCase().contains(busqueda.toLowerCase()))
-						|| (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()))) {
+						|| (c.getNombre().toLowerCase().contains(busqueda.toLowerCase())) || (c.getAlbum() != null
+								&& c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase()))) {
 					match.add(c);
 				}
-
 				break;
 
 			default:
