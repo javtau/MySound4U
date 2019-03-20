@@ -18,15 +18,6 @@ import utils.ConsolaAnonimo;
 public class SesionAnonima extends Sesion {
 	static java.util.Scanner sc;
 
-	String filtro;
-	TIPO_BUSQUEDA filtro1 = TIPO_BUSQUEDA.TODO;
-	TIPO_BUSQUEDA filtro2 = TIPO_BUSQUEDA.AUTOR;
-	TIPO_BUSQUEDA filtro3 = TIPO_BUSQUEDA.ALBUM;
-	TIPO_BUSQUEDA filtro4 = TIPO_BUSQUEDA.TITULO;
-
-	String nombre, pass, fecha, busqueda;
-	Date d;
-
 	/**
 	 * Este constructor genera una nueva sesion de administrador
 	 * 
@@ -39,8 +30,11 @@ public class SesionAnonima extends Sesion {
 	}
 
 	public void registrarse() {
+		Date d;
+		String nombre, pass, fecha;
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.print("Nombre de usuario ");
+	
+		System.out.print("Nombre de usuario: ");
 		nombre = sc.nextLine();
 		System.out.print("Contraseña: ");
 		pass = sc.nextLine();
@@ -114,6 +108,13 @@ public class SesionAnonima extends Sesion {
 				}
 				break;
 			case "buscar":
+				String filtro;
+				String busqueda;
+				TIPO_BUSQUEDA filtro1 = TIPO_BUSQUEDA.TODO;
+				TIPO_BUSQUEDA filtro2 = TIPO_BUSQUEDA.AUTOR;
+				TIPO_BUSQUEDA filtro3 = TIPO_BUSQUEDA.ALBUM;
+				TIPO_BUSQUEDA filtro4 = TIPO_BUSQUEDA.TITULO;
+				
 				System.out.print("Introduzca busqueda: ");
 				busqueda = sc.nextLine();
 				System.out.print("Introduzca filtro de búsqueda: (todo, autor, album o titulo): ");
@@ -137,6 +138,7 @@ public class SesionAnonima extends Sesion {
 				break;
 
 			case "loguearse":
+				String nombre, pass;
 				System.out.print("Introduzca nombre: ");
 				nombre = sc.nextLine();
 				System.out.print("Introduzca contrasena: ");

@@ -19,7 +19,7 @@ public class Reproductor {
 
 	public Reproductor() {
 		try {
-			reproductor = new Mp3Player("C:\\Users\\ferna\\git\\MySound4U\\MySound4U\\songs\\iniciom.mp3");
+			reproductor = new Mp3Player("C:\\Users\\fbarroso\\git\\MySound4U\\MySound4U\\songs\\iniciom.mp3");
 			reproductor.play();
 		} catch (FileNotFoundException | Mp3PlayerException e) {
 			e.printStackTrace();
