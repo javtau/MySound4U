@@ -98,7 +98,8 @@ public class Aplicacion {
 				break;
 
 			case TODO:
-				if ((c.getAutor().toLowerCase().contains(busqueda.toLowerCase())) || (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()))) {
+				if ((c.getAutor().toLowerCase().contains(busqueda.toLowerCase()))
+						|| (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()))) {
 					match.add(c);
 				}
 

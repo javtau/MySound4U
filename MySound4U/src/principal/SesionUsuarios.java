@@ -18,8 +18,8 @@ public class SesionUsuarios extends Sesion {
 	/**
 	 * Este constructor genera una nueva sesion de administrador
 	 * 
-	 * @param usuario    Usuario asociado a esta sesion
-	 * @param Aplicacion Propietaria de esta sesion
+	 * @param usuario Usuario asociado a esta sesion
+	 * @param api     Propietaria de esta sesion
 	 */
 	public SesionUsuarios(UsuarioRegistrado usuario, Aplicacion api) {
 		super(usuario, api, new ConsolaRegistrado());
@@ -57,6 +57,7 @@ public class SesionUsuarios extends Sesion {
 	 * Este metodo anade una nueva cancion a un album
 	 * 
 	 * @param cancion Cancion que se quiere anadir al album
+	 * @param album   Album al que se quiere añadir la cancion
 	 * @return Boolean True si se ha anadido la cancion, false en caso contrario
 	 */
 	public Boolean anadiraAlbum(Album album, Cancion cancion) {
@@ -69,6 +70,7 @@ public class SesionUsuarios extends Sesion {
 	 * elemento incompatible no se hara nada
 	 * 
 	 * @param elemen Objeto que se quiere anadir a la lista
+	 * @param lista Lista en la que el objeto sera añadido
 	 * @return Boolean True si se ha anadido el elemento, false en caso contrario
 	 */
 	public Boolean anadirALista(Lista lista, Element elemen) {

@@ -71,7 +71,7 @@ public abstract class Usuario {
 	 * @param nombre     Nombre que se quiere verificar
 	 * @param contrasena Contrasena que se quiere verificar
 	 * @return Boolean True en caso de que ambos valores coincidan con los del
-	 * usuario
+	 *         usuario
 	 */
 	public Boolean validar(String nombre, String contrasena) {
 		return (this.nombre.equalsIgnoreCase(nombre) && this.contrasena.equals(contrasena));

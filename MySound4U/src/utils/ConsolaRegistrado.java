@@ -31,6 +31,7 @@ public class ConsolaRegistrado extends Consola {
 		System.out.println("*                                                                        *");
 		System.out.println("* Opciones:                                                              *");
 		System.out.println("*   - Reproducir                                                         *");
+		System.out.println("*   - Parar                                                              *");
 		System.out.println("*   - Buscar                                                             *");
 		System.out.println("*   - Premium                                                            *");
 		System.out.println("*   - Subir cancion                                                      *");

@@ -30,8 +30,8 @@ public class SesionAnonima extends Sesion {
 	/**
 	 * Este constructor genera una nueva sesion de administrador
 	 * 
-	 * @param usuario    Usuario asociado a esta sesion
-	 * @param Aplicacion Propietaria de esta sesion
+	 * @param usuario Usuario asociado a esta sesion
+	 * @param api     Propietaria de esta sesion
 	 */
 	public SesionAnonima(UsuarioAnonimo usuario, Aplicacion api) {
 		super(usuario, api, new ConsolaAnonimo());
@@ -40,11 +40,13 @@ public class SesionAnonima extends Sesion {
 
 	public void registrarse() {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.print("Introduzca nombre: ");
+		System.out.print("Nombre de usuario ");
 		nombre = sc.nextLine();
-		System.out.print("Introduzca contraseña: ");
+		System.out.print("Contraseña: ");
 		pass = sc.nextLine();
-		System.out.print("Introduzca fecha de nacimiento(dd/MM/yyyy): ");
+		System.out.print("Introduzca su fecha de nacimiento(dd/MM/yyyy): ");
+		// TODO: Comparar si es mayor o menor de edad para poder escuchar canciones
+		// explicitas
 		fecha = sc.nextLine();
 
 		try {
@@ -69,7 +71,6 @@ public class SesionAnonima extends Sesion {
 	 * explicita o si el usuario ha pasado de su limite de reproducciones
 	 * 
 	 * @param cancion Cancion que se quiere reproducir
-	 * @param usuario Usuario que solicita la reproduccion
 	 */
 	// @Override
 	public void reproducir(Cancion cancion) {
@@ -141,13 +142,16 @@ public class SesionAnonima extends Sesion {
 				System.out.print("Introduzca contrasena: ");
 				pass = sc.nextLine();
 				api.loguearse(nombre, pass);
-				// No esta terminado
+				// TODO: Cambio de sesion
 				break;
 
 			case "registrarse":
 				registrarse();
 				break;
 
+			case "parar":
+				reproductor.stop();
+				break;
 			case "salir":
 				reproductor.stop();
 				exit = false;

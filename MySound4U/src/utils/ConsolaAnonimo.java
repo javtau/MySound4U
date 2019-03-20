@@ -32,6 +32,7 @@ public class ConsolaAnonimo extends Consola {
 		System.out.println("*                                                                        *");
 		System.out.println("* Opciones:                                                              *");
 		System.out.println("*   - Reproducir                                                         *");
+		System.out.println("*   - Parar                                                              *");
 		System.out.println("*   - Buscar                                                             *");
 		System.out.println("*   - Loguearse                                                          *");
 		System.out.println("*   - Registrarse                                                        *");

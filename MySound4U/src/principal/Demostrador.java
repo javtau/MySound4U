@@ -16,7 +16,7 @@ public class Demostrador {
 
 		/*
 		 * Este bucle cede el control a la aplicion, seguira ejecutandose hasta que el
-		 * usuario decida finalizar el programa y el metodo devuelva true.
+		 * usuario decida finalizar el programa y el metodo devuelva true
 		 */
 		while (api.gestionAplicacion()) {
 		}
