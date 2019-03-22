@@ -1,16 +1,16 @@
 /**
-* Clase VAlidacion
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* Clase Validacion
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Esta clase contiene todos los atributos y metodos de una Validacion
+ * Esta clase contiene todos los atributos y metodos de una validacion
  */
 public class Validacion {
 
@@ -18,17 +18,18 @@ public class Validacion {
 	private Cancion cancion;
 
 	/** Fecha en la que se marco la cancion como pendiente de revision */
-	private Date plazo;
+	private LocalDate plazo;
 
 	/**
-	 * Este constructor genera una nueva validacion con los datos recividos como
-	 * argumentos.
+	 * Este constructor genera una nueva validacion con los datos recibidos como
+	 * argumentos
 	 * 
 	 * @param cancion
 	 */
-	public Validacion(Cancion cancion) {
+	public Validacion(Cancion cancion, LocalDate plazo) {
 		super();
 		this.cancion = cancion;
+		this.plazo = plazo;
 	}
 
 	/**
@@ -36,7 +37,7 @@ public class Validacion {
 	 * 
 	 * @return plazo
 	 */
-	public Date getPlazo() {
+	public LocalDate getPlazo() {
 		return plazo;
 	}
 
@@ -45,7 +46,7 @@ public class Validacion {
 	 * 
 	 * @param plazo
 	 */
-	public void setPlazo(Date plazo) {
+	public void setPlazo(LocalDate plazo) {
 		this.plazo = plazo;
 	}
 
@@ -57,5 +58,4 @@ public class Validacion {
 	public Cancion getCancion() {
 		return cancion;
 	}
-
 }

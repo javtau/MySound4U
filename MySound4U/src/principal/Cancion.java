@@ -1,12 +1,13 @@
 /**
 * Clase Cancion
-* @author Gonzalo Madrigal, Fernando Barroso y Javier Lozano
-*
+* @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
 package principal;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import pads.musicPlayer.Mp3Player;
 import pads.musicPlayer.exceptions.Mp3PlayerException;
@@ -15,7 +16,7 @@ import pads.musicPlayer.exceptions.Mp3PlayerException;
  * Esta clase contiene todos los atributos y metodos de una cancion
  */
 public class Cancion extends Element {
-	private static final String PATH = "songs/";
+	static final String PATH = "songs/";
 
 	/** Duracion de la cancion */
 	private Double duracion;
@@ -28,17 +29,17 @@ public class Cancion extends Element {
 	 */
 	private Integer numreproducciones;
 
-	/** Variable que indica si una cancion es explicita ( True = explicita) */
+	/** Variable que indica si una cancion es explicita (True = explicita) */
 	private Boolean explicita;
 
-	/** Variable que indica si una cancion esta bloqueada ( True = bloqueada) */
+	/** Variable que indica si una cancion esta bloqueada (True = bloqueada) */
 	private Boolean bloqueada;
 
-	/** Variable que indica si una cancion esta validada ( True = validada) */
+	/** Variable que indica si una cancion esta validada (True = validada) */
 	private Boolean validada;
 
 	/**
-	 * Variable que indica si una cancion esta pendiente de revision ( True =
+	 * Variable que indica si una cancion esta pendiente de revision (True =
 	 * pendiente)
 	 */
 	private Boolean revision;
@@ -54,11 +55,11 @@ public class Cancion extends Element {
 
 	/**
 	 * Este constructor genera una nueva cancion con los datos recibidos como
-	 * argumentos.
+	 * argumentos
 	 * 
-	 * @param nombre nombre de la cancion
-	 * @param ruta   ruta en la que se encuentra de la cancion
-	 * @param autor  nombre de la cancion
+	 * @param nombre Nombre de la cancion
+	 * @param ruta   Ruta en la que se encuentra de la cancion
+	 * @param autor  Nombre de la cancion
 	 */
 	public Cancion(String nombre, String ruta, UsuarioRegistrado autor) {
 		super(nombre);
@@ -70,7 +71,7 @@ public class Cancion extends Element {
 		bloqueada = false;
 		validada = false;
 		revision = false;
-
+		
 		try {
 			duracion = (double) ((int) Mp3Player.getDuration(this.ruta) / 60);
 			duracion += (double) ((int) Mp3Player.getDuration(this.ruta)) % 60 / 100;
@@ -79,11 +80,25 @@ public class Cancion extends Element {
 			e.printStackTrace();
 		}
 	}
+	
+	public void aumentarReproducciones() {
+		numreproducciones++;
+	}
 
 	public void validar() {
 		validada = true;
 	}
 
+	public void bloquear() {
+		bloqueada = true;
+	}
+	public void setExplicita() {
+		this.explicita = true;
+	}
+
+	public void desbloquear() {
+		bloqueada = false;
+	}
 	public Boolean esExplicita() {
 		return explicita;
 	}
@@ -116,13 +131,20 @@ public class Cancion extends Element {
 		return album;
 	}
 
-	@Override
-	public String toString() {
-		return "Cancion [Nombre: " + super.getNombre() + ", duracion= " + duracion + ", numero de reproducciones= "
-				+ numreproducciones + ((explicita) ? ", es " : ", no es ") + "explicita,\n\t"
-				+ ((bloqueada) ? "esta " : "no esta ") + "bloqueada" + ((validada) ? ", esta " : ", no esta ")
-				+ "validada" + ((revision) ? ", pendiente de revision" : "") + ", autor" + autor.getNombre()
-				+ ((album == null) ? "" : ", album=" + album.getNombre()) + "]";
+	public UsuarioRegistrado getAutor() {
+		return this.autor;
 	}
 
+	public String getAutorNombre() {
+		return this.autor.getNombre();
+	}
+
+	@Override
+	public String toString() {
+		return "Cancion [Nombre: " + super.getNombre() + ", duracion = " + duracion + ", numero de reproducciones = "
+				+ numreproducciones + ((explicita) ? ", es " : ", no es ") + "explicita,\n\t"
+				+ ((bloqueada) ? "esta " : "no esta ") + "bloqueada" + ((validada) ? ", esta " : ", no esta ")
+				+ "validada" + ((revision) ? ", pendiente de revision" : "") + ", autor: " + autor.getNombre()
+				+ ((album == null) ? "" : ", album : " + album.getNombre()) + "]";
+	}
 }
