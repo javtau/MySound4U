@@ -5,10 +5,16 @@
 
 package principal;
 
+import java.io.Serializable;
+
 /**
  * Esta clase contiene todos los atributos y metodos de un usuario
  */
-public abstract class Usuario {
+/**
+ * @author javier
+ *
+ */
+public abstract class Usuario implements Serializable {
 
 	/** Nombre del usuario */
 	private String nombre;
@@ -77,6 +83,24 @@ public abstract class Usuario {
 		return (this.nombre.equalsIgnoreCase(nombre) && this.contrasena.equals(contrasena));
 	}
 
+	/**
+	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y
+	 * pasa a dicha sesion la aplicacion que la genera
+	 * 
+	 * @param api Aplicacion que pide el inicio de sesion
+	 * @return Sesion Sesion del tipo de usuario que la inicia
+	 */
+	public abstract Sesion iniciarSesion(Aplicacion api);
+
+	/**
+	 * Metodo que recibe una cancion e indica si este usuario puede escucharla
+	 * 
+	 * @param cancion cancion a comprobar
+	 * @return Boolean true si el usuario puede reproducir la cancion, false en caso
+	 *         contrario
+	 */
+	public abstract Boolean canEarSong(Cancion cancion);
+
 	/** Este metodo pone a cero el contador de canciones reproducidas */
 	public void resetearreproducidas() {
 		reproducidas = 0;
@@ -86,4 +110,5 @@ public abstract class Usuario {
 	public void aumentarReproducidas() {
 		reproducidas++;
 	}
+
 }

@@ -5,17 +5,22 @@
 
 package principal;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+
+import utils.FechaSimulada;
 
 /**
  * Esta clase contiene todos los atributos y metodos de un usuario registrado
  */
-public class UsuarioRegistrado extends Usuario {
+public class UsuarioRegistrado extends Usuario implements Serializable {
 
 	/** Fecha de nacimiento del usuario */
-	private Date fechanac;
+	private LocalDate fechanac;
 
 	/** Variable que indica si un usuario esta bloqueado (True = bloqueado) */
 	private Boolean bloqueado;
@@ -49,7 +54,7 @@ public class UsuarioRegistrado extends Usuario {
 	 * @param contrasena Contrasena del usuario
 	 * @param fechanac   Fecha de nacimiento del usuario
 	 */
-	public UsuarioRegistrado(String nombre, String contrasena, Date fechanac) {
+	public UsuarioRegistrado(String nombre, String contrasena, LocalDate fechanac) {
 		super(nombre, contrasena);
 		this.fechanac = fechanac;
 
@@ -67,6 +72,23 @@ public class UsuarioRegistrado extends Usuario {
 	 * 
 	 * @return Boolean True si el usuario esta bloqueado, false en caso contrario
 	 */
+
+	public int getEdad() {
+		LocalDate today = LocalDate.now();
+		int edad = today.getYear() - fechanac.getYear();
+		if ((fechanac.getMonthValue() > today.getMonthValue()) || (today.getMonthValue() == fechanac.getMonthValue()
+				&& fechanac.getDayOfMonth() > today.getDayOfMonth())) {
+			edad--;
+		}
+		return edad;
+	}
+
+	/**
+	 * Este metodo devuelve si el usuario esta bloqueado
+	 * 
+	 * @return Boolean True si el usuario esta bloqueado, false en caso contrario
+	 */
+
 	public Boolean estaBloqueado() {
 		return bloqueado;
 	}
@@ -103,7 +125,7 @@ public class UsuarioRegistrado extends Usuario {
 	 * 
 	 * @return fechanac Fecha de nacimiento del usuario
 	 */
-	public Date getFechanac() {
+	public LocalDate getFechanac() {
 		return fechanac;
 	}
 
@@ -112,7 +134,7 @@ public class UsuarioRegistrado extends Usuario {
 	 * 
 	 * @param cancion Cancion a anadir
 	 */
-	public void anadirCancion(Cancion cancion) {
+	public void addCancion(Cancion cancion) {
 		if (cancion != null)
 			canciones.add(cancion);
 	}
@@ -171,8 +193,8 @@ public class UsuarioRegistrado extends Usuario {
 	 * 
 	 * @param nombre Nombre de la lista
 	 */
-	public void crearLista(String nombre) {
-		listas.add(new Lista(nombre));
+	public void addLista(Lista lista) {
+		listas.add(lista);
 	}
 
 	/**
@@ -180,15 +202,64 @@ public class UsuarioRegistrado extends Usuario {
 	 * 
 	 * @param nombre Nombre del album
 	 */
-	public void crearAlbum(String nombre) {
-		albumes.add(new Album(nombre));
+	public void addAlbum(Album album) {
+		albumes.add(album);
 	}
 
+	/**
+	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y
+	 * pasa a dicha sesion la aplicacion que la genera
+	 * 
+	 * @param api Aplicacion que pide el inicio de sesion
+	 * @return Sesion Sesion del tipo de usuario que la inicia
+	 */
+	@Override
+	public Sesion iniciarSesion(Aplicacion api) {
+		return new SesionUsuarios(this, api);
+	}
+
+	/**
+	 * Este devuelve un string con la informacion del usuario registrado
+	 * 
+	 * @param String string con la info del usuario
+	 */
 	@Override
 	public String toString() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
-				+ ", fecha de nacimiento: " + dateFormat.format(fechanac) + ", reproducidas = " + super.getReproducidas()
+				+ ", fecha de nacimiento: " + fechanac.format(formatter) + ", reproducidas = " + super.getReproducidas()
 				+ ", reproducciones = " + reproducciones + "]";
+	}
+
+	/**
+	 * Metodo que imprime todos las canciones del usuario
+	 */
+	public void printSongs() {
+		for (Cancion c : canciones) {
+			System.out.println(c);
+		}
+	}
+
+	/**
+	 * Metodo que recibe una cancion e indica si este usuario puede escucharla
+	 * 
+	 * @param cancion Cancion a comprobar
+	 * @return Boolean False si el usuario puede reproducir la cancion, true en caso
+	 *         contrario
+	 */
+	public Boolean canEarSong(Cancion cancion) {
+
+		return cancion.esBloqueda() || (!cancion.esValidada() && cancion.getAutor() != this)
+				|| (cancion.esExplicita() && getEdad() < 18)
+				|| esPremium() && getReproducidas() > Aplicacion.REPRODUCCIONES_MAX;
+	}
+
+	/**
+	 * Metodo que imprime todos los albumes del usuario
+	 */
+	public void printAlbums() {
+		for (Album a : albumes) {
+			System.out.println(a);
+		}
 	}
 }

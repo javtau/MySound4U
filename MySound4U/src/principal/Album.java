@@ -5,12 +5,13 @@
 
 package principal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Esta clase contiene todos los atributos y metodos de un Album
  */
-public class Album extends Element {
+public class Album extends Element implements Serializable {
 
 	/** Lista con las canciones del album */
 	private ArrayList<Cancion> canciones;
@@ -26,8 +27,8 @@ public class Album extends Element {
 		canciones = new ArrayList<>();
 	}
 
-	public void anadirCancion(Cancion cancion) {
-		canciones.add(cancion);
+	public boolean anadirCancion(Cancion cancion) {
+		return canciones.add(cancion);
 	}
 
 	public void borrarCancion(Cancion cancion) {

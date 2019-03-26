@@ -5,10 +5,12 @@
 
 package principal;
 
+import java.io.Serializable;
+
 /**
  * Esta clase contiene todos los atributos y metodos de un elemento
  */
-public abstract class Element {
+public abstract class Element implements Serializable {
 
 	/** Nombre de la cancion */
 	private String nombre;

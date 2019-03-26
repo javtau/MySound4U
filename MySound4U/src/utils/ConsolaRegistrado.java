@@ -5,6 +5,7 @@
 
 package utils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import principal.Cancion;
@@ -12,7 +13,7 @@ import principal.Cancion;
 /**
  * Clase para los mensajes de consola del usuario registrado
  */
-public class ConsolaRegistrado extends Consola {
+public class ConsolaRegistrado extends Consola implements Serializable {
 
 	/**
 	 * Este metodo imprime por consola las diferentes opciones del usuario
@@ -24,8 +25,8 @@ public class ConsolaRegistrado extends Consola {
 		System.out.println("**************************************************************************");
 		System.out.println("* Canciones:                                                             *");
 		for (Cancion c : canciones) {
-			System.out.println("*   " + i + ". " + c.getNombre() + "  " + "Duracion: " + c.getDuracion() + " " + "Autor: " + c.getAutor()
-			+ "\t                                    *");
+			System.out.println("*   " + i + ". " + c.getNombre() + "  " + "Duracion: " + c.getDuracion() + " "
+					+ "Autor: " + c.getAutorNombre() + "\t                                    *");
 			i++;
 		}
 		System.out.println("*                                                                        *");

@@ -6,6 +6,9 @@
 package principal;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import pads.musicPlayer.Mp3Player;
 import pads.musicPlayer.exceptions.Mp3PlayerException;
@@ -13,8 +16,8 @@ import pads.musicPlayer.exceptions.Mp3PlayerException;
 /**
  * Esta clase contiene todos los atributos y metodos de una cancion
  */
-public class Cancion extends Element {
-	private static final String PATH = "songs/";
+public class Cancion extends Element implements Serializable {
+	static final String PATH = Aplicacion.getPath();
 
 	/** Duracion de la cancion */
 	private Double duracion;
@@ -61,7 +64,7 @@ public class Cancion extends Element {
 	 */
 	public Cancion(String nombre, String ruta, UsuarioRegistrado autor) {
 		super(nombre);
-		this.ruta = PATH + ruta;
+		this.ruta = ruta;
 		this.autor = autor;
 
 		numreproducciones = 0;
@@ -69,20 +72,34 @@ public class Cancion extends Element {
 		bloqueada = false;
 		validada = false;
 		revision = false;
-
+		
 		try {
-			duracion = (double) ((int) Mp3Player.getDuration(this.ruta) / 60);
-			duracion += (double) ((int) Mp3Player.getDuration(this.ruta)) % 60 / 100;
+			duracion = (double) ((int) Mp3Player.getDuration(PATH + ruta) / 60);
+			duracion += (double) ((int) Mp3Player.getDuration(PATH + ruta)) % 60 / 100;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void aumentarReproducciones() {
+		numreproducciones++;
 	}
 
 	public void validar() {
 		validada = true;
 	}
 
+	public void bloquear() {
+		bloqueada = true;
+	}
+	public void setExplicita() {
+		this.explicita = true;
+	}
+
+	public void desbloquear() {
+		bloqueada = false;
+	}
 	public Boolean esExplicita() {
 		return explicita;
 	}
@@ -115,8 +132,12 @@ public class Cancion extends Element {
 		return album;
 	}
 
-	public String getAutor() {
-		return autor.getNombre();
+	public UsuarioRegistrado getAutor() {
+		return this.autor;
+	}
+
+	public String getAutorNombre() {
+		return this.autor.getNombre();
 	}
 
 	@Override

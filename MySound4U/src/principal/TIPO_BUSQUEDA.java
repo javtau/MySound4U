@@ -5,9 +5,11 @@
 
 package principal;
 
+import java.io.Serializable;
+
 /**
  * Esta enumeracion define los tipos de busqueda que se pueden realizar
  */
-public enum TIPO_BUSQUEDA {
+public enum TIPO_BUSQUEDA implements Serializable {
 	TODO, AUTOR, TITULO, ALBUM;
 }

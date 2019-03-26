@@ -5,12 +5,13 @@
 
 package principal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Esta clase contiene todos los atributos y metodos de una lista
  */
-public class Lista extends Element {
+public class Lista extends Element implements Serializable {
 
 	/** Lista con las canciones de la lista */
 	private ArrayList<Element> elementos;
@@ -27,8 +28,8 @@ public class Lista extends Element {
 		elementos = new ArrayList<>();
 	}
 
-	public void addElemt(Element element) {
-		elementos.remove(element);
+	public Boolean addElemt(Element element) {
+		return elementos.remove(element);
 	}
 
 	public void removeElemt(Element element) {

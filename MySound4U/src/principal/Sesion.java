@@ -5,21 +5,22 @@
 
 package principal;
 
+import java.io.Serializable;
+
 import utils.Consola;
 import utils.Reproductor;
 
 /**
  * Esta clase contiene todos los atributos y metodos de la sesion
  */
-public abstract class Sesion {
-	protected Usuario usuario;
+public abstract class Sesion implements Serializable {
+
 	protected Aplicacion api;
 	protected static Reproductor reproductor;
 	protected Consola consola;
 
-	public Sesion(Usuario usuario, Aplicacion api, Consola consola) {
+	public Sesion(Aplicacion api, Consola consola) {
 		super();
-		this.usuario = usuario;
 		this.api = api;
 		reproductor = new Reproductor();
 		this.consola = consola;
@@ -35,18 +36,27 @@ public abstract class Sesion {
 	public abstract void reproducir(Cancion cancion);
 
 	/**
+	 * Este metodo reproduce una cancion. Este metodo solo es una declaracion, se
+	 * implementara de forma mas especializada en las clases que extiendan de esta
+	 * 
+	 * @param cancion Cancion que se quiere reproducir
+	 * @param usuario Usuario que solicita la reproduccion
+	 */
+	public void stop() {
+		reproductor.stop();
+	}
+
+	/**
 	 * Este metodo devuelve el usuario de esta sesion
 	 * 
 	 * @return usuario Usuario que solicita la reproduccion
 	 */
-	public Usuario getUsuario() {
-		return usuario;
-	}
+	public abstract Usuario getUsuario();
 
 	/**
 	 * Este metodo devuelve la aplicacion que controla esta sesion
 	 * 
-	 * @return api api recibida por argumento
+	 * @return api Api recibida por argumento
 	 */
 	public Aplicacion getApi() {
 		return api;

@@ -5,12 +5,13 @@
 
 package principal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Esta clase contiene todos los atributos y metodos de una denuncia
  */
-public class Denuncia {
+public class Denuncia implements Serializable {
 
 	/** Cancion que se quiere denunciar */
 	private Cancion cancion;
@@ -30,7 +31,6 @@ public class Denuncia {
 	 * @param comentario
 	 */
 	public Denuncia(Cancion cancion, UsuarioRegistrado denunciante, String comentario) {
-		super();
 		this.cancion = cancion;
 		this.denunciante = denunciante;
 		this.comentario = comentario;

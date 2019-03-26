@@ -6,21 +6,25 @@
 package utils;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 import pads.musicPlayer.Mp3Player;
 import pads.musicPlayer.exceptions.Mp3PlayerException;
+import principal.Aplicacion;
+import principal.Cancion;
 
 /**
  * Esta clase genera un reproductor y gestionara las distintas reproduciones
  */
-public class Reproductor {
+public class Reproductor implements Serializable {
 	/** Reproductor n */
 	private Mp3Player reproductor;
 
 	public Reproductor() {
 		try {
-			reproductor = new Mp3Player("C:\\Users\\fbarroso\\git\\MySound4U\\MySound4U\\songs\\iniciom.mp3");
-			reproductor.play();
+			reproductor = new Mp3Player();
+			reproductor.add(Aplicacion.getPath()+"iniciom.mp3");
 		} catch (FileNotFoundException | Mp3PlayerException e) {
 			e.printStackTrace();
 		}
@@ -33,9 +37,14 @@ public class Reproductor {
 	 * @return Boolean True si la cancion se ha reproducido, false en caso contrario
 	 */
 	public Boolean reproducir(String... canciones) {
+		ArrayList<String> cancion = new ArrayList<>();
+		for (String c : canciones) {
+			cancion.add(Aplicacion.getPath()+c);
+		}
 		try {
 			reproductor.stop();
-			reproductor = new Mp3Player(canciones);
+			reproductor = new Mp3Player();
+			reproductor.add(cancion.toArray(new String[0]));
 			reproductor.play();
 		} catch (Mp3PlayerException | FileNotFoundException e) {
 			e.printStackTrace();
