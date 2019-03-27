@@ -62,7 +62,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		} catch (IOException ex) {
 			System.out.println("problem accessing file" + origen.getAbsolutePath());
 		}
-
 	}
 
 	/**
@@ -162,7 +161,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
+
 	public UsuarioRegistrado getUsuarioRegistrado() {
 		return usuario;
 	}
@@ -237,7 +236,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			} else {
 				System.out.println("File access cancelled by user.");
 			}
-
 			canciones = api.getLastSongs();
 			break;
 
@@ -254,5 +252,4 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		}
 		return exit;
 	}
-
 }
