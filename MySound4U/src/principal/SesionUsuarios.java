@@ -162,6 +162,10 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	public Usuario getUsuario() {
 		return usuario;
 	}
+	
+	public UsuarioRegistrado getUsuarioRegistrado() {
+		return usuario;
+	}
 
 	/**
 	 * Este metodo muestra las opciones para el usuario registrado y espera a que

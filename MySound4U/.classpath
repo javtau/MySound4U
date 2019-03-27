@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/jl1.0.1.jar"/>
-	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/MP3Player.jar"/>
-	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/TeleChargeAndPaySystem8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fbarroso/git/MySound4U/MySound4U/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fbarroso/git/MySound4U/MySound4U/MP3Player.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fbarroso/git/MySound4U/MySound4U/TeleChargeAndPaySystem8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -84,8 +84,10 @@ public class Aplicacion implements Serializable {
 		Cancion c1 = new Cancion("CorePride", "UVERworld_CorePride.mp3", sistema);
 		c1.validar();
 		Cancion c2 = new Cancion("RookiezisPunk", "RookiezisPunk_d_InMyWorld.mp3", sistema);
+		c2.marcarExplicita();
 		c2.validar();
 		Cancion c3 = new Cancion("Levels", "avicii-levels.mp3", avicii);
+		c3.validar();
 		canciones.add(c1);
 		canciones.add(c2);
 		canciones.add(c3);
