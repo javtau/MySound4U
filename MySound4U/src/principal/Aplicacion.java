@@ -5,6 +5,7 @@
 
 package principal;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -243,7 +245,7 @@ public class Aplicacion implements Serializable {
 			Iterator<Cancion> iter = match.iterator();
 			while (iter.hasNext()) {
 				System.out.print("\n" + iter.next() + "\n");
-				System.out.print("\n\n");
+				System.out.print("\n");
 			}
 			try {
 				TimeUnit.SECONDS.sleep(2);
@@ -517,6 +519,23 @@ public class Aplicacion implements Serializable {
 	public void printAlbums() {
 		for (Album a : albumes) {
 			System.out.println(a);
+		}
+	}
+
+	/**
+	 * Metodo que imprime todo el contenido de un directorio
+	 * 
+	 * @throws InterruptedException
+	 */
+	public void printDirectory() throws InterruptedException {
+
+		File directory = new File("songs/");
+
+		String[] filesInDir = directory.list();
+
+		for (int i = 0; i < filesInDir.length; i++) {
+			System.out.println("Archivo: " + filesInDir[i]);
+			TimeUnit.SECONDS.sleep(1);
 		}
 	}
 }
