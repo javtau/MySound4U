@@ -47,13 +47,13 @@ public class Administrador extends Usuario implements Serializable{
 	 */
 	public Boolean canEarSong(Cancion cancion) {
 
-		return true;
+		return false;
 	}
 	
 	/**
 	 * Este devuelve un string con la informacion del administrador
 	 * 
-	 * @param String string con la info del usuario
+	 * @param String String con la info del usuario
 	 */
 	@Override
 	public String toString() {

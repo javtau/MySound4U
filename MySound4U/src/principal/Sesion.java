@@ -36,11 +36,8 @@ public abstract class Sesion implements Serializable {
 	public abstract void reproducir(Cancion cancion);
 
 	/**
-	 * Este metodo reproduce una cancion. Este metodo solo es una declaracion, se
-	 * implementara de forma mas especializada en las clases que extiendan de esta
+	 * Este metodo para una cancion.
 	 * 
-	 * @param cancion Cancion que se quiere reproducir
-	 * @param usuario Usuario que solicita la reproduccion
 	 */
 	public void stop() {
 		reproductor.stop();

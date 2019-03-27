@@ -1,8 +1,13 @@
 package principal;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 //import utils.ConsolaAnonimo;
+
+import utils.DataManager;
+import utils.DataManager.*;
+
 
 /**
  * Clase principal que creara la aplicacion e ilustrara la funcionalidad 
@@ -10,10 +15,18 @@ import java.util.concurrent.TimeUnit;
 public class Demostrador2 {
 
 	public static void main(String[] args) throws InterruptedException {		
-		UsuarioAnonimo anonimo = new UsuarioAnonimo();
-		Aplicacion api = new Aplicacion();
-		SesionAnonima anonima = new SesionAnonima(anonimo, api);
-
+		DataManager dManager = new DataManager();
+        Aplicacion api = null;
+		if (!(new File(DataManager.BACK_UP_FILE)).exists()) {
+			api = new Aplicacion();
+		}else {
+			api = dManager.loadApi();
+			api.desloguearse();
+		}
+		SesionAnonima anonima = null;
+		SesionAdmin administrador = null;
+		SesionUsuarios usuario = null;
+		
 		System.out.println("**************************");
 		System.out.println("* BIENVENIDO A MySOUND4U *");
 		System.out.println("**************************");
@@ -25,7 +38,9 @@ public class Demostrador2 {
 		
 		
 		// USUARIO ANONIMO
-
+		
+		anonima = (SesionAnonima) api.getSesion();
+		
 		System.out.println("");
 		System.out.println("*******************");
 		System.out.println("* Usuario anonimo *");
@@ -33,9 +48,11 @@ public class Demostrador2 {
 
 		System.out.println("Vamos a probar una a una la funcionalidad del usuario anonimo: \n");
 		TimeUnit.SECONDS.sleep(2);
-
+		
 		ArrayList<Cancion> canciones = api.getLastSongs();
 
+		//System.out.println(canciones);
+		
 		// Reproducir una cancion
 		
 		System.out.println("****************");
@@ -43,14 +60,14 @@ public class Demostrador2 {
 		System.out.println("****************");
 
 		System.out.println("\nSe reproducira la cancion \"Levels\" \n");
-		anonima.reproducir(canciones.get(2));
+		anonima.reproducir(canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
 
 		// Parar una cancion
 
 		System.out.println("Se va a parar la cancion en 10 segundos");
 		TimeUnit.SECONDS.sleep(10);
-		//anonima.parar();
+		anonima.stop();
 
 		// Metodo buscar
 
@@ -88,7 +105,7 @@ public class Demostrador2 {
 		api.registrarse("Fernando", "1234", "14/10/1994");
 		TimeUnit.SECONDS.sleep(2);
 		
-		System.out.println("\nVamos a registrarnos en la aplicacion con nombre de usuario: \"Fernando\" y contrasena: \"1234\"");
+		System.out.println("\nVamos a registrarnos en la aplicacion con el mismo nombre de usuario");
 		TimeUnit.SECONDS.sleep(2);
 		api.registrarse("Fernando", "1234", "14/10/1994");
 		TimeUnit.SECONDS.sleep(2);
@@ -100,11 +117,33 @@ public class Demostrador2 {
 		System.out.println("* Inicio de sesion *");
 		System.out.println("********************");
 
-		api.loguearse("Fernando", "1234");
+		api.loguearse("avicii", "1234");
+		usuario = (SesionUsuarios) api.getSesion();
 		TimeUnit.SECONDS.sleep(2);
 
 		// USUARIO REGISTRADO
+		/*canciones = api.getLastSongs();
+		System.out.println(canciones);
+		//usuario.reproducir(canciones.get(0));
+		api.desloguearse();
+		api.loguearse("admin", "admin");
+		administrador = (SesionAdmin) api.getSesion();
 		
+		ArrayList<Denuncia> denuncias = api.getLastDenuncias();
+		ArrayList<Validacion> validaciones = api.getLastValidaciones();
+		canciones = api.getLastSongs();
+		System.out.println(validaciones + "\n");
+		System.out.println("********************");
+		System.out.println("*  *");
+		System.out.println("********************");
+
+		System.out.println(denuncias + "\n");
 		
+		System.out.println("********************");
+		System.out.println("*  *");
+		System.out.println("********************");
+		api.buscar("levels", TIPO_BUSQUEDA.TODO);
+		System.out.println(canciones);
+		*/
 	}
 }

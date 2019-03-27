@@ -75,13 +75,15 @@ public class Aplicacion implements Serializable {
 		admin = new Administrador();
 		sesion = logueado.iniciarSesion(this);
 		PATH = getPath();
-		/* valores de prueba */
+		/* valores para probar el demostradro */
 		UsuarioRegistrado sistema = new UsuarioRegistrado("SYSTEM", "1234", LocalDate.now());
 		usuarios.add(sistema);
 		UsuarioRegistrado avicii = new UsuarioRegistrado("AVICII", "1234", LocalDate.now());
 		usuarios.add(avicii);
 		Cancion c1 = new Cancion("CorePride", "UVERworld_CorePride.mp3", sistema);
+		c1.validar();
 		Cancion c2 = new Cancion("RookiezisPunk", "RookiezisPunk_d_InMyWorld.mp3", sistema);
+		//c2.validar();
 		Cancion c3 = new Cancion("Levels", "avicii-levels.mp3", avicii);
 
 		canciones.add(c1);
@@ -133,6 +135,15 @@ public class Aplicacion implements Serializable {
 		}
 
 		return d;
+	}
+
+	/**
+	 * Este metodo devuelve la sesion actual
+	 * 
+	 * @return sesion Sesion actual
+	 */
+	public Sesion getSesion() {
+		return sesion;
 	}
 
 	/**
@@ -194,25 +205,25 @@ public class Aplicacion implements Serializable {
 		for (Cancion c : canciones) {
 			switch (tipo) {
 			case ALBUM:
-				if (c.getAlbum() != null && c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase()))
+				if (c.getAlbum() != null && c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canEarSong(c))
 					match.add(c);
 				break;
 
 			case AUTOR:
-				if (c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()))
+				if (c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canEarSong(c))
 					match.add(c);
 				break;
 
 			case TITULO:
-				if (c.getNombre().toLowerCase().contains(busqueda.toLowerCase())) {
+				if (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canEarSong(c)) {
 					match.add(c);
 				}
 				break;
 
 			case TODO:
-				if ((c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()))
+				if (((c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()))
 						|| (c.getNombre().toLowerCase().contains(busqueda.toLowerCase())) || (c.getAlbum() != null
-								&& c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase()))) {
+								&& c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase()))) && !logueado.canEarSong(c)) {
 					match.add(c);
 				}
 				break;
@@ -457,7 +468,7 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
-	 * Este metodo devulve un string con la ruta de la carpeta de canciones
+	 * Este metodo devuelve un string con la ruta de la carpeta de canciones
 	 * 
 	 * @return path Ruta de la carpeta
 	 */
