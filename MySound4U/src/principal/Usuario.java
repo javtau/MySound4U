@@ -99,7 +99,7 @@ public abstract class Usuario implements Serializable {
 	 * @return Boolean true si el usuario puede reproducir la cancion, false en caso
 	 *         contrario
 	 */
-	public abstract Boolean canEarSong(Cancion cancion);
+	public abstract Boolean canListenSong(Cancion cancion);
 
 	/** Este metodo pone a cero el contador de canciones reproducidas */
 	public void resetearreproducidas() {

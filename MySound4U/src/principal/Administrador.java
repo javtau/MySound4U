@@ -45,7 +45,7 @@ public class Administrador extends Usuario implements Serializable{
 	 * @return Boolean True si el usuario puede reproducir la cancion, false en caso
 	 *         contrario
 	 */
-	public Boolean canEarSong(Cancion cancion) {
+	public Boolean canListenSong(Cancion cancion) {
 
 		return false;
 	}

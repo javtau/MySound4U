@@ -247,7 +247,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * @return Boolean False si el usuario puede reproducir la cancion, true en caso
 	 *         contrario
 	 */
-	public Boolean canEarSong(Cancion cancion) {
+	public Boolean canListenSong(Cancion cancion) {
 
 		return cancion.esBloqueda() || (!cancion.esValidada() && cancion.getAutor() != this)
 				|| (cancion.esExplicita() && getEdad() < 18)

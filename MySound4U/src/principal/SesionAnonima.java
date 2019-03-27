@@ -44,7 +44,7 @@ public class SesionAnonima extends Sesion implements Serializable {
 	 */
 	// @Override
 	public void reproducir(Cancion cancion) {
-		if (usuario.canEarSong(cancion)) {
+		if (usuario.canListenSong(cancion)) {
 			System.out.println("No se puede reproducir");
 			return;
 		}
@@ -116,7 +116,7 @@ public class SesionAnonima extends Sesion implements Serializable {
 			nombre = sc.nextLine();
 			System.out.print("Introduzca contrasena: ");
 			pass = sc.nextLine();
-			reproductor.stop();
+			stop();
 			api.loguearse(nombre, pass);
 			break;
 
@@ -132,10 +132,10 @@ public class SesionAnonima extends Sesion implements Serializable {
 			break;
 
 		case "parar":
-			reproductor.stop();
+			stop();
 			break;
 		case "salir":
-			reproductor.stop();
+			stop();
 			exit = false;
 			break;
 

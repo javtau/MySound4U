@@ -111,7 +111,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	@Override
 	public void reproducir(Cancion cancion) {
 
-		if (usuario.canEarSong(cancion)) {
+		if (usuario.canListenSong(cancion)) {
 			System.out.println("no se puede reproducir");
 			return;
 		}
@@ -126,7 +126,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 				}
 			}
 		}
-
 	}
 
 	// TODO metodo para editar canciones
@@ -217,7 +216,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			break;
 
 		case "desloguearse":
-			reproductor.stop();
+			stop();
 			api.desloguearse();
 			break;
 
@@ -239,10 +238,10 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			break;
 
 		case "parar":
-			reproductor.stop();
+			stop();
 			break;
 		case "salir":
-			reproductor.stop();
+			stop();
 			exit = false;
 			break;
 

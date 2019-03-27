@@ -172,7 +172,7 @@ public class SesionAdmin extends Sesion implements Serializable {
 			break;
 
 		case "desloguearse":
-			reproductor.stop();
+			stop();
 			api.desloguearse();
 			break;
 
@@ -239,11 +239,11 @@ public class SesionAdmin extends Sesion implements Serializable {
 			break;
 
 		case "parar":
-			reproductor.stop();
+			stop();
 			break;
 
 		case "salir":
-			reproductor.stop();
+			stop();
 			exit = false;
 			break;
 

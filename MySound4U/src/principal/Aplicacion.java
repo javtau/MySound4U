@@ -75,7 +75,8 @@ public class Aplicacion implements Serializable {
 		admin = new Administrador();
 		sesion = logueado.iniciarSesion(this);
 		PATH = getPath();
-		/* valores para probar el demostradro */
+
+		/* Valores para probar el demostrador */
 		UsuarioRegistrado sistema = new UsuarioRegistrado("SYSTEM", "1234", LocalDate.now());
 		usuarios.add(sistema);
 		UsuarioRegistrado avicii = new UsuarioRegistrado("AVICII", "1234", LocalDate.now());
@@ -83,9 +84,8 @@ public class Aplicacion implements Serializable {
 		Cancion c1 = new Cancion("CorePride", "UVERworld_CorePride.mp3", sistema);
 		c1.validar();
 		Cancion c2 = new Cancion("RookiezisPunk", "RookiezisPunk_d_InMyWorld.mp3", sistema);
-		//c2.validar();
+		c2.validar();
 		Cancion c3 = new Cancion("Levels", "avicii-levels.mp3", avicii);
-
 		canciones.add(c1);
 		canciones.add(c2);
 		canciones.add(c3);
@@ -205,25 +205,28 @@ public class Aplicacion implements Serializable {
 		for (Cancion c : canciones) {
 			switch (tipo) {
 			case ALBUM:
-				if (c.getAlbum() != null && c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canEarSong(c))
+				if (c.getAlbum() != null && c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase())
+						&& !logueado.canListenSong(c))
 					match.add(c);
 				break;
 
 			case AUTOR:
-				if (c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canEarSong(c))
+				if (c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canListenSong(c))
 					match.add(c);
 				break;
 
 			case TITULO:
-				if (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canEarSong(c)) {
+				if (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canListenSong(c)) {
 					match.add(c);
 				}
 				break;
 
 			case TODO:
 				if (((c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()))
-						|| (c.getNombre().toLowerCase().contains(busqueda.toLowerCase())) || (c.getAlbum() != null
-								&& c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase()))) && !logueado.canEarSong(c)) {
+						|| (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()))
+						|| (c.getAlbum() != null
+								&& c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase())))
+						&& !logueado.canListenSong(c)) {
 					match.add(c);
 				}
 				break;
@@ -277,7 +280,7 @@ public class Aplicacion implements Serializable {
 
 		for (int c = 6, i = canciones.size() - 1; i >= 0 && c >= 0; i--, c--) {
 			cancion = canciones.get(i);
-			if (!logueado.canEarSong(cancion)) {
+			if (!logueado.canListenSong(cancion)) {
 				songs.add(cancion);
 			}
 		}
