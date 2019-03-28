@@ -4,7 +4,10 @@ import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.ChronoPeriod;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +48,15 @@ public class TEster {
 		System.out.println(yo);
 		System.out.println("Tiene "+ yo.getEdad() +"años");
 		System.out.println(System.getProperty("os.name").toLowerCase());
+		FechaSimulada fecha = null;
+		fecha.fijarFecha(28,04 , 2019);
+		System.out.println(fecha.getHoy());
+		
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        ChronoLocalDate from = ChronoLocalDate.from(formatter.parse("01/01/2000"));
+	        ChronoLocalDate to = ChronoLocalDate.from(formatter.parse("01/01/2015"));
+	        ChronoPeriod period = ChronoPeriod.between(fecha.getHoy(), LocalDate.now());
+	        System.out.printf("%d años, %d meses y %d días", period.get(ChronoUnit.YEARS), period.get(ChronoUnit.MONTHS), period.get(ChronoUnit.DAYS));
 
 	}
 }

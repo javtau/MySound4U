@@ -83,23 +83,24 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	public void crearAlbum(String nombre) {
 		Album album = new Album(nombre);
 		api.addAlbum(album);
+		usuario.addAlbum(album);
 	}
 
 	public void borrarCancion(Cancion cancion) {
 		String nombre;
 		nombre = cancion.getNombre();
-		if(cancion.getAutor()!= usuario) {
+		if (cancion.getAutor() != usuario) {
 			System.out.println("No puede borrar una cancion de otro usuario.");
 			return;
 		}
-		usuario.borrarCancion(nombre);
+		usuario.borrarCancion(cancion);
 		api.deleteValidacion(api.getValidacion(cancion));
 		api.borrarCancion(cancion);
-		}
+	}
 
 	public void denunciar(Cancion cancion, String comentario) {
 		if (usuario.equals(cancion.getAutor())) {
-			System.out.println("No se puede denunciar a sí mismo");
+			System.out.println("No se puede denunciar a sï¿½ mismo");
 			return;
 		}
 		Denuncia denuncia = new Denuncia(cancion, usuario, comentario);
@@ -281,14 +282,14 @@ public class SesionUsuarios extends Sesion implements Serializable {
 				System.out.println("Debe introducir el numero del usuario.");
 			}
 			break;
-			
+
 		case "denunciar":
 			consola.printSelectSong();
 			try {
 				cancion = Integer.parseInt(sc.nextLine());
 				if (cancion > canciones.size() - 1 || cancion > 6 || cancion < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto.");
-				} else {	
+				} else {
 					System.out.println("Por favor, introduzca el motivo de la denuncia: ");
 					comentario = sc.nextLine();
 					denunciar(canciones.get(cancion), comentario);
@@ -314,7 +315,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		case "parar":
 			stop();
 			break;
-			
+
 		case "salir":
 			stop();
 			exit = false;

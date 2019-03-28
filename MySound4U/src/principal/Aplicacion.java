@@ -14,8 +14,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.chrono.ChronoPeriod;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -23,6 +25,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import utils.FechaSimulada;
 
 /**
  * Esta clase contiene todos los atributos y metodos de la aplicacion
@@ -57,6 +61,8 @@ public class Aplicacion implements Serializable {
 
 	/** Lista de validaciones pendientes */
 	private ArrayList<Validacion> validaciones;
+	
+	private FechaSimulada systemDate;
 
 	/**
 	 * Este constructor genera una nueva sesion de administrador e inicializa todas
@@ -77,6 +83,7 @@ public class Aplicacion implements Serializable {
 		admin = new Administrador();
 		sesion = logueado.iniciarSesion(this);
 		PATH = getPath();
+		systemDate.restablecerHoyReal();
 
 		/* Valores para probar el demostrador */
 		UsuarioRegistrado sistema = new UsuarioRegistrado("SYSTEM", "1234", LocalDate.now());
@@ -194,6 +201,11 @@ public class Aplicacion implements Serializable {
 	 * Metodo que realiza todas las comprobaciones y cambios a final de mes
 	 */
 	public void cierreMes() {
+		for (Map.Entry<UsuarioRegistrado, LocalDate> pair : bloqueados.entrySet()) {
+			ChronoPeriod period = ChronoPeriod.between(systemDate.getHoy(), LocalDate.now());
+	        System.out.printf("%d años, %d meses y %d días", period.get(ChronoUnit.YEARS), period.get(ChronoUnit.MONTHS), period.get(ChronoUnit.DAYS));
+
+		}
 	}
 
 	/**
@@ -380,8 +392,16 @@ public class Aplicacion implements Serializable {
 	}
 
 	public void borrarCancion(Cancion cancion) {
+		Album album;
 		if (canciones.contains(cancion)) {
 			canciones.remove(cancion);
+			if ((album = cancion.getAlbum()) != null) {
+				album.borrarCancion(cancion);
+				if (album.isEmpty()) {
+					albumes.remove(album);
+					((UsuarioRegistrado) logueado).borrarAlbum(album);
+				}
+			}
 		}
 	}
 

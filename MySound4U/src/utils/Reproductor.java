@@ -52,7 +52,10 @@ public class Reproductor implements Serializable {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * Este metodo para la reproduccion en curso
+	 */
 	public void stop() {
 		reproductor.stop();
 	}

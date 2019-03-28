@@ -157,15 +157,20 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * @param cancion Cancion que se desea borrar
 	 * @return Boolean True si se a borrado la cancion, false en caso contrario
 	 */
-	public void borrarCancion(String nombre) {
-		for (Cancion c : canciones) {
-			if (c.getNombre() == nombre) {
-				canciones.remove(c);
-				if (c.getAlbum().isEmpty()) {
-					albumes.remove(c.getAlbum());
-				}
-			}else
-				return;
+	public void borrarCancion(Cancion cancion) {
+		if (canciones.contains(cancion)) {
+			canciones.remove(cancion);
+		}
+	}
+
+	/**
+	 * Este metodo borra un album de la lista
+	 * 
+	 * @param album Nombre del album
+	 */
+	public void borrarAlbum(Album album) {
+		if (albumes.contains(album)) {
+			albumes.remove(album);
 		}
 	}
 
@@ -251,7 +256,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
 				+ ", fecha de nacimiento: " + fechanac.format(formatter) + ", reproducidas = " + super.getReproducidas()
-				+ ", reproducciones = " + reproducciones +  "]";
+				+ ", reproducciones = " + reproducciones + "]";
 	}
 
 	/**
