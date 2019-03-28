@@ -201,8 +201,14 @@ public class Aplicacion implements Serializable {
 	 * Metodo que realiza todas las comprobaciones y cambios a final de mes
 	 */
 	public void cierreMes() {
-		for (Map.Entry<UsuarioRegistrado, LocalDate> pair : bloqueados.entrySet()) {
-			ChronoPeriod period = ChronoPeriod.between(systemDate.getHoy(), LocalDate.now());
+		for (Map.Entry<UsuarioRegistrado, LocalDate> bloqueado : bloqueados.entrySet()) {
+			ChronoPeriod period = ChronoPeriod.between(systemDate.getHoy(), bloqueado.getValue());
+			if (period.get(ChronoUnit.YEARS) > 0 ||period.get(ChronoUnit.MONTHS) >1) {
+				bloqueado.getKey().setBloqueado(false);
+				bloqueados.remove(bloqueado.getKey());
+			}
+		
+			
 	        System.out.printf("%d años, %d meses y %d días", period.get(ChronoUnit.YEARS), period.get(ChronoUnit.MONTHS), period.get(ChronoUnit.DAYS));
 
 		}

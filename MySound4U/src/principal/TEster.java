@@ -53,8 +53,6 @@ public class TEster {
 		System.out.println(fecha.getHoy());
 		
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	        ChronoLocalDate from = ChronoLocalDate.from(formatter.parse("01/01/2000"));
-	        ChronoLocalDate to = ChronoLocalDate.from(formatter.parse("01/01/2015"));
 	        ChronoPeriod period = ChronoPeriod.between(fecha.getHoy(), LocalDate.now());
 	        System.out.printf("%d años, %d meses y %d días", period.get(ChronoUnit.YEARS), period.get(ChronoUnit.MONTHS), period.get(ChronoUnit.DAYS));
 
