@@ -27,7 +27,7 @@ public abstract class Consola implements Serializable {
 	 * cancion que desee reproducir
 	 */
 	public void printSelectSong() {
-		System.out.print("Introduzca el numero de la cancion a reproducir: ");
+		System.out.print("Introduzca el numero de la cancion: ");
 	}
 
 }

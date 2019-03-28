@@ -293,41 +293,40 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
-	 * Metodo que devuelve una lista con las ultimas denuncias realizadas
+	 * Metodo que devuelve una lista con los usuarios registrados
 	 * 
-	 * @return songs Lista con las 6 ultimas denuncias
+	 * @return songs Lista con los usuarios
 	 */
-	public ArrayList<Denuncia> getLastDenuncias() {
-		if (denuncias.size() < 7) {
-			return new ArrayList<Denuncia>(denuncias);
-		}
-		ArrayList<Denuncia> denun = new ArrayList<>();
-
-		for (int d = 6, i = denuncias.size() - 1; i >= 0; i--, d--) {
-			denun.add(denuncias.get(d));
-		}
-
-		return denun;
+	public ArrayList<UsuarioRegistrado> getUsuarios() {
+		return usuarios;
+	}
+	/**
+	 * Metodo que devuelve una lista con las denuncias realizadas
+	 * 
+	 * @return songs Lista con las denuncias
+	 */
+	public ArrayList<Denuncia> getDenuncias() {
+		return denuncias;
 	}
 
 	/**
-	 * Metodo que devuelve una lista con las ultimas validaciones pendientes
+	 * Metodo que devuelve una lista con las  validaciones pendientes
 	 * 
-	 * @return songs Lista con las 6 ultimas validaciones
+	 * @return songs Lista con las validaciones
 	 */
-	public ArrayList<Validacion> getLastValidaciones() {
-		if (validaciones.size() < 7) {
-			return new ArrayList<Validacion>(validaciones);
-		}
-		ArrayList<Validacion> valid = new ArrayList<>();
-
-		for (int v = 6, i = validaciones.size() - 1; i >= 0; i--, v--) {
-			valid.add(validaciones.get(v));
-		}
-
-		return valid;
+	public ArrayList<Validacion> getValidaciones() {
+		return validaciones;
 	}
 
+	/**
+	 * Metodo que devuelve un usuario a partir de su indice
+	 * 
+	 * @return usuario solicitado
+	 * @param val indice del usuario
+	 */
+	public UsuarioRegistrado getUsuario(int user) {
+		return usuarios.get(user);
+	}
 	/**
 	 * Metodo que devuelve una validacion a partir de su indice
 	 * 
@@ -402,6 +401,16 @@ public class Aplicacion implements Serializable {
 			bloqueados.put(autor, plazo);
 	}
 
+	/**
+	 * Metodo que recibe un usuario y lo elimina de bloqueados
+	 * 
+	 * @param autor
+	 */
+
+	public void deleteBloqueado(UsuarioRegistrado autor) {
+		if (autor != null)
+			bloqueados.remove(autor);
+	}
 	/**
 	 * Metodo que recibe una validacion y la anade a la lista de la aplicacion
 	 * 

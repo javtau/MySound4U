@@ -62,4 +62,13 @@ public class Denuncia implements Serializable {
 	public String getComentario() {
 		return comentario;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Denuncia [cancion=" + cancion + ", denunciante=" + denunciante + ", comentario=" + comentario + "]";
+	}
+	
 }

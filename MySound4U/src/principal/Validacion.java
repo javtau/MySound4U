@@ -59,4 +59,13 @@ public class Validacion implements Serializable {
 	public Cancion getCancion() {
 		return cancion;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Validacion [cancion=" + cancion + ", plazo caduca el=" + plazo + "]";
+	}
+	
 }

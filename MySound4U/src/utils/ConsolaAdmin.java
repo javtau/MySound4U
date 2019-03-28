@@ -59,6 +59,7 @@ public class ConsolaAdmin extends Consola implements Serializable {
 		System.out.println("*   - Parar                                                              *");
 		System.out.println("*   - Buscar                                                             *");
 		System.out.println("*   - Gestionar                                                          *");
+		System.out.println("*   - Marcar explicita                                                   *");
 		System.out.println("*   - Cambiar limite gratis                                              *");
 		System.out.println("*   - Cambiar umbral premium                                             *");
 		System.out.println("*   - Desloguearse                                                       *");

@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFileChooser;
 
+import utils.ConsolaAdmin;
 import utils.ConsolaRegistrado;
 
 /**
@@ -89,9 +90,26 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		api.borrarCancion(cancion);
 	}
 
-	public void denunciar(Cancion cancion, UsuarioRegistrado usuario, String comentario) {
+	public void denunciar(Cancion cancion, String comentario) {
+		if (usuario.equals(cancion.getAutor())) {
+			System.out.println("No se puede denunciar a sí mismo");
+			return;
+		}
 		Denuncia denuncia = new Denuncia(cancion, usuario, comentario);
 		api.addDenuncia(denuncia);
+		cancion.bloquear();
+	}
+
+	public void seguir(UsuarioRegistrado usuario2) {
+		if (usuario.getSeguidos().contains(usuario2)) {
+			System.out.println("Ya sigue a este usuario.");
+			return;
+		} else if (usuario.equals(usuario2)) {
+			System.out.println("No se puede seguir a si mismo.");
+			return;
+		}
+
+		usuario.seguir(usuario2);
 	}
 
 	public void pasarPremium() {
@@ -175,9 +193,10 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	@Override
 	public Boolean programControl() {
 
-		String opcion;
+		String opcion, comentario;
 		ArrayList<Cancion> canciones = api.getLastSongs();
-		int cancion;
+		ArrayList<UsuarioRegistrado> usuarios = api.getUsuarios();
+		int cancion, seguido;
 		boolean exit = true;
 
 		consola.printOptions(canciones);
@@ -239,9 +258,43 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			canciones = api.getLastSongs();
 			break;
 
+		case "seguir":
+			((ConsolaRegistrado) consola).printUsers(usuarios);
+			System.out.println("Introduzca el numero del usuario al que desea seguir.");
+			try {
+				seguido = Integer.parseInt(sc.nextLine());
+				if (seguido > usuarios.size() - 1 || seguido < 0) {
+					System.out.println("Ha introducido un numero de usuario incorrecto.");
+				} else {
+					seguir(api.getUsuario(seguido));
+					System.out.println("Usuarios seguidos: ");
+					((ConsolaRegistrado) consola).printUsers(usuario.getSeguidos());
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Debe introducir el numero del usuario.");
+			}
+			break;
+			
+		case "denunciar":
+			consola.printSelectSong();
+			try {
+				cancion = Integer.parseInt(sc.nextLine());
+				if (cancion > canciones.size() - 1 || cancion > 6 || cancion < 0) {
+					System.out.println("Ha introducido un numero de cancion incorrecto.");
+				} else {	
+					System.out.println("Por favor, introduzca el motivo de la denuncia: ");
+					comentario = sc.nextLine();
+					denunciar(canciones.get(cancion), comentario);
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Debe introducir el numero de la cancion.");
+			}
+			break;
+
 		case "parar":
 			stop();
 			break;
+			
 		case "salir":
 			stop();
 			exit = false;

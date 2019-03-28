@@ -187,7 +187,16 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		}
 		return false;
 	}
+	
 
+	/**
+	 * Metodo que devuelve una lista con los usuarios a los que sigue
+	 * 
+	 * @return songs Lista con los usuarios
+	 */
+	public ArrayList<UsuarioRegistrado> getSeguidos() {
+		return seguidos;
+	}
 	/**
 	 * Este metodo crea una nueva lista y la anade a lista de listas
 	 * 

@@ -64,6 +64,7 @@ public class SesionAdmin extends Sesion implements Serializable {
 	 * @param denuncia a rechazar
 	 */
 	public void rechazarDenuncia(Denuncia denuncia) {
+		denuncia.getCancion().desbloquear();
 		denuncia.getDenunciante().setBloqueado(true);
 		api.addBloqueado(denuncia.getDenunciante(), FechaSimulada.getHoy().plusDays(30));
 		denuncia.getCancion().desbloquear();
@@ -128,8 +129,8 @@ public class SesionAdmin extends Sesion implements Serializable {
 
 		String opcion, gestion;
 		ArrayList<Cancion> canciones = api.getLastSongs();
-		ArrayList<Denuncia> denuncias = api.getLastDenuncias();
-		ArrayList<Validacion> validaciones = api.getLastValidaciones();
+		ArrayList<Denuncia> denuncias = api.getDenuncias();
+		ArrayList<Validacion> validaciones = api.getValidaciones();
 		int cancion, elec = 0;
 		boolean exit = true;
 
@@ -175,6 +176,20 @@ public class SesionAdmin extends Sesion implements Serializable {
 			stop();
 			api.desloguearse();
 			break;
+			
+		case "marcar explicita":
+			consola.printSelectSong();
+			try {
+				cancion = Integer.parseInt(sc.nextLine());
+				if (cancion > canciones.size() || cancion > 6 || cancion < 0) {
+					System.out.println("Ha introducido un numero de cancion incorrecto");
+				} else {
+					marcarExplicita(canciones.get(cancion));
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Debe introducir el numero de la cancion");
+			}
+			break;
 
 		case "gestionar":
 			((ConsolaAdmin) consola).printOptionsAdmin(denuncias, validaciones);
@@ -213,7 +228,7 @@ public class SesionAdmin extends Sesion implements Serializable {
 						System.out.print("Denuncia aceptada\n");
 					} else if (gestion.equalsIgnoreCase("rechazar")) {
 						rechazarDenuncia(denuncias.get(elec));
-						System.out.print("Denuncia aceptada\n");
+						System.out.print("Denuncia rechazada\n");
 					}
 				}
 				break;

@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import principal.Cancion;
+import principal.Denuncia;
+import principal.UsuarioRegistrado;
+import principal.Validacion;
 
 /**
  * Clase para los mensajes de consola del usuario registrado
@@ -40,10 +43,19 @@ public class ConsolaRegistrado extends Consola implements Serializable {
 		System.out.println("*   - Mis albumes                                                        *");
 		System.out.println("*   - Mis listas                                                         *");
 		System.out.println("*   - Denunciar                                                          *");
+		System.out.println("*   - Seguir                                                             *");
 		System.out.println("*   - Pendientes                                                         *");
 		System.out.println("*   - Logout                                                             *");
 		System.out.println("*   - Salir                                                              *");
 		System.out.println("**************************************************************************");
 		System.out.print("\nIntroduzca la opcion deseada: ");
+	}
+	public void printUsers(ArrayList<UsuarioRegistrado> usuarios) {
+		int i = 0;
+		System.out.println("* Usuarios:                                                             *");
+		for (UsuarioRegistrado u : usuarios) {
+			System.out.println("*   " + i + ". " + u.getNombre());
+			i++;
+		}
 	}
 }
