@@ -103,10 +103,20 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	}
 
 	/**
+	 * Metodo que devuelve una lista con las canciones del usuario
+	 * 
+	 * @return songs Lista con las canciones
+	 */
+	public ArrayList<Cancion> getCanciones() {
+		return canciones;
+	}
+
+	/**
 	 * Este metodo devuelve si el usuario es premium
 	 * 
 	 * @return Boolean true si el usuario es premium, false en caso contrario
 	 */
+
 	public Boolean esPremium() {
 		return premium;
 	}
@@ -147,11 +157,15 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * @param cancion Cancion que se desea borrar
 	 * @return Boolean True si se a borrado la cancion, false en caso contrario
 	 */
-	public void borrarCancion(Cancion cancion) {
-		canciones.remove(cancion);
-		Album album = cancion.getAlbum();
-		if (album.isEmpty()) {
-			albumes.remove(album);
+	public void borrarCancion(String nombre) {
+		for (Cancion c : canciones) {
+			if (c.getNombre() == nombre) {
+				canciones.remove(c);
+				if (c.getAlbum().isEmpty()) {
+					albumes.remove(c.getAlbum());
+				}
+			}else
+				return;
 		}
 	}
 
@@ -187,7 +201,6 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		}
 		return false;
 	}
-	
 
 	/**
 	 * Metodo que devuelve una lista con los usuarios a los que sigue
@@ -197,6 +210,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	public ArrayList<UsuarioRegistrado> getSeguidos() {
 		return seguidos;
 	}
+
 	/**
 	 * Este metodo crea una nueva lista y la anade a lista de listas
 	 * 
@@ -216,8 +230,8 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	}
 
 	/**
-	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y
-	 * pasa a dicha sesion la aplicacion que la genera
+	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y pasa
+	 * a dicha sesion la aplicacion que la genera
 	 * 
 	 * @param api Aplicacion que pide el inicio de sesion
 	 * @return Sesion Sesion del tipo de usuario que la inicia
@@ -237,7 +251,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
 				+ ", fecha de nacimiento: " + fechanac.format(formatter) + ", reproducidas = " + super.getReproducidas()
-				+ ", reproducciones = " + reproducciones + "]";
+				+ ", reproducciones = " + reproducciones +  "]";
 	}
 
 	/**

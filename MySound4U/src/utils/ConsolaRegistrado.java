@@ -42,6 +42,7 @@ public class ConsolaRegistrado extends Consola implements Serializable {
 		System.out.println("*   - Mis canciones                                                      *");
 		System.out.println("*   - Mis albumes                                                        *");
 		System.out.println("*   - Mis listas                                                         *");
+		System.out.println("*   - Borrar                                                             *");
 		System.out.println("*   - Denunciar                                                          *");
 		System.out.println("*   - Seguir                                                             *");
 		System.out.println("*   - Pendientes                                                         *");

@@ -86,9 +86,16 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	}
 
 	public void borrarCancion(Cancion cancion) {
-		usuario.borrarCancion(cancion);
+		String nombre;
+		nombre = cancion.getNombre();
+		if(cancion.getAutor()!= usuario) {
+			System.out.println("No puede borrar una cancion de otro usuario.");
+			return;
+		}
+		usuario.borrarCancion(nombre);
+		api.deleteValidacion(api.getValidacion(cancion));
 		api.borrarCancion(cancion);
-	}
+		}
 
 	public void denunciar(Cancion cancion, String comentario) {
 		if (usuario.equals(cancion.getAutor())) {
@@ -285,6 +292,19 @@ public class SesionUsuarios extends Sesion implements Serializable {
 					System.out.println("Por favor, introduzca el motivo de la denuncia: ");
 					comentario = sc.nextLine();
 					denunciar(canciones.get(cancion), comentario);
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Debe introducir el numero de la cancion.");
+			}
+			break;
+		case "borrar":
+			consola.printSelectSong();
+			try {
+				cancion = Integer.parseInt(sc.nextLine());
+				if (cancion > canciones.size() - 1 || cancion > 6 || cancion < 0) {
+					System.out.println("Ha introducido un numero de cancion incorrecto.");
+				} else {
+					borrarCancion(canciones.get(cancion));
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion.");

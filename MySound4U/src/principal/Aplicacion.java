@@ -300,6 +300,7 @@ public class Aplicacion implements Serializable {
 	public ArrayList<UsuarioRegistrado> getUsuarios() {
 		return usuarios;
 	}
+
 	/**
 	 * Metodo que devuelve una lista con las denuncias realizadas
 	 * 
@@ -310,7 +311,7 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
-	 * Metodo que devuelve una lista con las  validaciones pendientes
+	 * Metodo que devuelve una lista con las validaciones pendientes
 	 * 
 	 * @return songs Lista con las validaciones
 	 */
@@ -327,6 +328,7 @@ public class Aplicacion implements Serializable {
 	public UsuarioRegistrado getUsuario(int user) {
 		return usuarios.get(user);
 	}
+
 	/**
 	 * Metodo que devuelve una validacion a partir de su indice
 	 * 
@@ -378,10 +380,8 @@ public class Aplicacion implements Serializable {
 	}
 
 	public void borrarCancion(Cancion cancion) {
-		canciones.remove(cancion);
-		Album album = cancion.getAlbum();
-		if (album.isEmpty()) {
-			albumes.remove(album);
+		if (canciones.contains(cancion)) {
+			canciones.remove(cancion);
 		}
 	}
 
@@ -411,6 +411,7 @@ public class Aplicacion implements Serializable {
 		if (autor != null)
 			bloqueados.remove(autor);
 	}
+
 	/**
 	 * Metodo que recibe una validacion y la anade a la lista de la aplicacion
 	 * 
@@ -418,6 +419,21 @@ public class Aplicacion implements Serializable {
 	 */
 	public void addValidacion(Validacion validacion) {
 		validaciones.add(validacion);
+	}
+
+	/**
+	 * Metodo que recibe una cancion y devuelve la validacion que tiene esa cancion
+	 * 
+	 * @param cancion
+	 * @return validacion
+	 */
+	public Validacion getValidacion(Cancion cancion) {
+		for (Validacion v : validaciones) {
+			if (v.getCancion() == cancion) {
+				return v;
+			}
+		}
+		return null;
 	}
 
 	/**
