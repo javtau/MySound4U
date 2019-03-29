@@ -148,4 +148,10 @@ public class Cancion extends Element implements Serializable {
 				+ "validada" + ((revision) ? ", pendiente de revision" : "") + ", autor: " + autor.getNombre()
 				+ ((album == null) ? "" : ", album : " + album.getNombre()) + "]";
 	}
+
+	@Override
+	public Boolean reproducir() {
+		return super.getReproductor().reproducir(ruta);
+		
+	}
 }

@@ -7,10 +7,17 @@ package principal;
 
 import java.io.Serializable;
 
+import utils.Reproductor;
+
 /**
  * Esta clase contiene todos los atributos y metodos de un elemento
  */
 public abstract class Element implements Serializable {
+	private static Reproductor reproductor;
+
+	public Element() {
+
+	}
 
 	/** Nombre de la cancion */
 	private String nombre;
@@ -33,5 +40,18 @@ public abstract class Element implements Serializable {
 	 */
 	public String getNombre() {
 		return nombre;
+	}
+
+	/**
+	 * Este metodo devuelve el reproductor
+	 * 
+	 * @return Reproductor
+	 */
+	public abstract Boolean reproducir();
+	
+	
+	public static Reproductor getReproductor() {
+		return Element.reproductor;
+		
 	}
 }

@@ -25,6 +25,7 @@ public class Reproductor implements Serializable {
 		try {
 			reproductor = new Mp3Player();
 			reproductor.add(Aplicacion.getPath()+"iniciom.mp3");
+			reproductor.play();
 		} catch (FileNotFoundException | Mp3PlayerException e) {
 			e.printStackTrace();
 		}

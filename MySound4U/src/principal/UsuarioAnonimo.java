@@ -48,8 +48,7 @@ public class UsuarioAnonimo extends Usuario implements Serializable {
 	 */
 	public Boolean canListenSong(Cancion cancion) {
 
-		return cancion.esBloqueda() || cancion.esExplicita() || !cancion.esValidada()
-				|| getReproducidas() > Aplicacion.REPRODUCCIONES_MAX;
+		return cancion.esBloqueda() || cancion.esExplicita() || !cancion.esValidada();
 	}
 
 	/**

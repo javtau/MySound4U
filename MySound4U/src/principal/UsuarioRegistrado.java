@@ -277,8 +277,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	public Boolean canListenSong(Cancion cancion) {
 
 		return cancion.esBloqueda() || (!cancion.esValidada() && cancion.getAutor() != this)
-				|| (cancion.esExplicita() && getEdad() < 18)
-				|| esPremium() && getReproducidas() > Aplicacion.REPRODUCCIONES_MAX;
+				|| (cancion.esExplicita() && getEdad() < 18);
 	}
 
 	/**

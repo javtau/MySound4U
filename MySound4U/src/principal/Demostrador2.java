@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 //import utils.ConsolaAnonimo;
 
-import utils.DataManager;
-import utils.DataManager.*;
-
 /**
  * Clase principal que creara la aplicacion e ilustrara la funcionalidad
  */
 public class Demostrador2 {
 
 	public static void main(String[] args) throws InterruptedException {
-		Aplicacion api = new Aplicacion();
+		Aplicacion api = Aplicacion.getApi();
 		SesionAnonima anonima = null;
 		SesionAdmin administrador = null;
 		SesionUsuarios usuario = null;

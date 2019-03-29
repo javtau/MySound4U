@@ -8,6 +8,8 @@ package principal;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import utils.Reproductor;
+
 /**
  * Esta clase contiene todos los atributos y metodos de un Album
  */
@@ -38,4 +40,12 @@ public class Album extends Element implements Serializable {
 	public Boolean isEmpty() {
 		return canciones.isEmpty();
 	}
+
+	@Override
+	public Boolean reproducir() {
+		return true;
+		
+	}
+	
+	
 }

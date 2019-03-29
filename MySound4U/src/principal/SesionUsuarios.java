@@ -136,19 +136,17 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	@Override
 	public void reproducir(Cancion cancion) {
 
-		if (usuario.canListenSong(cancion)) {
+		if (usuario.canListenSong(cancion)
+				|| (!usuario.esPremium() && usuario.getReproducidas() > api.getLimiteReproducciones())) {
 			System.out.println("no se puede reproducir");
 			return;
 		}
 
 		if (reproductor.reproducir(cancion.getRuta())) {
-
-			if (!((UsuarioRegistrado) usuario).esPremium()) {
-				usuario.aumentarReproducidas();
-				if (cancion.getAutor() != usuario) {
-					cancion.aumentarReproducciones();
-					cancion.getAutor().aumentarReproducciones();
-				}
+			usuario.aumentarReproducidas();
+			if (cancion.getAutor() != usuario) {
+				cancion.aumentarReproducciones();
+				cancion.getAutor().aumentarReproducciones();
 			}
 		}
 	}

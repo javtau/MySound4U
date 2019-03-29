@@ -35,7 +35,6 @@ public class SesionAnonima extends Sesion implements Serializable {
 		this.usuario = usuario;
 	}
 
-
 	/**
 	 * Este metodo reproduce una cancion. No se reproducira si esta bloqueada, es
 	 * explicita o si el usuario ha pasado de su limite de reproducciones
@@ -44,14 +43,14 @@ public class SesionAnonima extends Sesion implements Serializable {
 	 */
 	// @Override
 	public void reproducir(Cancion cancion) {
-		if (usuario.canListenSong(cancion)) {
+		System.out.println(usuario.getReproducidas()+ " limite:"+ api.getLimiteReproducciones());
+		if (usuario.canListenSong(cancion) || usuario.getReproducidas() > api.getLimiteReproducciones()) {
 			System.out.println("No se puede reproducir");
 			return;
 		}
-		if (reproductor.reproducir(cancion.getRuta())) {
+		if (cancion.reproducir()) {
 			usuario.aumentarReproducidas();
 		}
-
 	}
 
 	/**
@@ -88,10 +87,11 @@ public class SesionAnonima extends Sesion implements Serializable {
 				if (cancion > canciones.size() - 1 || cancion > 6 || cancion < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else {
+					System.out.println("reproduccion anonima");
 					reproducir(canciones.get(cancion));
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("Debe introducir el numero de la cancion");
+				System.out.println("Debe introducir el numero de la cancion6");
 			}
 			break;
 		case "buscar":

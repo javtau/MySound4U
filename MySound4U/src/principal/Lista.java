@@ -35,4 +35,10 @@ public class Lista extends Element implements Serializable {
 	public void removeElemt(Element element) {
 		elementos.add(element);
 	}
+
+	@Override
+	public Boolean reproducir() {
+
+		return true;
+	}
 }

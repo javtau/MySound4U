@@ -22,7 +22,7 @@ public abstract class Sesion implements Serializable {
 	public Sesion(Aplicacion api, Consola consola) {
 		super();
 		this.api = api;
-		reproductor = new Reproductor();
+		reproductor = api.reproductor;
 		this.consola = consola;
 	}
 

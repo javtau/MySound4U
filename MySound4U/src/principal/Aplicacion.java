@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import utils.FechaSimulada;
+import utils.Reproductor;
 
 /**
  * Esta clase contiene todos los atributos y metodos de la aplicacion
@@ -34,15 +35,31 @@ import utils.FechaSimulada;
 public class Aplicacion implements Serializable {
 	/** Instacia de la aplicacion */
 	private static Aplicacion myApi;
-
-	static final int REPRODUCCIONES_MAX = 200;
+	/** Numero de reproducciones de los usuarios no premium */
+	static final int REPRODUCCIONES_MAX = 5;
+	/**
+	 * Numero de reproducciones que tiene que tener un usuario para pasar a premium
+	 * gratis
+	 */
 	static final int UMBRAL_PREMIUM = 10;
-
+	
+	/** Nombre de la carpeta donde se almacenan las canciones */
 	static final String DIRECTORY = "songs";
+
+	/** Ruta de las canciones con el formato del sistema en el que se este ejecutando */
 	private final String PATH;
+	
+	/** Nombre de la carpeta donde se almacenan los guardados de la aplicacion */
 	static final String DATA_DIRECTORY = "data";
+	
+	/** Nombre del fichero de guardaddo */
 	static final String DATA_FILE = "MySound4U.data";
+	
+
+	/** Ruta del fichero de guardado con el formato del sistema en el que se este ejecutando */
 	public final String DATA_PATH;
+	
+	public  static Reproductor reproductor;
 
 	private Usuario logueado;
 	static java.util.Scanner sc;
@@ -66,7 +83,7 @@ public class Aplicacion implements Serializable {
 
 	/** Lista de validaciones pendientes */
 	private ArrayList<Validacion> validaciones;
-	
+
 	private LocalDate lastDate;
 
 	/**
@@ -79,8 +96,7 @@ public class Aplicacion implements Serializable {
 		PATH = getPath();
 		DATA_PATH = getDataPath();
 		FechaSimulada.restablecerHoyReal();
-		
-
+		reproductor = new Reproductor();
 		logueado = new UsuarioAnonimo();
 		if (!(new File(DATA_PATH)).exists()) {
 			System.out.println("cargando datos base");
@@ -240,7 +256,7 @@ public class Aplicacion implements Serializable {
 	 */
 	public void revisarBoqueados() {
 		for (Map.Entry<UsuarioRegistrado, LocalDate> bloqueado : bloqueados.entrySet()) {
-			ChronoPeriod period = ChronoPeriod.between( bloqueado.getValue(),FechaSimulada.getHoy());
+			ChronoPeriod period = ChronoPeriod.between(bloqueado.getValue(), FechaSimulada.getHoy());
 			System.out.println(FechaSimulada.getHoy() + ", " + bloqueado.getValue() + ", "
 					+ period.get(ChronoUnit.MONTHS) + "-" + period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0) {
@@ -256,7 +272,7 @@ public class Aplicacion implements Serializable {
 	public void revisarValidaciones() {
 		Cancion cancion;
 		for (Validacion v : validaciones) {
-			ChronoPeriod period = ChronoPeriod.between(v.getPlazo(),FechaSimulada.getHoy() );
+			ChronoPeriod period = ChronoPeriod.between(v.getPlazo(), FechaSimulada.getHoy());
 			System.out.println(FechaSimulada.getHoy() + ", " + v.getPlazo() + ", " + period.get(ChronoUnit.MONTHS) + "-"
 					+ period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
@@ -710,16 +726,16 @@ public class Aplicacion implements Serializable {
 			TimeUnit.SECONDS.sleep(1);
 		}
 	}
-	
+
 	/**
 	 * Metodo que aumenta la fecha simulada tantos dias como reciva
 	 *
-	 *@param dias dias que se quiere avanzar la fecha
+	 * @param dias dias que se quiere avanzar la fecha
 	 */
 	public void avanzarSimulada(int dias) {
 		FechaSimulada.avanzar(dias);
 	}
-	
+
 	public void updateLastDate() {
 		lastDate = FechaSimulada.getHoy();
 	}
