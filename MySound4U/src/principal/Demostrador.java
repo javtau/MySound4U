@@ -5,8 +5,8 @@
 package principal;
 import java.io.File;
 
-import utils.DataManager;
-import utils.DataManager.*;
+import utils.FechaSimulada;
+
 
 /**
  * Esta clase es la clase principal que creara la aplicacion e ilustrara la
@@ -15,23 +15,23 @@ import utils.DataManager.*;
 public class Demostrador {
 
 	public static void main(String[] args) {
-		DataManager dManager = new DataManager();
-        Aplicacion api = null;
-		if (!(new File(DataManager.BACK_UP_FILE)).exists()) {
-			api = new Aplicacion();
-		}else {
-			api = dManager.loadApi();
-			api.desloguearse();
-		}
+		Aplicacion api = null;
+		api = Aplicacion.getApi();
+		api.desloguearse();
+		
+		
 		api.printUsers();
 		api.printSongs();
 		api.printAlbums();
+		api.avanzarSimulada(4);
+		api.revision();
+		api.printSongs();
 		/*
 		 * Este bucle cede el control a la aplicion, seguira ejecutandose hasta que el
 		 * usuario decida finalizar el programa y el metodo devuelva true
 		 */
 		while (api.gestionAplicacion()) {
 		}
-		dManager.saveApi(api);
+		api.save();
 	}
 }

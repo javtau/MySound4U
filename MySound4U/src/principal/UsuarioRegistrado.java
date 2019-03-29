@@ -8,7 +8,9 @@ package principal;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.chrono.ChronoPeriod;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -74,13 +76,10 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 */
 
 	public int getEdad() {
-		LocalDate today = LocalDate.now();
-		int edad = today.getYear() - fechanac.getYear();
-		if ((fechanac.getMonthValue() > today.getMonthValue()) || (today.getMonthValue() == fechanac.getMonthValue()
-				&& fechanac.getDayOfMonth() > today.getDayOfMonth())) {
-			edad--;
-		}
-		return edad;
+		LocalDate today = FechaSimulada.getHoy();
+		ChronoPeriod period = ChronoPeriod.between(fechanac, FechaSimulada.getHoy() );
+
+		return (int) period.get(ChronoUnit.YEARS);
 	}
 
 	/**
@@ -256,7 +255,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
 				+ ", fecha de nacimiento: " + fechanac.format(formatter) + ", reproducidas = " + super.getReproducidas()
-				+ ", reproducciones = " + reproducciones + "]";
+				+ ", reproducciones = " + reproducciones + ", " + ((bloqueado) ? "esta " : "no esta ") + "bloqueado"+"]";
 	}
 
 	/**

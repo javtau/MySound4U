@@ -40,7 +40,7 @@ public class TEster {
 		TimeUnit.SECONDS.sleep(15);
 		//cancion3.stop();
 		*/
-		
+		FechaSimulada.restablecerHoyReal();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate d;
 		d = LocalDate.parse("01/09/1989", format);
@@ -48,12 +48,11 @@ public class TEster {
 		System.out.println(yo);
 		System.out.println("Tiene "+ yo.getEdad() +"años");
 		System.out.println(System.getProperty("os.name").toLowerCase());
-		FechaSimulada fecha = null;
-		fecha.fijarFecha(28,04 , 2019);
-		System.out.println(fecha.getHoy());
+		
+		System.out.println(FechaSimulada.getHoy()+ " " + d);
 		
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	        ChronoPeriod period = ChronoPeriod.between(fecha.getHoy(), LocalDate.now());
+	        ChronoPeriod period = ChronoPeriod.between(FechaSimulada.getHoy(), LocalDate.now());
 	        System.out.printf("%d años, %d meses y %d días", period.get(ChronoUnit.YEARS), period.get(ChronoUnit.MONTHS), period.get(ChronoUnit.DAYS));
 
 	}

@@ -32,12 +32,17 @@ import utils.FechaSimulada;
  * Esta clase contiene todos los atributos y metodos de la aplicacion
  */
 public class Aplicacion implements Serializable {
+	/** Instacia de la aplicacion */
+	private static Aplicacion myApi;
 
 	static final int REPRODUCCIONES_MAX = 200;
 	static final int UMBRAL_PREMIUM = 10;
 
 	static final String DIRECTORY = "songs";
 	private final String PATH;
+	static final String DATA_DIRECTORY = "data";
+	static final String DATA_FILE = "MySound4U.data";
+	public final String DATA_PATH;
 
 	private Usuario logueado;
 	static java.util.Scanner sc;
@@ -62,48 +67,80 @@ public class Aplicacion implements Serializable {
 	/** Lista de validaciones pendientes */
 	private ArrayList<Validacion> validaciones;
 	
-	private FechaSimulada systemDate;
+	private LocalDate lastDate;
 
 	/**
 	 * Este constructor genera una nueva sesion de administrador e inicializa todas
-	 * las listas
+	 * las listas si detectase que hay alguna archivos de datos de sesiones
+	 * anteriores se recuperaria dicha sesion
 	 * 
 	 */
-	public Aplicacion() {
-		super();
-		logueado = new UsuarioAnonimo();
-		umbralPremium = 200;
-		limiteReproducciones = 50;
-		canciones = new ArrayList<>();
-		usuarios = new ArrayList<>();
-		validaciones = new ArrayList<>();
-		denuncias = new ArrayList<>();
-		albumes = new ArrayList<>();
-		bloqueados = new HashMap<UsuarioRegistrado, LocalDate>();
-		admin = new Administrador();
-		sesion = logueado.iniciarSesion(this);
+	private Aplicacion() {
 		PATH = getPath();
-		systemDate.restablecerHoyReal();
+		DATA_PATH = getDataPath();
+		FechaSimulada.restablecerHoyReal();
+		
 
-		/* Valores para probar el demostrador */
-		UsuarioRegistrado sistema = new UsuarioRegistrado("SYSTEM", "1234", LocalDate.now());
-		usuarios.add(sistema);
-		UsuarioRegistrado avicii = new UsuarioRegistrado("AVICII", "1234", LocalDate.now());
-		usuarios.add(avicii);
-		Cancion c1 = new Cancion("CorePride", "UVERworld_CorePride.mp3", sistema);
-		c1.validar();
-		Cancion c2 = new Cancion("RookiezisPunk", "RookiezisPunk_d_InMyWorld.mp3", sistema);
-		c2.marcarExplicita();
-		c2.validar();
-		Cancion c3 = new Cancion("Levels", "avicii-levels.mp3", avicii);
-		c3.validar();
-		canciones.add(c1);
-		canciones.add(c2);
-		canciones.add(c3);
-		Denuncia d1 = new Denuncia(c2, avicii, "system me ha copiado la cancion, es un sinverguenza");
-		Validacion v1 = new Validacion(c3, LocalDate.MAX);
-		denuncias.add(d1);
-		validaciones.add(v1);
+		logueado = new UsuarioAnonimo();
+		if (!(new File(DATA_PATH)).exists()) {
+			System.out.println("cargando datos base");
+			umbralPremium = UMBRAL_PREMIUM;
+			limiteReproducciones = REPRODUCCIONES_MAX;
+			canciones = new ArrayList<>();
+			usuarios = new ArrayList<>();
+			validaciones = new ArrayList<>();
+			denuncias = new ArrayList<>();
+			albumes = new ArrayList<>();
+			bloqueados = new HashMap<UsuarioRegistrado, LocalDate>();
+			admin = new Administrador();
+
+			/********** VALORES DE PRUEVA PARA EL DEMOSTRADOR */
+			UsuarioRegistrado sistema = new UsuarioRegistrado("SYSTEM", "1234", LocalDate.now());
+			usuarios.add(sistema);
+			UsuarioRegistrado avicii = new UsuarioRegistrado("AVICII", "1234", LocalDate.now());
+			usuarios.add(avicii);
+			Cancion c1 = new Cancion("CorePride", "UVERworld_CorePride.mp3", sistema);
+			c1.validar();
+			Cancion c2 = new Cancion("RookiezisPunk", "RookiezisPunk_d_InMyWorld.mp3", sistema);
+			c2.marcarExplicita();
+			c2.validar();
+			Cancion c3 = new Cancion("Levels", "avicii-levels.mp3", avicii);
+			canciones.add(c1);
+			canciones.add(c2);
+			canciones.add(c3);
+			Denuncia d1 = new Denuncia(c2, avicii, "system me ha copiado la cancion, es un sinverguenza");
+			Validacion v1 = new Validacion(c3, LocalDate.MAX);
+			denuncias.add(d1);
+			validaciones.add(v1);
+
+			sesion = logueado.iniciarSesion(this);
+			revision();
+		} else {
+			System.out.println("cargando sesion anterior");
+			load();
+
+			sesion = logueado.iniciarSesion(Aplicacion.myApi);
+			Aplicacion.myApi.revision();
+		}
+
+	}
+
+	/**
+	 * Este metodo genera una nueva aplicacion y la devuelve, si ya se hubiera
+	 * instaciado anteriormentese devolveria dicha instancia
+	 * 
+	 * @return myApi
+	 */
+	public static Aplicacion getApi() {
+		if (Aplicacion.myApi == null) {
+			if (!(new File(getDataPath())).exists()) {
+				Aplicacion.myApi = new Aplicacion();
+			} else {
+				new Aplicacion();
+			}
+		}
+
+		return Aplicacion.myApi;
 	}
 
 	/**
@@ -120,7 +157,7 @@ public class Aplicacion implements Serializable {
 		Boolean d = false;
 		if (admin.validar(usuario, contrasena)) {
 			logueado = admin;
-			sesion = logueado.iniciarSesion(this);
+			sesion = logueado.iniciarSesion(Aplicacion.myApi);
 			return true;
 		}
 		for (UsuarioRegistrado u : usuarios) {
@@ -132,7 +169,7 @@ public class Aplicacion implements Serializable {
 				}
 				System.out.print("\nEl usuario " + u.getNombre() + " se ha logueado correctamente\n\n");
 				logueado = u;
-				sesion = logueado.iniciarSesion(this);
+				sesion = logueado.iniciarSesion(Aplicacion.myApi);
 				return true;
 			}
 		}
@@ -194,24 +231,51 @@ public class Aplicacion implements Serializable {
 	 */
 	public void desloguearse() {
 		logueado = new UsuarioAnonimo();
-		sesion = logueado.iniciarSesion(this);
+		sesion = logueado.iniciarSesion(Aplicacion.myApi);
 	}
 
 	/**
-	 * Metodo que realiza todas las comprobaciones y cambios a final de mes
+	 * Metodo que comprueba si hay que desbloquear a algun usuario con bloqueo
+	 * temporal
 	 */
-	public void cierreMes() {
+	public void revisarBoqueados() {
 		for (Map.Entry<UsuarioRegistrado, LocalDate> bloqueado : bloqueados.entrySet()) {
-			ChronoPeriod period = ChronoPeriod.between(systemDate.getHoy(), bloqueado.getValue());
-			if (period.get(ChronoUnit.YEARS) > 0 ||period.get(ChronoUnit.MONTHS) >1) {
+			ChronoPeriod period = ChronoPeriod.between( bloqueado.getValue(),FechaSimulada.getHoy());
+			System.out.println(FechaSimulada.getHoy() + ", " + bloqueado.getValue() + ", "
+					+ period.get(ChronoUnit.MONTHS) + "-" + period.get(ChronoUnit.DAYS));
+			if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0) {
 				bloqueado.getKey().setBloqueado(false);
 				bloqueados.remove(bloqueado.getKey());
 			}
-		
-			
-	        System.out.printf("%d años, %d meses y %d días", period.get(ChronoUnit.YEARS), period.get(ChronoUnit.MONTHS), period.get(ChronoUnit.DAYS));
-
 		}
+	}
+
+	/**
+	 * Metodo que comprueba si hay que eliminar alguna denuncia
+	 */
+	public void revisarValidaciones() {
+		Cancion cancion;
+		for (Validacion v : validaciones) {
+			ChronoPeriod period = ChronoPeriod.between(v.getPlazo(),FechaSimulada.getHoy() );
+			System.out.println(FechaSimulada.getHoy() + ", " + v.getPlazo() + ", " + period.get(ChronoUnit.MONTHS) + "-"
+					+ period.get(ChronoUnit.DAYS));
+			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
+					|| period.get(ChronoUnit.DAYS) > 3) {
+				denuncias.remove(v);
+				cancion = v.getCancion();
+				borrarCancion(cancion);
+				cancion.getAutor().borrarCancion(v.getCancion());
+			}
+		}
+	}
+
+	/**
+	 * Metodo que realiza todas las comprobaciones y cambios dependientes del tiempo
+	 */
+	public void revision() {
+		revisarBoqueados();
+		revisarValidaciones();
+
 	}
 
 	/**
@@ -547,6 +611,28 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
+	 * Este metodo devuelve un string con la ruta de la carpeta de datos, que es
+	 * donde se guardan los datos de la aplicacion
+	 * 
+	 * @return path Ruta de la carpeta
+	 */
+	public static String getDataPath() {
+		String path = null;
+
+		String sistema = System.getProperty("os.name").toLowerCase();
+
+		if (sistema.indexOf("win") >= 0) {
+			path = DATA_DIRECTORY + "\\" + DATA_FILE;
+		} else if (sistema.indexOf("mac") >= 0) {
+			path = DATA_DIRECTORY + "/" + DATA_FILE;
+		} else if (sistema.indexOf("nix") >= 0 || sistema.indexOf("nux") >= 0 || sistema.indexOf("aix") > 0) {
+			path = DATA_DIRECTORY + "/" + DATA_FILE;
+		}
+
+		return path;
+	}
+
+	/**
 	 * Metodo que imprime todos los usuarios registrados
 	 */
 	public void printUsers() {
@@ -574,6 +660,41 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
+	 * Metodo que guarda el estado de toda la aplicacion
+	 */
+	public void save() {
+
+		ObjectOutputStream file;
+		try {
+			file = new ObjectOutputStream(new FileOutputStream(DATA_PATH));
+			Aplicacion a = Aplicacion.myApi;
+			file.writeObject(Aplicacion.myApi);
+			file.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Metodo que recupera el estado anterior de la aplicacion
+	 */
+	public void load() {
+		Aplicacion api;
+		try {
+			ObjectInputStream file = new ObjectInputStream(new FileInputStream(DATA_PATH));
+			api = (Aplicacion) file.readObject();
+			file.close();
+			Aplicacion.myApi = api;
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
+
+	}
+
+	/**
 	 * Metodo que imprime todo el contenido de un directorio
 	 * 
 	 * @throws InterruptedException
@@ -588,5 +709,18 @@ public class Aplicacion implements Serializable {
 			System.out.println("Archivo: " + filesInDir[i]);
 			TimeUnit.SECONDS.sleep(1);
 		}
+	}
+	
+	/**
+	 * Metodo que aumenta la fecha simulada tantos dias como reciva
+	 *
+	 *@param dias dias que se quiere avanzar la fecha
+	 */
+	public void avanzarSimulada(int dias) {
+		FechaSimulada.avanzar(dias);
+	}
+	
+	public void updateLastDate() {
+		lastDate = FechaSimulada.getHoy();
 	}
 }
