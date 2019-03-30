@@ -103,7 +103,7 @@ public class Aplicacion implements Serializable {
 		reproductor = new Reproductor();
 		logueado = new UsuarioAnonimo();
 		if (!(new File(DATA_PATH)).exists()) {
-			System.out.println("cargando datos base");
+			System.out.println("Cargando datos base");
 			umbralPremium = UMBRAL_PREMIUM;
 			limiteReproducciones = REPRODUCCIONES_MAX;
 			canciones = new ArrayList<>();
@@ -141,9 +141,11 @@ public class Aplicacion implements Serializable {
 			albumes.add(album);
 			canciones.add(wakeMe);
 			Denuncia d1 = new Denuncia(c2, avicii, "System me ha copiado la cancion, es un sinverguenza");
-			Validacion v1 = new Validacion(c3, LocalDate.MAX);
+			Validacion v1 = new Validacion(c2, LocalDate.MAX);
+			Validacion v2 = new Validacion(wakeMe, LocalDate.MAX);
 			denuncias.add(d1);
 			validaciones.add(v1);
+			validaciones.add(v2);
 			sesion = logueado.iniciarSesion(this);
 			revision();
 			

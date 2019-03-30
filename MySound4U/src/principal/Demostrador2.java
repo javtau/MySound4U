@@ -255,135 +255,138 @@ public class Demostrador2 {
 		ArrayList<Denuncia> denuncias = api.getDenuncias();
 		ArrayList<Validacion> validaciones = api.getValidaciones();
 		canciones = api.getLastSongs();
-		System.out.println("Vamos a ver las canciones disponibles para el admin (son todas)");
+		System.out.println(
+				"Vamos a ver las canciones disponibles para el admin (son todas tanto explicitas como no y validadas o no validadas)\n");
 		TimeUnit.SECONDS.sleep(2);
 		api.printSongs();
 		TimeUnit.SECONDS.sleep(2);
-		api.printDenuncias();
+		System.out.println(
+				"\nVamos a reproducir 3 segundos de cada cancion para demostrar que no se tienen en cuenta para el conteo");
 		TimeUnit.SECONDS.sleep(2);
+
+		System.out.println("\nWake me up: ");
+		System.out.println("\n- Reproducciones totales antes de reproducir: "
+				+ ((Cancion) canciones.get(0)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(2);
+		administrador.reproducir(canciones.get(0));
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println(
+				"\n- Reproducciones totales tras reproducir: " + ((Cancion) canciones.get(0)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(3);
+		administrador.stop();
+
+		System.out.println("\nRelax: ");
+		System.out.println("\n- Reproducciones totales antes de reproducir: "
+				+ ((Cancion) canciones.get(1)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(2);
+		administrador.reproducir(canciones.get(1));
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println(
+				"\n- Reproducciones totales tras reproducir: " + ((Cancion) canciones.get(1)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(3);
+		administrador.stop();
+
+		System.out.println("\nLevels: ");
+		System.out.println("\n- Reproducciones totales antes de reproducir: "
+				+ ((Cancion) canciones.get(2)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(2);
+		administrador.reproducir(canciones.get(2));
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println(
+				"\n- Reproducciones totales tras reproducir: " + ((Cancion) canciones.get(2)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(3);
+		administrador.stop();
+
+		System.out.println("\nRookiezisPunk: ");
+		System.out.println("\n- Reproducciones totales antes de reproducir: "
+				+ ((Cancion) canciones.get(3)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(2);
+		administrador.reproducir(canciones.get(3));
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println(
+				"\n- Reproducciones totales tras reproducir: " + ((Cancion) canciones.get(3)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(3);
+		administrador.stop();
+
+		System.out.println("\nCorePride: ");
+		System.out.println("\n- Reproducciones totales antes de reproducir: "
+				+ ((Cancion) canciones.get(4)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(2);
+		administrador.reproducir(canciones.get(4));
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println(
+				"\n- Reproducciones totales tras reproducir: " + ((Cancion) canciones.get(4)).getNumreproducciones());
+		TimeUnit.SECONDS.sleep(3);
+		administrador.stop();
+
+		// Validacion de una cancion
+
+		System.out.println("\nVamos a ver la lista de validaciones pendientes: \n");
+		TimeUnit.SECONDS.sleep(3);
 		api.printValidaciones();
+		System.out.println("\nComo la cancion RookiezisPunk esta sin validar, vamos a validarla\n");
+		TimeUnit.SECONDS.sleep(3);
+		administrador.validar(validaciones.get(0));
+		System.out.println("Comprobacion:\n");
+		TimeUnit.SECONDS.sleep(3);
+		System.out.println("- Cancion: " + canciones.get(3).getNombre());
+		System.out.println("- Validada: " + ((Cancion) canciones.get(4)).esValidada());
+		TimeUnit.SECONDS.sleep(3);
+
+		api.desloguearse();
+		
+		// Creacion de nueva api para probar el guardado
+
+		System.out.println("\nVamos a crear una nueva aplicacion para ver que el guardado y cargado funciona correctamente");
 		TimeUnit.SECONDS.sleep(2);
-		// System.out.println(denuncias);
-		// System.out.println(validaciones);
+
+		System.out.println("");
+		System.out.println("**************************************");
+		System.out.println("* Creacion de nueva aplicacion API 2 *");
+		System.out.println("**************************************");
+		TimeUnit.SECONDS.sleep(2);
+		api2 = Aplicacion.getApi();
+		anonima = (SesionAnonima) api2.getSesion();
+
+		System.out.println("");
+		System.out.println("*********************");
+		System.out.println("* Registro en API 2 *");
+		System.out.println("*********************");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nRegistro de un usuario mayor de edad con nombre \"Alejandro\"\n");
+		TimeUnit.SECONDS.sleep(2);
+		api2.registrarse("Alejandro", "1234", "14/10/1992");
+		TimeUnit.SECONDS.sleep(2);
+
+		System.out.println("");
+		System.out.println("******************************");
+		System.out.println("* Iniciar sesion en API 2 ****");
+		System.out.println("******************************");
+		TimeUnit.SECONDS.sleep(2);
+		api2.loguearse("Alejandro", "1234");
+		usuario = (SesionUsuarios) api2.getSesion();
+
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("La edad de este usuario es: " + usuario.getUsuarioRegistrado().getEdad());
+		TimeUnit.SECONDS.sleep(2);
+		api2.printUsers();
 
 		/*
-		 * // Creacion de nueva api para probar el guardado
-		 * 
-		 * System.out.
-		 * println("\nVamos a crear una nueva aplicacion para ver que el guardado y cargado funciona correctamente"
-		 * ); TimeUnit.SECONDS.sleep(2);
-		 * 
-		 * System.out.println("");
-		 * System.out.println("**************************************");
-		 * System.out.println("* Creacion de nueva aplicacion API 2 *");
-		 * System.out.println("**************************************"); api2 =
-		 * Aplicacion.getApi(); anonima = (SesionAnonima) api2.getSesion();
-		 * 
-		 * System.out.println(""); System.out.println("*********************");
-		 * System.out.println("* Registro en API 2 *");
-		 * System.out.println("*********************"); TimeUnit.SECONDS.sleep(2);
-		 * System.out.
-		 * println("\nRegistro de un usuario mayor de edad con nombre \"Alejandro\"\n");
-		 * TimeUnit.SECONDS.sleep(2); api2.registrarse("Alejandro", "1234",
-		 * "14/10/1992"); TimeUnit.SECONDS.sleep(2);
-		 * 
-		 * System.out.println(""); System.out.println("******************************");
-		 * System.out.println("* Iniciar sesion en API 2 ****");
-		 * System.out.println("******************************");
-		 * api2.loguearse("Alejandro", "1234"); usuario = (SesionUsuarios)
-		 * api2.getSesion();
-		 * 
-		 * TimeUnit.SECONDS.sleep(2); System.out.println("La edad de este usuario es: "
-		 * + usuario.getUsuarioRegistrado().getEdad()); TimeUnit.SECONDS.sleep(2);
-		 * api2.printUsers(); TimeUnit.SECONDS.sleep(2); canciones = api.getLastSongs();
-		 * TimeUnit.SECONDS.sleep(2); System.out.println(canciones);
-		 * 
-		 * // Metodo buscar
-		 * 
-		 * System.out.println(""); System.out.println("************");
-		 * System.out.println("* Busqueda *"); System.out.println("************");
-		 * System.out.
-		 * println("\nVamos a buscar la cancion \"RookiezisPunk\" aplicando el filtro \"todo\": "
-		 * ); TimeUnit.SECONDS.sleep(2); api.buscar("rook", TIPO_BUSQUEDA.TODO);
-		 * System.out.
-		 * println("La cancion es explicita y el usuario es menor de edad, por tanto, no puede encontrarla."
-		 * ); TimeUnit.SECONDS.sleep(2); System.out.println("\nVamos a hacer logout de "
-		 * + usuario.getUsuario().getNombre() +
-		 * ", registrar otro que sea mayor de edad y comprobar que el si que puede encontrarla y, ademas, reproducirla\n"
-		 * ); TimeUnit.SECONDS.sleep(3);
-		 * 
-		 * System.out.println("**********"); System.out.println("* Logout *");
-		 * System.out.println("**********"); System.out.println("\nEl usuario " +
-		 * usuario.getUsuario().getNombre() + " ha hecho logout");
-		 * TimeUnit.SECONDS.sleep(2); api.desloguearse(); anonima = (SesionAnonima)
-		 * api.getSesion();
-		 * 
-		 * System.out.println(""); System.out.println("************");
-		 * System.out.println("* Registro *"); System.out.println("************");
-		 * System.out.println(
-		 * "\nVamos a registrarnos en la aplicacion con nombre de usuario: \"Javi\", contrasena: \"1234\". El usuario sera mayor de edad\n"
-		 * ); TimeUnit.SECONDS.sleep(2); api.registrarse("Javi", "1234", "14/10/1994");
-		 * TimeUnit.SECONDS.sleep(2);
-		 * 
-		 * System.out.println(""); System.out.println("********************");
-		 * System.out.println("* Inicio de sesion *");
-		 * System.out.println("********************"); api.loguearse("Javi", "1234");
-		 * TimeUnit.SECONDS.sleep(2); usuario = (SesionUsuarios) api.getSesion();
-		 * canciones = api.getLastSongs();
-		 * System.out.println("La edad de este usuario es: " +
-		 * usuario.getUsuarioRegistrado().getEdad()); TimeUnit.SECONDS.sleep(2);
-		 * 
-		 * System.out.println(""); System.out.println("************");
-		 * System.out.println("* Busqueda *"); System.out.println("************");
-		 * System.out.
-		 * println("\nVamos a buscar la cancion \"RookiezisPunk\" aplicando el filtro \"todo\": "
-		 * ); TimeUnit.SECONDS.sleep(2); api.buscar("rook", TIPO_BUSQUEDA.TODO);
-		 * 
-		 * System.out.println("****************");
-		 * System.out.println("* Reproduccion *");
-		 * System.out.println("****************"); System.out.
-		 * println("\nSe va a reproducir la cancion explicita \"RookiezisPunk\"");
-		 * TimeUnit.SECONDS.sleep(2); usuario.reproducir(canciones.get(1));
-		 * TimeUnit.SECONDS.sleep(2);
-		 * System.out.println("\nSe va a parar la cancion en 10 segundos\n");
-		 * TimeUnit.SECONDS.sleep(10); usuario.stop();
-		 * 
 		 * System.out.println("*********************");
 		 * System.out.println("* Subir una cancion *");
-		 * System.out.println("*********************"); System.out.
-		 * println("\nVamos a ver el contenido de la carpeta songs antes de subir una cancion: \n"
-		 * ); api.printDirectory(); File file2 = new
-		 * File("songstoupload/QueElCieloEspereSentao.mp3"); System.out.
-		 * println("\nSe va a subir la cancion \"Que el cielo espere sentao\"");
+		 * System.out.println("*********************"); 
+		 * System.out.println("\nVamos a ver el contenido de la carpeta songs antes de subir una cancion: \n"); 
+		 * api2.printDirectory(); 
+		 * File file2 = new File("songstoupload/QueElCieloEspereSentao.mp3"); 
+		 * System.out.println("\nSe va a subir la cancion \"Que el cielo espere sentao\"");
 		 * usuario.subirCancion("Que el cielo espere sentao", file);
-		 * TimeUnit.SECONDS.sleep(5); canciones = api.getLastSongs();
-		 * System.out.println(
-		 * "\nVamos a volver a ver el contenido de la carpeta y comprobar que se ha subido la cancion: \n"
-		 * ); api.printDirectory(); TimeUnit.SECONDS.sleep(1); System.out.println(
-		 * "\nComo aun no esta validada, solo se puede escuchar desde este usuario. Vamos a reproducirla: "
-		 * ); TimeUnit.SECONDS.sleep(2);
-		 * 
-		 * usuario.reproducir(canciones.get(0)); TimeUnit.SECONDS.sleep(2);
-		 * System.out.println("\nVamos a parar la cancion en 10 segundos");
-		 * TimeUnit.SECONDS.sleep(10); usuario.stop(); System.out.
-		 * println("\nVamos a validar la cancion para que puedan escucharla otros usuarios"
-		 * );
-		 * 
-		 * /* api.desloguearse(); api.loguearse("admin", "admin"); administrador =
-		 * (SesionAdmin) api.getSesion();
-		 * 
-		 * ArrayList<Denuncia> denuncias = api.getLastDenuncias(); ArrayList<Validacion>
-		 * validaciones = api.getLastValidaciones(); canciones = api.getLastSongs();
-		 * System.out.println(validaciones + "\n");
-		 * System.out.println("********************"); System.out.println("*  *");
-		 * System.out.println("********************");
-		 * 
-		 * System.out.println(denuncias + "\n");
-		 * 
-		 * System.out.println("********************"); System.out.println("*  *");
-		 * System.out.println("********************"); api.buscar("levels",
-		 * TIPO_BUSQUEDA.TODO); System.out.println(canciones);
-		 * 
+		 * TimeUnit.SECONDS.sleep(5); canciones = api.getLastSongs(); 
+		 * System.out.println("\nVamos a volver a ver el contenido de la carpeta y comprobar que se ha subido la cancion: \n");
+		 * api2.printDirectory(); 
+		 * TimeUnit.SECONDS.sleep(1); 
+		 * System.out.println("\nComo aun no esta validada, solo se puede escuchar desde este usuario. Vamos a reproducirla: " );
+		 * TimeUnit.SECONDS.sleep(2);
 		 */
+		
 	}
 }
