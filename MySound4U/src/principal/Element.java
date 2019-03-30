@@ -49,7 +49,7 @@ public abstract class Element implements Serializable {
 	public abstract Boolean reproducir(Usuario usuario);
 
 	/**
-	 * Metodo que devuelve el el nombre , el autor, la duracion y el tipo de un
+	 * Metodo que devuelve el el nombre, el autor, la duracion y el tipo de un
 	 * elemento
 	 * 
 	 * @return String string con la informacion del elemento

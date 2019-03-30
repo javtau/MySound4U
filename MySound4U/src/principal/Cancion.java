@@ -142,6 +142,10 @@ public class Cancion extends Element implements Serializable {
 		return this.autor.getNombre();
 	}
 
+	public Integer getNumreproducciones() {
+		return numreproducciones;
+	}
+	
 	@Override
 	public String toString() {
 		return "Cancion [Nombre: " + super.getNombre() + ", duracion = " + duracion + ", numero de reproducciones = "
@@ -163,7 +167,7 @@ public class Cancion extends Element implements Serializable {
 		}
 		if (Aplicacion.reproductor.reproducir(ruta)) {
 			usuario.aumentarReproducidas();
-			if (usuario.getClass() == UsuarioRegistrado.class && !esAutor((UsuarioRegistrado)usuario)) {
+			if ((usuario.getClass() == UsuarioRegistrado.class) && !esAutor((UsuarioRegistrado)usuario)) {
 				aumentarReproducciones();
 				autor.aumentarReproducciones();
 			}

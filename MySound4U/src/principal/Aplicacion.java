@@ -115,34 +115,38 @@ public class Aplicacion implements Serializable {
 			admin = new Administrador();
 
 			/********** VALORES DE PRUEVA PARA EL DEMOSTRADOR */
-			UsuarioRegistrado sistema = new UsuarioRegistrado("SYSTEM", "1234", LocalDate.now());
+			UsuarioRegistrado sistema = new UsuarioRegistrado("System", "1234", LocalDate.now());
 			usuarios.add(sistema);
-			UsuarioRegistrado avicii = new UsuarioRegistrado("AVICII", "1234", LocalDate.now());
+			UsuarioRegistrado avicii = new UsuarioRegistrado("Avicii", "1234", LocalDate.now());
 			usuarios.add(avicii);
+			UsuarioRegistrado gonzalo = new UsuarioRegistrado("Gonzalo", "1234", LocalDate.now());
+			usuarios.add(gonzalo);
 			Cancion c1 = new Cancion("CorePride", "UVERworld_CorePride.mp3", sistema);
 			c1.validar();
+			c1.marcarExplicita();
 			Cancion c2 = new Cancion("RookiezisPunk", "RookiezisPunk_d_InMyWorld.mp3", sistema);
-			c2.marcarExplicita();
-			c2.validar();
 			Cancion c3 = new Cancion("Levels", "avicii-levels.mp3", avicii);
+			c3.validar();
+			Cancion c4 = new Cancion("Relax", "Relax.mp3", gonzalo);
+			c4.validar();
 			canciones.add(c1);
 			canciones.add(c2);
 			canciones.add(c3);
-			Cancion wakeMe = new Cancion("wake me up", "avicii-wake-me-up.mp3", avicii);
+			canciones.add(c4);
+			Cancion wakeMe = new Cancion("Wake me up", "avicii-wake-me-up.mp3", avicii);
 			Album album = new Album("mix", avicii);
 			album.anadirCancion(c3);
 			album.anadirCancion(wakeMe);
 			avicii.addAlbum(album);
 			albumes.add(album);
 			canciones.add(wakeMe);
-			Denuncia d1 = new Denuncia(c2, avicii, "system me ha copiado la cancion, es un sinverguenza");
-			
+			Denuncia d1 = new Denuncia(c2, avicii, "System me ha copiado la cancion, es un sinverguenza");
 			Validacion v1 = new Validacion(c3, LocalDate.MAX);
 			denuncias.add(d1);
 			validaciones.add(v1);
-
 			sesion = logueado.iniciarSesion(this);
 			revision();
+			
 		} else {
 			System.out.println("cargando sesion anterior");
 			load();
@@ -243,10 +247,12 @@ public class Aplicacion implements Serializable {
 		}
 
 		try {
+			UsuarioRegistrado u1;
 			d = LocalDate.parse(fecha, format);
 			if (encontrado == false) {
-				addUsuario(new UsuarioRegistrado(nombre, pass, d));
-				printUsers();
+				u1 = new UsuarioRegistrado(nombre, pass, d);
+				addUsuario(u1);
+				System.out.println(u1.toString());
 			}
 		} catch (DateTimeParseException e) {
 
@@ -359,8 +365,6 @@ public class Aplicacion implements Serializable {
 		default:
 			break;
 		}
-
-		
 		return match;
 	}
 
