@@ -35,10 +35,37 @@ public class Lista extends Element implements Serializable {
 	public void removeElemt(Element element) {
 		elementos.add(element);
 	}
+	
 
+	/**
+	 * Metodo que devuelve el el nombre , el autor, la duracion y el tipo de un
+	 * elemento
+	 * 
+	 * @return String string con la informacion del elemento
+	 */
 	@Override
-	public Boolean reproducir() {
-
-		return true;
+	public String dataString() {
+		return super.getNombre() + "                 " + "Lista";
 	}
+	
+	/**
+	 * Este metodo reproduce un elemento y realiza las acciones necesaria para dicho
+	 * elelmento
+	 * 
+	 * @usuario usuario que solicita la reproduccion
+	 */
+	@Override
+	public Boolean reproducir(Usuario usuario) {
+		ArrayList<String> rutas;
+		/*
+		 * if (Aplicacion.reproductor.reproducir(ruta)) {
+		 * usuario.aumentarReproducidas(); if (usuario.getClass() ==
+		 * UsuarioRegistrado.class && autor != usuario) { aumentarReproducciones();
+		 * autor.aumentarReproducciones(); } }
+		 */
+		return false;
+	}
+
+	
+	
 }

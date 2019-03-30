@@ -13,13 +13,11 @@ import utils.Reproductor;
  * Esta clase contiene todos los atributos y metodos de un elemento
  */
 public abstract class Element implements Serializable {
-	private static Reproductor reproductor;
-
 	public Element() {
 
 	}
 
-	/** Nombre de la cancion */
+	/** Nombre del elemento */
 	private String nombre;
 
 	/**
@@ -43,15 +41,18 @@ public abstract class Element implements Serializable {
 	}
 
 	/**
-	 * Este metodo devuelve el reproductor
+	 * Este metodo reproduce un elemento y realiza las acciones necesaria para dicho
+	 * elelmento
 	 * 
-	 * @return Reproductor
+	 * @usuario usuario que solicita la reproduccion
 	 */
-	public abstract Boolean reproducir();
-	
-	
-	public static Reproductor getReproductor() {
-		return Element.reproductor;
-		
-	}
+	public abstract Boolean reproducir(Usuario usuario);
+
+	/**
+	 * Metodo que devuelve el el nombre , el autor, la duracion y el tipo de un
+	 * elemento
+	 * 
+	 * @return String string con la informacion del elemento
+	 */
+	public abstract String dataString();
 }

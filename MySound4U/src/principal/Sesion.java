@@ -33,7 +33,7 @@ public abstract class Sesion implements Serializable {
 	 * @param cancion Cancion que se quiere reproducir
 	 * @param usuario Usuario que solicita la reproduccion
 	 */
-	public abstract void reproducir(Cancion cancion);
+	public abstract void reproducir(Element cancion);
 
 	/**
 	 * Este metodo para una cancion.

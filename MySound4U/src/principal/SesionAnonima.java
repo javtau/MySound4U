@@ -42,15 +42,12 @@ public class SesionAnonima extends Sesion implements Serializable {
 	 * @param cancion Cancion que se quiere reproducir
 	 */
 	// @Override
-	public void reproducir(Cancion cancion) {
-		System.out.println(usuario.getReproducidas()+ " limite:"+ api.getLimiteReproducciones());
-		if (usuario.canListenSong(cancion) || usuario.getReproducidas() > api.getLimiteReproducciones()) {
+	public void reproducir(Element cancion) {
+		if (usuario.getReproducidas() > api.getLimiteReproducciones()) {
 			System.out.println("No se puede reproducir");
 			return;
 		}
-		if (cancion.reproducir()) {
-			usuario.aumentarReproducidas();
-		}
+		cancion.reproducir(usuario);
 	}
 
 	/**
@@ -71,24 +68,24 @@ public class SesionAnonima extends Sesion implements Serializable {
 	@Override
 	public Boolean programControl() {
 		String opcion;
-		ArrayList<Cancion> canciones = api.getLastSongs();
+		ArrayList<Element> elementos = api.getLastSongs();
 		String nombre, pass, fecha;
-		int cancion;
+		int index;
 		boolean exit = true;
 		initSc();
 
-		consola.printOptions(canciones);
+		consola.printOptions(elementos);
 		opcion = sc.nextLine();
 		switch (opcion.toLowerCase()) {
 		case "reproducir":
 			consola.printSelectSong();
 			try {
-				cancion = Integer.parseInt(sc.nextLine());
-				if (cancion > canciones.size() - 1 || cancion > 6 || cancion < 0) {
+				index = Integer.parseInt(sc.nextLine());
+				if (index > elementos.size() - 1 || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else {
 					System.out.println("reproduccion anonima");
-					reproducir(canciones.get(cancion));
+					reproducir(elementos.get(index));
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion6");
@@ -104,7 +101,10 @@ public class SesionAnonima extends Sesion implements Serializable {
 
 			try {
 				filtro = TIPO_BUSQUEDA.valueOf(sc.nextLine().toUpperCase());
-				api.buscar(busqueda, filtro);
+				ArrayList<Element> ele = api.buscar(busqueda, filtro);
+				System.out.println(ele);
+				if (ele != null)
+					elementos = ele;
 			} catch (IllegalArgumentException e) {
 				System.out.println("\nEl filtro introducido no coincide con ninguno de los filtros disponibles\n");
 			}

@@ -26,6 +26,7 @@ public class Demostrador {
 		api.avanzarSimulada(4);
 		api.revision();
 		api.printSongs();
+		api.printAlbums();
 		/*
 		 * Este bucle cede el control a la aplicion, seguira ejecutandose hasta que el
 		 * usuario decida finalizar el programa y el metodo devuelva true

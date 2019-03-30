@@ -77,7 +77,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 
 	public int getEdad() {
 		LocalDate today = FechaSimulada.getHoy();
-		ChronoPeriod period = ChronoPeriod.between(fechanac, FechaSimulada.getHoy() );
+		ChronoPeriod period = ChronoPeriod.between(fechanac, FechaSimulada.getHoy());
 
 		return (int) period.get(ChronoUnit.YEARS);
 	}
@@ -255,7 +255,8 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
 				+ ", fecha de nacimiento: " + fechanac.format(formatter) + ", reproducidas = " + super.getReproducidas()
-				+ ", reproducciones = " + reproducciones + ", " + ((bloqueado) ? "esta " : "no esta ") + "bloqueado"+"]";
+				+ ", reproducciones = " + reproducciones + ", " + ((bloqueado) ? "esta " : "no esta ") + "bloqueado"
+				+ "]";
 	}
 
 	/**
@@ -275,8 +276,8 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 *         contrario
 	 */
 	public Boolean canListenSong(Cancion cancion) {
-
-		return cancion.esBloqueda() || (!cancion.esValidada() && cancion.getAutor() != this)
+		return cancion.esBloqueda()
+				|| (!cancion.esValidada() && !cancion.esAutor(this))
 				|| (cancion.esExplicita() && getEdad() < 18);
 	}
 
@@ -288,4 +289,6 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 			System.out.println(a);
 		}
 	}
+	
+	
 }

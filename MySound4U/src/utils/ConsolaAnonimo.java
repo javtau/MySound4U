@@ -8,7 +8,7 @@ package utils;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import principal.Cancion;
+import principal.Element;
 import principal.UsuarioRegistrado;
 
 /**
@@ -20,14 +20,13 @@ public class ConsolaAnonimo extends Consola implements Serializable {
 	 * Este metodo imprime por consola las diferentes opciones del usuario anonimo
 	 */
 	@Override
-	public void printOptions(ArrayList<Cancion> canciones) {
+	public void printOptions(ArrayList<Element> elementos) {
 		int i = 0;
 
 		System.out.println("**************************************************************************");
 		System.out.println("* Canciones:                                                             *");
-		for (Cancion c : canciones) {
-			System.out.println("*   " + i + ". " + c.getNombre() + "  " + "Duracion: " + c.getDuracion() + " "
-					+ "Autor: " + c.getAutorNombre() + "\t                                    *");
+		for (Element c : elementos) {
+			System.out.println("*   " + i + ". " + c.dataString() + "\t                                    *");
 			i++;
 		}
 		System.out.println("*                                                                        *");

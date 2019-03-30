@@ -81,7 +81,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	 * @param nombre Nombre del album
 	 */
 	public void crearAlbum(String nombre) {
-		Album album = new Album(nombre);
+		Album album = new Album(nombre,usuario);
 		api.addAlbum(album);
 		usuario.addAlbum(album);
 	}
@@ -134,21 +134,14 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	 * @param usuario Usuario que solicita la reproduccion
 	 */
 	@Override
-	public void reproducir(Cancion cancion) {
+	public void reproducir(Element cancion) {
 
-		if (usuario.canListenSong(cancion)
-				|| (!usuario.esPremium() && usuario.getReproducidas() > api.getLimiteReproducciones())) {
+		if ((!usuario.esPremium() && usuario.getReproducidas() > api.getLimiteReproducciones())) {
 			System.out.println("no se puede reproducir");
 			return;
 		}
 
-		if (reproductor.reproducir(cancion.getRuta())) {
-			usuario.aumentarReproducidas();
-			if (cancion.getAutor() != usuario) {
-				cancion.aumentarReproducciones();
-				cancion.getAutor().aumentarReproducciones();
-			}
-		}
+		cancion.reproducir(usuario);
 	}
 
 	// TODO metodo para editar canciones
@@ -200,22 +193,22 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	public Boolean programControl() {
 
 		String opcion, comentario;
-		ArrayList<Cancion> canciones = api.getLastSongs();
+		ArrayList<Element> elementos = api.getLastSongs();
 		ArrayList<UsuarioRegistrado> usuarios = api.getUsuarios();
-		int cancion, seguido;
+		int index, seguido;
 		boolean exit = true;
 
-		consola.printOptions(canciones);
+		consola.printOptions(elementos);
 		opcion = sc.nextLine();
 		switch (opcion.toLowerCase()) {
 		case "reproducir":
 			consola.printSelectSong();
 			try {
-				cancion = Integer.parseInt(sc.nextLine());
-				if (cancion > canciones.size() - 1 || cancion > 6 || cancion < 0) {
+				index = Integer.parseInt(sc.nextLine());
+				if (index > elementos.size() - 1 || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto.");
 				} else {
-					reproducir(canciones.get(cancion));
+					reproducir(elementos.get(index));
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion.");
@@ -261,7 +254,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			} else {
 				System.out.println("File access cancelled by user.");
 			}
-			canciones = api.getLastSongs();
+			elementos = api.getLastSongs();
 			break;
 
 		case "seguir":
@@ -284,13 +277,15 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		case "denunciar":
 			consola.printSelectSong();
 			try {
-				cancion = Integer.parseInt(sc.nextLine());
-				if (cancion > canciones.size() - 1 || cancion > 6 || cancion < 0) {
+				index = Integer.parseInt(sc.nextLine());
+				if (index > elementos.size() - 1 || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto.");
+				} else if (elementos.get(index).getClass() == Cancion.class) {
+					System.out.println("No ha seleccionado una cancion");
 				} else {
 					System.out.println("Por favor, introduzca el motivo de la denuncia: ");
 					comentario = sc.nextLine();
-					denunciar(canciones.get(cancion), comentario);
+					denunciar((Cancion)elementos.get(index), comentario);
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion.");
@@ -299,11 +294,13 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		case "borrar":
 			consola.printSelectSong();
 			try {
-				cancion = Integer.parseInt(sc.nextLine());
-				if (cancion > canciones.size() - 1 || cancion > 6 || cancion < 0) {
+				index = Integer.parseInt(sc.nextLine());
+				if (index > elementos.size() - 1 || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto.");
+				}else if (elementos.get(index).getClass() == Cancion.class) {
+					System.out.println("No ha seleccionado una cancion");
 				} else {
-					borrarCancion(canciones.get(cancion));
+					borrarCancion((Cancion)elementos.get(index));
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion.");

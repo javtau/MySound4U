@@ -42,24 +42,28 @@ public class Aplicacion implements Serializable {
 	 * gratis
 	 */
 	static final int UMBRAL_PREMIUM = 10;
-	
+
 	/** Nombre de la carpeta donde se almacenan las canciones */
 	static final String DIRECTORY = "songs";
 
-	/** Ruta de las canciones con el formato del sistema en el que se este ejecutando */
+	/**
+	 * Ruta de las canciones con el formato del sistema en el que se este ejecutando
+	 */
 	private final String PATH;
-	
+
 	/** Nombre de la carpeta donde se almacenan los guardados de la aplicacion */
 	static final String DATA_DIRECTORY = "data";
-	
+
 	/** Nombre del fichero de guardaddo */
 	static final String DATA_FILE = "MySound4U.data";
-	
 
-	/** Ruta del fichero de guardado con el formato del sistema en el que se este ejecutando */
+	/**
+	 * Ruta del fichero de guardado con el formato del sistema en el que se este
+	 * ejecutando
+	 */
 	public final String DATA_PATH;
-	
-	public  static Reproductor reproductor;
+
+	public static Reproductor reproductor;
 
 	private Usuario logueado;
 	static java.util.Scanner sc;
@@ -124,7 +128,15 @@ public class Aplicacion implements Serializable {
 			canciones.add(c1);
 			canciones.add(c2);
 			canciones.add(c3);
+			Cancion wakeMe = new Cancion("wake me up", "avicii-wake-me-up.mp3", avicii);
+			Album album = new Album("mix", avicii);
+			album.anadirCancion(c3);
+			album.anadirCancion(wakeMe);
+			avicii.addAlbum(album);
+			albumes.add(album);
+			canciones.add(wakeMe);
 			Denuncia d1 = new Denuncia(c2, avicii, "system me ha copiado la cancion, es un sinverguenza");
+			
 			Validacion v1 = new Validacion(c3, LocalDate.MAX);
 			denuncias.add(d1);
 			validaciones.add(v1);
@@ -302,55 +314,53 @@ public class Aplicacion implements Serializable {
 	 * @param tipo     Tipo de busqueda que se quiere realizar
 	 * @return match ArrayList con las caciones que cumplan los requisitos
 	 */
-	public ArrayList<Cancion> buscar(String busqueda, TIPO_BUSQUEDA tipo) {
-		ArrayList<Cancion> match = new ArrayList<Cancion>();
-		for (Cancion c : canciones) {
-			switch (tipo) {
-			case ALBUM:
-				if (c.getAlbum() != null && c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase())
-						&& !logueado.canListenSong(c))
-					match.add(c);
-				break;
+	public ArrayList<Element> buscar(String busqueda, TIPO_BUSQUEDA tipo) {
+		ArrayList<Element> match = new ArrayList<Element>();
 
-			case AUTOR:
-				if (c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canListenSong(c))
-					match.add(c);
-				break;
+		switch (tipo) {
+		case ALBUM:
+			for (Element album : albumes) {
+				if (album.getNombre().toLowerCase().contains(busqueda.toLowerCase()))
+					match.add(album);
+			}
+			break;
 
-			case TITULO:
-				if (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()) && !logueado.canListenSong(c)) {
-					match.add(c);
+		case AUTOR:
+			for (Cancion cancion : canciones) {
+				if (cancion.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase())
+						&& !logueado.canListenSong(cancion))
+					match.add(cancion);
+			}
+			break;
+
+		case TITULO:
+			for (Cancion cancion : canciones) {
+				if (cancion.getNombre().toLowerCase().contains(busqueda.toLowerCase())
+						&& !logueado.canListenSong(cancion)) {
+					match.add(cancion);
 				}
-				break;
+			}
+			break;
 
-			case TODO:
-				if (((c.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()))
-						|| (c.getNombre().toLowerCase().contains(busqueda.toLowerCase()))
-						|| (c.getAlbum() != null
-								&& c.getAlbum().getNombre().toLowerCase().contains(busqueda.toLowerCase())))
-						&& !logueado.canListenSong(c)) {
-					match.add(c);
+		case TODO:
+			for (Cancion cancion : canciones) {
+				if (((cancion.getAutorNombre().toLowerCase().contains(busqueda.toLowerCase()))
+						|| (cancion.getNombre().toLowerCase().contains(busqueda.toLowerCase())))
+						&& !logueado.canListenSong(cancion)) {
+					match.add(cancion);
 				}
-				break;
+				for (Element album : albumes) {
+					if (album.getNombre().toLowerCase().contains(busqueda.toLowerCase()))
+						match.add(album);
+				}
+			}
+			break;
 
-			default:
-				break;
-			}
+		default:
+			break;
 		}
-		if (match.isEmpty())
-			System.out.println("\nNo se han encontrado coincidencias\n");
-		else {
-			Iterator<Cancion> iter = match.iterator();
-			while (iter.hasNext()) {
-				System.out.print("\n" + iter.next() + "\n");
-				System.out.print("\n");
-			}
-			try {
-				TimeUnit.SECONDS.sleep(2);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+
+		
 		return match;
 	}
 
@@ -376,9 +386,9 @@ public class Aplicacion implements Serializable {
 	 * 
 	 * @return songs Lista con las 6 ultimas canciones anadidas
 	 */
-	public ArrayList<Cancion> getLastSongs() {
+	public ArrayList<Element> getLastSongs() {
 		Cancion cancion;
-		ArrayList<Cancion> songs = new ArrayList<>();
+		ArrayList<Element> songs = new ArrayList<>();
 
 		for (int c = 6, i = canciones.size() - 1; i >= 0 && c >= 0; i--, c--) {
 			cancion = canciones.get(i);
@@ -475,6 +485,7 @@ public class Aplicacion implements Serializable {
 	 */
 	public void addAlbum(Album album) {
 		albumes.add(album);
+		((UsuarioRegistrado)logueado).addAlbum(album);
 	}
 
 	public void borrarCancion(Cancion cancion) {
@@ -533,7 +544,7 @@ public class Aplicacion implements Serializable {
 	 * @param cancion
 	 * @return validacion
 	 */
-	public Validacion getValidacion(Cancion cancion) {
+	public Validacion getValidacion(Element cancion) {
 		for (Validacion v : validaciones) {
 			if (v.getCancion() == cancion) {
 				return v;
@@ -661,7 +672,7 @@ public class Aplicacion implements Serializable {
 	 * Metodo que imprime todos las canciones
 	 */
 	public void printSongs() {
-		for (Cancion c : canciones) {
+		for (Element c : canciones) {
 			System.out.println(c);
 		}
 	}
@@ -674,6 +685,8 @@ public class Aplicacion implements Serializable {
 			System.out.println(a);
 		}
 	}
+	
+	
 
 	/**
 	 * Metodo que guarda el estado de toda la aplicacion

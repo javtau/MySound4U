@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import principal.Cancion;
 import principal.Denuncia;
+import principal.Element;
 import principal.Validacion;
 import principal.Administrador;
 
@@ -41,15 +42,12 @@ public class ConsolaAdmin extends Consola implements Serializable {
 	}
 
 	@Override
-	public void printOptions(ArrayList<Cancion> canciones) {
-
+	public void printOptions(ArrayList<Element> elementos) {
 		int i = 0;
-
 		System.out.println("**************************************************************************");
 		System.out.println("* Canciones:                                                             *");
-		for (Cancion c : canciones) {
-			System.out.println("*   " + i + ". " + c.getNombre() + "  " + "Duracion: " + c.getDuracion() + " "
-					+ "Autor: " + c.getAutorNombre() + "\t                                    *");
+		for (Element c : elementos) {
+			System.out.println("*   " + i + ". " + c.dataString() + "\t                                    *");
 			i++;
 		}
 

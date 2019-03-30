@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import principal.Cancion;
+import principal.Element;
 
 /**
  * Clase principal para los mensajes de consola de cada uno de los tipos de
@@ -20,7 +21,7 @@ public abstract class Consola implements Serializable {
 	/**
 	 * Este metodo imprime por consola las diferentes opciones del usuario anonimo
 	 */
-	public abstract void printOptions(ArrayList<Cancion> canciones);
+	public abstract void printOptions(ArrayList<Element> canciones);
 
 	/**
 	 * Este metodo imprime por consola un mensaje para que el usuario introduzca la

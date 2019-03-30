@@ -40,8 +40,8 @@ public class SesionAdmin extends Sesion implements Serializable {
 	 * @param cancion Cancion que se quiere reproducir
 	 */
 	// @Override
-	public void reproducir(Cancion cancion) {
-		reproductor.reproducir(cancion.getRuta());
+	public void reproducir(Element elemento) {
+		elemento.reproducir(usuario);
 	}
 
 	/**
@@ -127,23 +127,23 @@ public class SesionAdmin extends Sesion implements Serializable {
 	public Boolean programControl() {
 
 		String opcion, gestion;
-		ArrayList<Cancion> canciones = api.getLastSongs();
+		ArrayList<Element> elementos = api.getLastSongs();
 		ArrayList<Denuncia> denuncias = api.getDenuncias();
 		ArrayList<Validacion> validaciones = api.getValidaciones();
-		int cancion, elec = 0;
+		int index, elec = 0;
 		boolean exit = true;
 
-		consola.printOptions(canciones);
+		consola.printOptions(elementos);
 		opcion = sc.nextLine();
 		switch (opcion.toLowerCase()) {
 		case "reproducir":
 			consola.printSelectSong();
 			try {
-				cancion = Integer.parseInt(sc.nextLine());
-				if (cancion > canciones.size() || cancion > 6 || cancion < 0) {
+				index = Integer.parseInt(sc.nextLine());
+				if (index > elementos.size() || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else {
-					reproductor.reproducir(canciones.get(cancion).getRuta());
+					reproducir(elementos.get(index));
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion");
@@ -179,11 +179,11 @@ public class SesionAdmin extends Sesion implements Serializable {
 		case "marcar explicita":
 			consola.printSelectSong();
 			try {
-				cancion = Integer.parseInt(sc.nextLine());
-				if (cancion >= canciones.size() || cancion > 6 || cancion < 0) {
+				index = Integer.parseInt(sc.nextLine());
+				if (index >= elementos.size() || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else {
-					marcarExplicita(canciones.get(cancion));
+					marcarExplicita((Cancion)elementos.get(index));
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion");

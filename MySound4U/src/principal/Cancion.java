@@ -72,7 +72,7 @@ public class Cancion extends Element implements Serializable {
 		bloqueada = false;
 		validada = false;
 		revision = false;
-		
+
 		try {
 			duracion = (double) ((int) Mp3Player.getDuration(PATH + ruta) / 60);
 			duracion += (double) ((int) Mp3Player.getDuration(PATH + ruta)) % 60 / 100;
@@ -81,7 +81,7 @@ public class Cancion extends Element implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void aumentarReproducciones() {
 		numreproducciones++;
 	}
@@ -93,6 +93,7 @@ public class Cancion extends Element implements Serializable {
 	public void bloquear() {
 		bloqueada = true;
 	}
+
 	public void setExplicita() {
 		this.explicita = true;
 	}
@@ -100,6 +101,7 @@ public class Cancion extends Element implements Serializable {
 	public void desbloquear() {
 		bloqueada = false;
 	}
+
 	public Boolean esExplicita() {
 		return explicita;
 	}
@@ -149,9 +151,46 @@ public class Cancion extends Element implements Serializable {
 				+ ((album == null) ? "" : ", album : " + album.getNombre()) + "]";
 	}
 
+	/**
+	 * Este metodo reproduce una cacion
+	 * 
+	 * @param usuario que quiere reproducir la cancion
+	 */
 	@Override
-	public Boolean reproducir() {
-		return super.getReproductor().reproducir(ruta);
-		
+	public Boolean reproducir(Usuario usuario) {
+		if (usuario.canListenSong(this)) {
+			return false;
+		}
+		if (Aplicacion.reproductor.reproducir(ruta)) {
+			usuario.aumentarReproducidas();
+			if (usuario.getClass() == UsuarioRegistrado.class && !esAutor((UsuarioRegistrado)usuario)) {
+				aumentarReproducciones();
+				autor.aumentarReproducciones();
+			}
+			return true;
+		}
+		return false;
 	}
+	
+	/**
+	 * Metodo que comprueba si un usuario es autor de la cancion
+	 * @param usuario
+	 * @return Boolean 
+	 */
+	public Boolean esAutor(UsuarioRegistrado usuario) {
+		return autor.getNombre().equals(usuario.getNombre());
+	}
+
+	/**
+	 * Metodo que devuelve el el nombre , el autor, la duracion y el tipo de un
+	 * elemento
+	 * 
+	 * @return String string con la informacion del elemento
+	 */
+	@Override
+	public String dataString() {
+		return super.getNombre() + "  " + "Duracion: " + duracion + " "
+				+ "Autor: " + autor.getNombre()+" Cancion";
+	}
+
 }
