@@ -68,7 +68,7 @@ public class Denuncia implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Denuncia [cancion=" + cancion + ", denunciante=" + denunciante + ", comentario=" + comentario + "]";
+		return "Denuncia [Cancion: " + cancion.getNombre() + ", denunciante: " + denunciante.getNombre() + ", comentario: " + comentario + "]";
 	}
 	
 }

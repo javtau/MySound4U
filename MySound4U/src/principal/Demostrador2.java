@@ -18,7 +18,7 @@ public class Demostrador2 {
 
 		Aplicacion api, api2 = null;
 		api = Aplicacion.getApi();
-		
+
 		SesionAnonima anonima = null;
 		SesionAdmin administrador = null;
 		SesionUsuarios usuario = null;
@@ -33,7 +33,8 @@ public class Demostrador2 {
 
 		anonima = (SesionAnonima) api.getSesion();
 		ArrayList<Element> canciones = api.getLastSongs();
-		System.out.println("\nNada mas iniciar la aplicacion, el usuario conectado es el anonimo, asi que vamos a probar su funcionalidad\n");
+		System.out.println(
+				"\nNada mas iniciar la aplicacion, el usuario conectado es el anonimo, asi que vamos a probar su funcionalidad\n");
 		TimeUnit.SECONDS.sleep(2);
 
 		// Reproducir una cancion
@@ -48,10 +49,12 @@ public class Demostrador2 {
 		System.out.println("Se va a parar la cancion en 10 segundos\n");
 		TimeUnit.SECONDS.sleep(2);
 		anonima.stop();
-		System.out.println("Vamos a comprobar que se ha aumentado el número de reproducciones de la canción \"Levels\"\n");
+		System.out.println(
+				"Vamos a comprobar que se ha aumentado el número de reproducciones de la canción \"Levels\"\n");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("- Nombre de la cancion: " + canciones.get(1).getNombre() + "\n- Autor: " + ((Cancion) canciones.get(1)).getAutorNombre() 
-				+ "\n- Reproducciones = " + ((Cancion) canciones.get(1)).getNumreproducciones());
+		System.out.println("- Nombre de la cancion: " + canciones.get(1).getNombre() + "\n- Autor: "
+				+ ((Cancion) canciones.get(1)).getAutorNombre() + "\n- Reproducciones = "
+				+ ((Cancion) canciones.get(1)).getNumreproducciones());
 		TimeUnit.SECONDS.sleep(2);
 
 		// Metodo buscar
@@ -85,9 +88,11 @@ public class Demostrador2 {
 		System.out.println("* Registro *");
 		System.out.println("************");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a registrar 2 usuarios: Uno menor de edad y otro mayor de edad para comprobar las canciones explicitas");
+		System.out.println(
+				"\nVamos a registrar 2 usuarios: Uno menor de edad y otro mayor de edad para comprobar las canciones explicitas");
 		TimeUnit.SECONDS.sleep(2);
-	    System.out.println("\nAdemas, probaremos a registrar otro usuario con el mismo nombre para comprobar que no se puede");
+		System.out.println(
+				"\nAdemas, probaremos a registrar otro usuario con el mismo nombre para comprobar que no se puede");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nRegistro del usuario menor de edad con nombre \"Fernando\"\n");
 		TimeUnit.SECONDS.sleep(2);
@@ -162,10 +167,12 @@ public class Demostrador2 {
 				"Vamos a comprobar si las canciones de \"Avicii\" y de \"Gonzalo\" han sido bloqueadas momentaneamente hasta que el administrador resuelva las denuncias\n");
 		TimeUnit.SECONDS.sleep(3);
 		System.out.println("- Nombre de la cancion: " + canciones.get(0).getNombre() + "\n- Autor: "
-				+ ((Cancion) canciones.get(0)).getAutorNombre() + "\n- Bloqueada: " + ((Cancion) canciones.get(0)).esBloqueda());
+				+ ((Cancion) canciones.get(0)).getAutorNombre() + "\n- Bloqueada: "
+				+ ((Cancion) canciones.get(0)).esBloqueda());
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\n- Nombre de la cancion: " + canciones.get(1).getNombre() + "\n- Autor: "
-				+ ((Cancion) canciones.get(1)).getAutorNombre() + "\n- Bloqueada: " + ((Cancion) canciones.get(1)).esBloqueda());
+				+ ((Cancion) canciones.get(1)).getAutorNombre() + "\n- Bloqueada: "
+				+ ((Cancion) canciones.get(1)).esBloqueda());
 		TimeUnit.SECONDS.sleep(2);
 
 		// Seguir a un usuario
@@ -181,7 +188,8 @@ public class Demostrador2 {
 		System.out.println("\nVamos a seguir a \"Javier\"\n");
 		usuario.seguir(api.getUsuario(4));
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("Vamos a comprobar la lista de usuarios que sigue \"Fernando\" y ver si se ha seguido a \"Javier\"\n");
+		System.out.println(
+				"Vamos a comprobar la lista de usuarios que sigue \"Fernando\" y ver si se ha seguido a \"Javier\"\n");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("- Usuario: " + usuario.getUsuarioRegistrado().getNombre()
 				+ "\n- Lista de usuarios seguidos: " + usuario.getUsuarioRegistrado().getSeguidos());
@@ -202,18 +210,20 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 
 		// Lista de canciones
-		
+
 		canciones = api.getLastSongs();
 		System.out.println("\nVamos a comprobar que canciones tiene disponibles");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nLas canciones bloqueadas por las denuncias no estaran disponibles hasta que lo resuelva el administrador\n");
+		System.out.println(
+				"\nLas canciones bloqueadas por las denuncias no estaran disponibles hasta que lo resuelva el administrador\n");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println(canciones);
 		TimeUnit.SECONDS.sleep(2);
-		
+
 		// Reproduccion
-		
-		System.out.println("\nSe va a reproducir la cancion explicita \"CorePride\" para demostrar que el usuario mayor de edad si puede");
+
+		System.out.println(
+				"\nSe va a reproducir la cancion explicita \"CorePride\" para demostrar que el usuario mayor de edad si puede");
 		usuario.reproducir(canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nSe va a parar la cancion en 10 segundos");
@@ -225,53 +235,69 @@ public class Demostrador2 {
 				+ ((Cancion) canciones.get(0)).getAutorNombre() + "\n- Reproducciones = "
 				+ ((Cancion) canciones.get(0)).getNumreproducciones());
 		TimeUnit.SECONDS.sleep(2);
-		System.out
-				.println("\nVamos a ver que se estan aumentando las canciones reproducidas del usuario \"Javier\"\n");
+		System.out.println("\nVamos a ver que se estan aumentando las canciones reproducidas del usuario \"Javier\"\n");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("- Usuario: " + usuario.getUsuarioRegistrado().getNombre() + "\n- Canciones reproducidas = "
 				+ usuario.getUsuarioRegistrado().getReproducidas());
 		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nCerramos la sesión del usuario \"Javier\"");
+		TimeUnit.SECONDS.sleep(2);
 		api.desloguearse();
-		
-		api.loguearse("admin", "admin")
-	/*	// Creacion de nueva api para probar el guardado
-		
-		System.out.println("\nVamos a crear una nueva aplicacion para ver que el guardado y cargado funciona correctamente");
+		System.out.println("\nEl usuario " + usuario.getUsuario().getNombre() + " ha hecho logout");
 		TimeUnit.SECONDS.sleep(2);
-	
-		System.out.println("");
-		System.out.println("**************************************");
-		System.out.println("* Creacion de nueva aplicacion API 2 *");
-		System.out.println("**************************************");
-		api2 = Aplicacion.getApi();
-		anonima = (SesionAnonima) api2.getSesion();
-		
-		System.out.println("");
-		System.out.println("*********************");
-		System.out.println("* Registro en API 2 *");
-		System.out.println("*********************");
-		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nRegistro de un usuario mayor de edad con nombre \"Alejandro\"\n");
-		TimeUnit.SECONDS.sleep(2);
-		api2.registrarse("Alejandro", "1234", "14/10/1992");
-		TimeUnit.SECONDS.sleep(2);
-		
-		System.out.println("");
-		System.out.println("******************************");
-		System.out.println("* Iniciar sesion en API 2 ****");
-		System.out.println("******************************");
-		api2.loguearse("Alejandro", "1234");
-		usuario = (SesionUsuarios) api2.getSesion();
-	
-		TimeUnit.SECONDS.sleep(2);
-		System.out.println("La edad de este usuario es: " + usuario.getUsuarioRegistrado().getEdad());
-		TimeUnit.SECONDS.sleep(2);
-		api2.printUsers();
-		TimeUnit.SECONDS.sleep(2);
-		canciones = api.getLastSongs();
-		TimeUnit.SECONDS.sleep(2);
-		System.out.println(canciones);
 
+		System.out.println("\nVamos a iniciar sesion con el administrador");
+		TimeUnit.SECONDS.sleep(2);
+		api.loguearse("admin", "admin");
+		TimeUnit.SECONDS.sleep(2);
+		administrador = (SesionAdmin) api.getSesion();
+
+		ArrayList<Denuncia> denuncias = api.getDenuncias();
+		ArrayList<Validacion> validaciones = api.getValidaciones();
+		canciones = api.getLastSongs();
+		System.out.println("Vamos a ver las canciones disponibles para el admin (son todas)");
+		TimeUnit.SECONDS.sleep(2);
+		api.printSongs();
+		TimeUnit.SECONDS.sleep(2);
+		api.printDenuncias();
+		TimeUnit.SECONDS.sleep(2);
+		api.printValidaciones();
+		TimeUnit.SECONDS.sleep(2);
+		// System.out.println(denuncias);
+		// System.out.println(validaciones);
+
+		/*
+		 * // Creacion de nueva api para probar el guardado
+		 * 
+		 * System.out.
+		 * println("\nVamos a crear una nueva aplicacion para ver que el guardado y cargado funciona correctamente"
+		 * ); TimeUnit.SECONDS.sleep(2);
+		 * 
+		 * System.out.println("");
+		 * System.out.println("**************************************");
+		 * System.out.println("* Creacion de nueva aplicacion API 2 *");
+		 * System.out.println("**************************************"); api2 =
+		 * Aplicacion.getApi(); anonima = (SesionAnonima) api2.getSesion();
+		 * 
+		 * System.out.println(""); System.out.println("*********************");
+		 * System.out.println("* Registro en API 2 *");
+		 * System.out.println("*********************"); TimeUnit.SECONDS.sleep(2);
+		 * System.out.
+		 * println("\nRegistro de un usuario mayor de edad con nombre \"Alejandro\"\n");
+		 * TimeUnit.SECONDS.sleep(2); api2.registrarse("Alejandro", "1234",
+		 * "14/10/1992"); TimeUnit.SECONDS.sleep(2);
+		 * 
+		 * System.out.println(""); System.out.println("******************************");
+		 * System.out.println("* Iniciar sesion en API 2 ****");
+		 * System.out.println("******************************");
+		 * api2.loguearse("Alejandro", "1234"); usuario = (SesionUsuarios)
+		 * api2.getSesion();
+		 * 
+		 * TimeUnit.SECONDS.sleep(2); System.out.println("La edad de este usuario es: "
+		 * + usuario.getUsuarioRegistrado().getEdad()); TimeUnit.SECONDS.sleep(2);
+		 * api2.printUsers(); TimeUnit.SECONDS.sleep(2); canciones = api.getLastSongs();
+		 * TimeUnit.SECONDS.sleep(2); System.out.println(canciones);
+		 * 
 		 * // Metodo buscar
 		 * 
 		 * System.out.println(""); System.out.println("************");

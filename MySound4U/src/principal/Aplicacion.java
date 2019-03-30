@@ -190,6 +190,7 @@ public class Aplicacion implements Serializable {
 		if (admin.validar(usuario, contrasena)) {
 			logueado = admin;
 			sesion = logueado.iniciarSesion(Aplicacion.myApi);
+			System.out.print("\nEl usuario " + admin.getNombre() + " se ha logueado correctamente\n\n");
 			return true;
 		}
 		for (UsuarioRegistrado u : usuarios) {
@@ -671,6 +672,19 @@ public class Aplicacion implements Serializable {
 			System.out.println(u);
 		}
 	}
+	
+	public void printDenuncias() {
+		for (Denuncia d : denuncias) {
+			System.out.println(d);
+		}
+	}
+	
+	public void printValidaciones() {
+		for (Validacion v : validaciones) {
+			System.out.println(v);
+		}
+	}
+
 
 	/**
 	 * Metodo que imprime todos las canciones

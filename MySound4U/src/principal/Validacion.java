@@ -65,7 +65,7 @@ public class Validacion implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Validacion [cancion=" + cancion + ", plazo caduca el=" + plazo + "]";
+		return "Validacion [Cancion: " + cancion.getNombre() + ", plazo caduca el: " + plazo + "]";
 	}
 	
 }
