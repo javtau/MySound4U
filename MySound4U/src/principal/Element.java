@@ -41,6 +41,15 @@ public abstract class Element implements Serializable {
 	}
 
 	/**
+	 * Este metodo cambia el nombre de la cancion
+	 * 
+	 * @param nombre
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
 	 * Este metodo reproduce un elemento y realiza las acciones necesaria para dicho
 	 * elelmento
 	 * 
