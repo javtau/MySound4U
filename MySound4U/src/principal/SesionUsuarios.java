@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFileChooser;
 
+import es.uam.eps.padsof.telecard.OrderRejectedException;
+import es.uam.eps.padsof.telecard.TeleChargeAndPaySystem;
 import utils.ConsolaAdmin;
 import utils.ConsolaRegistrado;
 
@@ -131,7 +133,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			TeleChargeAndPaySystem.charge(numTargeta, "PAgo premium", 20, true);
 			api.pasarPremium();
 		} catch (OrderRejectedException e) {
-			// TODO Auto-generated catch block
 			System.out.println("invalida");
 		}
 	}
