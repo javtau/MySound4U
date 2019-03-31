@@ -495,9 +495,10 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		canciones = api.getLastSongs();
 		usuario.reproducir(canciones.get(0));
-		TimeUnit.SECONDS.sleep(2);
+		TimeUnit.SECONDS.sleep(4);
 		usuario.stop();
-		
+
+	
 	
 
 		/*
