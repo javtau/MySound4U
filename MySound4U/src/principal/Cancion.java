@@ -182,7 +182,9 @@ public class Cancion extends Element implements Serializable {
 	 * @return Boolean 
 	 */
 	public Boolean esAutor(UsuarioRegistrado usuario) {
-		return autor.getNombre().equals(usuario.getNombre());
+		System.out.println(autor.getNombre() +"  "+ usuario.getNombre() );
+		
+		return autor.getNombre().equalsIgnoreCase(usuario.getNombre());
 	}
 
 	/**
