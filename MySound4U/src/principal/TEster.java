@@ -12,11 +12,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import es.uam.eps.padsof.telecard.FailedInternetConnectionException;
+import es.uam.eps.padsof.telecard.InvalidCardNumberException;
+import es.uam.eps.padsof.telecard.OrderRejectedException;
+import es.uam.eps.padsof.telecard.TeleChargeAndPaySystem;
 import pads.musicPlayer.Mp3Player;
 import pads.musicPlayer.exceptions.Mp3PlayerException;
 import utils.FechaSimulada;
 
 public class TEster {
+	
 
 	public static void main(String[] args) throws InterruptedException {
 //		// TODO Auto-generated method stub
@@ -61,9 +66,10 @@ public class TEster {
 		wakeMe.validar();
 		Cancion brother = new Cancion("Hey brother", "avicii-hey-brother-lyric.mp3", avicii);
 		Album album = new Album("mix", avicii);
-		album.anadirCancion(c3);
+		
 		album.anadirCancion(wakeMe);
 		album.anadirCancion(brother);
+		album.anadirCancion(c3);
 		avicii.addAlbum(album);
 		Aplicacion api =Aplicacion.getApi();
 		SesionAnonima sa = (SesionAnonima) api.getSesion();
@@ -87,5 +93,27 @@ public class TEster {
 		System.out.println(wakeMe+ "\n");
 		System.out.println(brother+ "\n");
 		System.out.println(avicii+ "\n");
+		
+		/**************P PAGOS*********************************/
+		
+		TeleChargeAndPaySystem gestarPagos = new TeleChargeAndPaySystem();
+		String cardNumStr = "2345265895647584";
+		Boolean exito = null;
+		
+			try {
+				TeleChargeAndPaySystem.charge(cardNumStr, "PAgo premium", 20, true);
+				TeleChargeAndPaySystem.charge(cardNumStr, "PAgo premium", 20, true);
+				TeleChargeAndPaySystem.charge(cardNumStr, "PAgo premium", 20, true);
+				TeleChargeAndPaySystem.charge(cardNumStr, "PAgo premium", 20, true);
+				TeleChargeAndPaySystem.charge(cardNumStr, "PAgo premium", 20, true);
+				TeleChargeAndPaySystem.charge(cardNumStr, "PAgo premium", 20, true);
+				TeleChargeAndPaySystem.charge("6587", "PAgo premium", 20, true);
+			} catch (OrderRejectedException  e) {
+				// TODO Auto-generated catch block
+				System.out.println("invalida"); 
+			} 
+			
+			//System.out.println(exito);
+		
 	}
 }

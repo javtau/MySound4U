@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFileChooser;
 
+import es.uam.eps.padsof.telecard.OrderRejectedException;
+import es.uam.eps.padsof.telecard.TeleChargeAndPaySystem;
 import utils.ConsolaAdmin;
 import utils.ConsolaRegistrado;
 
@@ -81,7 +83,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	 * @param nombre Nombre del album
 	 */
 	public void crearAlbum(String nombre) {
-		Album album = new Album(nombre,usuario);
+		Album album = new Album(nombre, usuario);
 		api.addAlbum(album);
 		usuario.addAlbum(album);
 	}
@@ -120,9 +122,14 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		usuario.seguir(usuario2);
 	}
 
-	public void pasarPremium() {
-		// TODO Comprobar pago
-		api.pasarPremium();
+	public void pasarPremium(String numTargeta) {
+		try {
+			TeleChargeAndPaySystem.charge(numTargeta, "PAgo premium", 20, true);
+			api.pasarPremium();
+		} catch (OrderRejectedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("invalida");
+		}
 	}
 
 	/**
@@ -179,6 +186,11 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		return usuario;
 	}
 
+	/**
+	 * Este metodo devuelve el usuario
+	 * 
+	 * @return usuario
+	 */
 	public UsuarioRegistrado getUsuarioRegistrado() {
 		return usuario;
 	}
@@ -285,7 +297,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 				} else {
 					System.out.println("Por favor, introduzca el motivo de la denuncia: ");
 					comentario = sc.nextLine();
-					denunciar((Cancion)elementos.get(index), comentario);
+					denunciar((Cancion) elementos.get(index), comentario);
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion.");
@@ -297,10 +309,10 @@ public class SesionUsuarios extends Sesion implements Serializable {
 				index = Integer.parseInt(sc.nextLine());
 				if (index > elementos.size() - 1 || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto.");
-				}else if (elementos.get(index).getClass() == Cancion.class) {
+				} else if (elementos.get(index).getClass() == Cancion.class) {
 					System.out.println("No ha seleccionado una cancion");
 				} else {
-					borrarCancion((Cancion)elementos.get(index));
+					borrarCancion((Cancion) elementos.get(index));
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion.");
