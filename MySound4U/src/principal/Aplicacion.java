@@ -115,7 +115,8 @@ public class Aplicacion implements Serializable {
 			admin = new Administrador();
 			lastDate = FechaSimulada.getHoy();
 
-			/********** VALORES DE PRUEVA PARA EL DEMOSTRADOR */
+			/* VALORES DE PRUEBA PARA EL DEMOSTRADOR */
+			
 			UsuarioRegistrado sistema = new UsuarioRegistrado("System", "1234", LocalDate.now());
 			usuarios.add(sistema);
 			UsuarioRegistrado avicii = new UsuarioRegistrado("Avicii", "1234", LocalDate.now());
@@ -135,7 +136,7 @@ public class Aplicacion implements Serializable {
 			canciones.add(c3);
 			canciones.add(c4);
 			Cancion wakeMe = new Cancion("Wake me up", "avicii-wake-me-up.mp3", avicii);
-			Album album = new Album("mix", avicii);
+			Album album = new Album("Mix", avicii);
 			album.anadirCancion(c3);
 			album.anadirCancion(wakeMe);
 			avicii.addAlbum(album);
@@ -151,7 +152,7 @@ public class Aplicacion implements Serializable {
 			revision();
 
 		} else {
-			System.out.println("cargando sesion anterior");
+			System.out.println("Cargando sesion anterior");
 			load();
 
 			sesion = logueado.iniciarSesion(Aplicacion.myApi);
@@ -299,7 +300,7 @@ public class Aplicacion implements Serializable {
 					+ period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
 					|| period.get(ChronoUnit.DAYS) > 3) {
-				denuncias.remove(v);
+				validaciones.remove(v);
 				cancion = v.getCancion();
 				borrarCancion(cancion);
 				cancion.getAutor().borrarCancion(v.getCancion());
@@ -322,7 +323,7 @@ public class Aplicacion implements Serializable {
 			
 			for (UsuarioRegistrado user : usuarios) {
 				user.setPremium(false);
-				if (user.getReproducidas() >= umbralPremium) {
+				if (user.getReproducciones() >= umbralPremium) {
 					pasarPremium();
 				}
 				user.resetearContadores();

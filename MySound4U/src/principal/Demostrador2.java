@@ -46,40 +46,39 @@ public class Demostrador2 {
 		System.out.println("\nSe reproducira la cancion \"Levels\" \n");
 		anonima.reproducir(canciones.get(1));
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("Se va a parar la cancion en 10 segundos\n");
+		System.out.println("Se va a parar la cancion en 10 segundos");
 		TimeUnit.SECONDS.sleep(2);
 		anonima.stop();
-		System.out.println(
-				"Vamos a comprobar que se ha aumentado el número de reproducciones de la canción \"Levels\"\n");
-		TimeUnit.SECONDS.sleep(2);
-		System.out.println("- Nombre de la cancion: " + canciones.get(1).getNombre() + "\n- Autor: "
-				+ ((Cancion) canciones.get(1)).getAutorNombre() + "\n- Reproducciones = "
-				+ ((Cancion) canciones.get(1)).getNumreproducciones());
 		TimeUnit.SECONDS.sleep(2);
 
 		// Metodo buscar
+		
 		System.out.println("");
 		System.out.println("************");
 		System.out.println("* Busqueda *");
 		System.out.println("************");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a buscar la cancion \"Levels\" aplicando el filtro \"todo\": ");
+		System.out.println("\nVamos a buscar la cancion \"Levels\" aplicando el filtro \"todo\": \n");
 		TimeUnit.SECONDS.sleep(2);
-		api.buscar("levels", TIPO_BUSQUEDA.TODO);
+		System.out.println(api.buscar("levels", TIPO_BUSQUEDA.TODO));
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("Vamos a buscar la cancion \"CorePride\" aplicando el filtro \"todo\": ");
+		System.out.println("\nVamos a buscar la cancion \"CorePride\" aplicando el filtro \"todo\": \n");
 		TimeUnit.SECONDS.sleep(2);
-		api.buscar("rook", TIPO_BUSQUEDA.TODO);
+		System.out.println(api.buscar("rook", TIPO_BUSQUEDA.TODO));
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("La cancion es explicita y, al ser un usuario anonimo, no esta disponible para el");
+		System.out.println("\nLa cancion es explicita y, al ser un usuario anonimo, no esta disponible para el\n");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a buscar la cancion \"Levels\" aplicando el filtro \"titulo\": ");
+		System.out.println("\nVamos a buscar el album \"Mix\": \n");
 		TimeUnit.SECONDS.sleep(2);
-		api.buscar("lev", TIPO_BUSQUEDA.TITULO);
+		System.out.println(api.buscar("mix", TIPO_BUSQUEDA.ALBUM));
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("Vamos a buscar las canciones del autor \"System\" aplicando el filtro \"autor\": ");
+		System.out.println("\nVamos a buscar la cancion \"Levels\" aplicando el filtro \"titulo\": \n");
 		TimeUnit.SECONDS.sleep(2);
-		api.buscar("system", TIPO_BUSQUEDA.AUTOR);
+		System.out.println(api.buscar("lev", TIPO_BUSQUEDA.TITULO));
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nVamos a buscar las canciones del autor \"System\" aplicando el filtro \"autor\": \n");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println(api.buscar("system", TIPO_BUSQUEDA.AUTOR));
 		TimeUnit.SECONDS.sleep(2);
 
 		// Metodo registrarse
@@ -104,7 +103,7 @@ public class Demostrador2 {
 		api.registrarse("Javier", "1234", "14/10/1994");
 		TimeUnit.SECONDS.sleep(2);
 
-		System.out.println("\nVamos a registrarnos en la aplicacion con el mismo nombre de usuario \"Fernando\"\n");
+		System.out.println("\nVamos a intentar registrarnos en la aplicacion con el nombre de usuario \"Fernando\" ya existente: \n");
 		TimeUnit.SECONDS.sleep(2);
 		api.registrarse("Fernando", "1234", "14/10/2018");
 		TimeUnit.SECONDS.sleep(2);
@@ -325,14 +324,20 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(3);
 		api.printValidaciones();
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nComo la cancion RookiezisPunk esta sin validar, vamos a validarla\n");
+		System.out.println("\nRookiezisPunk va a ser validada y Wake me up sera rechazada\n");
 		TimeUnit.SECONDS.sleep(3);
 		administrador.validar(validaciones.get(0));
+		administrador.invalidar(validaciones.get(0)); // Es la 0 tambien porque al validar una de ellas, se elimina de la lista
+		
 		System.out.println("Comprobacion:\n");
 		TimeUnit.SECONDS.sleep(3);
 		System.out.println("- Cancion: " + canciones.get(3).getNombre());
-		System.out.println("- Validada: " + ((Cancion) canciones.get(4)).esValidada());
+		System.out.println("- Validada: " + ((Cancion) canciones.get(3)).esValidada());
 		TimeUnit.SECONDS.sleep(3);
+		System.out.println("\n- Cancion: " + canciones.get(0).getNombre());
+		System.out.println("- Validada: " + ((Cancion) canciones.get(0)).esValidada());
+		TimeUnit.SECONDS.sleep(3);
+		
 
 		// Gestion de las denuncias
 
@@ -440,14 +445,31 @@ public class Demostrador2 {
 		System.out.println("Vamos a probar a escuchar la cancion de nuevo\n");
 		TimeUnit.SECONDS.sleep(2);
 		usuario.reproducir(canciones.get(0));
-		
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println(
+				"\nVamos a avanzar la fecha para llegar al fin de mes y comprobar qque se hagan las modificaciones pertinentes:\n");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Eliminar validaciones rechazadas que no hayan sufrido cambios en 3 dias");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Desbloquear un usuario que haya puesto una denuncia falsa (30 dias despues)");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Pasar a premium a los usuarios que hayan llegado al umbral de reproducciones");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Resetear los contadores a 0 tanto de las reproducciones como de las reproducidas");
+		TimeUnit.SECONDS.sleep(2);
 		api.avanzarSimulada(32);
 		api.revision();
-		api.printSongs();
-		api.printUsers();
 		
-		
-		
+		System.out.println(
+				"\nVamos a comprobar que el usuario \"Avicii\" es un usuario premium por numero de reproducciones\n");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Usuario: " + api.getUsuario(1).getNombre()+ "\n- Premium: " + api.getUsuario(1).esPremium());
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nComprobacion de que \"Fernando\" ha sido desbloqueado: \n");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Usuario: " + api.getUsuario(3).getNombre() + "\n- Bloqueado: " + api.getUsuario(3).estaBloqueado()+ "\n");
+		TimeUnit.SECONDS.sleep(2);
+		api.printValidaciones();
 
 		/*
 		 * api.desloguearse();
@@ -485,8 +507,8 @@ public class Demostrador2 {
 		 * 
 		 * /* System.out.println("*********************");
 		 * System.out.println("* Subir una cancion *");
-		 * System.out.println("*********************"); 
-		 * System.out.println("\nVamos a ver el contenido de la carpeta songs antes de subir una cancion: \n"
+		 * System.out.println("*********************"); System.out.
+		 * println("\nVamos a ver el contenido de la carpeta songs antes de subir una cancion: \n"
 		 * ); api2.printDirectory(); File file2 = new
 		 * File("songstoupload/QueElCieloEspereSentao.mp3"); System.out.
 		 * println("\nSe va a subir la cancion \"Que el cielo espere sentao\"");
