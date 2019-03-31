@@ -29,13 +29,12 @@ public class Lista extends Element implements Serializable {
 	}
 
 	public Boolean addElemt(Element element) {
-		return elementos.remove(element);
+		return elementos.add(element);
 	}
 
 	public void removeElemt(Element element) {
-		elementos.add(element);
+		elementos.remove(element);
 	}
-	
 
 	/**
 	 * Metodo que devuelve el el nombre , el autor, la duracion y el tipo de un
@@ -47,25 +46,71 @@ public class Lista extends Element implements Serializable {
 	public String dataString() {
 		return super.getNombre() + "                 " + "Lista";
 	}
-	
+
 	/**
-	 * Este metodo reproduce un elemento y realiza las acciones necesaria para dicho
-	 * elelmento
+	 * Este metodo reproduce una lista
 	 * 
 	 * @usuario usuario que solicita la reproduccion
 	 */
 	@Override
 	public Boolean reproducir(Usuario usuario) {
-		ArrayList<String> rutas;
-		/*
-		 * if (Aplicacion.reproductor.reproducir(ruta)) {
-		 * usuario.aumentarReproducidas(); if (usuario.getClass() ==
-		 * UsuarioRegistrado.class && autor != usuario) { aumentarReproducciones();
-		 * autor.aumentarReproducciones(); } }
-		 */
-		return false;
+		ArrayList<String> rutas = new ArrayList<>();
+		rutas = getrutas(usuario);
+		if (rutas.isEmpty()) {
+			return false;
+		}
+		System.out.println("se va a reproducir " + rutas);
+		return Aplicacion.reproductor.reproducir(rutas.toArray(new String[0]));
 	}
 
-	
-	
+	/**
+	 * Este metodo devuelve un array con las rutas de las canciones y albumes de la
+	 * lista
+	 * 
+	 * @param usuario usuario que solicita el usuario
+	 * @return rutas Array list con las rutas de las canciones
+	 */
+	public ArrayList<String> getrutas(Usuario usuario) {
+		ArrayList<String> rutas = new ArrayList<>();
+		for (Element element : elementos) {
+			switch (element.getClass().getSimpleName()) {
+			case "Cancion":
+				Cancion cancion = (Cancion) element;
+				if (usuario.canListenSong(cancion)) {
+					System.out.println("no se puede reproducir" + cancion.getNombre());
+
+				} else {
+					rutas.add(cancion.getRuta());
+					usuario.aumentarReproducidas();
+					if (usuario.getClass() == UsuarioRegistrado.class
+							&& !cancion.esAutor((UsuarioRegistrado) usuario)) {
+						cancion.aumentarReproducciones();
+						cancion.getAutor().aumentarReproducciones();
+					}
+				}
+				break;
+			case "Album":
+				rutas.addAll(((Album)element).getrutas(usuario)) ;
+				break;
+			case "Lista":
+				System.out.println(super.getNombre() + " " + element.getNombre() );
+				
+				if(!super.getNombre().equals(element.getNombre())){
+					rutas.addAll(((Lista)element).getrutas(usuario)) ;
+				}
+				break;
+			default:
+				break;
+			}
+
+		}
+		return rutas;
+
+	}
+
+	@Override
+	public String toString() {
+		return "Lista [elementos=" + elementos + "]";
+	}
+
 }

@@ -52,7 +52,19 @@ public class TEster {
 //		yo = new UsuarioAnonimo();
 //		System.out.println("\n" +yo.getClass());
 		
+		/*
+		 DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate d= LocalDate.parse("01/02/1989", format);
+		LocalDate d1 = LocalDate.parse("01/03/1989", format);
+		ChronoPeriod period = ChronoPeriod.between(d, d1);
+		System.out.printf("%d años, %d meses y %d días", period.get(ChronoUnit.YEARS), period.get(ChronoUnit.MONTHS),
+				period.get(ChronoUnit.DAYS));
 		
+		period = ChronoPeriod.between(d.minusDays(d.getDayOfMonth()), d1);
+		System.out.printf("%d años, %d meses y %d días", period.get(ChronoUnit.YEARS), period.get(ChronoUnit.MONTHS),
+				period.get(ChronoUnit.DAYS));
+				
+		*/
 		UsuarioRegistrado avicii = new UsuarioRegistrado("AVICII", "1234", LocalDate.now());
 		
 		Cancion c3 = new Cancion("Levels", "avicii-levels.mp3", avicii);
@@ -61,6 +73,9 @@ public class TEster {
 		wakeMe.validar();
 		Cancion brother = new Cancion("Hey brother", "avicii-hey-brother-lyric.mp3", avicii);
 		Album album = new Album("mix", avicii);
+		Lista lista = new Lista("miLista");
+		lista.addElemt(brother);
+		lista.addElemt(wakeMe);
 		album.anadirCancion(c3);
 		album.anadirCancion(wakeMe);
 		album.anadirCancion(brother);
@@ -87,5 +102,26 @@ public class TEster {
 		System.out.println(wakeMe+ "\n");
 		System.out.println(brother+ "\n");
 		System.out.println(avicii+ "\n");
+		System.out.println("reproduccion lista"+ "\n");
+		System.out.println(lista);
+		sesion.reproducir(lista);
+		lista.addElemt(album);
+		System.out.println(lista);
+		sesion.reproducir(lista);
+		
+		System.out.println("reproduccion lista  con canciones albumes y listas"+ "\n");
+		Lista lista2 = new Lista("mmiLista");
+		lista2.addElemt(brother);
+		lista2.addElemt(c3);
+		lista.addElemt(lista);
+		System.out.println(lista2);
+		sesion.reproducir(lista);
+		lista.addElemt(lista2);
+		sesion.reproducir(lista);
+		
+		
+		
+		
+		
 	}
 }

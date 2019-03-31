@@ -85,6 +85,9 @@ public class Cancion extends Element implements Serializable {
 	public void aumentarReproducciones() {
 		numreproducciones++;
 	}
+	public void resetearReproducciones() {
+		numreproducciones = 0;
+	}
 
 	public void validar() {
 		validada = true;
@@ -145,7 +148,7 @@ public class Cancion extends Element implements Serializable {
 	public Integer getNumreproducciones() {
 		return numreproducciones;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Cancion [Nombre: " + super.getNombre() + ", duracion = " + duracion + ", numero de reproducciones = "
@@ -167,7 +170,7 @@ public class Cancion extends Element implements Serializable {
 		}
 		if (Aplicacion.reproductor.reproducir(ruta)) {
 			usuario.aumentarReproducidas();
-			if ((usuario.getClass() == UsuarioRegistrado.class) && !esAutor((UsuarioRegistrado)usuario)) {
+			if ((usuario.getClass() == UsuarioRegistrado.class) && !esAutor((UsuarioRegistrado) usuario)) {
 				aumentarReproducciones();
 				autor.aumentarReproducciones();
 			}
@@ -175,15 +178,14 @@ public class Cancion extends Element implements Serializable {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Metodo que comprueba si un usuario es autor de la cancion
+	 * 
 	 * @param usuario
-	 * @return Boolean 
+	 * @return Boolean
 	 */
 	public Boolean esAutor(UsuarioRegistrado usuario) {
-		System.out.println(autor.getNombre() +"  "+ usuario.getNombre() );
-		
 		return autor.getNombre().equalsIgnoreCase(usuario.getNombre());
 	}
 
@@ -195,8 +197,7 @@ public class Cancion extends Element implements Serializable {
 	 */
 	@Override
 	public String dataString() {
-		return super.getNombre() + "  " + "Duracion: " + duracion + " "
-				+ "Autor: " + autor.getNombre()+" Cancion";
+		return super.getNombre() + "  " + "Duracion: " + duracion + " " + "Autor: " + autor.getNombre() + " Cancion";
 	}
 
 }

@@ -158,6 +158,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 */
 	public void borrarCancion(Cancion cancion) {
 		if (canciones.contains(cancion)) {
+			reproducciones -= cancion.getNumreproducciones();
 			canciones.remove(cancion);
 		}
 	}
@@ -254,7 +255,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	public String toString() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
-				+ ", fecha de nacimiento: " + fechanac.format(formatter) + ", reproducidas = " + super.getReproducidas()
+				+ ", fecha de nacimiento: " + fechanac.format(formatter) + ", reproducidas = " + this.getReproducidas()
 				+ ", reproducciones = " + reproducciones + ", " + ((bloqueado) ? "esta " : "no esta ") + "bloqueado"
 				+ "]";
 	}

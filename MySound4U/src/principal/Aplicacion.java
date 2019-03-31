@@ -36,7 +36,7 @@ public class Aplicacion implements Serializable {
 	/** Instacia de la aplicacion */
 	private static Aplicacion myApi;
 	/** Numero de reproducciones de los usuarios no premium */
-	static final int REPRODUCCIONES_MAX = 5;
+	static final int REPRODUCCIONES_MAX = 20;
 	/**
 	 * Numero de reproducciones que tiene que tener un usuario para pasar a premium
 	 * gratis
@@ -113,6 +113,7 @@ public class Aplicacion implements Serializable {
 			albumes = new ArrayList<>();
 			bloqueados = new HashMap<UsuarioRegistrado, LocalDate>();
 			admin = new Administrador();
+			lastDate = FechaSimulada.getHoy();
 
 			/********** VALORES DE PRUEVA PARA EL DEMOSTRADOR */
 			UsuarioRegistrado sistema = new UsuarioRegistrado("System", "1234", LocalDate.now());
@@ -148,7 +149,7 @@ public class Aplicacion implements Serializable {
 			validaciones.add(v2);
 			sesion = logueado.iniciarSesion(this);
 			revision();
-			
+
 		} else {
 			System.out.println("cargando sesion anterior");
 			load();
@@ -275,7 +276,7 @@ public class Aplicacion implements Serializable {
 	 * Metodo que comprueba si hay que desbloquear a algun usuario con bloqueo
 	 * temporal
 	 */
-	public void revisarBoqueados() {
+	public void revisarBloqueados() {
 		for (Map.Entry<UsuarioRegistrado, LocalDate> bloqueado : bloqueados.entrySet()) {
 			ChronoPeriod period = ChronoPeriod.between(bloqueado.getValue(), FechaSimulada.getHoy());
 			System.out.println(FechaSimulada.getHoy() + ", " + bloqueado.getValue() + ", "
@@ -310,8 +311,27 @@ public class Aplicacion implements Serializable {
 	 * Metodo que realiza todas las comprobaciones y cambios dependientes del tiempo
 	 */
 	public void revision() {
-		revisarBoqueados();
+		revisarBloqueados();
 		revisarValidaciones();
+		System.out.println(lastDate + " * " + FechaSimulada.getHoy());
+
+		ChronoPeriod period = ChronoPeriod.between(lastDate, FechaSimulada.getHoy());
+		if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0
+				|| ChronoPeriod.between(lastDate.minusDays(lastDate.getDayOfMonth() - 1), FechaSimulada.getHoy())
+						.get(ChronoUnit.MONTHS) > 0) {
+			
+			for (UsuarioRegistrado user : usuarios) {
+				user.setPremium(false);
+				if (user.getReproducidas() > umbralPremium) {
+					pasarPremium();
+				}
+				user.resetearContadores();
+			}
+			
+			for (Cancion song : canciones) {
+				song.resetearReproducciones();
+			}
+		}
 
 	}
 
@@ -492,7 +512,7 @@ public class Aplicacion implements Serializable {
 	 */
 	public void addAlbum(Album album) {
 		albumes.add(album);
-		((UsuarioRegistrado)logueado).addAlbum(album);
+		((UsuarioRegistrado) logueado).addAlbum(album);
 	}
 
 	public void borrarCancion(Cancion cancion) {
@@ -674,19 +694,18 @@ public class Aplicacion implements Serializable {
 			System.out.println(u);
 		}
 	}
-	
+
 	public void printDenuncias() {
 		for (Denuncia d : denuncias) {
 			System.out.println(d);
 		}
 	}
-	
+
 	public void printValidaciones() {
 		for (Validacion v : validaciones) {
 			System.out.println(v);
 		}
 	}
-
 
 	/**
 	 * Metodo que imprime todos las canciones
@@ -705,8 +724,6 @@ public class Aplicacion implements Serializable {
 			System.out.println(a);
 		}
 	}
-	
-	
 
 	/**
 	 * Metodo que guarda el estado de toda la aplicacion

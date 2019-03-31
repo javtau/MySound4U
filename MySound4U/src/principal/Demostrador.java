@@ -23,8 +23,10 @@ public class Demostrador {
 		api.printUsers();
 		api.printSongs();
 		api.printAlbums();
+		System.out.println("avanza fecha");
 		api.avanzarSimulada(4);
 		api.revision();
+		api.printUsers();
 		api.printSongs();
 		api.printAlbums();
 		/*

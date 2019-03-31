@@ -46,8 +46,7 @@ public class Album extends Element implements Serializable {
 	}
 
 	/**
-	 * Este metodo reproduce un elemento y realiza las acciones necesaria para dicho
-	 * elelmento
+	 * Este metodo reproduce un album
 	 * 
 	 * @usuario usuario que solicita la reproduccion
 	 */
@@ -59,7 +58,7 @@ public class Album extends Element implements Serializable {
 			System.out.println("No se puede reproducir album");
 			return false;
 		}
-		if ((rutas = getrutas(usuario)) == null) {
+		if ((rutas = getrutas(usuario)).isEmpty()) {
 			return false;
 		}
 		System.out.println("se va a reproducir " + rutas);
@@ -106,5 +105,12 @@ public class Album extends Element implements Serializable {
 	public UsuarioRegistrado getAutor() {
 		return autor;
 	}
+
+	@Override
+	public String toString() {
+		return "Album [autor=" + autor + ", canciones=" + canciones + "]";
+	}
+	
+	
 
 }
