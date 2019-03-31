@@ -66,7 +66,7 @@ public class UsuarioRegistradoTest {
 
 		@Test
 		public void testaddAlbum() {
-			Album album = new Album("Prueba");
+			Album album = new Album("Prueba", usuario);
 			usuario.addAlbum(album);
 			assertTrue( usuario.getAlbumes().contains(album) );
 		}

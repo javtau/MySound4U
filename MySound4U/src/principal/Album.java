@@ -59,25 +59,36 @@ public class Album extends Element implements Serializable {
 			System.out.println("No se puede reproducir album");
 			return false;
 		}
+		if ((rutas = getrutas(usuario)) == null) {
+			return false;
+		}
+		System.out.println("se va a reproducir " + rutas);
+		return Aplicacion.reproductor.reproducir(rutas.toArray(new String[0]));
+	}
+
+	/**
+	 * Este metodo devuelve un array con las rutas de las canciones de album que
+	 * puede escuchar el usuario
+	 * 
+	 * @param usuario usuario que solicita el usuario
+	 * @return rutas Array list con las rutas de las canciones
+	 */
+	public ArrayList<String> getrutas(Usuario usuario) {
+		ArrayList<String> rutas = new ArrayList<>();
 		for (Cancion cancion : canciones) {
 			if (usuario.canListenSong(cancion)) {
 				System.out.println("no se puede reproducir" + cancion.getNombre());
-
+				return null;
 			} else {
 				rutas.add(cancion.getRuta());
 				usuario.aumentarReproducidas();
-				System.out.println((usuario.getClass() == UsuarioRegistrado.class) +"  " + (!esAutor));
 				if (usuario.getClass() == UsuarioRegistrado.class && !cancion.esAutor((UsuarioRegistrado) usuario)) {
-					System.out.println("noes");
 					cancion.aumentarReproducciones();
 					cancion.getAutor().aumentarReproducciones();
 				}
 			}
-
 		}
-		System.out.println("se va a reproducir "+ rutas);
-		return Aplicacion.reproductor.reproducir(rutas.toArray(new String[0]));
-
+		return rutas;
 	}
 
 	/**
