@@ -124,6 +124,29 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		// TODO Comprobar pago
 		api.pasarPremium();
 	}
+	
+	/**
+	 * Metodo que permita cambiar el autor y ruta de una cancion
+	 * 
+	 * @param cancion
+	 */
+	public void editarCancion(Cancion cancion, String newName, File file) {
+		if (!file.exists()) {
+			return;
+		}
+		if (!cancion.esValidada() && cancion.enRevision() && cancion.esAutor(usuario)) {
+			try {
+				// What to do with the file, e.g. display it in a TextArea
+				Files.copy(file.toPath(), new FileOutputStream(Aplicacion.getPath() + file.getName()));
+				cancion.setRuta(file.getName());
+				cancion.setNombre(newName);
+
+			} catch (IOException ex) {
+				System.out.println("problem accessing file" + file.getAbsolutePath());
+			}
+		}
+
+	}
 
 	/**
 	 * Este metodo reproduce una cancion. No se reproducira si es explicita, si es
