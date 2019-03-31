@@ -177,6 +177,7 @@ public class Cancion extends Element implements Serializable {
 			if ((usuario.getClass() == UsuarioRegistrado.class) && !esAutor((UsuarioRegistrado) usuario)) {
 				aumentarReproducciones();
 				autor.aumentarReproducciones();
+				System.out.println(autor);
 			}
 			return true;
 		}

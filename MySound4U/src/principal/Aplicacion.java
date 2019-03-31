@@ -36,12 +36,12 @@ public class Aplicacion implements Serializable {
 	/** Instacia de la aplicacion */
 	private static Aplicacion myApi;
 	/** Numero de reproducciones de los usuarios no premium */
-	static final int REPRODUCCIONES_MAX = 20;
+	static final int REPRODUCCIONES_MAX = 10;
 	/**
 	 * Numero de reproducciones que tiene que tener un usuario para pasar a premium
 	 * gratis
 	 */
-	static final int UMBRAL_PREMIUM = 10;
+	static final int UMBRAL_PREMIUM = 5;
 
 	/** Nombre de la carpeta donde se almacenan las canciones */
 	static final String DIRECTORY = "songs";
@@ -294,15 +294,18 @@ public class Aplicacion implements Serializable {
 	 */
 	public void revisarValidaciones() {
 		Cancion cancion;
+		System.out.println(validaciones);
 		for (Validacion v : validaciones) {
 			ChronoPeriod period = ChronoPeriod.between(v.getPlazo(), FechaSimulada.getHoy());
-			System.out.println(FechaSimulada.getHoy() + ", " + v.getPlazo() + ", " + period.get(ChronoUnit.MONTHS) + "-"
-					+ period.get(ChronoUnit.DAYS));
+			System.out.println(v.getPlazo() + " "+  FechaSimulada.getHoy());
+			System.out.println(period.get(ChronoUnit.YEARS) + " " + period.get(ChronoUnit.MONTHS) + " " + period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
 					|| period.get(ChronoUnit.DAYS) > 3) {
+				
 				cancion = v.getCancion();
+				System.out.println("borrar cancion"+ cancion.getNombre()+ " borrar validacion");
 				validaciones.remove(v);
-				cancion.getAutor().borrarCancion(v.getCancion());
+				cancion.getAutor().borrarCancion(cancion);
 				borrarCancion(cancion);
 				
 			}
@@ -315,7 +318,6 @@ public class Aplicacion implements Serializable {
 	public void revision() {
 		revisarBloqueados();
 		revisarValidaciones();
-		System.out.println(lastDate + " * " + FechaSimulada.getHoy());
 
 		ChronoPeriod period = ChronoPeriod.between(lastDate, FechaSimulada.getHoy());
 		if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0
@@ -736,7 +738,7 @@ public class Aplicacion implements Serializable {
 
 		ObjectOutputStream file;
 		try {
-			file = new ObjectOutputStream(new FileOutputStream(DATA_PATH));
+			file = new ObjectOutputStream(new FileOutputStream(getDataPath()));
 			Aplicacion a = Aplicacion.myApi;
 			file.writeObject(Aplicacion.myApi);
 			file.close();

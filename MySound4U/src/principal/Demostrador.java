@@ -24,7 +24,7 @@ public class Demostrador {
 		api.printSongs();
 		api.printAlbums();
 		System.out.println("avanza fecha");
-		api.avanzarSimulada(4);
+		api.avanzarSimulada(8);
 		api.revision();
 		api.printUsers();
 		api.printSongs();
