@@ -322,7 +322,7 @@ public class Aplicacion implements Serializable {
 			
 			for (UsuarioRegistrado user : usuarios) {
 				user.setPremium(false);
-				if (user.getReproducidas() > umbralPremium) {
+				if (user.getReproducidas() >= umbralPremium) {
 					pasarPremium();
 				}
 				user.resetearContadores();

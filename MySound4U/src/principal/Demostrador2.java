@@ -77,7 +77,7 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		api.buscar("lev", TIPO_BUSQUEDA.TITULO);
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("Vamos a buscar el autor \"System\" aplicando el filtro \"autor\": ");
+		System.out.println("Vamos a buscar las canciones del autor \"System\" aplicando el filtro \"autor\": ");
 		TimeUnit.SECONDS.sleep(2);
 		api.buscar("system", TIPO_BUSQUEDA.AUTOR);
 		TimeUnit.SECONDS.sleep(2);
@@ -440,6 +440,14 @@ public class Demostrador2 {
 		System.out.println("Vamos a probar a escuchar la cancion de nuevo\n");
 		TimeUnit.SECONDS.sleep(2);
 		usuario.reproducir(canciones.get(0));
+		
+		api.avanzarSimulada(32);
+		api.revision();
+		api.printSongs();
+		api.printUsers();
+		
+		
+		
 
 		/*
 		 * api.desloguearse();
@@ -477,8 +485,8 @@ public class Demostrador2 {
 		 * 
 		 * /* System.out.println("*********************");
 		 * System.out.println("* Subir una cancion *");
-		 * System.out.println("*********************"); System.out.
-		 * println("\nVamos a ver el contenido de la carpeta songs antes de subir una cancion: \n"
+		 * System.out.println("*********************"); 
+		 * System.out.println("\nVamos a ver el contenido de la carpeta songs antes de subir una cancion: \n"
 		 * ); api2.printDirectory(); File file2 = new
 		 * File("songstoupload/QueElCieloEspereSentao.mp3"); System.out.
 		 * println("\nSe va a subir la cancion \"Que el cielo espere sentao\"");

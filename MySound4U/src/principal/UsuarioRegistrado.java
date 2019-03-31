@@ -265,7 +265,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	@Override
 	public String toString() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		return "Usuario registrado " + ((premium) ? "premium " : "") + " [Nombre: " + super.getNombre()
+		return "Usuario registrado " + ((premium) ? "premium " : "") + "[Nombre: " + super.getNombre()
 				+ ", fecha de nacimiento: " + fechanac.format(formatter) + ", reproducidas = " + this.getReproducidas()
 				+ ", reproducciones = " + reproducciones + ", " + ((bloqueado) ? "esta " : "no esta ") + "bloqueado"
 				+ "]";
