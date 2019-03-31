@@ -78,7 +78,7 @@ public class Album extends Element implements Serializable {
 		for (Cancion cancion : canciones) {
 			if (usuario.canListenSong(cancion)) {
 				System.out.println("no se puede reproducir" + cancion.getNombre());
-				return null;
+
 			} else {
 				rutas.add(cancion.getRuta());
 				usuario.aumentarReproducidas();
@@ -87,6 +87,7 @@ public class Album extends Element implements Serializable {
 					cancion.getAutor().aumentarReproducciones();
 				}
 			}
+
 		}
 		return rutas;
 	}
