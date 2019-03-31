@@ -78,11 +78,12 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nVamos a buscar las canciones del autor \"System\" aplicando el filtro \"autor\": \n");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println(api.buscar("system", TIPO_BUSQUEDA.AUTOR));
+		System.out.println(api.buscar("sys", TIPO_BUSQUEDA.AUTOR));
 		TimeUnit.SECONDS.sleep(2);
 
 		// Metodo registrarse
-
+		
+		System.out.println("");
 		System.out.println("************");
 		System.out.println("* Registro *");
 		System.out.println("************");
@@ -347,12 +348,11 @@ public class Demostrador2 {
 		System.out.println("\nLista de denuncias: \n");
 		api.printDenuncias();
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a aceptar la denuncia");
+		System.out.println("\nVamos a aceptar la primera denuncia de Fernando");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nComprobacion: \n");
 		TimeUnit.SECONDS.sleep(2);
-
-		System.out.println("Denuncia aceptada: Gonzalo y su cancion bloqueados permanentemente: ");
+		System.out.println("Gonzalo y su cancion bloqueados permanentemente: ");
 		TimeUnit.SECONDS.sleep(2);
 		String denunciante = api.getDenuncia(1).getDenunciante().getNombre();
 		boolean bloq = api.getDenuncia(1).getDenunciante().estaBloqueado();
@@ -457,19 +457,48 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("- Resetear los contadores a 0 tanto de las reproducciones como de las reproducidas");
 		TimeUnit.SECONDS.sleep(2);
+		
 		api.avanzarSimulada(32);
 		api.revision();
 		
 		System.out.println(
-				"\nVamos a comprobar que el usuario \"Avicii\" es un usuario premium por numero de reproducciones\n");
+				"\nVamos a comprobar que el usuario \"Avicii\" se convierte en usuario premium por numero de reproducciones conseguidas\n");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("- Usuario: " + api.getUsuario(1).getNombre()+ "\n- Premium: " + api.getUsuario(1).esPremium());
+		System.out.println("- Usuario: " + api.getUsuario(1).getNombre() + "\n- Premium: " + api.getUsuario(1).esPremium());
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nComprobacion de que \"Fernando\" ha sido desbloqueado: \n");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("- Usuario: " + api.getUsuario(3).getNombre() + "\n- Bloqueado: " + api.getUsuario(3).estaBloqueado()+ "\n");
 		TimeUnit.SECONDS.sleep(2);
+		System.out.println("Comprobacion de que las reproudcciones de \"Javier\" han sido restablecidas: \n");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Usuario: " + api.getUsuario(4).getNombre() + "\n- Numero de reproducidas: " + api.getUsuario(3).getReproducidas() + "\n");
+		TimeUnit.SECONDS.sleep(2);
+		//VALIDACION 
+		
 		api.printValidaciones();
+		
+		System.out.println("");
+		System.out.println("*****************");
+		System.out.println("* Subir cancion *");
+		System.out.println("*****************");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nVamos a ver el contenido de la carpeta songs antes de subir una cancion: \n");
+		api.printDirectory(); 
+		File file1 = new File("songstoupload/QueElCieloEspereSentao.mp3");
+		System.out.println("\nSe va a subir la cancion \"Que el cielo espere sentao\"");
+		usuario.subirCancion("Que el cielo espere sentao", file1);
+		TimeUnit.SECONDS.sleep(5); canciones = api.getLastSongs(); 
+		System.out.println("\nVamos a volver a ver el contenido de la carpeta y comprobar que se ha subido la cancion: \n"); 
+		api.printDirectory(); TimeUnit.SECONDS.sleep(1); 
+		System.out.println("\nComo aun no esta validada, solo se puede escuchar desde este usuario. Vamos a reproducirla: "); 
+		TimeUnit.SECONDS.sleep(2);
+		canciones = api.getLastSongs();
+		usuario.reproducir(canciones.get(0));
+		TimeUnit.SECONDS.sleep(2);
+		usuario.stop();
+		
+	
 
 		/*
 		 * api.desloguearse();
