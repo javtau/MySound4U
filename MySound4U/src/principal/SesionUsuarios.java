@@ -120,11 +120,22 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		usuario.seguir(usuario2);
 	}
 
-	public void pasarPremium() {
-		// TODO Comprobar pago
-		api.pasarPremium();
+	/**
+	 * Metodo que recibe un numero de tarjeta, lo comprueba y si se puede hacer el
+	 * cargo se pasa al usuario a premium
+	 * 
+	 * @param numTargeta
+	 */
+	public void pasarPremium(String numTargeta) {
+		try {
+			TeleChargeAndPaySystem.charge(numTargeta, "PAgo premium", 20, true);
+			api.pasarPremium();
+		} catch (OrderRejectedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("invalida");
+		}
 	}
-	
+
 	/**
 	 * Metodo que permita cambiar el autor y ruta de una cancion
 	 * 
