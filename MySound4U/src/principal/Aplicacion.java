@@ -33,7 +33,7 @@ import utils.Reproductor;
  * Esta clase contiene todos los atributos y metodos de la aplicacion
  */
 public class Aplicacion implements Serializable {
-	/** Instacia de la aplicacion */
+	/** Instancia de la aplicacion */
 	private static Aplicacion myApi;
 	/** Numero de reproducciones de los usuarios no premium */
 	static final int REPRODUCCIONES_MAX = 10;
@@ -116,7 +116,7 @@ public class Aplicacion implements Serializable {
 			lastDate = FechaSimulada.getHoy();
 
 			/* VALORES DE PRUEBA PARA EL DEMOSTRADOR */
-			
+
 			UsuarioRegistrado sistema = new UsuarioRegistrado("System", "1234", LocalDate.now());
 			usuarios.add(sistema);
 			UsuarioRegistrado avicii = new UsuarioRegistrado("Avicii", "1234", LocalDate.now());
@@ -297,17 +297,18 @@ public class Aplicacion implements Serializable {
 		System.out.println(validaciones);
 		for (Validacion v : validaciones) {
 			ChronoPeriod period = ChronoPeriod.between(v.getPlazo(), FechaSimulada.getHoy());
-			System.out.println(v.getPlazo() + " "+  FechaSimulada.getHoy());
-			System.out.println(period.get(ChronoUnit.YEARS) + " " + period.get(ChronoUnit.MONTHS) + " " + period.get(ChronoUnit.DAYS));
+			System.out.println(v.getPlazo() + " " + FechaSimulada.getHoy());
+			System.out.println(period.get(ChronoUnit.YEARS) + " " + period.get(ChronoUnit.MONTHS) + " "
+					+ period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
 					|| period.get(ChronoUnit.DAYS) > 3) {
-				
+
 				cancion = v.getCancion();
-				System.out.println("borrar cancion"+ cancion.getNombre()+ " borrar validacion");
+				System.out.println("borrar cancion" + cancion.getNombre() + " borrar validacion");
 				validaciones.remove(v);
 				cancion.getAutor().borrarCancion(cancion);
 				borrarCancion(cancion);
-				
+
 			}
 		}
 	}
@@ -323,7 +324,7 @@ public class Aplicacion implements Serializable {
 		if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0
 				|| ChronoPeriod.between(lastDate.minusDays(lastDate.getDayOfMonth() - 1), FechaSimulada.getHoy())
 						.get(ChronoUnit.MONTHS) > 0) {
-			
+
 			for (UsuarioRegistrado user : usuarios) {
 				user.setPremium(false);
 				if (user.getReproducciones() >= umbralPremium) {
@@ -331,7 +332,7 @@ public class Aplicacion implements Serializable {
 				}
 				user.resetearContadores();
 			}
-			
+
 			for (Cancion song : canciones) {
 				song.resetearReproducciones();
 			}
@@ -519,11 +520,16 @@ public class Aplicacion implements Serializable {
 		((UsuarioRegistrado) logueado).addAlbum(album);
 	}
 
+	/**
+	 * Este metodo elimina una cancion
+	 * 
+	 * @param nombre Nombre de la cancion
+	 */
 	public void borrarCancion(Cancion cancion) {
 		Album album;
 		if (canciones.contains(cancion)) {
 			canciones.remove(cancion);
-			File f = new File(PATH+cancion.getRuta());
+			File f = new File(PATH + cancion.getRuta());
 			f.delete();
 			if ((album = cancion.getAlbum()) != null) {
 				album.borrarCancion(cancion);
@@ -535,6 +541,11 @@ public class Aplicacion implements Serializable {
 		}
 	}
 
+	/**
+	 * Este metodo pasa a premium a un usuario
+	 * 
+	 * @param usuario Usuario a pasar a premium
+	 */
 	public void pasarPremium(UsuarioRegistrado usuario) {
 		usuario.setPremium(true);
 	}
@@ -784,7 +795,7 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
-	 * Metodo que aumenta la fecha simulada tantos dias como reciva
+	 * Metodo que aumenta la fecha simulada tantos dias como reciba
 	 *
 	 * @param dias dias que se quiere avanzar la fecha
 	 */

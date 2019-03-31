@@ -126,14 +126,14 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	 * Metodo que recibe un numero de tarjeta, lo comprueba y si se puede hacer el
 	 * cargo se pasa al usuario a premium
 	 * 
-	 * @param numTargeta
+	 * @param numTarjeta
 	 */
-	public void pasarPremium(String numTargeta) {
+	public void pasarPremium(String numTarjeta) {
 		try {
-			TeleChargeAndPaySystem.charge(numTargeta, "PAgo premium", 20, true);
+			TeleChargeAndPaySystem.charge(numTarjeta, "Pago premium", 20, true);
 			api.pasarPremium(usuario);
 		} catch (OrderRejectedException e) {
-			System.out.println("invalida");
+			System.out.println("Invalida");
 		}
 	}
 
