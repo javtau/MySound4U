@@ -39,6 +39,17 @@ public abstract class Element implements Serializable {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	
+
+	/**
+	 * Este metodo devuelve el nombre del elemento
+	 * 
+	 * @param nombre
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 	/**
 	 * Este metodo reproduce un elemento y realiza las acciones necesaria para dicho

@@ -141,6 +141,12 @@ public class Cancion extends Element implements Serializable {
 	public String getAutorNombre() {
 		return this.autor.getNombre();
 	}
+	
+	public Boolean enRevision() {
+		return revision;
+	}
+	
+	
 
 	@Override
 	public String toString() {

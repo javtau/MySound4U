@@ -490,8 +490,10 @@ public class Aplicacion implements Serializable {
 
 	public void borrarCancion(Cancion cancion) {
 		Album album;
-		if (canciones.contains(cancion)) {
+		if (canciones.contains(cancion) && cancion.esAutor((UsuarioRegistrado) logueado)) {
 			canciones.remove(cancion);
+			File f = new File(PATH+cancion.getRuta());
+			f.delete();
 			if ((album = cancion.getAlbum()) != null) {
 				album.borrarCancion(cancion);
 				if (album.isEmpty()) {
