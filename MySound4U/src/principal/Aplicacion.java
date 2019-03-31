@@ -300,10 +300,11 @@ public class Aplicacion implements Serializable {
 					+ period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
 					|| period.get(ChronoUnit.DAYS) > 3) {
-				validaciones.remove(v);
 				cancion = v.getCancion();
-				borrarCancion(cancion);
+				validaciones.remove(v);
 				cancion.getAutor().borrarCancion(v.getCancion());
+				borrarCancion(cancion);
+				
 			}
 		}
 	}
