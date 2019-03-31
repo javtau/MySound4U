@@ -43,7 +43,7 @@ public class SesionAnonima extends Sesion implements Serializable {
 	 */
 	// @Override
 	public void reproducir(Element cancion) {
-		if (usuario.getReproducidas() > api.getLimiteReproducciones()) {
+		if (usuario.getReproducidas() >= api.getLimiteReproducciones()) {
 			System.out.println("No se puede reproducir");
 			return;
 		}

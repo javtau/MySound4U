@@ -192,7 +192,7 @@ public class Demostrador2 {
 				"Vamos a comprobar la lista de usuarios que sigue \"Fernando\" y ver si se ha seguido a \"Javier\"\n");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("- Usuario: " + usuario.getUsuarioRegistrado().getNombre()
-				+ "\n- Lista de usuarios seguidos: " + usuario.getUsuarioRegistrado().getSeguidos());
+				+ "\n- Lista de usuarios seguidos: \n" + usuario.getUsuarioRegistrado().getSeguidos());
 		TimeUnit.SECONDS.sleep(2);
 
 		// Cambio de sesión
@@ -264,7 +264,7 @@ public class Demostrador2 {
 				"\nVamos a reproducir 3 segundos de cada cancion para demostrar que las reproducciones del admin no se tienen en cuenta");
 		TimeUnit.SECONDS.sleep(2);
 
-		System.out.println("\nWake me up: ");
+		System.out.println("\n" + canciones.get(0));
 		System.out.println("\n- Reproducciones totales antes de reproducir: "
 				+ ((Cancion) canciones.get(0)).getNumreproducciones());
 		TimeUnit.SECONDS.sleep(2);
@@ -275,7 +275,7 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(3);
 		administrador.stop();
 
-		System.out.println("\nRelax: ");
+		System.out.println("\n" + canciones.get(1));
 		System.out.println("\n- Reproducciones totales antes de reproducir: "
 				+ ((Cancion) canciones.get(1)).getNumreproducciones());
 		TimeUnit.SECONDS.sleep(2);
@@ -286,7 +286,7 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(3);
 		administrador.stop();
 
-		System.out.println("\nLevels: ");
+		System.out.println("\n" + canciones.get(2));
 		System.out.println("\n- Reproducciones totales antes de reproducir: "
 				+ ((Cancion) canciones.get(2)).getNumreproducciones());
 		TimeUnit.SECONDS.sleep(2);
@@ -297,7 +297,7 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(3);
 		administrador.stop();
 
-		System.out.println("\nRookiezisPunk: ");
+		System.out.println("\n" + canciones.get(3));
 		System.out.println("\n- Reproducciones totales antes de reproducir: "
 				+ ((Cancion) canciones.get(3)).getNumreproducciones());
 		TimeUnit.SECONDS.sleep(2);
@@ -308,7 +308,7 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(3);
 		administrador.stop();
 
-		System.out.println("\nCorePride: ");
+		System.out.println("\n" + canciones.get(4));
 		System.out.println("\n- Reproducciones totales antes de reproducir: "
 				+ ((Cancion) canciones.get(4)).getNumreproducciones());
 		TimeUnit.SECONDS.sleep(2);
@@ -324,6 +324,7 @@ public class Demostrador2 {
 		System.out.println("\nVamos a ver la lista de validaciones pendientes: \n");
 		TimeUnit.SECONDS.sleep(3);
 		api.printValidaciones();
+		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nComo la cancion RookiezisPunk esta sin validar, vamos a validarla\n");
 		TimeUnit.SECONDS.sleep(3);
 		administrador.validar(validaciones.get(0));
@@ -332,32 +333,114 @@ public class Demostrador2 {
 		System.out.println("- Cancion: " + canciones.get(3).getNombre());
 		System.out.println("- Validada: " + ((Cancion) canciones.get(4)).esValidada());
 		TimeUnit.SECONDS.sleep(3);
+
+		// Gestion de las denuncias
+
 		System.out.println(
 				"\nVamos a gestionar las denuncias que hemos puesto anteriormente y la inicializada en el constructor: ");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nLista de denuncias: ");
+		System.out.println("\nLista de denuncias: \n");
 		api.printDenuncias();
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a aceptar la denuncia a Gonzalo y rechazar la de Avicii");
+		System.out.println("\nVamos a aceptar la denuncia");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nComprobacion: \n");
 		TimeUnit.SECONDS.sleep(2);
+
+		System.out.println("Denuncia aceptada: Gonzalo y su cancion bloqueados permanentemente: ");
+		TimeUnit.SECONDS.sleep(2);
+		String denunciante = api.getDenuncia(1).getDenunciante().getNombre();
+		boolean bloq = api.getDenuncia(1).getDenunciante().estaBloqueado();
+		System.out.println("\n- Cancion: " + api.getDenuncia(1).getCancion().getNombre());
 		administrador.aceptarDenuncia(denuncias.get(1));
-		System.out.println("Denuncia aceptada, Gonzalo y su cancion bloqueados permanentemente: ");
+		System.out.println("- Bloqueada: " + ((Cancion) canciones.get(1)).esBloqueda());
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("- Cancion: "+ api.getDenuncia(1).getCancion().getNombre() + "\n- Bloqueada: " + api.getDenuncia(1).getCancion().esBloqueda());
-		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\n- Autor: " + api.getDenuncia(1).getCancion().getAutorNombre() + "\n- Bloqueado: " + api.getDenuncia(1).getCancion().esBloqueda());
+		System.out.println("\n- Autor: " + ((Cancion) canciones.get(1)).getAutorNombre() + "\n- Bloqueado: "
+				+ ((Cancion) canciones.get(1)).getAutor().estaBloqueado());
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nComprobacion de que al aceptarle la denuncia a Fernando no ha sido bloqueado: ");
-		System.out.println("\n- Denunciante: " + api.getDenuncia(1).getDenunciante().getNombre() + "\n- Bloqueado: " + api.getDenuncia(1).getDenunciante().estaBloqueado());
+		System.out.println("\n- Denunciante: " + denunciante + "\n- Bloqueado: " + bloq);
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a rechazar la segunda denuncia de Fernando, bloquearle durante 30 dias y desbloquear la cancion de Avicii: ");
+		System.out.println(
+				"\nVamos a rechazar la segunda denuncia de Fernando a Avicii, bloquearle durante 30 dias y desbloquear la cancion de Avicii: ");
 		TimeUnit.SECONDS.sleep(2);
-		administrador.rechazarDenuncia(denuncias.get(0));
-		System.out.println("\n- Denunciante: " + api.getDenuncia(0).getDenunciante().getNombre() + "\n- Bloqueado: " + api.getDenuncia(0).getDenunciante().estaBloqueado());
+		String denunciante2 = api.getDenuncia(1).getDenunciante().getNombre();
+		administrador.rechazarDenuncia(denuncias.get(1));
+		System.out.println("\n- Denunciante: " + denunciante2 + "\n- Bloqueado: " + api.getUsuario(3).estaBloqueado());
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\n- Cancion: " + api.getDenuncia(0).getCancion().getNombre() + "\n- Bloqueada: " +  api.getDenuncia(0).getCancion().esBloqueda());
+		System.out.println("\n- Cancion: " + canciones.get(2).getNombre() + "\n- Bloqueada: "
+				+ ((Cancion) canciones.get(2)).getAutor().estaBloqueado());
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nVamos a reducir el umbral para ser premium y reducir el limite de reproducciones: ");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\n- Umbral para pasar a premium actual = " + api.getUmbralPremium());
+		api.setUmbralPremium(5);
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Umbral para pasar a premium modificado a = " + api.getUmbralPremium());
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\n- Limite de reproducciones actual = " + api.getLimiteReproducciones());
+		api.setLimiteReproducciones(5);
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("- Limite de reproducciones modificado a = " + api.getUmbralPremium());
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println(
+				"\nVamos a cerrar sesion del admin y loguearnos con un usuario no premium para comprobar estas modificaciones");
+		api.desloguearse();
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nEl " + administrador.getUsuario().getNombre() + " ha hecho logout");
+		TimeUnit.SECONDS.sleep(2);
+
+		anonima = (SesionAnonima) api.getSesion();
+		System.out.println("\nVamos a iniciar sesion con la cuenta \"Javier\"");
+		api.loguearse("Javier", "1234");
+		usuario = (SesionUsuarios) api.getSesion();
+		TimeUnit.SECONDS.sleep(2);
+
+		canciones = api.getLastSongs();
+
+		System.out.println(
+				"Vamos a reproducir 4 veces \"Levels\" para llegar al limite de reproducciones del usuario\n y al umbral de reproducciones en la cancion para ser premium");
+		TimeUnit.SECONDS.sleep(2);
+		// 1
+		System.out.println("\nPrimera reproduccion");
+		usuario.reproducir(canciones.get(0));
+		TimeUnit.SECONDS.sleep(2);
+		usuario.stop();
+
+		// 2
+		System.out.println("\nSegunda reproduccion");
+		usuario.reproducir(canciones.get(0));
+		TimeUnit.SECONDS.sleep(2);
+		usuario.stop();
+
+		// 3
+		System.out.println("\n Tercera reproduccion ");
+		usuario.reproducir(canciones.get(0));
+		TimeUnit.SECONDS.sleep(2);
+		usuario.stop();
+
+		// 4
+		System.out.println("\nCuarta reproduccion ");
+		usuario.reproducir(canciones.get(0));
+		TimeUnit.SECONDS.sleep(2);
+		usuario.stop();
+		TimeUnit.SECONDS.sleep(2);
+
+		System.out.println("\nComprobacion: ");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\n- Usuario: " + usuario.getUsuarioRegistrado().getNombre()
+				+ "\n- Canciones reproducidas = " + usuario.getUsuarioRegistrado().getReproducidas());
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\n- Cancion: " + canciones.get(0).getNombre() + "\n- Reproducciones de la cancion: "
+				+ ((Cancion) canciones.get(0)).getNumreproducciones() + "\n- Autor de la cancion: "
+				+ ((Cancion) canciones.get(0)).getAutor().getNombre()
+				+ "\n- Reproducciones totales al autor de la cancion entre todas sus canciones: \n"
+				+ ((Cancion) canciones.get(0)).getAutor().getReproducciones());
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("Vamos a probar a escuchar la cancion de nuevo\n");
+		TimeUnit.SECONDS.sleep(2);
+		usuario.reproducir(canciones.get(0));
+
 		/*
 		 * api.desloguearse();
 		 * 

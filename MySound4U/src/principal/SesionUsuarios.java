@@ -100,7 +100,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 
 	public void denunciar(Cancion cancion, String comentario) {
 		if (usuario.equals(cancion.getAutor())) {
-			System.out.println("No se puede denunciar a s� mismo");
+			System.out.println("No se puede denunciar a si mismo");
 			return;
 		}
 		Denuncia denuncia = new Denuncia(cancion, usuario, comentario);
@@ -135,8 +135,8 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	 */
 	@Override
 	public void reproducir(Element elemento) {
-		if ((!usuario.esPremium() && usuario.getReproducidas() > api.getLimiteReproducciones())) {
-			System.out.println("no se puede reproducir");
+		if ((!usuario.esPremium() && usuario.getReproducidas() >= api.getLimiteReproducciones())) {
+			System.out.println("No se puede reproducir mas canciones. Ha llegado al limite. Pasa a premium");
 			return;
 		}
 
@@ -251,25 +251,25 @@ public class SesionUsuarios extends Sesion implements Serializable {
 				File origen = fileChooser.getSelectedFile();
 				subirCancion(nombre, origen);
 			} else {
-				System.out.println("File access cancelled by user.");
+				System.out.println("File access cancelled by user");
 			}
 			elementos = api.getLastSongs();
 			break;
 
 		case "seguir":
 			((ConsolaRegistrado) consola).printUsers(usuarios);
-			System.out.println("Introduzca el numero del usuario al que desea seguir.");
+			System.out.println("Introduzca el numero del usuario al que desea seguir");
 			try {
 				seguido = Integer.parseInt(sc.nextLine());
 				if (seguido > usuarios.size() - 1 || seguido < 0) {
-					System.out.println("Ha introducido un numero de usuario incorrecto.");
+					System.out.println("Ha introducido un numero de usuario incorrecto");
 				} else {
 					seguir(api.getUsuario(seguido));
 					System.out.println("Usuarios seguidos: ");
 					((ConsolaRegistrado) consola).printUsers(usuario.getSeguidos());
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("Debe introducir el numero del usuario.");
+				System.out.println("Debe introducir el numero del usuario");
 			}
 			break;
 
@@ -278,7 +278,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			try {
 				index = Integer.parseInt(sc.nextLine());
 				if (index > elementos.size() - 1 || index > 6 || index < 0) {
-					System.out.println("Ha introducido un numero de cancion incorrecto.");
+					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else if (elementos.get(index).getClass() == Cancion.class) {
 					System.out.println("No ha seleccionado una cancion");
 				} else {
@@ -295,14 +295,14 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			try {
 				index = Integer.parseInt(sc.nextLine());
 				if (index > elementos.size() - 1 || index > 6 || index < 0) {
-					System.out.println("Ha introducido un numero de cancion incorrecto.");
+					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else if (elementos.get(index).getClass() == Cancion.class) {
 					System.out.println("No ha seleccionado una cancion");
 				} else {
 					borrarCancion((Cancion) elementos.get(index));
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("Debe introducir el numero de la cancion.");
+				System.out.println("Debe introducir el numero de la cancion");
 			}
 			break;
 

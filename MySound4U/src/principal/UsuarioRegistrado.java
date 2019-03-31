@@ -93,6 +93,17 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	}
 
 	/**
+	 * Cantidad de reproducciones que ha acumulado un usuario entre todas sus
+	 * canciones dentro del periodo vigente
+	 * 
+	 * @return reproducciones
+	 */
+
+	public Integer getReproducciones() {
+		return reproducciones;
+	}
+
+	/**
 	 * Este metodo actualiza el estado de bloqueado
 	 * 
 	 * @param bloqueado Nuevo estado al que se quiere pasar
@@ -277,8 +288,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 *         contrario
 	 */
 	public Boolean canListenSong(Cancion cancion) {
-		return cancion.esBloqueda()
-				|| (!cancion.esValidada() && !cancion.esAutor(this))
+		return cancion.esBloqueda() || (!cancion.esValidada() && !cancion.esAutor(this))
 				|| (cancion.esExplicita() && getEdad() < 18);
 	}
 
@@ -290,6 +300,5 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 			System.out.println(a);
 		}
 	}
-	
-	
+
 }
