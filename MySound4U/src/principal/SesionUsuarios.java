@@ -136,7 +136,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	@Override
 	public void reproducir(Element elemento) {
 		if ((!usuario.esPremium() && usuario.getReproducidas() >= api.getLimiteReproducciones())) {
-			System.out.println("No se puede reproducir mas canciones. Ha llegado al limite. Pasa a premium");
+			System.out.println("Este usuario ha llegado al limite de reproducciones. Pasa a premium");
 			return;
 		}
 

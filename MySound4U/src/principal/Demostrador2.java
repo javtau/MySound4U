@@ -399,28 +399,28 @@ public class Demostrador2 {
 		canciones = api.getLastSongs();
 
 		System.out.println(
-				"Vamos a reproducir 4 veces \"Levels\" para llegar al limite de reproducciones del usuario\n y al umbral de reproducciones en la cancion para ser premium");
+				"Vamos a reproducir 4 veces \"Levels\" para llegar al limite de reproducciones del usuario\ny al umbral de reproducciones en la cancion para ser premium");
 		TimeUnit.SECONDS.sleep(2);
 		// 1
-		System.out.println("\nPrimera reproduccion");
+		System.out.println("\n- Primera reproduccion");
 		usuario.reproducir(canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
 		usuario.stop();
 
 		// 2
-		System.out.println("\nSegunda reproduccion");
+		System.out.println("\n- Segunda reproduccion");
 		usuario.reproducir(canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
 		usuario.stop();
 
 		// 3
-		System.out.println("\n Tercera reproduccion ");
+		System.out.println("\n- Tercera reproduccion ");
 		usuario.reproducir(canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
 		usuario.stop();
 
 		// 4
-		System.out.println("\nCuarta reproduccion ");
+		System.out.println("\n- Cuarta reproduccion ");
 		usuario.reproducir(canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
 		usuario.stop();
@@ -434,8 +434,8 @@ public class Demostrador2 {
 		System.out.println("\n- Cancion: " + canciones.get(0).getNombre() + "\n- Reproducciones de la cancion: "
 				+ ((Cancion) canciones.get(0)).getNumreproducciones() + "\n- Autor de la cancion: "
 				+ ((Cancion) canciones.get(0)).getAutor().getNombre()
-				+ "\n- Reproducciones totales al autor de la cancion entre todas sus canciones: \n"
-				+ ((Cancion) canciones.get(0)).getAutor().getReproducciones());
+				+ "\n- Reproducciones totales al autor de la cancion entre todas sus canciones: "
+				+ ((Cancion) canciones.get(0)).getAutor().getReproducciones() + "\n");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("Vamos a probar a escuchar la cancion de nuevo\n");
 		TimeUnit.SECONDS.sleep(2);
