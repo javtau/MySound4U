@@ -324,7 +324,7 @@ public class Aplicacion implements Serializable {
 			for (UsuarioRegistrado user : usuarios) {
 				user.setPremium(false);
 				if (user.getReproducciones() >= umbralPremium) {
-					pasarPremium();
+					pasarPremium(user);
 				}
 				user.resetearContadores();
 			}
@@ -520,6 +520,8 @@ public class Aplicacion implements Serializable {
 		Album album;
 		if (canciones.contains(cancion)) {
 			canciones.remove(cancion);
+			File f = new File(PATH+cancion.getRuta());
+			f.delete();
 			if ((album = cancion.getAlbum()) != null) {
 				album.borrarCancion(cancion);
 				if (album.isEmpty()) {
@@ -530,8 +532,8 @@ public class Aplicacion implements Serializable {
 		}
 	}
 
-	public void pasarPremium() {
-		((UsuarioRegistrado) logueado).setPremium(true);
+	public void pasarPremium(UsuarioRegistrado usuario) {
+		usuario.setPremium(true);
 	}
 
 	/**

@@ -131,7 +131,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	public void pasarPremium(String numTargeta) {
 		try {
 			TeleChargeAndPaySystem.charge(numTargeta, "PAgo premium", 20, true);
-			api.pasarPremium();
+			api.pasarPremium(usuario);
 		} catch (OrderRejectedException e) {
 			System.out.println("invalida");
 		}
