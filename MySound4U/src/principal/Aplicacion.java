@@ -136,7 +136,7 @@ public class Aplicacion implements Serializable {
 			albumes.add(album);
 			canciones.add(wakeMe);
 			Denuncia d1 = new Denuncia(c2, avicii, "system me ha copiado la cancion, es un sinverguenza");
-			
+
 			Validacion v1 = new Validacion(c3, LocalDate.MAX);
 			denuncias.add(d1);
 			validaciones.add(v1);
@@ -360,7 +360,7 @@ public class Aplicacion implements Serializable {
 			break;
 		}
 
-		
+		System.out.println(match);
 		return match;
 	}
 
@@ -485,7 +485,7 @@ public class Aplicacion implements Serializable {
 	 */
 	public void addAlbum(Album album) {
 		albumes.add(album);
-		((UsuarioRegistrado)logueado).addAlbum(album);
+		((UsuarioRegistrado) logueado).addAlbum(album);
 	}
 
 	public void borrarCancion(Cancion cancion) {
@@ -685,8 +685,6 @@ public class Aplicacion implements Serializable {
 			System.out.println(a);
 		}
 	}
-	
-	
 
 	/**
 	 * Metodo que guarda el estado de toda la aplicacion

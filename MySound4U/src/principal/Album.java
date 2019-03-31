@@ -66,7 +66,6 @@ public class Album extends Element implements Serializable {
 			} else {
 				rutas.add(cancion.getRuta());
 				usuario.aumentarReproducidas();
-				System.out.println((usuario.getClass() == UsuarioRegistrado.class) +"  " + (!esAutor));
 				if (usuario.getClass() == UsuarioRegistrado.class && !cancion.esAutor((UsuarioRegistrado) usuario)) {
 					System.out.println("noes");
 					cancion.aumentarReproducciones();
