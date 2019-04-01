@@ -258,7 +258,7 @@ public class Demostrador2 {
 		System.out.println(" - Usuario: " + usuario.getUsuarioRegistrado().getNombre()
 				+ "\n - Canciones reproducidas = " + usuario.getUsuarioRegistrado().getReproducidas());
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nCerramos la sesión del usuario \"Javier\"");
+		System.out.println("\nCerramos la sesion del usuario \"Javier\"");
 		TimeUnit.SECONDS.sleep(2);
 		api.desloguearse();
 		System.out.println("\nEl usuario " + usuario.getUsuario().getNombre() + " ha hecho logout");
