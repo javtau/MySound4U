@@ -47,7 +47,9 @@ public class Demostrador2 {
 		SesionAdmin administrador = null;
 		SesionUsuarios usuario = null;
 
-		System.out.println("");
+		System.out.println("Cargamos datos para este demostrador desde un archivo\n");
+		TimeUnit.SECONDS.sleep(2);
+		
 		System.out.println("**************************");
 		System.out.println("* BIENVENIDO A MySOUND4U *");
 		System.out.println("**************************");
@@ -160,8 +162,8 @@ public class Demostrador2 {
 		System.out.println("\nSe va a reproducir la cancion \"Levels\" que esta validada y no es explicita");
 		usuario.reproducir(canciones.get(1));
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nSe va a parar la cancion en 10 segundos");
-		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nSe va a parar la cancion en 3 segundos");
+		TimeUnit.SECONDS.sleep(3);
 		usuario.stop();
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nVamos a ver que se estan aumentando las reproducciones de la cancion\n ");
@@ -365,11 +367,15 @@ public class Demostrador2 {
 		System.out.println(" - Validada: " + ((Cancion) canciones.get(0)).esValidada());
 		TimeUnit.SECONDS.sleep(3);
 
+		System.out.println("\nVamos a cerrar sesion del administrador y loguearnos en Avicii para editar la cancion\n");
+		TimeUnit.SECONDS.sleep(2);
 		api.desloguearse();
 		anonima = (SesionAnonima) api.getSesion();
 		api.loguearse("Avicii", "1234");
 		usuario = (SesionUsuarios) api.getSesion();
 		canciones = api.getLastSongs();
+		System.out.println("Vamos a editar la cancion para ver si la valida el administrador llamandola \"Weik mi ap\"\n");
+		TimeUnit.SECONDS.sleep(2);
 		File fileEditar = new File("songs/avicii-wake-me-up.mp3");
 		
 		usuario.editarCancion(((Cancion) canciones.get(0)), "Weik mi ap", fileEditar);
@@ -377,8 +383,13 @@ public class Demostrador2 {
 		anonima = (SesionAnonima) api.getSesion();
 		api.loguearse("admin", "admin");
 		administrador = (SesionAdmin) api.getSesion();
+		System.out.println("Lista de validaciones: ");
+		TimeUnit.SECONDS.sleep(2);
 		api.printValidaciones();
+		System.out.println("\nVamos a volver a rechazar la validacion para ver que luego se elimina con el metodo cierre mes");
 		administrador.invalidar(api.getValidaciones().get(0));
+		System.out.println("\nSe pondra la fecha de hoy a la validacion para darle 3 dias al usuario para volver a editarla, aunque no se editara y se dejara expirar\n");
+		TimeUnit.SECONDS.sleep(2);
 		api.printValidaciones();
 
 		
@@ -524,9 +535,12 @@ public class Demostrador2 {
 				+ api.getUsuario(3).getReproducidas() + "\n");
 		TimeUnit.SECONDS.sleep(2);
 		
-		System.out.println("Vamos a comprobar que se han eliminado las validaciones pendientes de revision que no han sufrido cambios");
+		System.out.println("\nVamos a comprobar que se han eliminado las validaciones pendientes de revision que no han sufrido cambios\n");
 		api.printValidaciones();
-
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("No se ha imprimido nada porque no hay ninguna validacion");
+		TimeUnit.SECONDS.sleep(2);
+		
 		System.out.println("");
 		System.out.println("*****************");
 		System.out.println("* Subir cancion *");
@@ -596,6 +610,7 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nVamos a borrar la cancion \"(I can't get no) satisfaction\"");
 		usuario.borrarCancion((Cancion)canciones.get(0));
+		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nVamos a imprimir el directorio \"songs\" para ver que se ha eliminado \"(I can't get no) satisfaction\": \n");
 		TimeUnit.SECONDS.sleep(2);
 		api.printDirectory();
@@ -684,6 +699,8 @@ public class Demostrador2 {
 		System.out.println("\nSe ha creado la lista \"Lista Mix - Queen y Melendi\"");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nVamos a reproducir la lista desde este usuario porque las listas son privadas");
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nLa lista esta compuesta por: " + usuario.getUsuarioRegistrado().getListas().get(0));
 		TimeUnit.SECONDS.sleep(2);
 		usuario.reproducir(usuario.getUsuarioRegistrado().getListas().get(0));
 		TimeUnit.SECONDS.sleep(72);
