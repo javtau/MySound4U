@@ -84,8 +84,8 @@ public abstract class Usuario implements Serializable {
 	}
 
 	/**
-	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y
-	 * pasa a dicha sesion la aplicacion que la genera
+	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y pasa
+	 * a dicha sesion la aplicacion que la genera
 	 * 
 	 * @param api Aplicacion que pide el inicio de sesion
 	 * @return Sesion Sesion del tipo de usuario que la inicia

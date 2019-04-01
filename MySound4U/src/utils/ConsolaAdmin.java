@@ -20,7 +20,8 @@ import principal.Administrador;
 public class ConsolaAdmin extends Consola implements Serializable {
 
 	/**
-	 * Este metodo imprime por consola las diferentes opciones del administrador
+	 * Este metodo imprime por consola las diferentes denuncias y validaciones disponibles para el admin
+	 * 
 	 */
 	public void printOptionsAdmin(ArrayList<Denuncia> denuncias, ArrayList<Validacion> validaciones) {
 		int i = 0;
@@ -38,9 +39,12 @@ public class ConsolaAdmin extends Consola implements Serializable {
 					+ v.getPlazo() + "\t                                    *");
 			i++;
 		}
-
 	}
-
+	
+	/**
+	 * Este metodo imprime por consola las diferentes opciones del usuario administrador
+	 * 
+	 */
 	@Override
 	public void printOptions(ArrayList<Element> elementos) {
 		int i = 0;
@@ -64,6 +68,5 @@ public class ConsolaAdmin extends Consola implements Serializable {
 		System.out.println("*   - Salir                                                              *");
 		System.out.println("**************************************************************************");
 		System.out.print("\nIntroduzca la opcion deseada: ");
-
 	}
 }

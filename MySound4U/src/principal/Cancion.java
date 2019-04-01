@@ -82,73 +82,150 @@ public class Cancion extends Element implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo que aumenta las reproducciones de una cancion
+	 * 
+	 */
 	public void aumentarReproducciones() {
 		numreproducciones++;
 	}
+
+	/**
+	 * Metodo que resetea las reproducciones de una cancion
+	 * 
+	 */
 	public void resetearReproducciones() {
 		numreproducciones = 0;
 	}
 
+	/**
+	 * Metodo que valida una cancion
+	 * 
+	 */
 	public void validar() {
 		validada = true;
 	}
 
+	/**
+	 * Metodo que bloquea una cancion
+	 * 
+	 */
 	public void bloquear() {
 		bloqueada = true;
 	}
 
+	/**
+	 * Metodo que marca como explicita una cancion
+	 * 
+	 */
 	public void setExplicita() {
 		this.explicita = true;
 	}
 
+	/**
+	 * Metodo que desbloquea una cancion
+	 * 
+	 */
 	public void desbloquear() {
 		bloqueada = false;
 	}
 
+	/**
+	 * Metodo que dice si una cancion es explicita o no
+	 * 
+	 * @return boolean True si es explicita, false si no lo es
+	 */
 	public Boolean esExplicita() {
 		return explicita;
 	}
 
+	/**
+	 * Metodo que dice si una cancion esta bloqueada o no
+	 * 
+	 * @return boolean True si esta bloqueada, false si no lo esta
+	 */
 	public Boolean esBloqueda() {
 		return bloqueada;
 	}
 
+	/**
+	 * Metodo que dice si una cancion esta validada o no
+	 * 
+	 * @return boolean True si esta validada, false si no lo esta
+	 */
 	public Boolean esValidada() {
 		return validada;
 	}
 
+	/**
+	 * Metodo que sirve para marcar una cancion como explicita
+	 * 
+	 */
 	public void marcarExplicita() {
 		explicita = true;
 	}
 
+	/**
+	 * Getter de la duracion de una cancion
+	 * @return duracion Devuelve la duracion de la cancion
+	 */
 	public Double getDuracion() {
 		return duracion;
 	}
 
+	/**
+	 * Getter de la ruta de una cancion
+	 * @return Devuelve la ruta de la cancion
+	 */
 	public String getRuta() {
 		return ruta;
 	}
 
+	/**
+	 * Setter de la ruta de una cancion
+	 * 
+	 */
 	public void setRuta(String ruta) {
 		this.ruta = PATH + ruta;
 	}
 
+	/**
+	 * Getter de un album
+	 * @return album Devuelve un album
+	 */
 	public Album getAlbum() {
 		return album;
 	}
 
+	/**
+	 * Getter del autor
+	 * @return autor Devuelve el autor
+	 */
 	public UsuarioRegistrado getAutor() {
 		return this.autor;
 	}
 
+	/**
+	 * Getter del nombre del autor
+	 * @return nombre del autor Devuelve el nombre del autor
+	 */
 	public String getAutorNombre() {
 		return this.autor.getNombre();
 	}
-	
+
+	/**
+	 * Metodo que dice si una cancion esta en revision o no
+	 * 
+	 * @return boolean True si lo esta, false si no
+	 */
 	public Boolean enRevision() {
 		return revision;
 	}
 
+	/**
+	 * Getter del numero de reproducciones de una cancion
+	 * @return numreproducciones Devuelve el numero de reproducciones de una cancion
+	 */
 	public Integer getNumreproducciones() {
 		return numreproducciones;
 	}
@@ -185,7 +262,7 @@ public class Cancion extends Element implements Serializable {
 	}
 
 	/**
-	 * Metodo que comprueba si un usuario es autor de la cancion
+	 * Metodo que comprueba si un usuario es el autor de la cancion
 	 * 
 	 * @param usuario
 	 * @return Boolean
@@ -195,7 +272,7 @@ public class Cancion extends Element implements Serializable {
 	}
 
 	/**
-	 * Metodo que devuelve el el nombre , el autor, la duracion y el tipo de un
+	 * Metodo que devuelve el nombre, el autor, la duracion y el tipo de un
 	 * elemento
 	 * 
 	 * @return String string con la informacion del elemento
@@ -204,5 +281,4 @@ public class Cancion extends Element implements Serializable {
 	public String dataString() {
 		return super.getNombre() + "  " + "Duracion: " + duracion + " " + "Autor: " + autor.getNombre() + " Cancion";
 	}
-
 }

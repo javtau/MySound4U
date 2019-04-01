@@ -35,7 +35,6 @@ public class UsuarioAnonimo extends Usuario implements Serializable {
 	 */
 	@Override
 	public Sesion iniciarSesion(Aplicacion api) {
-
 		return new SesionAnonima(this, api);
 	}
 

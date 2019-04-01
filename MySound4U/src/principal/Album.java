@@ -33,14 +33,28 @@ public class Album extends Element implements Serializable {
 		canciones = new ArrayList<>();
 	}
 
+	/**
+	 * Este metodo anade una cancion a un album
+	 * 
+	 * @param cancion Cancion a anadir
+	 */
 	public boolean anadirCancion(Cancion cancion) {
 		return canciones.add(cancion);
 	}
-
+	/**
+	 * Este metodo borra una cancion de un album
+	 * 
+	 * @param cancion Cancion a borrar
+	 */
 	public void borrarCancion(Cancion cancion) {
 		canciones.remove(cancion);
 	}
 
+	/**
+	 * Este metodo sirve para comprobar si un album esta vacio
+	 * 
+	 * @return True si esta vacio, false si contiene canciones
+	 */
 	public Boolean isEmpty() {
 		return canciones.isEmpty();
 	}
@@ -92,7 +106,7 @@ public class Album extends Element implements Serializable {
 	}
 
 	/**
-	 * Metodo que devuelve el el nombre , el autor, la duracion y el tipo de un
+	 * Metodo que devuelve el nombre, el autor, la duracion y el tipo de un
 	 * elemento
 	 * 
 	 * @return String string con la informacion del elemento
@@ -102,6 +116,11 @@ public class Album extends Element implements Serializable {
 		return super.getNombre() + "  " + "              Autor: " + autor.getNombre() + " Album";
 	}
 
+	/**
+	 * Getter de Autor
+	 * 
+	 * @return autor Autor
+	 */
 	public UsuarioRegistrado getAutor() {
 		return autor;
 	}

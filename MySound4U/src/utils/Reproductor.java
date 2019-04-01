@@ -15,7 +15,8 @@ import principal.Aplicacion;
 import principal.Cancion;
 
 /**
- * Esta clase genera un reproductor y gestionara las distintas reproduciones
+ * Esta clase genera un reproductor y gestionara las distintas reproducciones
+ * 
  */
 public class Reproductor implements Serializable {
 	/** Reproductor n */
@@ -24,7 +25,7 @@ public class Reproductor implements Serializable {
 	public Reproductor() {
 		try {
 			reproductor = new Mp3Player();
-			reproductor.add(Aplicacion.getPath()+"iniciom.mp3");
+			reproductor.add(Aplicacion.getPath() + "iniciom.mp3");
 			reproductor.play();
 		} catch (FileNotFoundException | Mp3PlayerException e) {
 			e.printStackTrace();
@@ -35,12 +36,14 @@ public class Reproductor implements Serializable {
 	 * Este metodo reproducira una cancion o una lista de canciones
 	 * 
 	 * @param canciones Cancion o canciones a reproducir
+	 * 
 	 * @return Boolean True si la cancion se ha reproducido, false en caso contrario
+	 * 
 	 */
 	public Boolean reproducir(String... canciones) {
 		ArrayList<String> cancion = new ArrayList<>();
 		for (String c : canciones) {
-			cancion.add(Aplicacion.getPath()+c);
+			cancion.add(Aplicacion.getPath() + c);
 		}
 		try {
 			reproductor.stop();
@@ -53,9 +56,10 @@ public class Reproductor implements Serializable {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Este metodo para la reproduccion en curso
+	 * 
 	 */
 	public void stop() {
 		reproductor.stop();

@@ -185,7 +185,7 @@ public class Aplicacion implements Serializable {
 	 * usuario solicitado
 	 * 
 	 * @param usuario    Nombre del usuario que se quiere comprobar
-	 * @param contrasena Contraseña que se quiere comprobar
+	 * @param contrasena Contrasena que se quiere comprobar
 	 * @return Boolean Devuelve true si las credenciales son correctas, false en
 	 *         caso contrario
 	 */
@@ -233,7 +233,7 @@ public class Aplicacion implements Serializable {
 
 	/**
 	 * Este metodo solicita al usuario sus datos, los comprueba, genera un nuevo
-	 * usuario y lo añade a la lista de usuarios de la aplicacion
+	 * usuario y lo anade a la lista de usuarios de la aplicacion
 	 * 
 	 * @param nombre Nombre del usuario
 	 * @param pass   Contrasena del usuario
@@ -342,7 +342,7 @@ public class Aplicacion implements Serializable {
 
 	/**
 	 * Este metodo busca en la lista de canciones las canciones que cumplan ciertos
-	 * requisitos y las añade a un array que devolvera posteriormente
+	 * requisitos y las anade a un array que devolvera posteriormente
 	 * 
 	 * @param busqueda String que contiene el texto a buscar
 	 * @param tipo     Tipo de busqueda que se quiere realizar
@@ -428,7 +428,6 @@ public class Aplicacion implements Serializable {
 				songs.add(cancion);
 			}
 		}
-
 		return songs;
 	}
 
@@ -490,7 +489,7 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
-	 * Metodo que recibe un usuario y lo añade a la lista de usuarios de la
+	 * Metodo que recibe un usuario y lo anade a la lista de usuarios de la
 	 * aplicacion
 	 * 
 	 * @param usuario
@@ -501,7 +500,7 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
-	 * Metodo que recibe una cancion y la añade a la lista de canciones
+	 * Metodo que recibe una cancion y la anade a la lista de canciones
 	 * 
 	 * @param cancion nueva cancion a anadir en la lista
 	 */
@@ -712,12 +711,18 @@ public class Aplicacion implements Serializable {
 		}
 	}
 
+	/**
+	 * Metodo que imprime todas las denuncias
+	 */
 	public void printDenuncias() {
 		for (Denuncia d : denuncias) {
 			System.out.println(d);
 		}
 	}
 
+	/**
+	 * Metodo que imprime todas las validaciones
+	 */
 	public void printValidaciones() {
 		for (Validacion v : validaciones) {
 			System.out.println(v);
@@ -803,6 +808,11 @@ public class Aplicacion implements Serializable {
 		FechaSimulada.avanzar(dias);
 	}
 
+	/**
+	 * Metodo que coge la fecha simulada actual o fecha simulada de "hoy". En
+	 * general, no sera la fecha real de hoy, a menos que no se haya ejecutado
+	 * ninguna llamada avanzar() desde la ultima ejecucion de restablecerHoyReal()
+	 */
 	public void updateLastDate() {
 		lastDate = FechaSimulada.getHoy();
 	}

@@ -60,12 +60,8 @@ public class Validacion implements Serializable {
 		return cancion;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Validacion [Cancion: " + cancion.getNombre() + ", plazo caduca el: " + plazo + "]";
 	}
-	
 }

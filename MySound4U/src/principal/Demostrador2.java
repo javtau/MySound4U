@@ -608,6 +608,7 @@ public class Demostrador2 {
 		album.anadirCancion((Cancion)canciones.get(5));
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nSe ha creado el album \"Melendi\"\n");
+		api.addAlbum(album);
 		TimeUnit.SECONDS.sleep(2);
 
 		System.out.println("***************");

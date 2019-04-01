@@ -16,12 +16,14 @@ import principal.Validacion;
 
 /**
  * Clase para los mensajes de consola del usuario registrado
+ * 
  */
 public class ConsolaRegistrado extends Consola implements Serializable {
 
 	/**
 	 * Este metodo imprime por consola las diferentes opciones del usuario
 	 * registrado
+	 * 
 	 */
 	@Override
 	public void printOptions(ArrayList<Element> elementos) {
@@ -51,6 +53,11 @@ public class ConsolaRegistrado extends Consola implements Serializable {
 		System.out.println("**************************************************************************");
 		System.out.print("\nIntroduzca la opcion deseada: ");
 	}
+
+	/**
+	 * Este metodo imprime los usuarios registrados
+	 * 
+	 */
 	public void printUsers(ArrayList<UsuarioRegistrado> usuarios) {
 		int i = 0;
 		System.out.println("* Usuarios:                                                             *");

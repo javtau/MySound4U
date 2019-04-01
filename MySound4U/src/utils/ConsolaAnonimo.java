@@ -13,11 +13,13 @@ import principal.UsuarioRegistrado;
 
 /**
  * Clase para los mensajes de consola del usuario anonimo
+ * 
  */
 public class ConsolaAnonimo extends Consola implements Serializable {
 
 	/**
 	 * Este metodo imprime por consola las diferentes opciones del usuario anonimo
+	 * 
 	 */
 	@Override
 	public void printOptions(ArrayList<Element> elementos) {

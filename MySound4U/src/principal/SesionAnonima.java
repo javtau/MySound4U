@@ -145,6 +145,10 @@ public class SesionAnonima extends Sesion implements Serializable {
 		return exit;
 	}
 
+	/**
+	 * Metodo que crea un objeto Scanner
+	 * 
+	 */
 	public void initSc() {
 		sc = new java.util.Scanner(System.in);
 	}

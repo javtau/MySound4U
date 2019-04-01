@@ -28,17 +28,25 @@ public class Lista extends Element implements Serializable {
 		elementos = new ArrayList<>();
 	}
 
+	/**
+	 * Este metodo anade un elemento a la lista
+	 * 
+	 * @return boolean True si lo ha anadido, false si no
+	 */
 	public Boolean addElemt(Element element) {
 		return elementos.add(element);
 	}
 
+	/**
+	 * Este metodo elimina un elemento de la lista
+	 * 
+	 */
 	public void removeElemt(Element element) {
 		elementos.remove(element);
 	}
 
 	/**
-	 * Metodo que devuelve el el nombre , el autor, la duracion y el tipo de un
-	 * elemento
+	 * Metodo que devuelve el nombre, el autor, la duracion y el tipo de un elemento
 	 * 
 	 * @return String string con la informacion del elemento
 	 */
@@ -90,13 +98,13 @@ public class Lista extends Element implements Serializable {
 				}
 				break;
 			case "Album":
-				rutas.addAll(((Album)element).getrutas(usuario)) ;
+				rutas.addAll(((Album) element).getrutas(usuario));
 				break;
 			case "Lista":
-				System.out.println(super.getNombre() + " " + element.getNombre() );
-				
-				if(!super.getNombre().equals(element.getNombre())){
-					rutas.addAll(((Lista)element).getrutas(usuario)) ;
+				System.out.println(super.getNombre() + " " + element.getNombre());
+
+				if (!super.getNombre().equals(element.getNombre())) {
+					rutas.addAll(((Lista) element).getrutas(usuario));
 				}
 				break;
 			default:
@@ -105,12 +113,10 @@ public class Lista extends Element implements Serializable {
 
 		}
 		return rutas;
-
 	}
 
 	@Override
 	public String toString() {
 		return "Lista [elementos=" + elementos + "]";
 	}
-
 }

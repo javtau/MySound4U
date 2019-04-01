@@ -74,11 +74,9 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * 
 	 * @return Boolean True si el usuario esta bloqueado, false en caso contrario
 	 */
-
 	public int getEdad() {
 		LocalDate today = FechaSimulada.getHoy();
 		ChronoPeriod period = ChronoPeriod.between(fechanac, FechaSimulada.getHoy());
-
 		return (int) period.get(ChronoUnit.YEARS);
 	}
 
@@ -124,7 +122,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	/**
 	 * Este metodo devuelve si el usuario es premium
 	 * 
-	 * @return Boolean true si el usuario es premium, false en caso contrario
+	 * @return Boolean True si el usuario es premium, false en caso contrario
 	 */
 
 	public Boolean esPremium() {
@@ -165,7 +163,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * este quedase vacio, tambien se procedera al borrado de dicho album
 	 * 
 	 * @param cancion Cancion que se desea borrar
-	 * @return Boolean True si se a borrado la cancion, false en caso contrario
+	 * @return Boolean True si se ha borrado la cancion, false en caso contrario
 	 */
 	public void borrarCancion(Cancion cancion) {
 		if (canciones.contains(cancion)) {
@@ -185,19 +183,27 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		}
 	}
 
-	/** Este metodo pone a cero los contadores de reproducciones y reproducidas */
+	/**
+	 * Este metodo pone a cero los contadores de reproducciones y reproducidas
+	 * 
+	 */
+
 	public void resetearContadores() {
 		reproducciones = 0;
 		super.resetearreproducidas();
 	}
 
-	/** Este metodo aumenta en 1 el numero de reproducciones totales */
+	/**
+	 * Este metodo aumenta en 1 el numero de reproducciones totales
+	 * 
+	 */
 	public void aumentarReproducciones() {
 		reproducciones++;
 	}
 
 	/**
-	 * Este metodo aumenta en 1 el numero de canciones reproducidas por el susuario
+	 * Este metodo aumenta en 1 el numero de canciones reproducidas por el usuario
+	 * 
 	 */
 	public void aumentarReproducidas() {
 		super.aumentarReproducidas();
@@ -273,6 +279,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 
 	/**
 	 * Metodo que imprime todos las canciones del usuario
+	 * 
 	 */
 	public void printSongs() {
 		for (Cancion c : canciones) {
@@ -300,5 +307,4 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 			System.out.println(a);
 		}
 	}
-
 }

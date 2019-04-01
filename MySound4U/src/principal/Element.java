@@ -50,16 +50,15 @@ public abstract class Element implements Serializable {
 	}
 
 	/**
-	 * Este metodo reproduce un elemento y realiza las acciones necesaria para dicho
-	 * elelmento
+	 * Este metodo reproduce un elemento y realiza las acciones necesarias para
+	 * dicho elemento
 	 * 
 	 * @usuario usuario que solicita la reproduccion
 	 */
 	public abstract Boolean reproducir(Usuario usuario);
 
 	/**
-	 * Metodo que devuelve el el nombre, el autor, la duracion y el tipo de un
-	 * elemento
+	 * Metodo que devuelve el nombre, el autor, la duracion y el tipo de un elemento
 	 * 
 	 * @return String string con la informacion del elemento
 	 */
