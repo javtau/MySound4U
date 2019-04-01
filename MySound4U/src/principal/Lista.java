@@ -12,7 +12,9 @@ import java.util.ArrayList;
  * Esta clase contiene todos los atributos y metodos de una lista
  */
 public class Lista extends Element implements Serializable {
-
+	
+	private static final long serialVersionUID = 1L;
+	
 	/** Lista con las canciones de la lista */
 	private ArrayList<Element> elementos;
 
@@ -67,7 +69,6 @@ public class Lista extends Element implements Serializable {
 		if (rutas.isEmpty()) {
 			return false;
 		}
-		System.out.println("se va a reproducir " + rutas);
 		return Aplicacion.reproductor.reproducir(rutas.toArray(new String[0]));
 	}
 
@@ -101,8 +102,6 @@ public class Lista extends Element implements Serializable {
 				rutas.addAll(((Album) element).getrutas(usuario));
 				break;
 			case "Lista":
-				System.out.println(super.getNombre() + " " + element.getNombre());
-
 				if (!super.getNombre().equals(element.getNombre())) {
 					rutas.addAll(((Lista) element).getrutas(usuario));
 				}

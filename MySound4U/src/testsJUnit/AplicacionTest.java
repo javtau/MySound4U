@@ -1,24 +1,19 @@
 package testsJUnit;
 
-import static org.junit.Assert.*;
-
-import java.time.LocalDate;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import principal.Administrador;
 import principal.Album;
 import principal.Aplicacion;
-import principal.Administrador;
 import principal.Cancion;
 import principal.Denuncia;
-import principal.Lista;
 import principal.SesionAdmin;
-import principal.SesionAnonima;
-import principal.SesionUsuarios;
 import principal.TIPO_BUSQUEDA;
-import principal.Usuario;
-import principal.UsuarioAnonimo;
 import principal.UsuarioRegistrado;
 import principal.Validacion;
 import utils.FechaSimulada;
@@ -117,15 +112,9 @@ public class AplicacionTest {
 			assertFalse(api.getSesion().getUsuario()==usuario);
 		}
 
+		
 		@Test
 		public void testRevisarBloqueados() {
-			usuario.setBloqueado(true);
-			api.addBloqueado(usuario, FechaSimulada.getHoy().minusDays(40));
-			api.revisarBloqueados();
-			assertFalse(usuario.estaBloqueado());
-		}
-		@Test
-		public void testRevisarBloqueados2() {
 			usuario.setBloqueado(true);
 			api.addBloqueado(usuario, FechaSimulada.getHoy().plusDays(2));
 			api.revisarBloqueados();

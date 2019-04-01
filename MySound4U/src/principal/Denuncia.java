@@ -6,12 +6,14 @@
 package principal;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Esta clase contiene todos los atributos y metodos de una denuncia
  */
 public class Denuncia implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 
 	/** Cancion que se quiere denunciar */
 	private Cancion cancion;

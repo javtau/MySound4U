@@ -7,7 +7,6 @@ package principal;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,8 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -33,6 +30,10 @@ import utils.Reproductor;
  * Esta clase contiene todos los atributos y metodos de la aplicacion
  */
 public class Aplicacion implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	
 	/** Instancia de la aplicacion */
 	private static Aplicacion myApi;
 	/** Numero de reproducciones de los usuarios no premium */
@@ -113,47 +114,10 @@ public class Aplicacion implements Serializable {
 			albumes = new ArrayList<>();
 			bloqueados = new HashMap<UsuarioRegistrado, LocalDate>();
 			admin = new Administrador();
-			lastDate = FechaSimulada.getHoy();
-
-			/* VALORES DE PRUEBA PARA EL DEMOSTRADOR */
-
-			UsuarioRegistrado sistema = new UsuarioRegistrado("System", "1234", LocalDate.now());
-			usuarios.add(sistema);
-			UsuarioRegistrado avicii = new UsuarioRegistrado("Avicii", "1234", LocalDate.now());
-			usuarios.add(avicii);
-			UsuarioRegistrado gonzalo = new UsuarioRegistrado("Gonzalo", "1234", LocalDate.now());
-			usuarios.add(gonzalo);
-			Cancion c1 = new Cancion("CorePride", "UVERworld_CorePride.mp3", sistema);
-			c1.validar();
-			c1.marcarExplicita();
-			Cancion c2 = new Cancion("RookiezisPunk", "RookiezisPunk_d_InMyWorld.mp3", sistema);
-			Cancion c3 = new Cancion("Levels", "avicii-levels.mp3", avicii);
-			c3.validar();
-			Cancion c4 = new Cancion("Relax", "Relax.mp3", gonzalo);
-			c4.validar();
-			canciones.add(c1);
-			canciones.add(c2);
-			canciones.add(c3);
-			canciones.add(c4);
-			Cancion wakeMe = new Cancion("Wake me up", "avicii-wake-me-up.mp3", avicii);
-			Album album = new Album("Mix", avicii);
-			album.anadirCancion(c3);
-			album.anadirCancion(wakeMe);
-			avicii.addAlbum(album);
-			albumes.add(album);
-			canciones.add(wakeMe);
-			Denuncia d1 = new Denuncia(c2, avicii, "System me ha copiado la cancion, es un sinverguenza");
-			Validacion v1 = new Validacion(c2, LocalDate.MAX);
-			Validacion v2 = new Validacion(wakeMe, LocalDate.MAX);
-			denuncias.add(d1);
-			validaciones.add(v1);
-			validaciones.add(v2);
-			sesion = logueado.iniciarSesion(this);
-			revision();
+			lastDate = FechaSimulada.getHoy();;
 
 		} else {
-			System.out.println("Cargando sesion anterior");
-			load();
+			loadFrom(DATA_PATH);
 
 			sesion = logueado.iniciarSesion(Aplicacion.myApi);
 			Aplicacion.myApi.revision();
@@ -278,6 +242,7 @@ public class Aplicacion implements Serializable {
 	 * temporal
 	 */
 	public void revisarBloqueados() {
+		
 		for (Map.Entry<UsuarioRegistrado, LocalDate> bloqueado : bloqueados.entrySet()) {
 			ChronoPeriod period = ChronoPeriod.between(bloqueado.getValue(), FechaSimulada.getHoy());
 			System.out.println(FechaSimulada.getHoy() + ", " + bloqueado.getValue() + ", "
@@ -294,18 +259,13 @@ public class Aplicacion implements Serializable {
 	 */
 	public void revisarValidaciones() {
 		Cancion cancion;
-		System.out.println(validaciones);
 		Iterator<Validacion> iterator = this.validaciones.iterator();
 		while (iterator.hasNext()) {
 			Validacion v = iterator.next();
 			ChronoPeriod period = ChronoPeriod.between(v.getPlazo(), FechaSimulada.getHoy());
-			System.out.println(v.getPlazo() + " " + FechaSimulada.getHoy());
-			System.out.println(period.get(ChronoUnit.YEARS) + " " + period.get(ChronoUnit.MONTHS) + " "
-					+ period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
 					|| period.get(ChronoUnit.DAYS) > 3) {
 				cancion = v.getCancion();
-				System.out.println("borrar cancion" + cancion.getNombre() + " borrar validacion");
 				iterator.remove();
 				cancion.getAutor().borrarCancion(cancion);
 				borrarCancion(cancion);
@@ -750,7 +710,6 @@ public class Aplicacion implements Serializable {
 		ObjectOutputStream file;
 		try {
 			file = new ObjectOutputStream(new FileOutputStream(getDataPath()));
-			Aplicacion a = Aplicacion.myApi;
 			file.writeObject(Aplicacion.myApi);
 			file.close();
 		} catch (IOException e) {
@@ -759,14 +718,19 @@ public class Aplicacion implements Serializable {
 		}
 
 	}
+	
+	
 
+	
+	
 	/**
-	 * Metodo que recupera el estado anterior de la aplicacion
+	 * Metodo que carga el estado de la aplicacion, desde un archivo
+	 * especificado
 	 */
-	public void load() {
+	public void loadFrom(String path) {
 		Aplicacion api;
 		try {
-			ObjectInputStream file = new ObjectInputStream(new FileInputStream(DATA_PATH));
+			ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));
 			api = (Aplicacion) file.readObject();
 			file.close();
 			Aplicacion.myApi = api;

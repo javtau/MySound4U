@@ -15,6 +15,8 @@ import utils.Reproductor;
  */
 public abstract class Sesion implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	protected Aplicacion api;
 	protected static Reproductor reproductor;
 	protected Consola consola;
@@ -22,7 +24,7 @@ public abstract class Sesion implements Serializable {
 	public Sesion(Aplicacion api, Consola consola) {
 		super();
 		this.api = api;
-		reproductor = api.reproductor;
+		reproductor = Aplicacion.reproductor;
 		this.consola = consola;
 	}
 

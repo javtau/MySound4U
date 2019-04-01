@@ -1,6 +1,9 @@
 package principal;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +15,22 @@ public class Demostrador2 {
 	public static void main(String[] args) throws InterruptedException {
 
 		File file;
+		File data = new File("datatest/MySound4Utest.data");
+		try {
+			Files.copy(data.toPath(), new FileOutputStream(Aplicacion.getDataPath()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		File recoverSong = new File("songstoupload/avicii-wake-me-up.mp3");
+		try {
+			Files.copy(recoverSong.toPath(), new FileOutputStream(Aplicacion.getPath()+ recoverSong.getName()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
 		String ficheros[] = { "BesosALaLona.mp3", "BohemianRhapsody.mp3", "BohemianRhapsody.mp3", "Mirame.mp3",
 				"QueElCieloEspereSentao.mp3", "SinNoticiasDeHolanda.mp3", "WeAreTheChampions.mp3", "ICantGetNo.mp3" };
@@ -359,7 +378,10 @@ public class Demostrador2 {
 		api.loguearse("admin", "admin");
 		administrador = (SesionAdmin) api.getSesion();
 		api.printValidaciones();
+		administrador.invalidar(api.getValidaciones().get(0));
+		api.printValidaciones();
 
+		
 		canciones = api.getLastSongs();
 		
 		// Gestion de las denuncias
@@ -471,7 +493,7 @@ public class Demostrador2 {
 		usuario.reproducir(canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println(
-				"\nVamos a avanzar la fecha para llegar al fin de mes y comprobar qque se hagan las modificaciones pertinentes:\n");
+				"\nVamos a avanzar la fecha para llegar al fin de mes y comprobar que se hagan las modificaciones pertinentes:\n");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println(" - Eliminar validaciones rechazadas que no hayan sufrido cambios en 3 dias");
 		TimeUnit.SECONDS.sleep(2);
@@ -483,7 +505,6 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 
 		api.avanzarSimulada(32);
-		System.out.println(api.getValidaciones());
 		api.revision();
 
 		System.out.println(
@@ -502,8 +523,8 @@ public class Demostrador2 {
 		System.out.println(" - Usuario: " + api.getUsuario(4).getNombre() + "\n - Numero de reproducidas: "
 				+ api.getUsuario(3).getReproducidas() + "\n");
 		TimeUnit.SECONDS.sleep(2);
-		// VALIDACION
-
+		
+		System.out.println("Vamos a comprobar que se han eliminado las validaciones pendientes de revision que no han sufrido cambios");
 		api.printValidaciones();
 
 		System.out.println("");

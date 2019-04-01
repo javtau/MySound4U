@@ -7,18 +7,23 @@ package principal;
 
 import java.io.Serializable;
 
-import utils.Reproductor;
-
 /**
  * Esta clase contiene todos los atributos y metodos de un elemento
  */
 public abstract class Element implements Serializable {
-	public Element() {
-
-	}
+	
+	private static final long serialVersionUID = 1L;
+	
 
 	/** Nombre del elemento */
 	private String nombre;
+
+	
+	/**
+	 * Este constructor nos permite poder crear un elemento vacio
+	 */
+	public Element() {
+	}
 
 	/**
 	 * Este constructor genera un nuevo elemento con los datos recibidos como

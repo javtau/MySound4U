@@ -5,11 +5,9 @@
 
 package utils;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import principal.Cancion;
 import principal.Element;
 
 /**
@@ -18,6 +16,8 @@ import principal.Element;
  */
 public abstract class Consola implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Este metodo imprime por consola las diferentes opciones del usuario anonimo
 	 * 

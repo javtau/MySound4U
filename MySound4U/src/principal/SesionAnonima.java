@@ -6,13 +6,7 @@
 package principal;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import utils.ConsolaAnonimo;
 
@@ -20,6 +14,9 @@ import utils.ConsolaAnonimo;
  * Esta clase contiene todos los atributos y metodos de la sesion anonima
  */
 public class SesionAnonima extends Sesion implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	static java.util.Scanner sc;
 	private UsuarioAnonimo usuario;
 

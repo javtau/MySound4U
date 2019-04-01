@@ -6,13 +6,11 @@
 package principal;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.chrono.ChronoPeriod;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 
 import utils.FechaSimulada;
 
@@ -21,6 +19,8 @@ import utils.FechaSimulada;
  */
 public class UsuarioRegistrado extends Usuario implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	/** Fecha de nacimiento del usuario */
 	private LocalDate fechanac;
 
@@ -75,7 +75,6 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * @return Boolean True si el usuario esta bloqueado, false en caso contrario
 	 */
 	public int getEdad() {
-		LocalDate today = FechaSimulada.getHoy();
 		ChronoPeriod period = ChronoPeriod.between(fechanac, FechaSimulada.getHoy());
 		return (int) period.get(ChronoUnit.YEARS);
 	}

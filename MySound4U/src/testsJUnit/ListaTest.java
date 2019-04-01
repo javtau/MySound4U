@@ -1,25 +1,14 @@
 package testsJUnit;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Album;
-import principal.Aplicacion;
-import principal.Administrador;
 import principal.Cancion;
-import principal.Denuncia;
 import principal.Lista;
-import principal.SesionAdmin;
-import principal.SesionAnonima;
-import principal.SesionUsuarios;
-import principal.Usuario;
-import principal.UsuarioAnonimo;
 import principal.UsuarioRegistrado;
-import principal.Validacion;
 import utils.FechaSimulada;
 
 public class ListaTest {

@@ -8,13 +8,13 @@ package principal;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import utils.Reproductor;
-
 /**
  * Esta clase contiene todos los atributos y metodos de un Album
  */
 public class Album extends Element implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	/** Usuario autor del album */
 	private UsuarioRegistrado autor;
 
@@ -69,13 +69,11 @@ public class Album extends Element implements Serializable {
 		ArrayList<String> rutas = new ArrayList<>();
 		Boolean esAutor = usuario == autor;
 		if (autor.estaBloqueado() && !esAutor) {
-			System.out.println("No se puede reproducir album");
 			return false;
 		}
 		if ((rutas = getrutas(usuario)).isEmpty()) {
 			return false;
 		}
-		System.out.println("se va a reproducir " + rutas);
 		return Aplicacion.reproductor.reproducir(rutas.toArray(new String[0]));
 	}
 

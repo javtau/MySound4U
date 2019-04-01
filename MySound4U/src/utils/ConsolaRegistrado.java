@@ -9,16 +9,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import principal.Element;
-import principal.Denuncia;
-import principal.Element;
 import principal.UsuarioRegistrado;
-import principal.Validacion;
 
 /**
  * Clase para los mensajes de consola del usuario registrado
  * 
  */
 public class ConsolaRegistrado extends Consola implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Este metodo imprime por consola las diferentes opciones del usuario

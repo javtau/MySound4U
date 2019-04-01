@@ -12,13 +12,15 @@ import java.util.ArrayList;
 import pads.musicPlayer.Mp3Player;
 import pads.musicPlayer.exceptions.Mp3PlayerException;
 import principal.Aplicacion;
-import principal.Cancion;
 
 /**
  * Esta clase genera un reproductor y gestionara las distintas reproducciones
  * 
  */
 public class Reproductor implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	/** Reproductor n */
 	private Mp3Player reproductor;
 

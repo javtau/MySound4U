@@ -6,7 +6,6 @@
 package principal;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +17,10 @@ import utils.FechaSimulada;
  * administrador
  */
 public class SesionAdmin extends Sesion implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+
 	private Administrador usuario;
 	static java.util.Scanner sc;
 
@@ -90,6 +93,7 @@ public class SesionAdmin extends Sesion implements Serializable {
 
 	public void invalidar(Validacion validacion) {
 		validacion.setPlazo(FechaSimulada.getHoy());
+		validacion.getCancion().setRevision(true);
 	}
 
 	/**

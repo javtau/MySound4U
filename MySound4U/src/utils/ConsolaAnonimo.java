@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import principal.Element;
-import principal.UsuarioRegistrado;
 
 /**
  * Clase para los mensajes de consola del usuario anonimo
@@ -17,6 +16,9 @@ import principal.UsuarioRegistrado;
  */
 public class ConsolaAnonimo extends Consola implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
+	
 	/**
 	 * Este metodo imprime por consola las diferentes opciones del usuario anonimo
 	 * 

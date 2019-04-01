@@ -8,17 +8,17 @@ package utils;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import principal.Cancion;
 import principal.Denuncia;
 import principal.Element;
 import principal.Validacion;
-import principal.Administrador;
 
 /**
  * Clase para los mensajes de consola del administrador
  */
 public class ConsolaAdmin extends Consola implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Este metodo imprime por consola las diferentes denuncias y validaciones disponibles para el admin
 	 * 

@@ -18,13 +18,15 @@ import javax.swing.JFileChooser;
 
 import es.uam.eps.padsof.telecard.OrderRejectedException;
 import es.uam.eps.padsof.telecard.TeleChargeAndPaySystem;
-import utils.ConsolaAdmin;
 import utils.ConsolaRegistrado;
 
 /**
  * Esta clase contiene todos los atributos y metodos de la sesion de usuario
  */
 public class SesionUsuarios extends Sesion implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	static java.util.Scanner sc;
 	private UsuarioRegistrado usuario;
 
@@ -141,17 +143,16 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	 * @param cancion
 	 */
 	public void editarCancion(Cancion cancion, String newName, File file) {
-
 		if (!cancion.esValidada() && cancion.enRevision() && cancion.esAutor(usuario)) {
-			try {System.out.println("entrando a revisar");
+			try {
 				// What to do with the file, e.g. display it in a TextArea
 				Files.copy(file.toPath(), new FileOutputStream(Aplicacion.getPath() + file.getName()));
 				System.out.println("renombrando");
 				cancion.setRuta(file.getName());
 				cancion.setNombre(newName);
+				cancion.setRevision(false);
 				Validacion v = api.getValidacionbySong(cancion);
-				v.setPlazo(LocalDate.MAX);	
-				System.out.println(v);
+				v.setPlazo(LocalDate.MAX);
 			} catch (IOException ex) {
 				System.out.println("problem accessing file" + file.getAbsolutePath());
 			}

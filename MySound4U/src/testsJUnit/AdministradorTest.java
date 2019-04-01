@@ -1,18 +1,14 @@
 package testsJUnit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import principal.Administrador;
-import principal.Album;
 import principal.Aplicacion;
 import principal.Cancion;
-import principal.Lista;
-import principal.UsuarioAnonimo;
-import principal.UsuarioRegistrado;
-import utils.FechaSimulada;
 
 public class AdministradorTest {
 		Administrador admin;

@@ -7,16 +7,16 @@ package principal;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 import pads.musicPlayer.Mp3Player;
-import pads.musicPlayer.exceptions.Mp3PlayerException;
 
 /**
  * Esta clase contiene todos los atributos y metodos de una cancion
  */
 public class Cancion extends Element implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	static final String PATH = Aplicacion.getPath();
 
 	/** Duracion de la cancion */
@@ -51,8 +51,6 @@ public class Cancion extends Element implements Serializable {
 	/** Album al que pertenece la cancion */
 	private Album album;
 
-	/** Reproductor de la cancion */
-	private Mp3Player reproductor;
 
 	/**
 	 * Este constructor genera una nueva cancion con los datos recibidos como
@@ -77,6 +75,7 @@ public class Cancion extends Element implements Serializable {
 			duracion = (double) 20;
 		} else {
 			try {
+				System.out.println(PATH + ruta);
 				duracion = (double) ((int) Mp3Player.getDuration(PATH + ruta) / 60);
 				duracion += (double) ((int) Mp3Player.getDuration(PATH + ruta)) % 60 / 100;
 			} catch (FileNotFoundException e) {
@@ -230,6 +229,16 @@ public class Cancion extends Element implements Serializable {
 	public Boolean enRevision() {
 		return revision;
 	}
+	
+	
+
+	/**
+	 * Metodo que modifica el estado de la revision
+	 * @param revision nuevo estado
+	 */
+	public void setRevision(Boolean revision) {
+		this.revision = revision;
+	}
 
 	/**
 	 * Getter del numero de reproducciones de una cancion
@@ -264,7 +273,6 @@ public class Cancion extends Element implements Serializable {
 			if ((usuario.getClass() == UsuarioRegistrado.class) && !esAutor((UsuarioRegistrado) usuario)) {
 				aumentarReproducciones();
 				autor.aumentarReproducciones();
-				System.out.println(autor);
 			}
 			return true;
 		}

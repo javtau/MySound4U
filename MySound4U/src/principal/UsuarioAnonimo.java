@@ -12,6 +12,8 @@ import java.io.Serializable;
  */
 public class UsuarioAnonimo extends Usuario implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	/** Nombre por defecto para el usuario anonimo */
 	private static final String NOMBRE = "anonimo";
 

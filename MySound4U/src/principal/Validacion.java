@@ -7,14 +7,14 @@ package principal;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Esta clase contiene todos los atributos y metodos de una validacion
  */
 public class Validacion implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	/** Cancion pendiente de validar */
 	private Cancion cancion;
 
