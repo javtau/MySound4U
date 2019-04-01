@@ -10,13 +10,30 @@ import java.util.concurrent.TimeUnit;
 public class Demostrador2 {
 
 	public static void main(String[] args) throws InterruptedException {
-
-		File file = new File("data/MySound4U.data");
-
-		if (file.exists())
-			file.delete();
-
-		Aplicacion api, api2 = null;
+		
+		ArrayList<File> files = new ArrayList<File>();
+		
+		File file1 = new File("data/MySound4U.data");
+		File file2 = new File("songs/BesosALaLona.mp3");
+		File file3 = new File("songs/BohemianRhapsody.mp3");
+		File file4 = new File("songs/Mirame.mp3");
+		File file5 = new File("songs/QueElCieloEspereSentao.mp3");
+		File file6 = new File("songs/SinNoticiasDeHolanda.mp3");
+		File file7 = new File("songs/WeAreTheChampions.mp3");
+		files.add(file1);
+		files.add(file2);
+		files.add(file3);
+		files.add(file4);
+		files.add(file5);
+		files.add(file6);
+		files.add(file7);
+		
+		for (File f : files) {
+			if (f.exists())
+				f.delete();
+		}
+		
+		Aplicacion api = null;
 		api = Aplicacion.getApi();
 
 		SesionAnonima anonima = null;
@@ -493,10 +510,10 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		api.printDirectory();
 		TimeUnit.SECONDS.sleep(2);
-		File file1 = new File("songstoupload/QueElCieloEspereSentao.mp3");
+		File file8 = new File("songstoupload/QueElCieloEspereSentao.mp3");
 		System.out.println("\nSe va a subir la cancion \"Que el cielo espere sentao\"");
 		TimeUnit.SECONDS.sleep(1);
-		usuario.subirCancion("Que el cielo espere sentao", file1);
+		usuario.subirCancion("Que el cielo espere sentao", file8);
 		TimeUnit.SECONDS.sleep(2);
 		canciones = api.getLastSongs();
 		System.out.println(
@@ -515,30 +532,30 @@ public class Demostrador2 {
 
 		System.out.println("\nVamos a subir mas canciones para crear un album");
 		TimeUnit.SECONDS.sleep(2);
-		File file2 = new File("songstoupload/BesosALaLona.mp3");
+		File file9 = new File("songstoupload/BesosALaLona.mp3");
 		System.out.println("\nSe va a subir la cancion \"Besos a la lona\"");
 		TimeUnit.SECONDS.sleep(2);
-		usuario.subirCancion("Besos a la lona", file2);
+		usuario.subirCancion("Besos a la lona", file9);
 		TimeUnit.SECONDS.sleep(2);
-		File file3 = new File("songstoupload/Mirame.mp3");
+		File file10 = new File("songstoupload/Mirame.mp3");
 		System.out.println("\nSe va a subir la cancion \"Mirame\"");
 		TimeUnit.SECONDS.sleep(2);
-		usuario.subirCancion("Mirame", file3);
+		usuario.subirCancion("Mirame", file10);
 		TimeUnit.SECONDS.sleep(2);
-		File file4 = new File("songstoupload/SinNoticiasDeHolanda.mp3");
+		File file11 = new File("songstoupload/SinNoticiasDeHolanda.mp3");
 		System.out.println("\nSe va a subir la cancion \"Sin noticias de Holanda\"");
 		TimeUnit.SECONDS.sleep(2);
-		usuario.subirCancion("Sin noticias de Holanda", file4);
+		usuario.subirCancion("Sin noticias de Holanda", file11);
 		TimeUnit.SECONDS.sleep(2);
-		File file5 = new File("songstoupload/BohemianRhapsody.mp3");
+		File file12 = new File("songstoupload/BohemianRhapsody.mp3");
 		System.out.println("\nSe va a subir la cancion \"Bohemian Rhapsody\"");
 		TimeUnit.SECONDS.sleep(2);
-		usuario.subirCancion("Bohemian Rhapsody", file5);
+		usuario.subirCancion("Bohemian Rhapsody", file12);
 		TimeUnit.SECONDS.sleep(2);
-		File file6 = new File("songstoupload/WeAreTheChampions.mp3");
+		File file13 = new File("songstoupload/WeAreTheChampions.mp3");
 		System.out.println("\nSe va a subir la cancion \"We are the champions\"");
 		TimeUnit.SECONDS.sleep(2);
-		usuario.subirCancion("We are the champions", file6);
+		usuario.subirCancion("We are the champions", file13);
 		TimeUnit.SECONDS.sleep(2);
 
 		System.out.println(
@@ -624,7 +641,7 @@ public class Demostrador2 {
 		System.out.println("\nSe ha creado la lista \"Lista Mix - Queen y Melendi\"");
 		TimeUnit.SECONDS.sleep(2);
 		
-		System.out.println("\nVamos a cerrar sesion de \"Javier\" y a iniciar \"Fernando\" para buscar el album \ny reproducir album y lista");
+		System.out.println("\nVamos a cerrar sesion de \"Javier\" y a iniciar \"Fernando\" para buscar el album y reproducir album y lista");
 		api.desloguearse();
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nEl usuario " + usuario.getUsuario().getNombre() + " ha hecho logout");
@@ -661,3 +678,4 @@ public class Demostrador2 {
 		usuario.stop();
 	}
 }
+		
