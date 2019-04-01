@@ -39,7 +39,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	/** Lista con las canciones de un usuario */
 	private ArrayList<Cancion> canciones;
 
-	/** Lista con los albummes de un usuario */
+	/** Lista con los albumes de un usuario */
 	private ArrayList<Album> albumes;
 
 	/** Lista con las listas creadas por el usuario */
@@ -293,6 +293,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * @param cancion Cancion a comprobar
 	 * @return Boolean False si el usuario puede reproducir la cancion, true en caso
 	 *         contrario
+	 * 
 	 */
 	public Boolean canListenSong(Cancion cancion) {
 		return cancion.esBloqueda() || (!cancion.esValidada() && !cancion.esAutor(this))
@@ -301,10 +302,32 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 
 	/**
 	 * Metodo que imprime todos los albumes del usuario
+	 * 
 	 */
 	public void printAlbums() {
 		for (Album a : albumes) {
 			System.out.println(a);
 		}
+	}
+
+	/**
+	 * Metodo que devuelve los albumes
+	 * 
+	 * @return albumes Albumes
+	 * 
+	 */
+	public ArrayList<Album> getAlbumes() {
+		return albumes;
+	}
+
+	/**
+	 * Metodo que devuelve las listas
+	 * 
+	 * @return listas Listas
+	 * 
+	 */
+
+	public ArrayList<Lista> getListas() {
+		return listas;
 	}
 }

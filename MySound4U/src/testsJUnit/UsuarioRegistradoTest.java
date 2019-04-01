@@ -81,7 +81,7 @@ public class UsuarioRegistradoTest {
 
 		@Test
 		public void testdeleteAlbum() {
-			Album album = new Album("Prueba");
+			Album album = new Album("Prueba", usuario);
 			usuario.addAlbum(album);
 			usuario.borrarAlbum(album);
 			assertFalse( usuario.getAlbumes().contains(album) );
@@ -129,8 +129,9 @@ public class UsuarioRegistradoTest {
 
 		@Test
 		public void testcanListenSong3() {
-			Cancion cancion = new Cancion("prueba", "prueba", null);
-			assertTrue(usuario.canListenSong(cancion));
+			UsuarioRegistrado usuario2 = new UsuarioRegistrado("nombre", "passwd", FechaSimulada.getHoy().minusYears(15) );
+			Cancion cancion = new Cancion("prueba", "prueba", usuario2);
+			assertFalse(usuario.canListenSong(cancion));
 		}
 
 		@Test

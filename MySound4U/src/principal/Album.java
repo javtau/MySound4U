@@ -127,6 +127,6 @@ public class Album extends Element implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Nombre de album: "+ super.getNombre() + " [autor=" + autor + ", canciones=" + canciones + "]";
+		return "Nombre de album: "+ super.getNombre() + " [autor=" + autor.getNombre() + "\nCanciones=" + canciones + "]";
 	}
 }

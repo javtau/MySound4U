@@ -102,9 +102,11 @@ public class SesionAdmin extends Sesion implements Serializable {
 	}
 
 	public void setLimiteReproducciones(int lim) {
+		api.setLimiteReproducciones(lim);
 	}
 
 	public void setUmbralPremium(int lim) {
+		api.setUmbralPremium(lim);
 	}
 
 	/**

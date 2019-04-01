@@ -295,17 +295,18 @@ public class Aplicacion implements Serializable {
 	public void revisarValidaciones() {
 		Cancion cancion;
 		System.out.println(validaciones);
-		for (Validacion v : validaciones) {
+		Iterator<Validacion> iterator = this.validaciones.iterator();
+		while (iterator.hasNext()) {
+			Validacion v = iterator.next();
 			ChronoPeriod period = ChronoPeriod.between(v.getPlazo(), FechaSimulada.getHoy());
 			System.out.println(v.getPlazo() + " " + FechaSimulada.getHoy());
 			System.out.println(period.get(ChronoUnit.YEARS) + " " + period.get(ChronoUnit.MONTHS) + " "
 					+ period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
 					|| period.get(ChronoUnit.DAYS) > 3) {
-
 				cancion = v.getCancion();
 				System.out.println("borrar cancion" + cancion.getNombre() + " borrar validacion");
-				validaciones.remove(v);
+				iterator.remove();
 				cancion.getAutor().borrarCancion(cancion);
 				borrarCancion(cancion);
 
@@ -394,13 +395,6 @@ public class Aplicacion implements Serializable {
 			break;
 		}
 		return match;
-	}
-
-	/**
-	 * Metodo que comprueba que canciones pendientes de revision se han pasado de
-	 * plazo y las elimina
-	 */
-	public void comprobarRevisiones() {
 	}
 
 	/**
@@ -517,6 +511,7 @@ public class Aplicacion implements Serializable {
 	public void addAlbum(Album album) {
 		albumes.add(album);
 		((UsuarioRegistrado) logueado).addAlbum(album);
+		//album.getAutor().addAlbum(album);
 	}
 
 	/**
@@ -815,5 +810,22 @@ public class Aplicacion implements Serializable {
 	 */
 	public void updateLastDate() {
 		lastDate = FechaSimulada.getHoy();
+	}
+	
+	public Map<UsuarioRegistrado, LocalDate> getBloqueados() {
+		return bloqueados;
+	}
+	
+	public ArrayList<Cancion> getCanciones() {
+		return canciones;
+	}
+	
+	public Validacion getValidacionbySong(Cancion cancion) {
+		for (Validacion v: validaciones) {
+			if(cancion.getNombre().equals(v.getCancion().getNombre())) {
+				return v;
+			}
+		}
+		return null;
 	}
 }

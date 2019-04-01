@@ -114,6 +114,15 @@ public class Lista extends Element implements Serializable {
 		}
 		return rutas;
 	}
+	/**
+	 * Metodo que devuelve los elementos
+	 * 
+	 * @return elementos Elementos
+	 */
+	public ArrayList<Element> getElementos() {
+		return elementos;
+	}
+
 
 	@Override
 	public String toString() {

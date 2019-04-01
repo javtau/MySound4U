@@ -10,29 +10,17 @@ import java.util.concurrent.TimeUnit;
 public class Demostrador2 {
 
 	public static void main(String[] args) throws InterruptedException {
-		
-		ArrayList<File> files = new ArrayList<File>();
-		
-		File file1 = new File("data/MySound4U.data");
-		File file2 = new File("songs/BesosALaLona.mp3");
-		File file3 = new File("songs/BohemianRhapsody.mp3");
-		File file4 = new File("songs/Mirame.mp3");
-		File file5 = new File("songs/QueElCieloEspereSentao.mp3");
-		File file6 = new File("songs/SinNoticiasDeHolanda.mp3");
-		File file7 = new File("songs/WeAreTheChampions.mp3");
-		files.add(file1);
-		files.add(file2);
-		files.add(file3);
-		files.add(file4);
-		files.add(file5);
-		files.add(file6);
-		files.add(file7);
-		
-		for (File f : files) {
-			if (f.exists())
-				f.delete();
+
+		File file;
+
+		String ficheros[] = { "BesosALaLona.mp3", "BohemianRhapsody.mp3", "BohemianRhapsody.mp3", "Mirame.mp3",
+				"QueElCieloEspereSentao.mp3", "SinNoticiasDeHolanda.mp3", "WeAreTheChampions.mp3", "ICantGetNo.mp3" };
+		for(String s: ficheros) {
+			file = new File(Aplicacion.getPath() + s);
+			if (file.exists())
+				file.delete();
 		}
-		
+
 		Aplicacion api = null;
 		api = Aplicacion.getApi();
 
@@ -358,6 +346,22 @@ public class Demostrador2 {
 		System.out.println(" - Validada: " + ((Cancion) canciones.get(0)).esValidada());
 		TimeUnit.SECONDS.sleep(3);
 
+		api.desloguearse();
+		anonima = (SesionAnonima) api.getSesion();
+		api.loguearse("Avicii", "1234");
+		usuario = (SesionUsuarios) api.getSesion();
+		canciones = api.getLastSongs();
+		File fileEditar = new File("songs/avicii-wake-me-up.mp3");
+		
+		usuario.editarCancion(((Cancion) canciones.get(0)), "Weik mi ap", fileEditar);
+		api.desloguearse();
+		anonima = (SesionAnonima) api.getSesion();
+		api.loguearse("admin", "admin");
+		administrador = (SesionAdmin) api.getSesion();
+		api.printValidaciones();
+
+		canciones = api.getLastSongs();
+		
 		// Gestion de las denuncias
 
 		System.out.println(
@@ -425,7 +429,7 @@ public class Demostrador2 {
 		System.out.println(
 				"Vamos a reproducir 4 veces \"Levels\" para llegar al limite de reproducciones del usuario\ny al umbral de reproducciones en la cancion para ser premium");
 		TimeUnit.SECONDS.sleep(2);
-		
+
 		// 1
 		System.out.println("\n - Primera reproduccion");
 		usuario.reproducir(canciones.get(0));
@@ -479,6 +483,7 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 
 		api.avanzarSimulada(32);
+		System.out.println(api.getValidaciones());
 		api.revision();
 
 		System.out.println(
@@ -553,9 +558,26 @@ public class Demostrador2 {
 		usuario.subirCancion("Bohemian Rhapsody", file12);
 		TimeUnit.SECONDS.sleep(2);
 		File file13 = new File("songstoupload/WeAreTheChampions.mp3");
-		System.out.println("\nSe va a subir la cancion \"We are the champions\"");
+		System.out.println("\nSe va a subir la cancion \"We are the champions\"\n");
 		TimeUnit.SECONDS.sleep(2);
 		usuario.subirCancion("We are the champions", file13);
+		TimeUnit.SECONDS.sleep(2);
+		File file14 = new File("songstoupload/ICantGetNo.mp3");
+		System.out.println("Se va a subir la cancion \"(I can't get no) satisfaction\"\n");
+		TimeUnit.SECONDS.sleep(2);
+		usuario.subirCancion("(I can't get no) satisfaction", file14);
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("Vamos a imprimir el directorio \"songs\" para ver que se han subido:\n");
+		TimeUnit.SECONDS.sleep(2);
+		api.printDirectory();
+		TimeUnit.SECONDS.sleep(2);
+		canciones = api.getLastSongs();
+		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nVamos a borrar la cancion \"(I can't get no) satisfaction\"");
+		usuario.borrarCancion((Cancion)canciones.get(0));
+		System.out.println("\nVamos a imprimir el directorio \"songs\" para ver que se ha eliminado \"(I can't get no) satisfaction\": \n");
+		TimeUnit.SECONDS.sleep(2);
+		api.printDirectory();
 		TimeUnit.SECONDS.sleep(2);
 
 		System.out.println(
@@ -596,11 +618,10 @@ public class Demostrador2 {
 		System.out.println("\n - Cancion: " + canciones.get(5).getNombre() + "\n - Validada: "
 				+ ((Cancion) canciones.get(5)).esValidada());
 		TimeUnit.SECONDS.sleep(2);
-		
-		
+
 		System.out.println("\nVamos a cerrar sesion del admin e iniciar con Javier para crear una lista");
 		TimeUnit.SECONDS.sleep(2);
-		
+
 		api.desloguearse();
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nEl " + administrador.getUsuario().getNombre() + " ha hecho logout");
@@ -612,20 +633,19 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 
 		canciones = api.getLastSongs();
-		
+
 		System.out.println("***************");
 		System.out.println("* Crear album *");
 		System.out.println("***************");
 		TimeUnit.SECONDS.sleep(2);
-		
-		Album album = new Album ("Melendi", usuario.getUsuarioRegistrado());
-		album.anadirCancion((Cancion)canciones.get(2));
-		album.anadirCancion((Cancion)canciones.get(3));
-		album.anadirCancion((Cancion)canciones.get(4));
-		album.anadirCancion((Cancion)canciones.get(5));
+
+		usuario.crearAlbum("Melendi");
+		usuario.anadiraAlbum(usuario.getUsuarioRegistrado().getAlbumes().get(0), (Cancion) canciones.get(2));
+		usuario.anadiraAlbum(usuario.getUsuarioRegistrado().getAlbumes().get(0), (Cancion) canciones.get(3));
+		usuario.anadiraAlbum(usuario.getUsuarioRegistrado().getAlbumes().get(0), (Cancion) canciones.get(4));
+		usuario.anadiraAlbum(usuario.getUsuarioRegistrado().getAlbumes().get(0), (Cancion) canciones.get(5));
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nSe ha creado el album \"Melendi\"\n");
-		api.addAlbum(album);
 		TimeUnit.SECONDS.sleep(2);
 
 		System.out.println("***************");
@@ -633,15 +653,22 @@ public class Demostrador2 {
 		System.out.println("***************");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nVamos a crear una lista");
-		Lista lista = new Lista ("Lista Mix - Queen y Melendi");
-		lista.addElemt(canciones.get(0));
-		lista.addElemt(canciones.get(1));
-		lista.addElemt(album);
+		usuario.crearLista("Lista Mix - Queen y Melendi");
+		usuario.anadirALista(usuario.getUsuarioRegistrado().getListas().get(0), canciones.get(0));
+		usuario.anadirALista(usuario.getUsuarioRegistrado().getListas().get(0), canciones.get(1));
+		usuario.anadirALista(usuario.getUsuarioRegistrado().getListas().get(0), canciones.get(0));
+		usuario.anadirALista(usuario.getUsuarioRegistrado().getListas().get(0),
+				usuario.getUsuarioRegistrado().getAlbumes().get(0));
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nSe ha creado la lista \"Lista Mix - Queen y Melendi\"");
 		TimeUnit.SECONDS.sleep(2);
-		
-		System.out.println("\nVamos a cerrar sesion de \"Javier\" y a iniciar \"Fernando\" para buscar el album y reproducir album y lista");
+		System.out.println("\nVamos a reproducir la lista desde este usuario porque las listas son privadas");
+		TimeUnit.SECONDS.sleep(2);
+		usuario.reproducir(usuario.getUsuarioRegistrado().getListas().get(0));
+		TimeUnit.SECONDS.sleep(72);
+
+		System.out.println(
+				"\nVamos a cerrar sesion de \"Javier\" y a iniciar \"Fernando\" para buscar el album y reproducir album y lista");
 		api.desloguearse();
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nEl usuario " + usuario.getUsuario().getNombre() + " ha hecho logout");
@@ -652,30 +679,26 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		canciones = api.getLastSongs();
 		TimeUnit.SECONDS.sleep(2);
-		
+
 		System.out.println("Vamos a pasar a premium con el usuario \"Fernando\" pagando\n");
 		usuario.pasarPremium("1111222233334444");
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nComprobacion: \n");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println(" - Usuario: " + usuario.getUsuarioRegistrado().getNombre() + "\n - Premium: " + usuario.getUsuarioRegistrado().esPremium());
+		System.out.println(" - Usuario: " + usuario.getUsuarioRegistrado().getNombre() + "\n - Premium: "
+				+ usuario.getUsuarioRegistrado().esPremium());
 		TimeUnit.SECONDS.sleep(2);
-		
-		System.out.println("\nVamos a reproducir la lista creada por \"Javier\"");
-		TimeUnit.SECONDS.sleep(2);
-		usuario.reproducir(lista);
-		TimeUnit.SECONDS.sleep(62);
-		usuario.stop();
 
 		System.out.println("\nVamos a buscar el album \"Melendi\": \n");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println(api.buscar("Melendi", TIPO_BUSQUEDA.ALBUM));
+		ArrayList<Element> busqueda = api.buscar("Melendi", TIPO_BUSQUEDA.ALBUM);
+		System.out.println(busqueda);
 		TimeUnit.SECONDS.sleep(2);
-		
+
 		System.out.println("\nVamos a reproducir el album \"Melendi\"");
-		usuario.reproducir(album);
+		TimeUnit.SECONDS.sleep(2);
+		usuario.reproducir(busqueda.get(0));
 		TimeUnit.SECONDS.sleep(42);
 		usuario.stop();
 	}
 }
-		

@@ -73,12 +73,16 @@ public class Cancion extends Element implements Serializable {
 		validada = false;
 		revision = false;
 
-		try {
-			duracion = (double) ((int) Mp3Player.getDuration(PATH + ruta) / 60);
-			duracion += (double) ((int) Mp3Player.getDuration(PATH + ruta)) % 60 / 100;
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (ruta == "prueba") {
+			duracion = (double) 20;
+		} else {
+			try {
+				duracion = (double) ((int) Mp3Player.getDuration(PATH + ruta) / 60);
+				duracion += (double) ((int) Mp3Player.getDuration(PATH + ruta)) % 60 / 100;
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -167,6 +171,7 @@ public class Cancion extends Element implements Serializable {
 
 	/**
 	 * Getter de la duracion de una cancion
+	 * 
 	 * @return duracion Devuelve la duracion de la cancion
 	 */
 	public Double getDuracion() {
@@ -175,6 +180,7 @@ public class Cancion extends Element implements Serializable {
 
 	/**
 	 * Getter de la ruta de una cancion
+	 * 
 	 * @return Devuelve la ruta de la cancion
 	 */
 	public String getRuta() {
@@ -191,6 +197,7 @@ public class Cancion extends Element implements Serializable {
 
 	/**
 	 * Getter de un album
+	 * 
 	 * @return album Devuelve un album
 	 */
 	public Album getAlbum() {
@@ -199,6 +206,7 @@ public class Cancion extends Element implements Serializable {
 
 	/**
 	 * Getter del autor
+	 * 
 	 * @return autor Devuelve el autor
 	 */
 	public UsuarioRegistrado getAutor() {
@@ -207,6 +215,7 @@ public class Cancion extends Element implements Serializable {
 
 	/**
 	 * Getter del nombre del autor
+	 * 
 	 * @return nombre del autor Devuelve el nombre del autor
 	 */
 	public String getAutorNombre() {
@@ -224,6 +233,7 @@ public class Cancion extends Element implements Serializable {
 
 	/**
 	 * Getter del numero de reproducciones de una cancion
+	 * 
 	 * @return numreproducciones Devuelve el numero de reproducciones de una cancion
 	 */
 	public Integer getNumreproducciones() {
@@ -272,8 +282,7 @@ public class Cancion extends Element implements Serializable {
 	}
 
 	/**
-	 * Metodo que devuelve el nombre, el autor, la duracion y el tipo de un
-	 * elemento
+	 * Metodo que devuelve el nombre, el autor, la duracion y el tipo de un elemento
 	 * 
 	 * @return String string con la informacion del elemento
 	 */

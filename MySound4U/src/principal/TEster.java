@@ -1,5 +1,6 @@
 package principal;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -91,6 +92,9 @@ public class TEster {
 		System.out.println(avicii+ "\n");
 		api.loguearse("avicii", "1234");
 		SesionUsuarios sesion = (SesionUsuarios) api.getSesion();
+		File file8 = new File("songstoupload/QueElCieloEspereSentao.mp3");
+		System.out.println("**********************************************");
+		sesion.editarCancion(wakeMe, "wakeeeeeme", file8);
 		sesion.reproducir(album);
 		System.out.println(c3+ "\n");
 		System.out.println(wakeMe+ "\n");

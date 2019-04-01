@@ -89,8 +89,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	}
 
 	public void borrarCancion(Cancion cancion) {
-		String nombre;
-		nombre = cancion.getNombre();
 		if (cancion.getAutor() != usuario) {
 			System.out.println("No puede borrar una cancion de otro usuario.");
 			return;
@@ -143,16 +141,17 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	 * @param cancion
 	 */
 	public void editarCancion(Cancion cancion, String newName, File file) {
-		if (!file.exists()) {
-			return;
-		}
+
 		if (!cancion.esValidada() && cancion.enRevision() && cancion.esAutor(usuario)) {
-			try {
+			try {System.out.println("entrando a revisar");
 				// What to do with the file, e.g. display it in a TextArea
 				Files.copy(file.toPath(), new FileOutputStream(Aplicacion.getPath() + file.getName()));
+				System.out.println("renombrando");
 				cancion.setRuta(file.getName());
 				cancion.setNombre(newName);
-
+				Validacion v = api.getValidacionbySong(cancion);
+				v.setPlazo(LocalDate.MAX);	
+				System.out.println(v);
 			} catch (IOException ex) {
 				System.out.println("problem accessing file" + file.getAbsolutePath());
 			}
