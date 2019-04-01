@@ -72,8 +72,8 @@ public class Demostrador2 {
 		System.out.println("\nSe reproducira la cancion \"Levels\" \n");
 		TimeUnit.SECONDS.sleep(2);
 		anonima.reproducir(canciones.get(1));
-		System.out.println("Se va a parar la cancion en 10 segundos");
-		TimeUnit.SECONDS.sleep(2);
+		System.out.println("Se va a parar la cancion en 3 segundos");
+		TimeUnit.SECONDS.sleep(3);
 		anonima.stop();
 		TimeUnit.SECONDS.sleep(2);
 
@@ -253,8 +253,8 @@ public class Demostrador2 {
 				"\nSe va a reproducir la cancion explicita \"CorePride\" para demostrar que el usuario mayor de edad si puede");
 		usuario.reproducir(canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nSe va a parar la cancion en 10 segundos");
-		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nSe va a parar la cancion en 3 segundos");
+		TimeUnit.SECONDS.sleep(3);
 		usuario.stop();
 		System.out.println("\nVamos a ver que se estan aumentando las reproducciones de la cancion\n ");
 		TimeUnit.SECONDS.sleep(2);
@@ -565,8 +565,8 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		canciones = api.getLastSongs();
 		usuario.reproducir(canciones.get(0));
-		System.out.println("\nSe parara en 10 segundos");
-		TimeUnit.SECONDS.sleep(2);
+		System.out.println("\nSe parara en 3 segundos");
+		TimeUnit.SECONDS.sleep(3);
 		usuario.stop();
 		TimeUnit.SECONDS.sleep(2);
 
@@ -607,7 +607,6 @@ public class Demostrador2 {
 		api.printDirectory();
 		TimeUnit.SECONDS.sleep(2);
 		canciones = api.getLastSongs();
-		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nVamos a borrar la cancion \"(I can't get no) satisfaction\"");
 		usuario.borrarCancion((Cancion)canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
@@ -700,7 +699,7 @@ public class Demostrador2 {
 		TimeUnit.SECONDS.sleep(2);
 		System.out.println("\nVamos a reproducir la lista desde este usuario porque las listas son privadas");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nLa lista esta compuesta por: " + usuario.getUsuarioRegistrado().getListas().get(0));
+		System.out.println("\nLa lista esta compuesta por: \n" + usuario.getUsuarioRegistrado().getListas().get(0));
 		TimeUnit.SECONDS.sleep(2);
 		usuario.reproducir(usuario.getUsuarioRegistrado().getListas().get(0));
 		TimeUnit.SECONDS.sleep(72);
