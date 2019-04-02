@@ -3,7 +3,7 @@
 * @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
-package principal;
+package modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;

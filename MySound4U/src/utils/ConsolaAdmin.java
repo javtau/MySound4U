@@ -8,9 +8,9 @@ package utils;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import principal.Denuncia;
-import principal.Element;
-import principal.Validacion;
+import modelo.Denuncia;
+import modelo.Element;
+import modelo.Validacion;
 
 /**
  * Clase para los mensajes de consola del administrador

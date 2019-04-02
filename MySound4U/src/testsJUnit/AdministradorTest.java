@@ -6,9 +6,9 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Administrador;
-import principal.Aplicacion;
-import principal.Cancion;
+import modelo.Administrador;
+import modelo.Aplicacion;
+import modelo.Cancion;
 
 public class AdministradorTest {
 		Administrador admin;

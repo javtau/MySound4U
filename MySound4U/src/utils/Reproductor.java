@@ -9,9 +9,9 @@ import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import modelo.Aplicacion;
 import pads.musicPlayer.Mp3Player;
 import pads.musicPlayer.exceptions.Mp3PlayerException;
-import principal.Aplicacion;
 
 /**
  * Esta clase genera un reproductor y gestionara las distintas reproducciones

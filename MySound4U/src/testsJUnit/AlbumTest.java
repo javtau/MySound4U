@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Album;
-import principal.Cancion;
-import principal.UsuarioRegistrado;
+import modelo.Album;
+import modelo.Cancion;
+import modelo.UsuarioRegistrado;
 import utils.FechaSimulada;
 
 public class AlbumTest {

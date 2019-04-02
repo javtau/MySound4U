@@ -7,15 +7,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Administrador;
-import principal.Album;
-import principal.Aplicacion;
-import principal.Cancion;
-import principal.Denuncia;
-import principal.SesionAdmin;
-import principal.TIPO_BUSQUEDA;
-import principal.UsuarioRegistrado;
-import principal.Validacion;
+import modelo.Administrador;
+import modelo.Album;
+import modelo.Aplicacion;
+import modelo.Cancion;
+import modelo.Denuncia;
+import modelo.SesionAdmin;
+import modelo.TIPO_BUSQUEDA;
+import modelo.UsuarioRegistrado;
+import modelo.Validacion;
 import utils.FechaSimulada;
 
 public class AplicacionTest {

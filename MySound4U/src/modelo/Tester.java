@@ -2,7 +2,7 @@
 * Clase Demostrador
 * @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
-package principal;
+package modelo;
 
 /**
  * Esta clase es la clase principal que creara la aplicacion e ilustrara la

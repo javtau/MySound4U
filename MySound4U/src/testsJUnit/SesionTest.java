@@ -5,14 +5,14 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Administrador;
-import principal.Aplicacion;
-import principal.SesionAdmin;
-import principal.SesionAnonima;
-import principal.SesionUsuarios;
-import principal.Usuario;
-import principal.UsuarioAnonimo;
-import principal.UsuarioRegistrado;
+import modelo.Administrador;
+import modelo.Aplicacion;
+import modelo.SesionAdmin;
+import modelo.SesionAnonima;
+import modelo.SesionUsuarios;
+import modelo.Usuario;
+import modelo.UsuarioAnonimo;
+import modelo.UsuarioRegistrado;
 
 public class SesionTest {
 		SesionAnonima s;

@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Album;
-import principal.Aplicacion;
-import principal.Cancion;
-import principal.Lista;
-import principal.UsuarioRegistrado;
+import modelo.Album;
+import modelo.Aplicacion;
+import modelo.Cancion;
+import modelo.Lista;
+import modelo.UsuarioRegistrado;
 import utils.FechaSimulada;
 
 public class UsuarioRegistradoTest {

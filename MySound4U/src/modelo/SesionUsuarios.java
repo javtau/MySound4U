@@ -3,7 +3,7 @@
 * @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 
-package principal;
+package modelo;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -7,9 +7,9 @@ import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Cancion;
-import principal.UsuarioRegistrado;
-import principal.Validacion;
+import modelo.Cancion;
+import modelo.UsuarioRegistrado;
+import modelo.Validacion;
 import utils.FechaSimulada;
 
 public class ValidacionTest {

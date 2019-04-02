@@ -8,13 +8,13 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Administrador;
-import principal.Album;
-import principal.Aplicacion;
-import principal.Cancion;
-import principal.Lista;
-import principal.SesionUsuarios;
-import principal.UsuarioRegistrado;
+import modelo.Administrador;
+import modelo.Album;
+import modelo.Aplicacion;
+import modelo.Cancion;
+import modelo.Lista;
+import modelo.SesionUsuarios;
+import modelo.UsuarioRegistrado;
 import utils.FechaSimulada;
 
 public class SesionUsuarioTest {

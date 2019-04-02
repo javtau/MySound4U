@@ -8,8 +8,8 @@ package utils;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import principal.Element;
-import principal.UsuarioRegistrado;
+import modelo.Element;
+import modelo.UsuarioRegistrado;
 
 /**
  * Clase para los mensajes de consola del usuario registrado

@@ -8,7 +8,7 @@ package utils;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import principal.Element;
+import modelo.Element;
 
 /**
  * Clase principal para los mensajes de consola de cada uno de los tipos de

@@ -5,10 +5,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import principal.Aplicacion;
-import principal.SesionAnonima;
-import principal.Usuario;
-import principal.UsuarioAnonimo;
+import modelo.Aplicacion;
+import modelo.SesionAnonima;
+import modelo.Usuario;
+import modelo.UsuarioAnonimo;
 
 public class SesionAnonimaTest {
 		SesionAnonima s;
