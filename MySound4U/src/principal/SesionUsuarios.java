@@ -147,7 +147,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			try {
 				// What to do with the file, e.g. display it in a TextArea
 				Files.copy(file.toPath(), new FileOutputStream(Aplicacion.getPath() + file.getName()));
-				System.out.println("renombrando");
 				cancion.setRuta(file.getName());
 				cancion.setNombre(newName);
 				cancion.setRevision(false);

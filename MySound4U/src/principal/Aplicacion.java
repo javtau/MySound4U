@@ -42,7 +42,7 @@ public class Aplicacion implements Serializable {
 	 * Numero de reproducciones que tiene que tener un usuario para pasar a premium
 	 * gratis
 	 */
-	static final int UMBRAL_PREMIUM = 5;
+	static final int UMBRAL_PREMIUM = 10;
 
 	/** Nombre de la carpeta donde se almacenan las canciones */
 	static final String DIRECTORY = "songs";
@@ -245,8 +245,6 @@ public class Aplicacion implements Serializable {
 		
 		for (Map.Entry<UsuarioRegistrado, LocalDate> bloqueado : bloqueados.entrySet()) {
 			ChronoPeriod period = ChronoPeriod.between(bloqueado.getValue(), FechaSimulada.getHoy());
-			System.out.println(FechaSimulada.getHoy() + ", " + bloqueado.getValue() + ", "
-					+ period.get(ChronoUnit.MONTHS) + "-" + period.get(ChronoUnit.DAYS));
 			if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0) {
 				bloqueado.getKey().setBloqueado(false);
 				bloqueados.remove(bloqueado.getKey());
@@ -266,7 +264,7 @@ public class Aplicacion implements Serializable {
 			if (period.get(ChronoUnit.YEARS) > 1 || period.get(ChronoUnit.MONTHS) > 1
 					|| period.get(ChronoUnit.DAYS) > 3) {
 				cancion = v.getCancion();
-				iterator.remove();
+				validaciones.remove(v);
 				cancion.getAutor().borrarCancion(cancion);
 				borrarCancion(cancion);
 
