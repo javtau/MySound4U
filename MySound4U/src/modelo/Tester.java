@@ -1,5 +1,5 @@
 /**
-* Clase Demostrador
+registrarse* Clase Demostrador
 * @author Fernando Barroso, Javier Lozano y Gonzalo Madrigal
 */
 package modelo;
