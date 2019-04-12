@@ -15,11 +15,12 @@ import modelo.Element;
 import modelo.SesionAnonima;
 import modelo.TIPO_BUSQUEDA;
 import vista.VistaAnonimo;
+import vista.VistaRegistrado;
 
 public class ControladorVistaAnonimo implements ActionListener {
 	private VistaAnonimo vista;
 	private Aplicacion api;
-	private SesionAnonima sesion; 
+	private SesionAnonima sesion;
 	private ArrayList<Element> elementos;
 
 	public ControladorVistaAnonimo(VistaAnonimo vista, Aplicacion api) {
@@ -31,31 +32,35 @@ public class ControladorVistaAnonimo implements ActionListener {
 	}
 
 	// Metodo para rellenar la tabla de proveedores
-		public void rellenarTableSongs(ArrayList<Element> elements) {
-			// TODO Auto-generated method stub
-			DefaultTableModel table = (DefaultTableModel) vista.getTableSongs().getModel();
-			for (Element e : elements) {
-				Cancion cancion = (Cancion) e;
-				Album album = cancion.getAlbum();
-				table.addRow(new Object[] { cancion.getNombre(), cancion.getDuracion(),cancion.getAutorNombre(),(album != null)? album.getNombre() : " "  });
-			}
-			vista.getTableSongs().setRowSorter(new TableRowSorter<TableModel>(table));
+	public void rellenarTableSongs(ArrayList<Element> elements) {
+		// TODO Auto-generated method stub
+		DefaultTableModel table = (DefaultTableModel) vista.getTableSongs().getModel();
+		table.getDataVector().removeAllElements();
+		table.fireTableDataChanged();
+		for (Element e : elements) {
+			Cancion cancion = (Cancion) e;
+			Album album = cancion.getAlbum();
+			table.addRow(new Object[] { cancion.getNombre(), cancion.getDuracion(), cancion.getAutorNombre(),
+					(album != null) ? album.getNombre() : " " });
 		}
-	
-	
-	
+		vista.getTableSongs().setRowSorter(new TableRowSorter<TableModel>(table));
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object component = e.getSource();
 
 		if (component == vista.getBtnLogIn()) {
-
+			api.loguearse("avicii", "1234");
+			VistaRegistrado vistaR = new VistaRegistrado();
+			ControladorVistaRegistrado controlR = new ControladorVistaRegistrado(vistaR, api);
+			vistaR.setControlador(controlR);
+			controlR.start();
+			vista.dispose();
 		} else if (component == vista.getBtnSingUp()) {
 
 		} else if (component == vista.getBtnStop()) {
-
-			System.out.println("parando");
-
+			sesion.stop();
 		} else if (component == vista.getBtnPlay()) {
 			int selection = vista.getTableSongs().getSelectedRow();
 			elementos.get(selection).reproducir(sesion.getUsuario());
@@ -63,14 +68,14 @@ public class ControladorVistaAnonimo implements ActionListener {
 
 		} else if (component == vista.getBtnBusqueda()) {
 			TIPO_BUSQUEDA filtro;
-
+			System.out.println("Buscando");
 			filtro = TIPO_BUSQUEDA.valueOf(vista.getComboBusqueda().getSelectedItem().toString().toUpperCase());
-			ArrayList<Element> ele = api.buscar(vista.getTfBusqueda().getText(), filtro);
-
+			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
+			rellenarTableSongs(elementos);
 		}
 
 	}
-	
+
 	public void start() {
 		elementos = api.getLastSongs();
 		rellenarTableSongs(elementos);

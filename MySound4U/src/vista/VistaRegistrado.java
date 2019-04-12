@@ -22,11 +22,13 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import controlador.ControladorVistaRegistrado;
+
 public class VistaRegistrado extends JFrame {
 
 	private static long serialVersionUID = 1L;
 
-	String[] searchTipes = { "Todo", "Cancion", "Autor", "album" };
+	String[] searchTipes = { "Todo", "titulo", "Autor", "album" };
 
 	// contenedor Principal,
 	private Container contenedor;
@@ -39,8 +41,8 @@ public class VistaRegistrado extends JFrame {
 
 	// elementos del panel este
 	JPanel pEast;
-	private JButton btnLogIn;
-	private JButton btnSingUp;
+	private JButton btnLogOut;
+	private JButton btnPremium;
 	private JButton btnSubir;
 	private JButton btnDenunciar;
 
@@ -90,8 +92,8 @@ public class VistaRegistrado extends JFrame {
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
-		btnLogIn = new JButton("  Loguearse ");
-		btnSingUp = new JButton(" Registrarse");
+		btnLogOut = new JButton (" Logout  ");
+		btnPremium = new JButton(" Premium");
 		btnSubir = new JButton("    Subir     ");
 		btnDenunciar = new JButton("Denunciar");
 
@@ -99,9 +101,9 @@ public class VistaRegistrado extends JFrame {
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
 
 		pBox.add(Box.createRigidArea(new Dimension(0, 20)));
-		pBox.add(btnLogIn);
+		pBox.add(btnLogOut);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
-		pBox.add(btnSingUp);
+		pBox.add(btnPremium);
 		pBox.add(Box.createRigidArea(new Dimension(0, 440)));
 		pBox.add(btnSubir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
@@ -255,6 +257,129 @@ public class VistaRegistrado extends JFrame {
 		//ControladorPrincipal Controlprincipal = new ControladorPrincipal(vp);
 		//vp.setControlador(Controlprincipal);
 		vp.setVisible(true);
+	}
+
+	public JTextField getTfBusqueda() {
+		return tfBusqueda;
+	}
+
+	public void setTfBusqueda(JTextField tfBusqueda) {
+		this.tfBusqueda = tfBusqueda;
+	}
+
+	public JComboBox<String> getComboBusqueda() {
+		return comboBusqueda;
+	}
+
+	public void setComboBusqueda(JComboBox<String> comboBusqueda) {
+		this.comboBusqueda = comboBusqueda;
+	}
+
+	public JButton getBtnBusqueda() {
+		return btnBusqueda;
+	}
+
+	public void setBtnBusqueda(JButton btnBusqueda) {
+		this.btnBusqueda = btnBusqueda;
+	}
+
+	public JButton getBtnLogOut() {
+		return btnLogOut;
+	}
+
+	public void setBtnLogOut(JButton btnLogOut) {
+		this.btnLogOut = btnLogOut;
+	}
+
+	public JButton getBtnPremium() {
+		return btnPremium;
+	}
+
+	public void setBtnPremium(JButton btnPremium) {
+		this.btnPremium = btnPremium;
+	}
+
+	public JButton getBtnSubir() {
+		return btnSubir;
+	}
+
+	public void setBtnSubir(JButton btnSubir) {
+		this.btnSubir = btnSubir;
+	}
+
+	public JButton getBtnDenunciar() {
+		return btnDenunciar;
+	}
+
+	public void setBtnDenunciar(JButton btnDenunciar) {
+		this.btnDenunciar = btnDenunciar;
+	}
+
+	public JButton getBtnPlay() {
+		return btnPlay;
+	}
+
+	public void setBtnPlay(JButton btnPlay) {
+		this.btnPlay = btnPlay;
+	}
+
+	public JButton getBtnStop() {
+		return btnStop;
+	}
+
+	public void setBtnStop(JButton btnStop) {
+		this.btnStop = btnStop;
+	}
+
+	public JTabbedPane getTpOptions() {
+		return tpOptions;
+	}
+
+	public void setTpOptions(JTabbedPane tpOptions) {
+		this.tpOptions = tpOptions;
+	}
+
+	public JTable getTableSongs() {
+		return tableSongs;
+	}
+
+	public void setTableSongs(JTable tableSongs) {
+		this.tableSongs = tableSongs;
+	}
+
+	public JTable getTableAlbums() {
+		return tableAlbums;
+	}
+
+	public void setTableAlbums(JTable tableAlbums) {
+		this.tableAlbums = tableAlbums;
+	}
+
+	public JTable getTableList() {
+		return tableList;
+	}
+
+	public void setTableList(JTable tableList) {
+		this.tableList = tableList;
+	}
+
+	public JTable getTablePendientes() {
+		return tablePendientes;
+	}
+
+	public void setTablePendientes(JTable tablePendientes) {
+		this.tablePendientes = tablePendientes;
+	}
+	
+	public void setControlador(ControladorVistaRegistrado c) {
+		
+		btnBusqueda.addActionListener(c);
+		btnLogOut.addActionListener(c);
+		btnPremium.addActionListener(c);
+		btnPlay.addActionListener(c);
+		btnStop.addActionListener(c);
+		btnSubir.addActionListener(c);
+		
 	}
 
 }

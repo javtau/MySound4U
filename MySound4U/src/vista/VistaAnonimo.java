@@ -28,7 +28,7 @@ public class VistaAnonimo extends JFrame {
 
 	private static long serialVersionUID = 1L;
 
-	String[] searchTipes = { "Todo", "Cancion", "Autor", "album" };
+	String[] searchTipes = { "Todo", "titulo", "Autor", "album" };
 
 	// contenedor Principal,
 	private Container contenedor;
