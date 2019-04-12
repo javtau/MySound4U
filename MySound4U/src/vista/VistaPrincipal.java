@@ -86,7 +86,7 @@ public class VistaPrincipal {
 		tableSongs.getColumnModel().getColumn(3).setCellRenderer(modelocentrar);
 		scrollPane.setViewportView(tableSongs);
 
-		scrollPane.setPreferredSize(new Dimension(650, 580));
+		scrollPane.setPreferredSize(new Dimension(650, 542));
 		tpTabSongs.add(scrollPane);
 			
 		
@@ -95,7 +95,7 @@ public class VistaPrincipal {
 		tpOptions.addTab("Canciones", tpTabSongs);
 		tpOptions.addTab("Albumes", tpTabAlbums);
 		tpOptions.addTab("Listas", tpTab1);
-		tpOptions.setPreferredSize(new Dimension(665, 617));
+		tpOptions.setPreferredSize(new Dimension(665, 580));
 		// Podemos seleccionar una pestaña del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
 		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
@@ -131,7 +131,7 @@ public class VistaPrincipal {
 		pBox.add(btnLogIn);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnSingUp);
-		pBox.add(Box.createRigidArea(new Dimension(0, 480)));
+		pBox.add(Box.createRigidArea(new Dimension(0, 440)));
 		pBox.add(btnSubir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnDenunciar);

@@ -278,6 +278,7 @@ public class Aplicacion implements Serializable {
 	public void revision() {
 		revisarBloqueados();
 		revisarValidaciones();
+		//todo
 
 		ChronoPeriod period = ChronoPeriod.between(lastDate, FechaSimulada.getHoy());
 		if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0
