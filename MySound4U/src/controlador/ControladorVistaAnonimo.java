@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -14,6 +15,8 @@ import modelo.Cancion;
 import modelo.Element;
 import modelo.SesionAnonima;
 import modelo.TIPO_BUSQUEDA;
+import vista.LoginForm;
+import vista.VistaAdmin;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
 
@@ -51,12 +54,13 @@ public class ControladorVistaAnonimo implements ActionListener {
 		Object component = e.getSource();
 
 		if (component == vista.getBtnLogIn()) {
-			api.loguearse("avicii", "1234");
-			VistaRegistrado vistaR = new VistaRegistrado();
-			ControladorVistaRegistrado controlR = new ControladorVistaRegistrado(vistaR, api);
-			vistaR.setControlador(controlR);
-			controlR.start();
-			vista.dispose();
+			System.out.println("boton login pulsado");
+			LoginForm login = new LoginForm();
+			ControladorLogin controlL = new ControladorLogin(login, api, vista);
+			login.setControlador(controlL);
+			login.setVisible(true);
+			controlL.start();
+
 		} else if (component == vista.getBtnSingUp()) {
 
 		} else if (component == vista.getBtnStop()) {

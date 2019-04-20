@@ -62,4 +62,9 @@ public class UsuarioAnonimo extends Usuario implements Serializable {
 		return "UsuarioAnonimo" + "canciones reproducidas" + getReproducidas();
 	}
 
+	@Override
+	public boolean isAdmin() {
+		return false;
+	}
+
 }

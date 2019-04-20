@@ -329,4 +329,9 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	public ArrayList<Lista> getListas() {
 		return listas;
 	}
+
+	@Override
+	public boolean isAdmin() {
+		return false;
+	}
 }

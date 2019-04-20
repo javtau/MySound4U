@@ -61,4 +61,9 @@ public class Administrador extends Usuario implements Serializable{
 	public String toString() {
 		return "Administrador ";
 	}
+
+	@Override
+	public boolean isAdmin() {
+		return true;
+	}
 }
