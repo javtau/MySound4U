@@ -79,6 +79,7 @@ public class ControladorVistaAdmin implements ActionListener {
 		for (Denuncia d : denuncias) {
 			table.addRow(new Object[] { d.getDenunciante().getNombre(), d.getCancion().getAutorNombre(), d.getCancion(),
 					d.getComentario() });
+			
 		}
 		vista.gettableDenuncias().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
