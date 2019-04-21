@@ -22,11 +22,10 @@ public class LoginForm extends JFrame {
 	JPasswordField p1;
 
 	public LoginForm() {
-		JFrame frame = new JFrame("Login");
 		l1 = new JLabel("Login");
 		l1.setForeground(Color.BLACK);
 		l1.setFont(new Font("Serif", Font.BOLD, 20));
-
+		
 		setResizable(false);
 
 		l2 = new JLabel("   Usuario");
@@ -42,20 +41,19 @@ public class LoginForm extends JFrame {
 		p1.setBounds(150, 110, 200, 30);
 		btn1.setBounds(150, 160, 100, 30);
 
-		frame.add(l1);
-		frame.add(l2);
-		frame.add(tf1);
-		frame.add(l3);
-		frame.add(p1);
-		frame.add(btn1);
+		this.add(l1);
+		this.add(l2);
+		this.add(tf1);
+		this.add(l3);
+		this.add(p1);
+		this.add(btn1);
 
-		frame.setSize(400, 250);
-		frame.setLayout(null);
-		frame.setVisible(true);
+		this.setSize(400, 250);
+		this.setLayout(null);
 	}
 
 	public static void main(String[] args) {
-		new LoginForm();
+		LoginForm login = new LoginForm();
 	}
 
 	public void setControlador(ControladorLogin c) {
@@ -105,5 +103,11 @@ public class LoginForm extends JFrame {
 	public void setP1(JPasswordField p1) {
 		this.p1 = p1;
 	}
+	
+	public void setLocation(VistaAnonimo vista) {
+		this.setLocationRelativeTo(vista);
+	}
+	
+
 
 }

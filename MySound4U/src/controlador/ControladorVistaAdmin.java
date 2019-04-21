@@ -22,6 +22,7 @@ import modelo.SesionAnonima;
 import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
 import modelo.Validacion;
+import vista.ValidacionForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
@@ -64,7 +65,7 @@ public class ControladorVistaAdmin implements ActionListener {
 		table.fireTableDataChanged();
 		for (Validacion v : validaciones) {
 			table.addRow(new Object[] { v.getCancion().getNombre(), v.getCancion().getAutorNombre(),
-					(v.getPlazo().equals(LocalDate.MAX)) ? "No caduca" : v.getPlazo().toString()});
+					(v.getPlazo().equals(LocalDate.MAX)) ? "No caduca" : v.getPlazo().toString() });
 		}
 		vista.gettableValidaciones().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
@@ -76,17 +77,17 @@ public class ControladorVistaAdmin implements ActionListener {
 		table.getDataVector().removeAllElements();
 		table.fireTableDataChanged();
 		for (Denuncia d : denuncias) {
-			table.addRow(new Object[] { d.getDenunciante().getNombre(), d.getCancion().getAutorNombre(), d.getCancion(), d.getComentario()});
+			table.addRow(new Object[] { d.getDenunciante().getNombre(), d.getCancion().getAutorNombre(), d.getCancion(),
+					d.getComentario() });
 		}
 		vista.gettableDenuncias().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object component = e.getSource();
 
-		if (component == vista.getBtnLogOut()) { 
+		if (component == vista.getBtnLogOut()) {
 			VistaAnonimo vistaR = new VistaAnonimo();
 			ControladorVistaAnonimo controlA = new ControladorVistaAnonimo(vistaR, api);
 			vistaR.setControlador(controlA);
@@ -106,18 +107,31 @@ public class ControladorVistaAdmin implements ActionListener {
 			filtro = TIPO_BUSQUEDA.valueOf(vista.getComboBusqueda().getSelectedItem().toString().toUpperCase());
 			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
 			rellenarTableSongs(elementos);
+
+		} else if (component == vista.getBtnGestionar()) {
+			ValidacionForm form = new ValidacionForm();
+			if (vista.getTpOptionsIndex() == 2) {
+				int selection = vista.gettableValidaciones().getSelectedRow();
+				ControladorValidacion controlV = new ControladorValidacion(form, api, vista, validaciones.get(selection));
+				form.setControlador(controlV);
+				controlV.start();
+				
+			}
 		}
 
 	}
 
 	public void start() {
+		loadTable();
+		vista.setVisible(true);
+	}
+	public void loadTable() {
 		validaciones = api.getValidaciones();
 		denuncias = api.getDenuncias();
 		elementos = api.getLastSongs();
 		rellenarTableSongs(elementos);
 		rellenarTablevalidaciones(validaciones);
 		rellenarTabledenuncias(denuncias);
-		vista.setVisible(true);
 	}
 
 }

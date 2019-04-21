@@ -44,6 +44,7 @@ public class VistaAdmin extends JFrame {
 	// elementos del panel este
 	JPanel pEast;
 	private JButton btnLogOut;
+	private JButton btnGestionar;
 
 	// elementos del panel sur
 	JPanel psouth;
@@ -55,6 +56,7 @@ public class VistaAdmin extends JFrame {
 	private JTabbedPane tpOptions;
 
 	// tablas de los paneles
+	private int selectedTable;
 	private JTable tableSongs;
 	private JTable tableDenuncias;
 	private JTable tableValidaciones;
@@ -91,12 +93,15 @@ public class VistaAdmin extends JFrame {
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
 		btnLogOut = new JButton(" Logout  ");
+		btnGestionar= new JButton("Gestionar");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
 
 		pBox.add(Box.createRigidArea(new Dimension(0, 20)));
 		pBox.add(btnLogOut);
+		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
+		pBox.add(btnGestionar);
 		pEast.add(pBox);
 
 		contenedor.add(pEast, BorderLayout.EAST);
@@ -207,7 +212,7 @@ public class VistaAdmin extends JFrame {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
+				selectedTable = tpOptions.getSelectedIndex();
 				System.out.println(tpOptions.getSelectedIndex());
 			}
 		});
@@ -275,9 +280,19 @@ public class VistaAdmin extends JFrame {
 	public void setBtnStop(JButton btnStop) {
 		this.btnStop = btnStop;
 	}
+	public JButton getBtnGestionar() {
+		return btnGestionar;
+	}
+	public void setBtnGestionar(JButton btnGestionar) {
+		this.btnGestionar = btnGestionar;
+	}
 
 	public JTabbedPane getTpOptions() {
 		return tpOptions;
+	}
+
+	public int getTpOptionsIndex() {
+		return selectedTable;
 	}
 
 	public void setTpOptions(JTabbedPane tpOptions) {
@@ -312,6 +327,7 @@ public class VistaAdmin extends JFrame {
 
 		btnBusqueda.addActionListener(c);
 		btnLogOut.addActionListener(c);
+		btnGestionar.addActionListener(c);
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
 

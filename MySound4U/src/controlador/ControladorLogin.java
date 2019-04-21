@@ -70,15 +70,17 @@ public class ControladorLogin implements ActionListener {
 					vistaR.setControlador(controlR);
 					controlR.start();
 				}
+
 			} else {
 
 				System.out.println("no se pudo loguear");
-				JOptionPane.showMessageDialog(login, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(login, "Nombre de usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
 
 	public void start() {
+		login.setLocation(vista);
 		login.setVisible(true);
 	}
 
