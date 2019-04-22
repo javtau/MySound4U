@@ -22,6 +22,7 @@ import modelo.SesionAnonima;
 import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
 import modelo.Validacion;
+import vista.DenunciaForm;
 import vista.ValidacionForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
@@ -77,7 +78,7 @@ public class ControladorVistaAdmin implements ActionListener {
 		table.getDataVector().removeAllElements();
 		table.fireTableDataChanged();
 		for (Denuncia d : denuncias) {
-			table.addRow(new Object[] { d.getDenunciante().getNombre(), d.getCancion().getAutorNombre(), d.getCancion(),
+			table.addRow(new Object[] { d.getDenunciante().getNombre(), d.getCancion().getAutorNombre(), d.getCancion().getNombre(),
 					d.getComentario() });
 			
 		}
@@ -110,12 +111,20 @@ public class ControladorVistaAdmin implements ActionListener {
 			rellenarTableSongs(elementos);
 
 		} else if (component == vista.getBtnGestionar()) {
-			ValidacionForm form = new ValidacionForm();
 			if (vista.getTpOptionsIndex() == 2) {
+				ValidacionForm formV = new ValidacionForm();
 				int selection = vista.gettableValidaciones().getSelectedRow();
-				ControladorValidacion controlV = new ControladorValidacion(form, api, vista, validaciones.get(selection));
-				form.setControlador(controlV);
+				ControladorValidacion controlV = new ControladorValidacion(formV, api, vista, validaciones.get(selection));
+				formV.setControlador(controlV);
 				controlV.start();
+				
+			}else if (vista.getTpOptionsIndex() == 1) {
+				DenunciaForm formD = new DenunciaForm();
+				int selection = vista.gettableDenuncias().getSelectedRow();
+				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
+				formD.setL3Text(denuncias.get(selection).getComentario());
+				formD.setControlador(controlD);
+				controlD.start();
 				
 			}
 		}

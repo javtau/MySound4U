@@ -314,8 +314,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 				if (index > elementos.size() - 1 || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else if (elementos.get(index).getClass() == Cancion.class) {
-					System.out.println("No ha seleccionado una cancion");
-				} else {
 					System.out.println("Por favor, introduzca el motivo de la denuncia: ");
 					comentario = sc.nextLine();
 					denunciar((Cancion) elementos.get(index), comentario);
