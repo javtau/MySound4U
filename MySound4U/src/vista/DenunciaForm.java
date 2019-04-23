@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.Checkbox;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controlador.ControladorDenuncia;
@@ -26,7 +29,8 @@ public class DenunciaForm extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JLabel l1, l2, l3;
+	JLabel l1, l2;
+	JTextArea textArea;
 	JButton btn1, btn2;
 
 	public DenunciaForm() {
@@ -36,10 +40,13 @@ public class DenunciaForm extends JFrame {
 		l2 = new JLabel("Motivo: ");
 		l2.setForeground(Color.BLACK);
 		l2.setFont(new Font("Serif", Font.PLAIN, 16));
+		
 
-		//l3 = new JLabel(denuncia.getComentario());
-
-		l3 = new JLabel();
+		textArea = new JTextArea(5, 20);
+		JScrollPane scrollPane = new JScrollPane(); 
+		
+		scrollPane.setViewportView(textArea);
+		textArea.setEditable(false);
 		l2.setForeground(Color.BLACK);
 		l2.setFont(new Font("Serif", Font.PLAIN, 16));
 		
@@ -51,15 +58,15 @@ public class DenunciaForm extends JFrame {
 		l1.setBounds(100, 20, 200, 30);
 		btn1.setBounds(216, 80, 100, 30);
 		btn2.setBounds(66, 80, 100, 30);
-		l2.setBounds(66, 110, 130, 30);
-		l3.setBounds(20, 120, 360, 120);
+		l2.setBounds(20, 110, 130, 30);
+		scrollPane.setBounds(20, 145, 360, 120);
 		
 		this.add(l1);
 		this.add(l2);
-		this.add(l3);
+		this.add(scrollPane);
 		this.add(btn1);
 		this.add(btn2);
-		this.setSize(400, 250);
+		this.setSize(400, 350);
 		this.setLayout(null);
 	}
 
@@ -82,12 +89,8 @@ public class DenunciaForm extends JFrame {
 		this.l1 = l1;
 	}
 
-	public JLabel getL3() {
-		return l3;
-	}
-
-	public void setL3Text(String str) {
-		l3.setText(str);
+	public void setDenunciaText(String str) {
+		textArea.setText(str);
 	}
 
 	public JButton getBtn1() {

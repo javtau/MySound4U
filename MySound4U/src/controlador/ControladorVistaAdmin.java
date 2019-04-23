@@ -122,7 +122,7 @@ public class ControladorVistaAdmin implements ActionListener {
 				DenunciaForm formD = new DenunciaForm();
 				int selection = vista.gettableDenuncias().getSelectedRow();
 				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
-				formD.setL3Text(denuncias.get(selection).getComentario());
+				formD.setDenunciaText(denuncias.get(selection).getComentario());
 				formD.setControlador(controlD);
 				controlD.start();
 				
