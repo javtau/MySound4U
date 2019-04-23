@@ -20,7 +20,7 @@ import utils.FechaSimulada;
 public class UsuarioRegistrado extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/** Fecha de nacimiento del usuario */
 	private LocalDate fechanac;
 

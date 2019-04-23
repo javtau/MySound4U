@@ -18,9 +18,10 @@ import modelo.Validacion;
 public class ConsolaAdmin extends Consola implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
-	 * Este metodo imprime por consola las diferentes denuncias y validaciones disponibles para el admin
+	 * Este metodo imprime por consola las diferentes denuncias y validaciones
+	 * disponibles para el admin
 	 * 
 	 */
 	public void printOptionsAdmin(ArrayList<Denuncia> denuncias, ArrayList<Validacion> validaciones) {
@@ -40,9 +41,10 @@ public class ConsolaAdmin extends Consola implements Serializable {
 			i++;
 		}
 	}
-	
+
 	/**
-	 * Este metodo imprime por consola las diferentes opciones del usuario administrador
+	 * Este metodo imprime por consola las diferentes opciones del usuario
+	 * administrador
 	 * 
 	 */
 	@Override

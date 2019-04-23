@@ -26,18 +26,18 @@ public class DenunciaTest {
 	@Test
 	public void testgetCancion() {
 		assertTrue(denuncia.getCancion() == cancion);
-		
+
 	}
 
 	@Test
 	public void testgetDenunciante() {
 		assertTrue(denuncia.getDenunciante() == usuario);
-		
+
 	}
 
 	@Test
 	public void testgetComentario() {
 		assertTrue(denuncia.getComentario() == "comentario");
-		
+
 	}
 }

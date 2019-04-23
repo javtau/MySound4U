@@ -1,55 +1,63 @@
 package vista;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controlador.ControladorLogin;
-import controlador.ControladorVistaAnonimo;
 
 public class LoginForm extends JFrame {
-	JLabel l1, l2, l3;
+	JLabel l2, l3;
 	JTextField tf1;
 	JButton btn1;
 	JPasswordField p1;
+	private Container contenedor;
 
 	public LoginForm() {
-		l1 = new JLabel("Login");
-		l1.setForeground(Color.BLACK);
-		l1.setFont(new Font("Serif", Font.BOLD, 20));
-		
+		setTitle("Login");
+
+		contenedor = new JPanel();
+		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
+		setContentPane(contenedor);
+
 		setResizable(false);
 
 		l2 = new JLabel("   Usuario");
-		l3 = new JLabel("Contraseña");
-		tf1 = new JTextField();
-		p1 = new JPasswordField();
+		l3 = new JLabel("Password");
+		tf1 = new JTextField(10);
+		p1 = new JPasswordField(10);
 		btn1 = new JButton("Login");
 
-		l1.setBounds(130, 30, 400, 30);
-		l2.setBounds(80, 70, 200, 30);
-		l3.setBounds(80, 110, 200, 30);
-		tf1.setBounds(150, 70, 200, 30);
-		p1.setBounds(150, 110, 200, 30);
-		btn1.setBounds(150, 160, 100, 30);
+		JPanel pl1 = new JPanel();
+		JPanel pl2 = new JPanel();
+		JPanel pl3 = new JPanel();
 
-		this.add(l1);
-		this.add(l2);
-		this.add(tf1);
-		this.add(l3);
-		this.add(p1);
-		this.add(btn1);
+		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pl2.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pl3.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		this.setSize(400, 250);
-		this.setLayout(null);
+		pl1.add(l2);
+		pl1.add(tf1);
+		pl2.add(l3);
+		pl2.add(p1);
+		pl3.add(btn1);
+
+		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));
+
+		contenedor.add(pl1);
+		contenedor.add(pl2);
+		contenedor.add(pl3);
+
+		setSize(250, 160);
 	}
 
 	public static void main(String[] args) {
@@ -103,11 +111,8 @@ public class LoginForm extends JFrame {
 	public void setP1(JPasswordField p1) {
 		this.p1 = p1;
 	}
-	
+
 	public void setLocation(VistaAnonimo vista) {
 		this.setLocationRelativeTo(vista);
 	}
-	
-
-
 }

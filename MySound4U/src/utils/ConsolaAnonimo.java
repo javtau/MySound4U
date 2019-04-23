@@ -17,8 +17,7 @@ import modelo.Element;
 public class ConsolaAnonimo extends Consola implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	/**
 	 * Este metodo imprime por consola las diferentes opciones del usuario anonimo
 	 * 

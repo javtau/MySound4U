@@ -14,9 +14,9 @@ import pads.musicPlayer.Mp3Player;
  * Esta clase contiene todos los atributos y metodos de una cancion
  */
 public class Cancion extends Element implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	static final String PATH = Aplicacion.getPath();
 
 	/** Duracion de la cancion */
@@ -50,7 +50,6 @@ public class Cancion extends Element implements Serializable {
 
 	/** Album al que pertenece la cancion */
 	private Album album;
-
 
 	/**
 	 * Este constructor genera una nueva cancion con los datos recibidos como
@@ -229,11 +228,10 @@ public class Cancion extends Element implements Serializable {
 	public Boolean enRevision() {
 		return revision;
 	}
-	
-	
 
 	/**
 	 * Metodo que modifica el estado de la revision
+	 * 
 	 * @param revision nuevo estado
 	 */
 	public void setRevision(Boolean revision) {

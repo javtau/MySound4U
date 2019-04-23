@@ -1,92 +1,85 @@
 package vista;
 
-import java.awt.Checkbox;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import controlador.ControladorDenuncia;
-import controlador.ControladorLogin;
-import controlador.ControladorValidacion;
-import controlador.ControladorVistaAnonimo;
-import modelo.Denuncia;
-import modelo.Validacion;
 
 public class DenunciaForm extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JLabel l1, l2;
+	JLabel l2;
 	JTextArea textArea;
 	JButton btn1, btn2;
+	private Container contenedor;
 
 	public DenunciaForm() {
-		l1 = new JLabel("Gestionar Denuncia");
-		l1.setForeground(Color.BLACK);
-		l1.setFont(new Font("Serif", Font.BOLD, 20));
+		setTitle("Gestionar denuncia");
+		setResizable(false);
+		contenedor = new JPanel();
+		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
+		setContentPane(contenedor);
+		
+		JPanel pl1 = new JPanel();
+		JPanel pl2 = new JPanel();
+		JPanel pl3 = new JPanel();
+
+		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pl2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		pl3.setLayout(new FlowLayout(FlowLayout.CENTER));
+		
 		l2 = new JLabel("Motivo: ");
 		l2.setForeground(Color.BLACK);
 		l2.setFont(new Font("Serif", Font.PLAIN, 16));
-		
 
-		textArea = new JTextArea(5, 20);
-		JScrollPane scrollPane = new JScrollPane(); 
-		
+		textArea = new JTextArea(7, 25);
+		JScrollPane scrollPane = new JScrollPane();
+
 		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
 		l2.setForeground(Color.BLACK);
 		l2.setFont(new Font("Serif", Font.PLAIN, 16));
-		
-		setResizable(false);
 
 		btn1 = new JButton("Aceptar");
 		btn2 = new JButton("Desestimar");
-
-		l1.setBounds(100, 20, 200, 30);
-		btn1.setBounds(216, 80, 100, 30);
-		btn2.setBounds(66, 80, 100, 30);
-		l2.setBounds(20, 110, 130, 30);
-		scrollPane.setBounds(20, 145, 360, 120);
 		
-		this.add(l1);
-		this.add(l2);
-		this.add(scrollPane);
-		this.add(btn1);
-		this.add(btn2);
-		this.setSize(400, 350);
-		this.setLayout(null);
+		pl1.add(btn1);
+		pl1.add(btn2);
+		pl2.add(Box.createRigidArea(new Dimension(7, 0)));
+
+		pl2.add(l2);
+		pl3.add(scrollPane);
+		setSize(340, 230);
+		
+		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));		
+		contenedor.add(pl2);
+		contenedor.add(pl3);
+		contenedor.add(pl1);
 	}
 
 	public static void main(String[] args) {
 		DenunciaForm den = new DenunciaForm();
 		den.setVisible(true);
-	
+
 	}
 
 	public void setControlador(ControladorDenuncia controlD) {
 		btn1.addActionListener(controlD);
 		btn2.addActionListener(controlD);
-	}
-
-	public JLabel getL1() {
-		return l1;
-	}
-
-	public void setL1(JLabel l1) {
-		this.l1 = l1;
 	}
 
 	public void setDenunciaText(String str) {
@@ -111,7 +104,7 @@ public class DenunciaForm extends JFrame {
 
 	public void setLocation(VistaAdmin vista) {
 		setLocationRelativeTo(vista);
-		
+
 	}
-	
+
 }

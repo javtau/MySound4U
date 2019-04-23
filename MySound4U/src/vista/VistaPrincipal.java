@@ -26,7 +26,7 @@ public class VistaPrincipal {
 
 	public static void main(String[] args) {
 
-		String[] searchTipes = { "Todo", "Cancion", "Autor", "album" };
+		String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 		JFrame ventana = new JFrame("principal.prueba1");
 		// obtnener contenedor, asignar layout
 		Container contenedor = ventana.getContentPane();
@@ -41,8 +41,8 @@ public class VistaPrincipal {
 		// elementos del panel este
 		JButton btnLogIn = new JButton("  Loguearse ");
 		JButton btnSingUp = new JButton(" Registrarse");
-		
-		JButton btnSubir = new JButton    ("    Subir     ");
+
+		JButton btnSubir = new JButton("    Subir     ");
 		JButton btnDenunciar = new JButton("Denunciar");
 
 		// elementos del panel sur
@@ -64,15 +64,13 @@ public class VistaPrincipal {
 
 		// panel productos///
 
-		
-
 		JScrollPane scrollPane = new JScrollPane();
 		tpTabSongs.add(scrollPane);
 
 		tableSongs = new JTable();
 		tableSongs.setModel(
-				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "autor", "album" }) {
-					
+				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "Autor", "Album" }) {
+
 					private static final long serialVersionUID = 1L;
 					Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class };
 
@@ -88,8 +86,7 @@ public class VistaPrincipal {
 
 		scrollPane.setPreferredSize(new Dimension(650, 542));
 		tpTabSongs.add(scrollPane);
-			
-		
+
 		JTabbedPane tpOptions = new JTabbedPane();
 		// Añadimos los paneles al contenedor con el método addTab(<título>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);

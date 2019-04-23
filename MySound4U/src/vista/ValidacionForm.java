@@ -1,23 +1,14 @@
 package vista;
 
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
-import controlador.ControladorLogin;
 import controlador.ControladorValidacion;
-import controlador.ControladorVistaAnonimo;
-import modelo.Validacion;
 
 public class ValidacionForm extends JFrame {
 	/**
@@ -29,13 +20,13 @@ public class ValidacionForm extends JFrame {
 	JCheckBox check1;
 
 	public ValidacionForm() {
-		l1 = new JLabel("Gestionar Validación");
+		l1 = new JLabel("Gestionar Validacion");
 		l1.setForeground(Color.BLACK);
 		l1.setFont(new Font("Serif", Font.BOLD, 20));
-		l2 = new JLabel("Marcar como explícita: ");
+		l2 = new JLabel("Marcar como explicita: ");
 		l2.setForeground(Color.BLACK);
 		l2.setFont(new Font("Serif", Font.PLAIN, 16));
-		
+
 		setResizable(false);
 
 		btn1 = new JButton("Validar");
@@ -47,7 +38,7 @@ public class ValidacionForm extends JFrame {
 		btn2.setBounds(66, 100, 100, 30);
 		l2.setBounds(66, 160, 160, 30);
 		check1.setBounds(240, 162, 160, 30);
-		
+
 		this.add(check1);
 		this.add(l1);
 		this.add(l2);
@@ -61,7 +52,7 @@ public class ValidacionForm extends JFrame {
 	public static void main(String[] args) {
 		ValidacionForm val = new ValidacionForm();
 		val.setVisible(true);
-	
+
 	}
 
 	public void setControlador(ControladorValidacion c) {
@@ -112,7 +103,7 @@ public class ValidacionForm extends JFrame {
 
 	public void setLocation(VistaAdmin vista) {
 		setLocationRelativeTo(vista);
-		
+
 	}
-	
+
 }

@@ -28,7 +28,7 @@ public class ListaTest {
 	public void testanadirElemento() {
 		lista.addElemt(cancion);
 		assertFalse(lista.getElementos().isEmpty());
-		
+
 	}
 
 	@Test
@@ -36,6 +36,6 @@ public class ListaTest {
 		lista.addElemt(cancion);
 		lista.removeElemt(cancion);
 		assertTrue(lista.getElementos().isEmpty());
-		
+
 	}
 }

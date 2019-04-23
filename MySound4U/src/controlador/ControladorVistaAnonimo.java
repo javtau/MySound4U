@@ -2,6 +2,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -16,11 +18,9 @@ import modelo.Element;
 import modelo.SesionAnonima;
 import modelo.TIPO_BUSQUEDA;
 import vista.LoginForm;
-import vista.VistaAdmin;
 import vista.VistaAnonimo;
-import vista.VistaRegistrado;
 
-public class ControladorVistaAnonimo implements ActionListener {
+public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 	private VistaAnonimo vista;
 	private Aplicacion api;
 	private SesionAnonima sesion;
@@ -84,6 +84,54 @@ public class ControladorVistaAnonimo implements ActionListener {
 		elementos = api.getLastSongs();
 		rellenarTableSongs(elementos);
 		vista.setVisible(true);
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+
+		if (JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea salir?", "Atencion",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			api.desloguearse();
+			api.save();
+			System.exit(0);
+		}
+
+	}
+
+	@Override
+	public void windowOpened(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosed(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowActivated(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeactivated(java.awt.event.WindowEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

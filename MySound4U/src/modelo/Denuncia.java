@@ -11,9 +11,8 @@ import java.io.Serializable;
  * Esta clase contiene todos los atributos y metodos de una denuncia
  */
 public class Denuncia implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
 
 	/** Cancion que se quiere denunciar */
 	private Cancion cancion;
@@ -65,10 +64,10 @@ public class Denuncia implements Serializable {
 		return comentario;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Denuncia [Cancion: " + cancion.getNombre() + ", denunciante: " + denunciante.getNombre() + ", comentario: " + comentario + "]";
+		return "Denuncia [Cancion: " + cancion.getNombre() + ", denunciante: " + denunciante.getNombre()
+				+ ", comentario: " + comentario + "]";
 	}
-	
+
 }

@@ -10,15 +10,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,7 +24,7 @@ public class VistaAnonimo extends JFrame {
 
 	private static long serialVersionUID = 1L;
 
-	String[] searchTipes = { "Todo", "titulo", "Autor", "album" };
+	String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 
 	// contenedor Principal,
 	private Container contenedor;
@@ -60,7 +56,7 @@ public class VistaAnonimo extends JFrame {
 		setTitle("MySound4U");
 		setSize(810, 700);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		contenedor = new JPanel();
 		contenedor.setLayout(new BorderLayout());
@@ -125,7 +121,7 @@ public class VistaAnonimo extends JFrame {
 
 		tableSongs = new JTable();
 		tableSongs.setModel(
-				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "autor", "album" }) {
+				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "Autor", "Album" }) {
 
 					private static final long serialVersionUID = 1L;
 					Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class };
@@ -149,7 +145,6 @@ public class VistaAnonimo extends JFrame {
 
 	}
 
-	
 	public JTextField getTfBusqueda() {
 		return tfBusqueda;
 	}
@@ -214,16 +209,14 @@ public class VistaAnonimo extends JFrame {
 		this.tableSongs = tableSongs;
 	}
 
-
 	public void setControlador(ControladorVistaAnonimo c) {
-		
+
 		btnBusqueda.addActionListener(c);
 		btnLogIn.addActionListener(c);
 		btnSingUp.addActionListener(c);
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
-
 		
+		addWindowListener(c);
 	}
-
 }

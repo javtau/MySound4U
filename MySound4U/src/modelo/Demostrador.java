@@ -22,19 +22,18 @@ public class Demostrador {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		File recoverSong = new File("songstoupload/avicii-wake-me-up.mp3");
 		try {
-			Files.copy(recoverSong.toPath(), new FileOutputStream(Aplicacion.getPath()+ recoverSong.getName()));
+			Files.copy(recoverSong.toPath(), new FileOutputStream(Aplicacion.getPath() + recoverSong.getName()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-
 		String ficheros[] = { "BesosALaLona.mp3", "BohemianRhapsody.mp3", "BohemianRhapsody.mp3", "Mirame.mp3",
 				"QueElCieloEspereSentao.mp3", "SinNoticiasDeHolanda.mp3", "WeAreTheChampions.mp3", "ICantGetNo.mp3" };
-		for(String s: ficheros) {
+		for (String s : ficheros) {
 			file = new File(Aplicacion.getPath() + s);
 			if (file.exists())
 				file.delete();
@@ -49,7 +48,7 @@ public class Demostrador {
 
 		System.out.println("Cargamos datos para este demostrador desde un archivo\n");
 		TimeUnit.SECONDS.sleep(2);
-		
+
 		System.out.println("**************************");
 		System.out.println("* BIENVENIDO A MySOUND4U *");
 		System.out.println("**************************");
@@ -376,15 +375,16 @@ public class Demostrador {
 		usuario = (SesionUsuarios) api.getSesion();
 		canciones = api.getLastSongs();
 		TimeUnit.SECONDS.sleep(2);
-		
+
 		System.out.println("******************");
 		System.out.println("* Editar cancion *");
 		System.out.println("******************");
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a editar la cancion para ver si la valida el administrador llamandola \"Weik mi ap\"");
+		System.out.println(
+				"\nVamos a editar la cancion para ver si la valida el administrador llamandola \"Weik mi ap\"");
 		TimeUnit.SECONDS.sleep(2);
 		File fileEditar = new File("songs/avicii-wake-me-up.mp3");
-		
+
 		usuario.editarCancion(((Cancion) canciones.get(0)), "Weik mi ap", fileEditar);
 
 		api.desloguearse();
@@ -397,16 +397,18 @@ public class Demostrador {
 		TimeUnit.SECONDS.sleep(2);
 		api.printValidaciones();
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a volver a rechazar la validacion para ver que luego se elimina con el metodo cierre mes");
+		System.out.println(
+				"\nVamos a volver a rechazar la validacion para ver que luego se elimina con el metodo cierre mes");
 		TimeUnit.SECONDS.sleep(2);
 		administrador.invalidar(api.getValidaciones().get(0));
-		System.out.println("\nSe pondra la fecha de hoy a la validacion para darle 3 dias al usuario para volver a editarla, aunque no se editara y se dejara expirar\n");
+		System.out.println(
+				"\nSe pondra la fecha de hoy a la validacion para darle 3 dias al usuario para volver a editarla, aunque no se editara y se dejara expirar\n");
 		TimeUnit.SECONDS.sleep(2);
 		api.printValidaciones();
 
 		TimeUnit.SECONDS.sleep(2);
 		canciones = api.getLastSongs();
-		
+
 		// Gestion de las denuncias
 
 		System.out.println(
@@ -544,7 +546,7 @@ public class Demostrador {
 		System.out.println(" - Usuario: " + api.getUsuario(4).getNombre() + "\n - Numero de reproducidas: "
 				+ api.getUsuario(3).getReproducidas() + "\n");
 		TimeUnit.SECONDS.sleep(2);
-		
+
 		System.out.println("*****************");
 		System.out.println("* Subir cancion *");
 		System.out.println("*****************");
@@ -611,9 +613,10 @@ public class Demostrador {
 		TimeUnit.SECONDS.sleep(2);
 		canciones = api.getLastSongs();
 		System.out.println("\nVamos a borrar la cancion \"(I can't get no) satisfaction\"");
-		usuario.borrarCancion((Cancion)canciones.get(0));
+		usuario.borrarCancion((Cancion) canciones.get(0));
 		TimeUnit.SECONDS.sleep(2);
-		System.out.println("\nVamos a imprimir el directorio \"songs\" para ver que se ha eliminado \"(I can't get no) satisfaction\": \n");
+		System.out.println(
+				"\nVamos a imprimir el directorio \"songs\" para ver que se ha eliminado \"(I can't get no) satisfaction\": \n");
 		TimeUnit.SECONDS.sleep(2);
 		api.printDirectory();
 		TimeUnit.SECONDS.sleep(2);

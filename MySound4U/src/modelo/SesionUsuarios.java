@@ -24,9 +24,9 @@ import utils.ConsolaRegistrado;
  * Esta clase contiene todos los atributos y metodos de la sesion de usuario
  */
 public class SesionUsuarios extends Sesion implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	static java.util.Scanner sc;
 	private UsuarioRegistrado usuario;
 

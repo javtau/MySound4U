@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Album extends Element implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/** Usuario autor del album */
 	private UsuarioRegistrado autor;
 
@@ -41,6 +41,7 @@ public class Album extends Element implements Serializable {
 	public boolean anadirCancion(Cancion cancion) {
 		return canciones.add(cancion);
 	}
+
 	/**
 	 * Este metodo borra una cancion de un album
 	 * 
@@ -104,8 +105,7 @@ public class Album extends Element implements Serializable {
 	}
 
 	/**
-	 * Metodo que devuelve el nombre, el autor, la duracion y el tipo de un
-	 * elemento
+	 * Metodo que devuelve el nombre, el autor, la duracion y el tipo de un elemento
 	 * 
 	 * @return String string con la informacion del elemento
 	 */
@@ -125,6 +125,7 @@ public class Album extends Element implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Nombre de album: "+ super.getNombre() + " [autor=" + autor.getNombre() + "\nCanciones=" + canciones + "]";
+		return "Nombre de album: " + super.getNombre() + " [autor=" + autor.getNombre() + "\nCanciones=" + canciones
+				+ "]";
 	}
 }

@@ -11,18 +11,18 @@ import modelo.Usuario;
 import modelo.UsuarioAnonimo;
 
 public class SesionAnonimaTest {
-		SesionAnonima s;
-		Usuario usuario;
-		Aplicacion api;
-		@Before
-		public void setUp() throws Exception {
-			s = new SesionAnonima((UsuarioAnonimo) usuario, api);
-			
-		}
-		
+	SesionAnonima s;
+	Usuario usuario;
+	Aplicacion api;
 
-		@Test
-		public void testgetUsuario() {
-			assertTrue(s.getUsuario()==usuario);
-		}
+	@Before
+	public void setUp() throws Exception {
+		s = new SesionAnonima((UsuarioAnonimo) usuario, api);
+
+	}
+
+	@Test
+	public void testgetUsuario() {
+		assertTrue(s.getUsuario() == usuario);
+	}
 }

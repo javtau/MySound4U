@@ -14,17 +14,12 @@ public class Tester {
 		Aplicacion api = null;
 		api = Aplicacion.getApi();
 		api.desloguearse();
-		
+
 		/*
-		api.printUsers();
-		api.printSongs();
-		api.printAlbums();
-		System.out.println("avanza fecha");
-		api.avanzarSimulada(5);
-		api.revision();
-		api.printUsers();
-		api.printSongs();
-		api.printAlbums();*/
+		 * api.printUsers(); api.printSongs(); api.printAlbums();
+		 * System.out.println("avanza fecha"); api.avanzarSimulada(5); api.revision();
+		 * api.printUsers(); api.printSongs(); api.printAlbums();
+		 */
 		/*
 		 * Este bucle cede el control a la aplicion, seguira ejecutandose hasta que el
 		 * usuario decida finalizar el programa y el metodo devuelva true

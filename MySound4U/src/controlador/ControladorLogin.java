@@ -2,27 +2,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
-import modelo.Album;
 import modelo.Aplicacion;
-import modelo.Cancion;
-import modelo.Denuncia;
-import modelo.Element;
-import modelo.SesionAdmin;
-import modelo.SesionAnonima;
-import modelo.SesionUsuarios;
-import modelo.TIPO_BUSQUEDA;
-import modelo.Validacion;
 import vista.LoginForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
@@ -53,7 +36,7 @@ public class ControladorLogin implements ActionListener {
 			if (api.loguearse(uname, pass) == true) {
 				login.dispose();
 				vista.dispose();
-				System.out.println("logueando a " + uname + "con contraseña " + pass);
+				System.out.println("logueando a " + uname + "con password " + pass);
 
 				if (api.getSesion().getUsuario().isAdmin() == true) {
 					System.out.println("admin logueado");
@@ -72,10 +55,10 @@ public class ControladorLogin implements ActionListener {
 				}
 
 			} else {
-				
 
 				System.out.println("no se pudo loguear");
-				JOptionPane.showMessageDialog(login, "Nombre de usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(login, "Nombre de usuario o password incorrectos", "Error",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

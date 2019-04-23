@@ -18,9 +18,9 @@ import pads.musicPlayer.exceptions.Mp3PlayerException;
  * 
  */
 public class Reproductor implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/** Reproductor n */
 	private Mp3Player reproductor;
 

@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class UsuarioAnonimo extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/** Nombre por defecto para el usuario anonimo */
 	private static final String NOMBRE = "anonimo";
 
@@ -29,8 +29,8 @@ public class UsuarioAnonimo extends Usuario implements Serializable {
 	}
 
 	/**
-	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y
-	 * pasa a dicha sesion la aplicacion que la genera
+	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y pasa
+	 * a dicha sesion la aplicacion que la genera
 	 * 
 	 * @param api Aplicacion que pide el inicio de sesion
 	 * @return Sesion Sesion del tipo de usuario que la inicia

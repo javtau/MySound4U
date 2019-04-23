@@ -11,24 +11,24 @@ import modelo.Aplicacion;
 import modelo.Cancion;
 
 public class AdministradorTest {
-		Administrador admin;
-		
-		@Before
-		public void setUp() throws Exception {
-			admin = new Administrador();
-			
-		}
+	Administrador admin;
 
-		@Test
-		public void testiniciarSesion() {
-			Aplicacion api = null;
-			assertNotNull(admin.iniciarSesion(api));
-		}
+	@Before
+	public void setUp() throws Exception {
+		admin = new Administrador();
 
-		@Test
-		public void testcanListenSong() {
-			Cancion cancion = null;
-			assertFalse(admin.canListenSong(cancion));
-		}
+	}
+
+	@Test
+	public void testiniciarSesion() {
+		Aplicacion api = null;
+		assertNotNull(admin.iniciarSesion(api));
+	}
+
+	@Test
+	public void testcanListenSong() {
+		Cancion cancion = null;
+		assertFalse(admin.canListenSong(cancion));
+	}
 
 }

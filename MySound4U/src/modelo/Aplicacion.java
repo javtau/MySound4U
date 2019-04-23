@@ -30,10 +30,9 @@ import utils.Reproductor;
  * Esta clase contiene todos los atributos y metodos de la aplicacion
  */
 public class Aplicacion implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	/** Instancia de la aplicacion */
 	private static Aplicacion myApi;
 	/** Numero de reproducciones de los usuarios no premium */
@@ -114,7 +113,8 @@ public class Aplicacion implements Serializable {
 			albumes = new ArrayList<>();
 			bloqueados = new HashMap<UsuarioRegistrado, LocalDate>();
 			admin = new Administrador();
-			lastDate = FechaSimulada.getHoy();;
+			lastDate = FechaSimulada.getHoy();
+			;
 
 		} else {
 			loadFrom(DATA_PATH);
@@ -242,7 +242,7 @@ public class Aplicacion implements Serializable {
 	 * temporal
 	 */
 	public void revisarBloqueados() {
-		
+
 		for (Map.Entry<UsuarioRegistrado, LocalDate> bloqueado : bloqueados.entrySet()) {
 			ChronoPeriod period = ChronoPeriod.between(bloqueado.getValue(), FechaSimulada.getHoy());
 			if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0) {
@@ -278,7 +278,7 @@ public class Aplicacion implements Serializable {
 	public void revision() {
 		revisarBloqueados();
 		revisarValidaciones();
-		//todo
+		// todo
 
 		ChronoPeriod period = ChronoPeriod.between(lastDate, FechaSimulada.getHoy());
 		if (period.get(ChronoUnit.YEARS) > 0 || period.get(ChronoUnit.MONTHS) > 0
@@ -470,7 +470,7 @@ public class Aplicacion implements Serializable {
 	public void addAlbum(Album album) {
 		albumes.add(album);
 		((UsuarioRegistrado) logueado).addAlbum(album);
-		//album.getAutor().addAlbum(album);
+		// album.getAutor().addAlbum(album);
 	}
 
 	/**
@@ -717,14 +717,9 @@ public class Aplicacion implements Serializable {
 		}
 
 	}
-	
-	
 
-	
-	
 	/**
-	 * Metodo que carga el estado de la aplicacion, desde un archivo
-	 * especificado
+	 * Metodo que carga el estado de la aplicacion, desde un archivo especificado
 	 */
 	public void loadFrom(String path) {
 		Aplicacion api;
@@ -774,18 +769,18 @@ public class Aplicacion implements Serializable {
 	public void updateLastDate() {
 		lastDate = FechaSimulada.getHoy();
 	}
-	
+
 	public Map<UsuarioRegistrado, LocalDate> getBloqueados() {
 		return bloqueados;
 	}
-	
+
 	public ArrayList<Cancion> getCanciones() {
 		return canciones;
 	}
-	
+
 	public Validacion getValidacionbySong(Cancion cancion) {
-		for (Validacion v: validaciones) {
-			if(cancion.getNombre().equals(v.getCancion().getNombre())) {
+		for (Validacion v : validaciones) {
+			if (cancion.getNombre().equals(v.getCancion().getNombre())) {
 				return v;
 			}
 		}

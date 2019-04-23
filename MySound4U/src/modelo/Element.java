@@ -11,14 +11,12 @@ import java.io.Serializable;
  * Esta clase contiene todos los atributos y metodos de un elemento
  */
 public abstract class Element implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
 
 	/** Nombre del elemento */
 	private String nombre;
 
-	
 	/**
 	 * Este constructor nos permite poder crear un elemento vacio
 	 */

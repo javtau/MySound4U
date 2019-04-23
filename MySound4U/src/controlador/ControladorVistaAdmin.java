@@ -2,12 +2,12 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -18,17 +18,14 @@ import modelo.Cancion;
 import modelo.Denuncia;
 import modelo.Element;
 import modelo.SesionAdmin;
-import modelo.SesionAnonima;
-import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
 import modelo.Validacion;
 import vista.DenunciaForm;
 import vista.ValidacionForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
-import vista.VistaRegistrado;
 
-public class ControladorVistaAdmin implements ActionListener {
+public class ControladorVistaAdmin implements ActionListener, WindowListener {
 	private VistaAdmin vista;
 	private Aplicacion api;
 	private SesionAdmin sesion;
@@ -78,9 +75,9 @@ public class ControladorVistaAdmin implements ActionListener {
 		table.getDataVector().removeAllElements();
 		table.fireTableDataChanged();
 		for (Denuncia d : denuncias) {
-			table.addRow(new Object[] { d.getDenunciante().getNombre(), d.getCancion().getAutorNombre(), d.getCancion().getNombre(),
-					d.getComentario() });
-			
+			table.addRow(new Object[] { d.getDenunciante().getNombre(), d.getCancion().getAutorNombre(),
+					d.getCancion().getNombre(), d.getComentario() });
+
 		}
 		vista.gettableDenuncias().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
@@ -114,18 +111,19 @@ public class ControladorVistaAdmin implements ActionListener {
 			if (vista.getTpOptionsIndex() == 2) {
 				ValidacionForm formV = new ValidacionForm();
 				int selection = vista.gettableValidaciones().getSelectedRow();
-				ControladorValidacion controlV = new ControladorValidacion(formV, api, vista, validaciones.get(selection));
+				ControladorValidacion controlV = new ControladorValidacion(formV, api, vista,
+						validaciones.get(selection));
 				formV.setControlador(controlV);
 				controlV.start();
-				
-			}else if (vista.getTpOptionsIndex() == 1) {
+
+			} else if (vista.getTpOptionsIndex() == 1) {
 				DenunciaForm formD = new DenunciaForm();
 				int selection = vista.gettableDenuncias().getSelectedRow();
 				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
 				formD.setDenunciaText(denuncias.get(selection).getComentario());
 				formD.setControlador(controlD);
 				controlD.start();
-				
+
 			}
 		}
 
@@ -135,6 +133,7 @@ public class ControladorVistaAdmin implements ActionListener {
 		loadTable();
 		vista.setVisible(true);
 	}
+
 	public void loadTable() {
 		validaciones = api.getValidaciones();
 		denuncias = api.getDenuncias();
@@ -142,6 +141,54 @@ public class ControladorVistaAdmin implements ActionListener {
 		rellenarTableSongs(elementos);
 		rellenarTablevalidaciones(validaciones);
 		rellenarTabledenuncias(denuncias);
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+
+		if (JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea salir?", "Atencion",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			api.desloguearse();
+			api.save();
+			System.exit(0);
+		}
+
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -28,16 +28,16 @@ public class ElementTest {
 
 	@Test
 	public void testgetNombre() {
-		assertTrue(cancion.getNombre()=="cancion");
+		assertTrue(cancion.getNombre() == "cancion");
 	}
 
 	@Test
 	public void testgetNombre2() {
-		assertTrue(album.getNombre()=="album");
+		assertTrue(album.getNombre() == "album");
 	}
 
 	@Test
 	public void testgetNombre3() {
-		assertTrue(lista.getNombre()=="lista");
+		assertTrue(lista.getNombre() == "lista");
 	}
 }

@@ -16,7 +16,7 @@ import modelo.UsuarioRegistrado;
  * 
  */
 public class ConsolaRegistrado extends Consola implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	/**

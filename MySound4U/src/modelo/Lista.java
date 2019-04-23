@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * Esta clase contiene todos los atributos y metodos de una lista
  */
 public class Lista extends Element implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/** Lista con las canciones de la lista */
 	private ArrayList<Element> elementos;
 
@@ -113,6 +113,7 @@ public class Lista extends Element implements Serializable {
 		}
 		return rutas;
 	}
+
 	/**
 	 * Metodo que devuelve los elementos
 	 * 
@@ -121,7 +122,6 @@ public class Lista extends Element implements Serializable {
 	public ArrayList<Element> getElementos() {
 		return elementos;
 	}
-
 
 	@Override
 	public String toString() {

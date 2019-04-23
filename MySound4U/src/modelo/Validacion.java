@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Validacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/** Cancion pendiente de validar */
 	private Cancion cancion;
 

@@ -2,10 +2,13 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -14,13 +17,12 @@ import modelo.Album;
 import modelo.Aplicacion;
 import modelo.Cancion;
 import modelo.Element;
-import modelo.SesionAnonima;
 import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
 
-public class ControladorVistaRegistrado implements ActionListener {
+public class ControladorVistaRegistrado implements ActionListener, WindowListener {
 	private VistaRegistrado vista;
 	private Aplicacion api;
 	private SesionUsuarios sesion;
@@ -99,4 +101,51 @@ public class ControladorVistaRegistrado implements ActionListener {
 		vista.setVisible(true);
 	}
 
+	@Override
+	public void windowClosing(WindowEvent e) {
+
+		if (JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea salir?", "Atencion",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			api.desloguearse();
+			api.save();
+			System.exit(0);
+		}
+
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
 }

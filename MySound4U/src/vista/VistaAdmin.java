@@ -4,14 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.time.LocalDate;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -24,13 +22,12 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.ControladorVistaAdmin;
-import controlador.ControladorVistaRegistrado;
 
 public class VistaAdmin extends JFrame {
 
 	private static long serialVersionUID = 1L;
 
-	String[] searchTipes = { "Todo", "titulo", "Autor", "album" };
+	String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 
 	// contenedor Principal,
 	private Container contenedor;
@@ -60,14 +57,14 @@ public class VistaAdmin extends JFrame {
 	private JTable tableSongs;
 	private JTable tableDenuncias;
 	private JTable tableValidaciones;
-	
+
 	public VistaAdmin() {
 
 		// Configuracion ventana
 		setTitle("MySound4U");
 		setSize(810, 700);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		contenedor = new JPanel();
 		contenedor.setLayout(new BorderLayout());
@@ -93,7 +90,7 @@ public class VistaAdmin extends JFrame {
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
 		btnLogOut = new JButton(" Logout  ");
-		btnGestionar= new JButton("Gestionar");
+		btnGestionar = new JButton("Gestionar");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
@@ -105,7 +102,7 @@ public class VistaAdmin extends JFrame {
 		pEast.add(pBox);
 
 		contenedor.add(pEast, BorderLayout.EAST);
-		
+
 		// Creamos el panel sur y sus elementos
 
 		psouth = new JPanel();
@@ -135,7 +132,7 @@ public class VistaAdmin extends JFrame {
 
 		tableSongs = new JTable();
 		tableSongs.setModel(
-				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "autor", "album" }) {
+				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "Autor", "Album" }) {
 
 					private static final long serialVersionUID = 1L;
 					Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class };
@@ -159,7 +156,8 @@ public class VistaAdmin extends JFrame {
 		JScrollPane scrollPaneDen = new JScrollPane();
 
 		tableDenuncias = new JTable();
-		tableDenuncias.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Denunciante", "Denunciado", "Cancion", "Motivo" }) {
+		tableDenuncias.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "Denunciante", "Denunciado", "Cancion", "Motivo" }) {
 
 			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
@@ -182,7 +180,7 @@ public class VistaAdmin extends JFrame {
 
 		tableValidaciones = new JTable();
 		tableValidaciones
-				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Cancion", "autor", "plazo" }) {
+				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Cancion", "Autor", "Plazo" }) {
 
 					private static final long serialVersionUID = 1L;
 					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
@@ -197,8 +195,6 @@ public class VistaAdmin extends JFrame {
 
 		scrollPaneVal.setPreferredSize(new Dimension(650, 542));
 		tpTabValidaciones.add(scrollPaneVal);
-
-		
 
 		// Añadimos los paneles al contenedor con el método addTab(<título>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
@@ -280,9 +276,11 @@ public class VistaAdmin extends JFrame {
 	public void setBtnStop(JButton btnStop) {
 		this.btnStop = btnStop;
 	}
+
 	public JButton getBtnGestionar() {
 		return btnGestionar;
 	}
+
 	public void setBtnGestionar(JButton btnGestionar) {
 		this.btnGestionar = btnGestionar;
 	}
@@ -331,6 +329,6 @@ public class VistaAdmin extends JFrame {
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
 
+		addWindowListener(c);
 	}
-
 }

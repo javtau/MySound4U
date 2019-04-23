@@ -27,21 +27,18 @@ public class ValidacionTest {
 
 	@Test
 	public void testgetPlazo() {
-		assertTrue(validacion.getPlazo()==LocalDate.MAX);
+		assertTrue(validacion.getPlazo() == LocalDate.MAX);
 	}
 
 	@Test
 	public void testsetPlazo() {
 		validacion.setPlazo(FechaSimulada.getHoy());
-		assertTrue(validacion.getPlazo()==FechaSimulada.getHoy());
+		assertTrue(validacion.getPlazo() == FechaSimulada.getHoy());
 	}
-
 
 	@Test
 	public void testgetCancion() {
-		assertTrue(validacion.getCancion()==cancion);
+		assertTrue(validacion.getCancion() == cancion);
 	}
-	
-	
-	
+
 }

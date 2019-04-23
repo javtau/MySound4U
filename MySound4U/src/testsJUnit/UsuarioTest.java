@@ -26,12 +26,14 @@ public class UsuarioTest {
 
 	@Test
 	public void testgetNombre() {
-		assertTrue(usuario.getNombre().equals("Nombre") && usuario2.getNombre().equals("anonimo")&& usuario3.getNombre().equals("admin"));
+		assertTrue(usuario.getNombre().equals("Nombre") && usuario2.getNombre().equals("anonimo")
+				&& usuario3.getNombre().equals("admin"));
 	}
 
 	@Test
 	public void testgetContrasena() {
-		assertTrue(usuario.getContrasena().equals("passwd") && usuario2.getContrasena().equals("anonimo")&& usuario3.getContrasena().equals("admin"));
+		assertTrue(usuario.getContrasena().equals("passwd") && usuario2.getContrasena().equals("anonimo")
+				&& usuario3.getContrasena().equals("admin"));
 	}
 
 	@Test
@@ -40,9 +42,8 @@ public class UsuarioTest {
 		for (i = 0; i < 30; i++) {
 			usuario.aumentarReproducidas();
 		}
-		assertTrue(usuario.getReproducidas()==30);
+		assertTrue(usuario.getReproducidas() == 30);
 	}
-
 
 	@Test
 	public void testresetearreproducidas() {
@@ -51,7 +52,7 @@ public class UsuarioTest {
 			usuario.aumentarReproducidas();
 		}
 		usuario.resetearreproducidas();
-		assertTrue(usuario.getReproducidas()==0);
+		assertTrue(usuario.getReproducidas() == 0);
 	}
 
 	@Test
@@ -72,6 +73,6 @@ public class UsuarioTest {
 	@Test
 	public void testValidar4() {
 		assertFalse(usuario.validar("Nombre", "PASSWD"));
-		}
+	}
 
 }

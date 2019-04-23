@@ -28,7 +28,7 @@ public class AlbumTest {
 	public void testanadirCancion() {
 		album.anadirCancion(cancion);
 		assertFalse(album.isEmpty());
-		
+
 	}
 
 	@Test
@@ -36,12 +36,12 @@ public class AlbumTest {
 		album.anadirCancion(cancion);
 		album.borrarCancion(cancion);
 		assertTrue(album.isEmpty());
-		
+
 	}
 
 	@Test
 	public void testgetAutor() {
-		assertTrue(album.getAutor()== usuario);
-		
+		assertTrue(album.getAutor() == usuario);
+
 	}
 }

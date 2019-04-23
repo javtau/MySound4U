@@ -10,7 +10,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -28,7 +27,7 @@ public class VistaRegistrado extends JFrame {
 
 	private static long serialVersionUID = 1L;
 
-	String[] searchTipes = { "Todo", "titulo", "Autor", "album" };
+	String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 
 	// contenedor Principal,
 	private Container contenedor;
@@ -67,7 +66,7 @@ public class VistaRegistrado extends JFrame {
 		setTitle("MySound4U");
 		setSize(810, 700);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		contenedor = new JPanel();
 		contenedor.setLayout(new BorderLayout());
@@ -92,7 +91,7 @@ public class VistaRegistrado extends JFrame {
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
-		btnLogOut = new JButton (" Logout  ");
+		btnLogOut = new JButton(" Logout  ");
 		btnPremium = new JButton(" Premium");
 		btnSubir = new JButton("    Subir     ");
 		btnDenunciar = new JButton("Denunciar");
@@ -141,7 +140,7 @@ public class VistaRegistrado extends JFrame {
 
 		tableSongs = new JTable();
 		tableSongs.setModel(
-				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "autor", "album" }) {
+				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "Autor", "Album" }) {
 
 					private static final long serialVersionUID = 1L;
 					Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class };
@@ -203,7 +202,7 @@ public class VistaRegistrado extends JFrame {
 		scrollPaneList.setPreferredSize(new Dimension(650, 542));
 		tpTabList.add(scrollPaneList);
 
-		// panel de pendientes
+		// Panel de pendientes
 
 		JPanel tpTabPendientes = new JPanel();
 		JScrollPane scrollPanePend = new JScrollPane();
@@ -247,15 +246,15 @@ public class VistaRegistrado extends JFrame {
 
 		pCenter.add(tpOptions);
 
-		// a�adir componentes al contenedor
+		// anadir componentes al contenedor
 		contenedor.add(pCenter, BorderLayout.CENTER);
 
 	}
 
 	public static void main(String[] args) {
 		VistaRegistrado vp = new VistaRegistrado();
-		//ControladorPrincipal Controlprincipal = new ControladorPrincipal(vp);
-		//vp.setControlador(Controlprincipal);
+		// ControladorPrincipal Controlprincipal = new ControladorPrincipal(vp);
+		// vp.setControlador(Controlprincipal);
 		vp.setVisible(true);
 	}
 
@@ -370,9 +369,9 @@ public class VistaRegistrado extends JFrame {
 	public void setTablePendientes(JTable tablePendientes) {
 		this.tablePendientes = tablePendientes;
 	}
-	
+
 	public void setControlador(ControladorVistaRegistrado c) {
-		
+
 		btnBusqueda.addActionListener(c);
 		btnLogOut.addActionListener(c);
 		btnPremium.addActionListener(c);
@@ -380,6 +379,7 @@ public class VistaRegistrado extends JFrame {
 		btnStop.addActionListener(c);
 		btnSubir.addActionListener(c);
 		
+		addWindowListener(c);
 	}
 
 }

@@ -10,10 +10,10 @@ import java.io.Serializable;
 /**
  * Esta clase contiene todos los atributos y metodos de un administrador
  */
-public class Administrador extends Usuario implements Serializable{
+public class Administrador extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/** Nombre por defecto para el administrador */
 	private static final String NOMBRE = "admin";
 
@@ -29,15 +29,15 @@ public class Administrador extends Usuario implements Serializable{
 	}
 
 	/**
-	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y
-	 * pasa a dicha sesion la aplicacion que la genera
+	 * Este metodo inicia una nueva sesion del tipo del usuario que la inicia y pasa
+	 * a dicha sesion la aplicacion que la genera
 	 * 
 	 * @param api Aplicacion que pide el inicio de sesion
 	 * @return Sesion Sesion del tipo de usuario que la inicia
 	 */
 	@Override
 	public Sesion iniciarSesion(Aplicacion api) {
-		 return new SesionAdmin(this, api);
+		return new SesionAdmin(this, api);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class Administrador extends Usuario implements Serializable{
 
 		return false;
 	}
-	
+
 	/**
 	 * Este devuelve un string con la informacion del administrador
 	 * 

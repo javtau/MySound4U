@@ -17,9 +17,8 @@ import utils.FechaSimulada;
  * administrador
  */
 public class SesionAdmin extends Sesion implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
 
 	private Administrador usuario;
 	static java.util.Scanner sc;
@@ -181,7 +180,7 @@ public class SesionAdmin extends Sesion implements Serializable {
 			stop();
 			api.desloguearse();
 			break;
-			
+
 		case "marcar explicita":
 			consola.printSelectSong();
 			try {
@@ -189,7 +188,7 @@ public class SesionAdmin extends Sesion implements Serializable {
 				if (index >= elementos.size() || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else {
-					marcarExplicita((Cancion)elementos.get(index));
+					marcarExplicita((Cancion) elementos.get(index));
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Debe introducir el numero de la cancion");

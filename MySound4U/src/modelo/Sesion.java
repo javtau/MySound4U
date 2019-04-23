@@ -16,7 +16,7 @@ import utils.Reproductor;
 public abstract class Sesion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	protected Aplicacion api;
 	protected static Reproductor reproductor;
 	protected Consola consola;
