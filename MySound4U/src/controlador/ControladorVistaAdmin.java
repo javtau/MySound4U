@@ -120,7 +120,10 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 				DenunciaForm formD = new DenunciaForm();
 				int selection = vista.gettableDenuncias().getSelectedRow();
 				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
-				formD.setDenunciaText(denuncias.get(selection).getComentario());
+				formD.getTextArea().setText(denuncias.get(selection).getComentario());
+				formD.getLbdenunciante().setText(denuncias.get(selection).getDenunciante().getNombre());
+				formD.getLbcancion().setText(denuncias.get(selection).getCancion().getNombre());
+				formD.getLbautor().setText(denuncias.get(selection).getCancion().getAutorNombre());
 				formD.setControlador(controlD);
 				controlD.start();
 

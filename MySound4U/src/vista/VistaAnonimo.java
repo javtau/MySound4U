@@ -132,8 +132,10 @@ public class VistaAnonimo extends JFrame {
 				});
 		DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
 		modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
-		// tableSongs.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
-		// tableSongs.getColumnModel().getColumn(3).setCellRenderer(modelocentrar);
+		tableSongs.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+		tableSongs.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+		tableSongs.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);
+		tableSongs.getColumnModel().getColumn(3).setCellRenderer(modelocentrar);
 		scrollPane.setViewportView(tableSongs);
 
 		scrollPane.setPreferredSize(new Dimension(650, 542));

@@ -28,6 +28,7 @@ public class LoginForm extends JFrame {
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
 		setContentPane(contenedor);
+		setLocationRelativeTo(null);
 
 		setResizable(false);
 

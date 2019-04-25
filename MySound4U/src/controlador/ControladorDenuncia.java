@@ -52,7 +52,6 @@ public class ControladorDenuncia implements ActionListener {
 	}
 
 	public void start() {
-		formulario.setLocation(vista);
 		formulario.setVisible(true);
 	}
 
