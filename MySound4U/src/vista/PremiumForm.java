@@ -10,19 +10,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controlador.ControladorRegistro;
+import controlador.ControladorPremium;
 
-public class RegistroForm extends JFrame {
-	JLabel l2, l3, l4;
-	JTextField tf1, tf2;
+public class PremiumForm extends JFrame {
+	JLabel l1;
+	JTextField tf1;
 	JButton btn1;
-	JPasswordField p1;
 	private Container contenedor;
 
-	public RegistroForm() {
+	public PremiumForm() {
 		setTitle("Registro");
 
 		contenedor = new JPanel();
@@ -31,48 +29,32 @@ public class RegistroForm extends JFrame {
 		setLocationRelativeTo(null);
 
 		setResizable(false);
- 
-		l2 = new JLabel("                 Username:");
-		l3 = new JLabel("                 Password:");
-		tf1 = new JTextField(10);
-		l4 = new JLabel("Fecha (dd/MM/yyyy):");
-		tf2 = new JTextField(10);
-		p1 = new JPasswordField(10);
-		btn1 = new JButton("Registrarse");
+
+		l1 = new JLabel("Numero de tarjeta:");
+		tf1 = new JTextField(16);
+		btn1 = new JButton("Pagar");
 
 		JPanel pl1 = new JPanel();
 		JPanel pl2 = new JPanel();
-		JPanel pl3 = new JPanel();
-		JPanel pl4 = new JPanel();
 
 		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl2.setLayout(new FlowLayout(FlowLayout.CENTER));
-		pl3.setLayout(new FlowLayout(FlowLayout.CENTER));
-		pl4.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		pl1.add(l2);
+		pl1.add(l1);
 		pl1.add(tf1);
-		pl2.add(l3);
-		pl2.add(p1);
-		pl3.add(l4);
-		pl3.add(tf2);
-		pl4.add(btn1);
+		pl2.add(btn1);
 
 		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));
 
 		contenedor.add(pl1);
 		contenedor.add(pl2);
-		contenedor.add(pl3);
-		contenedor.add(pl4);
 
-		setSize(340, 220);
+		setSize(340, 140);
 	}
 
-	public void setControlador(ControladorRegistro c) {
+	public void setControlador(ControladorPremium c) {
 		tf1.addActionListener(c);
-		p1.addActionListener(c);
 		btn1.addActionListener(c);
-		tf2.addActionListener(c);
 	}
 
 	/**
@@ -103,29 +85,7 @@ public class RegistroForm extends JFrame {
 		this.btn1 = btn1;
 	}
 
-	/**
-	 * @return the p1
-	 */
-	public JPasswordField getP1() {
-		return p1;
-	}
-
-	/**
-	 * @param p1 the p1 to set
-	 */
-	public void setP1(JPasswordField p1) {
-		this.p1 = p1;
-	}
-
-	public JTextField getTf2() {
-		return tf2;
-	}
-
-	public void setTf2(JTextField tf2) {
-		this.tf2 = tf2;
-	}
-
-	public void setLocation(VistaAnonimo vista) {
+	public void setLocation(VistaRegistrado vista) {
 		this.setLocationRelativeTo(vista);
 	}
 }

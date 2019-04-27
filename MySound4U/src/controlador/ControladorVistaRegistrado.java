@@ -19,6 +19,8 @@ import modelo.Cancion;
 import modelo.Element;
 import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
+import vista.PremiumForm;
+import vista.RegistroForm;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
 
@@ -62,6 +64,18 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			System.out.println("pasar a anonimo");
 			vista.dispose();
 		} else if (component == vista.getBtnPremium()) {
+			PremiumForm premium = new PremiumForm();
+			if (sesion.getUsuarioRegistrado().esPremium() == false) {
+			System.out.println("boton premium pulsado");
+			ControladorPremium controlP = new ControladorPremium(premium, api, vista);
+			premium.setControlador(controlP);
+			premium.setVisible(true);
+			controlP.start();
+			}
+			else {
+				JOptionPane.showMessageDialog(premium, "El usuario ya es premium", "Error",
+						JOptionPane.ERROR_MESSAGE);
+			}
 
 		} else if (component == vista.getBtnStop()) {
 			sesion.stop();

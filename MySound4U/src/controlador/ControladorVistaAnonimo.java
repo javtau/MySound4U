@@ -70,8 +70,6 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			login.setVisible(true);
 			controlL.start();
 
-		} else if (component == vista.getBtnSingUp()) {
-
 		} else if (component == vista.getBtnStop()) {
 			sesion.stop();
 		} else if (component == vista.getBtnPlay()) {
