@@ -22,7 +22,6 @@ public class ControladorRegistro implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object component = e.getSource();
-
 		String uname = registro.getTf1().getText();
 		String pass = registro.getP1().getText();
 		String fecha = registro.getTf2().getText();
