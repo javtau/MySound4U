@@ -23,6 +23,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JOptionPane;
+
+import vista.RegistroForm;
 import utils.FechaSimulada;
 import utils.Reproductor;
 
@@ -203,7 +206,7 @@ public class Aplicacion implements Serializable {
 	 * @param pass   Contrasena del usuario
 	 * @param fecha  Fecha de nacimiento del usuario
 	 */
-	public void registrarse(String nombre, String pass, String fecha) {
+	public boolean registrarse(String nombre, String pass, String fecha) {
 		boolean encontrado = false;
 		LocalDate d;
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -226,6 +229,7 @@ public class Aplicacion implements Serializable {
 		} catch (DateTimeParseException e) {
 
 		}
+		return encontrado;
 	}
 
 	/**

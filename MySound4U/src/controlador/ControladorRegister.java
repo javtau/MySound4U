@@ -14,6 +14,7 @@ public class ControladorRegister implements ActionListener {
 	private Aplicacion api;
 	private VistaAnonimo vista;
 	private boolean fechaCorrecta;
+	private boolean comprobacion;
 
 	public ControladorRegister(RegistroForm registro, Aplicacion api, VistaAnonimo vista) {
 		super();
@@ -37,12 +38,18 @@ public class ControladorRegister implements ActionListener {
 					|| fechaCorrecta == false) {
 				JOptionPane.showMessageDialog(registro, "Por favor, rellene el formulario correctamente", "Error",
 						JOptionPane.ERROR_MESSAGE);
+
 			} else {
 				System.out.println("boton registrarse pulsado");
-				api.registrarse(uname, pass, fecha);
-				JOptionPane.showMessageDialog(registro, "Usuario registrado correctamente", "Registro",
-						JOptionPane.INFORMATION_MESSAGE);
-				registro.dispose();
+				comprobacion = api.registrarse(uname, pass, fecha);
+
+				if (comprobacion == false) {
+					JOptionPane.showMessageDialog(registro, "Usuario registrado correctamente", "Registro",
+							JOptionPane.INFORMATION_MESSAGE);
+					registro.dispose();
+				} else
+					JOptionPane.showMessageDialog(registro, "El nombre de usuario ya esta usado, pruebe otro distinto",
+							"Registro", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
