@@ -218,7 +218,7 @@ public class VistaAnonimo extends JFrame {
 		btnSingUp.addActionListener(c);
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
-		
+
 		addWindowListener(c);
 	}
 }

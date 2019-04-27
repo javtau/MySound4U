@@ -18,6 +18,7 @@ import modelo.Element;
 import modelo.SesionAnonima;
 import modelo.TIPO_BUSQUEDA;
 import vista.LoginForm;
+import vista.RegistroForm;
 import vista.VistaAnonimo;
 
 public class ControladorVistaAnonimo implements ActionListener, WindowListener {
@@ -53,7 +54,15 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 	public void actionPerformed(ActionEvent e) {
 		Object component = e.getSource();
 
-		if (component == vista.getBtnLogIn()) {
+		if (component == vista.getBtnSingUp()) {
+			System.out.println("boton registro pulsado");
+			RegistroForm registro = new RegistroForm();
+			ControladorRegistro controlR = new ControladorRegistro(registro, api, vista);
+			registro.setControlador(controlR);
+			registro.setVisible(true);
+			controlR.start();
+
+		} else if (component == vista.getBtnLogIn()) {
 			System.out.println("boton login pulsado");
 			LoginForm login = new LoginForm();
 			ControladorLogin controlL = new ControladorLogin(login, api, vista);
@@ -89,7 +98,7 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 	@Override
 	public void windowClosing(WindowEvent e) {
 
-		if (JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea salir?", "Atencion",
+		if (JOptionPane.showConfirmDialog(null, "Esta seguro de que desea salir?", "Atencion",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			api.desloguearse();
 			api.save();

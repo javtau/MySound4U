@@ -378,7 +378,7 @@ public class VistaRegistrado extends JFrame {
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
 		btnSubir.addActionListener(c);
-		
+
 		addWindowListener(c);
 	}
 

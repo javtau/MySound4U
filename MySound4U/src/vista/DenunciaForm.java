@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -35,7 +34,7 @@ public class DenunciaForm extends JFrame {
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
 		setContentPane(contenedor);
-		
+
 		JPanel pl1 = new JPanel();
 		JPanel pl2 = new JPanel();
 		JPanel pl3 = new JPanel();
@@ -47,18 +46,18 @@ public class DenunciaForm extends JFrame {
 		pl3.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl4.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pl5.setLayout(new FlowLayout(FlowLayout.LEFT));
-		
+
 		l3 = new JLabel("Denunciante: ");
-	
+
 		lbdenunciante = new JLabel("");
 		lbdenunciante.setFont(new Font("Serif", Font.BOLD, 15));
-		
+
 		l5 = new JLabel("Cancion: ");
 		lbcancion = new JLabel("");
-		
+
 		l7 = new JLabel("Autor: ");
 		lbautor = new JLabel("");
-		
+
 		l2 = new JLabel("Motivo: ");
 
 		textArea = new JTextArea(LEFTSPACE, 30);
@@ -84,8 +83,8 @@ public class DenunciaForm extends JFrame {
 		pl2.add(l2);
 		pl3.add(scrollPane);
 		setSize(360, 280);
-		
-		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));		
+
+		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));
 		contenedor.add(pl4);
 		contenedor.add(pl5);
 		contenedor.add(pl2);
@@ -143,7 +142,5 @@ public class DenunciaForm extends JFrame {
 	public JButton getBtn2() {
 		return btn2;
 	}
-
-	
 
 }

@@ -55,9 +55,8 @@ public class ControladorLogin implements ActionListener {
 				}
 
 			} else {
-
 				System.out.println("no se pudo loguear");
-				JOptionPane.showMessageDialog(login, "Nombre de usuario o password incorrectos", "Error",
+				JOptionPane.showMessageDialog(login, "Username o password incorrectos", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}

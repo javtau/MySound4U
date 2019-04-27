@@ -104,7 +104,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	@Override
 	public void windowClosing(WindowEvent e) {
 
-		if (JOptionPane.showConfirmDialog(null, "¿Esta seguro de que desea salir?", "Atencion",
+		if (JOptionPane.showConfirmDialog(null, "Esta seguro de que desea salir?", "Atencion",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			api.desloguearse();
 			api.save();

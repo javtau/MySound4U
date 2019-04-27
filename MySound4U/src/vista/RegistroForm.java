@@ -13,17 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controlador.ControladorLogin;
+import controlador.ControladorRegistro;
 
-public class LoginForm extends JFrame {
-	JLabel l2, l3;
-	JTextField tf1;
+public class RegistroForm extends JFrame {
+	JLabel l2, l3, l4;
+	JTextField tf1, tf2;
 	JButton btn1;
 	JPasswordField p1;
 	private Container contenedor;
 
-	public LoginForm() {
-		setTitle("Login");
+	public RegistroForm() {
+		setTitle("Registro");
 
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
@@ -35,40 +35,44 @@ public class LoginForm extends JFrame {
 		l2 = new JLabel("Username:");
 		l3 = new JLabel("Password:");
 		tf1 = new JTextField(10);
+		l4 = new JLabel("      Fecha:");
+		tf2 = new JTextField(10);
 		p1 = new JPasswordField(10);
-		btn1 = new JButton("Login");
+		btn1 = new JButton("Registrarse");
 
 		JPanel pl1 = new JPanel();
 		JPanel pl2 = new JPanel();
 		JPanel pl3 = new JPanel();
+		JPanel pl4 = new JPanel();
 
 		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl2.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl3.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pl4.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 		pl1.add(l2);
 		pl1.add(tf1);
 		pl2.add(l3);
 		pl2.add(p1);
-		pl3.add(btn1);
+		pl3.add(l4);
+		pl3.add(tf2);
+		pl4.add(btn1);
 
 		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));
 
 		contenedor.add(pl1);
 		contenedor.add(pl2);
 		contenedor.add(pl3);
+		contenedor.add(pl4);
 
-		setSize(250, 160);
+		setSize(300, 220);
 	}
 
-	public static void main(String[] args) {
-		LoginForm login = new LoginForm();
-	}
-
-	public void setControlador(ControladorLogin c) {
+	public void setControlador(ControladorRegistro c) {
 		tf1.addActionListener(c);
 		p1.addActionListener(c);
 		btn1.addActionListener(c);
+		tf2.addActionListener(c);
 	}
 
 	/**
@@ -111,6 +115,14 @@ public class LoginForm extends JFrame {
 	 */
 	public void setP1(JPasswordField p1) {
 		this.p1 = p1;
+	}
+
+	public JTextField getTf2() {
+		return tf2;
+	}
+
+	public void setTf2(JTextField tf2) {
+		this.tf2 = tf2;
 	}
 
 	public void setLocation(VistaAnonimo vista) {
