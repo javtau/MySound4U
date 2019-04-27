@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controlador.ControladorRegistro;
+import controlador.ControladorRegister;
 
 public class RegistroForm extends JFrame {
 	JLabel l2, l3, l4;
@@ -68,7 +68,7 @@ public class RegistroForm extends JFrame {
 		setSize(340, 220);
 	}
 
-	public void setControlador(ControladorRegistro c) {
+	public void setControlador(ControladorRegister c) {
 		tf1.addActionListener(c);
 		p1.addActionListener(c);
 		btn1.addActionListener(c);

@@ -57,7 +57,7 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 		if (component == vista.getBtnSingUp()) {
 			System.out.println("boton registro pulsado");
 			RegistroForm registro = new RegistroForm();
-			ControladorRegistro controlR = new ControladorRegistro(registro, api, vista);
+			ControladorRegister controlR = new ControladorRegister(registro, api, vista);
 			registro.setControlador(controlR);
 			registro.setVisible(true);
 			controlR.start();
