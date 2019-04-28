@@ -3,6 +3,7 @@ package vista;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.Calendar;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -13,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
 import controlador.ControladorRegister;
 
 public class RegistroForm extends JFrame {
@@ -20,10 +23,11 @@ public class RegistroForm extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	JLabel l2, l3, l4;
-	JTextField tf1, tf2;
+	JTextField tf1;
 	JButton btn1;
 	JPasswordField p1;
 	private Container contenedor;
+	JDateChooser dcFecha;
 
 	public RegistroForm() {
 		setTitle("Registro");
@@ -35,12 +39,15 @@ public class RegistroForm extends JFrame {
 
 		setResizable(false);
 
-		l2 = new JLabel("                 Username:");
-		l3 = new JLabel("                 Password:");
-		tf1 = new JTextField(10);
-		l4 = new JLabel("Fecha (dd/MM/yyyy):");
-		tf2 = new JTextField(10);
-		p1 = new JPasswordField(10);
+		l2 = new JLabel("                  Username:");
+		tf1 = new JTextField(9);
+		l3 = new JLabel("                  Password:");
+		p1 = new JPasswordField(9);
+		l4 = new JLabel("Fecha de nacimiento:");
+		dcFecha = new JDateChooser();
+		dcFecha.setCalendar(Calendar.getInstance());
+		dcFecha.setDateFormatString("dd/MM/yyyy");
+
 		btn1 = new JButton("Registrarse");
 
 		JPanel pl1 = new JPanel();
@@ -58,7 +65,7 @@ public class RegistroForm extends JFrame {
 		pl2.add(l3);
 		pl2.add(p1);
 		pl3.add(l4);
-		pl3.add(tf2);
+		pl3.add(dcFecha);
 		pl4.add(btn1);
 
 		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -75,7 +82,6 @@ public class RegistroForm extends JFrame {
 		tf1.addActionListener(c);
 		p1.addActionListener(c);
 		btn1.addActionListener(c);
-		tf2.addActionListener(c);
 	}
 
 	/**
@@ -120,15 +126,15 @@ public class RegistroForm extends JFrame {
 		this.p1 = p1;
 	}
 
-	public JTextField getTf2() {
-		return tf2;
-	}
-
-	public void setTf2(JTextField tf2) {
-		this.tf2 = tf2;
-	}
-
 	public void setLocation(VistaAnonimo vista) {
 		this.setLocationRelativeTo(vista);
+	}
+	
+	public JDateChooser getDcFecha() {
+		return dcFecha;
+	}
+
+	public void setDcFecha(JDateChooser dcFecha) {
+		this.dcFecha = dcFecha;
 	}
 }
