@@ -22,7 +22,7 @@ import controlador.ControladorVistaAnonimo;
 
 public class VistaAnonimo extends JFrame {
 
-	private static long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 
