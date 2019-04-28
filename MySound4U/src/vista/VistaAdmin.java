@@ -167,8 +167,10 @@ public class VistaAdmin extends JFrame {
 				return columnTypes[columnIndex];
 			}
 		});
-
+		tableDenuncias.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
 		tableDenuncias.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+		tableDenuncias.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);
+		tableDenuncias.getColumnModel().getColumn(3).setCellRenderer(modelocentrar);
 		scrollPaneDen.setViewportView(tableDenuncias);
 
 		scrollPaneDen.setPreferredSize(new Dimension(650, 542));
@@ -190,7 +192,9 @@ public class VistaAdmin extends JFrame {
 					}
 				});
 
+		tableValidaciones.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
 		tableValidaciones.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+		tableValidaciones.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);
 		scrollPaneVal.setViewportView(tableValidaciones);
 
 		scrollPaneVal.setPreferredSize(new Dimension(650, 542));
