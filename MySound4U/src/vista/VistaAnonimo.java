@@ -81,8 +81,8 @@ public class VistaAnonimo extends JFrame {
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
-		btnLogIn = new JButton("  Loguearse  ");
-		btnSignUp = new JButton(" Registrarse");
+		btnLogIn = new JButton("    Login     ");
+		btnSignUp = new JButton("Registrarse");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
