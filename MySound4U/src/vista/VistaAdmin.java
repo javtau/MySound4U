@@ -42,6 +42,7 @@ public class VistaAdmin extends JFrame {
 	JPanel pEast;
 	private JButton btnLogOut;
 	private JButton btnGestionar;
+	private JButton btnAjustes;
 
 	// Elementos del panel sur
 	JPanel psouth;
@@ -91,6 +92,7 @@ public class VistaAdmin extends JFrame {
 		JPanel pBox = new JPanel();
 		btnLogOut = new JButton("  Logout  ");
 		btnGestionar = new JButton("Gestionar");
+		btnAjustes = new JButton("  Ajustes  ");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
@@ -99,6 +101,8 @@ public class VistaAdmin extends JFrame {
 		pBox.add(btnLogOut);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnGestionar);
+		pBox.add(Box.createRigidArea(new Dimension(0, 460)));
+		pBox.add(btnAjustes);
 		pEast.add(pBox);
 
 		contenedor.add(pEast, BorderLayout.EAST);
@@ -322,6 +326,14 @@ public class VistaAdmin extends JFrame {
 
 	public void settableValidaciones(JTable tableValidaciones) {
 		this.tableValidaciones = tableValidaciones;
+	}
+
+	public JButton getBtnAjustes() {
+		return btnAjustes;
+	}
+
+	public void setBtnAjustes(JButton btnAjustes) {
+		this.btnAjustes = btnAjustes;
 	}
 
 	public void setControlador(ControladorVistaAdmin c) {
