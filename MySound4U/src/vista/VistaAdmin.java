@@ -89,7 +89,7 @@ public class VistaAdmin extends JFrame {
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
-		btnLogOut = new JButton(" Logout  ");
+		btnLogOut = new JButton("  Logout  ");
 		btnGestionar = new JButton("Gestionar");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
