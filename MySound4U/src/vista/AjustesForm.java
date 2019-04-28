@@ -11,9 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 
-import controlador.ControladorAjustes;
+//import controlador.ControladorAjustes;
 import modelo.Aplicacion;
 
 public class AjustesForm extends JFrame {
@@ -75,12 +74,12 @@ public class AjustesForm extends JFrame {
 		setSize(340, 220);
 	}
 
-	public void setControlador(ControladorAjustes c) {
+	/*public void setControlador(ControladorAjustes c) {
 		sp1.addChangeListener(c);
 		sp2.addActionListener(c);
 		sp3.addActionListener(c);
 		btn1.addActionListener(c);
-	}
+	}*/
 
 	public static void main(String[] args) {
 		AjustesForm ajustes = new AjustesForm();
