@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/junit4.jar"/>
 	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/MP3Player.jar"/>
 	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/TeleChargeAndPaySystem8.jar"/>
+	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
