@@ -20,7 +20,6 @@ import modelo.Element;
 import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
 import vista.PremiumForm;
-import vista.RegistroForm;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
 

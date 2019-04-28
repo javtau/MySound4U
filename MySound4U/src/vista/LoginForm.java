@@ -16,6 +16,9 @@ import javax.swing.JTextField;
 import controlador.ControladorLogin;
 
 public class LoginForm extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
 	JLabel l2, l3;
 	JTextField tf1;
 	JButton btn1;
@@ -59,10 +62,6 @@ public class LoginForm extends JFrame {
 		contenedor.add(pl3);
 
 		setSize(250, 160);
-	}
-
-	public static void main(String[] args) {
-		LoginForm login = new LoginForm();
 	}
 
 	public void setControlador(ControladorLogin c) {

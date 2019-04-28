@@ -23,9 +23,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.JOptionPane;
-
-import vista.RegistroForm;
 import utils.FechaSimulada;
 import utils.Reproductor;
 

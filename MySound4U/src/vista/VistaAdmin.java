@@ -29,30 +29,30 @@ public class VistaAdmin extends JFrame {
 
 	String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 
-	// contenedor Principal,
+	// Contenedor Principal,
 	private Container contenedor;
 
-	// elementos del panel norte
+	// Elementos del panel norte
 	JPanel pNorth;
 	private JTextField tfBusqueda;
 	private JComboBox<String> comboBusqueda;
 	private JButton btnBusqueda;
 
-	// elementos del panel este
+	// Elementos del panel este
 	JPanel pEast;
 	private JButton btnLogOut;
 	private JButton btnGestionar;
 
-	// elementos del panel sur
+	// Elementos del panel sur
 	JPanel psouth;
 	private JButton btnPlay;
 	private JButton btnStop;
 
-	// elementos del panel central
+	// Elementos del panel central
 	JPanel pCenter;
 	private JTabbedPane tpOptions;
 
-	// tablas de los paneles
+	// Tablas de los paneles
 	private int selectedTable;
 	private JTable tableSongs;
 	private JTable tableDenuncias;
@@ -70,7 +70,7 @@ public class VistaAdmin extends JFrame {
 		contenedor.setLayout(new BorderLayout());
 		setContentPane(contenedor);
 
-		// creamos panel norte y sus elementos
+		// Creamos el panel norte y sus elementos
 
 		pNorth = new JPanel();
 		tfBusqueda = new RoundJTextField(40);
@@ -85,7 +85,7 @@ public class VistaAdmin extends JFrame {
 		// pNorth.setVisible(true);
 		contenedor.add(pNorth, BorderLayout.NORTH);
 
-		// creamos panel este y sus elementos
+		// Creamos el panel este y sus elementos
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
@@ -122,11 +122,11 @@ public class VistaAdmin extends JFrame {
 
 		contenedor.add(psouth, BorderLayout.SOUTH);
 
-		// Creamos panel central y sus elementos
+		// Creamos el panel central y sus elementos
 		pCenter = new JPanel();
 		JTabbedPane tpOptions = new JTabbedPane();
 
-		// panel de canciones
+		// Panel de canciones
 		JPanel tpTabSongs = new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 
@@ -152,8 +152,7 @@ public class VistaAdmin extends JFrame {
 		scrollPane.setPreferredSize(new Dimension(650, 542));
 		tpTabSongs.add(scrollPane);
 
-		// panel de Denuncias
-
+		// Panel de Denuncias
 		JPanel tpTabDenuncias = new JPanel();
 		JScrollPane scrollPaneDen = new JScrollPane();
 
@@ -175,8 +174,7 @@ public class VistaAdmin extends JFrame {
 		scrollPaneDen.setPreferredSize(new Dimension(650, 542));
 		tpTabDenuncias.add(scrollPaneDen);
 
-		// panel de Validaciones
-
+		// Panel de validaciones
 		JPanel tpTabValidaciones = new JPanel();
 		JScrollPane scrollPaneVal = new JScrollPane();
 
@@ -198,12 +196,12 @@ public class VistaAdmin extends JFrame {
 		scrollPaneVal.setPreferredSize(new Dimension(650, 542));
 		tpTabValidaciones.add(scrollPaneVal);
 
-		// Añadimos los paneles al contenedor con el método addTab(<título>,<panel>)
+		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
 		tpOptions.addTab("Denuncias", tpTabDenuncias);
 		tpOptions.addTab("Validaciones", tpTabValidaciones);
 		tpOptions.setPreferredSize(new Dimension(665, 580));
-		// Podemos seleccionar una pestaña del contendor con setSelectedIndex(<indice>)
+		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
 		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
 		tpOptions.addChangeListener(new ChangeListener() {
@@ -215,13 +213,12 @@ public class VistaAdmin extends JFrame {
 			}
 		});
 
-		// crear panel central
+		// Crear panel central
 
 		pCenter.add(tpOptions);
 
-		// a�adir componentes al contenedor
+		// Anadir componentes al contenedor
 		contenedor.add(pCenter, BorderLayout.CENTER);
-
 	}
 
 	public static void main(String[] args) {

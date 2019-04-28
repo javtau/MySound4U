@@ -16,6 +16,9 @@ import javax.swing.JTextField;
 import controlador.ControladorRegister;
 
 public class RegistroForm extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
 	JLabel l2, l3, l4;
 	JTextField tf1, tf2;
 	JButton btn1;
@@ -31,7 +34,7 @@ public class RegistroForm extends JFrame {
 		setLocationRelativeTo(null);
 
 		setResizable(false);
- 
+
 		l2 = new JLabel("                 Username:");
 		l3 = new JLabel("                 Password:");
 		tf1 = new JTextField(10);

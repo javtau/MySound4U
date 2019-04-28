@@ -207,7 +207,7 @@ public class SesionAdmin extends Sesion implements Serializable {
 					System.out.println("Ha introducido un numero de validacion incorrecto");
 				} else {
 
-					System.out.print("¿Desea validar o invalidar la cancion? ");
+					System.out.print("Desea validar o invalidar la cancion? ");
 					gestion = sc.nextLine();
 					if (gestion.equalsIgnoreCase("validar")) {
 						validar(api.getValidacion(elec));
@@ -225,7 +225,7 @@ public class SesionAdmin extends Sesion implements Serializable {
 				if (elec > denuncias.size() || elec > 6 || elec < 0) {
 					System.out.println("Ha introducido un numero de validacion incorrecto.");
 				} else {
-					System.out.print("¿Desea aceptar o rechazar la denuncia? ");
+					System.out.print("Desea aceptar o rechazar la denuncia? ");
 					gestion = sc.nextLine();
 					if (gestion.equalsIgnoreCase("aceptar")) {
 						aceptarDenuncia(denuncias.get(elec));

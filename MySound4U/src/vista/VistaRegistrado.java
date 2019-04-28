@@ -29,32 +29,32 @@ public class VistaRegistrado extends JFrame {
 
 	String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 
-	// contenedor Principal,
+	// Contenedor Principal,
 	private Container contenedor;
 
-	// elementos del panel norte
+	// Elementos del panel norte
 	JPanel pNorth;
 	private JTextField tfBusqueda;
 	private JComboBox<String> comboBusqueda;
 	private JButton btnBusqueda;
 
-	// elementos del panel este
+	// Elementos del panel este
 	JPanel pEast;
 	private JButton btnLogOut;
 	private JButton btnPremium;
 	private JButton btnSubir;
 	private JButton btnDenunciar;
 
-	// elementos del panel sur
+	// Elementos del panel sur
 	JPanel psouth;
 	private JButton btnPlay;
 	private JButton btnStop;
 
-	// elementos del panel central
+	// Elementos del panel central
 	JPanel pCenter;
 	private JTabbedPane tpOptions;
 
-	// tablas de los paneles
+	// Tablas de los paneles
 	private JTable tableSongs;
 	private JTable tableAlbums;
 	private JTable tableList;
@@ -72,7 +72,7 @@ public class VistaRegistrado extends JFrame {
 		contenedor.setLayout(new BorderLayout());
 		setContentPane(contenedor);
 
-		// creamos panel norte y sus elementos
+		// Creamos el panel norte y sus elementos
 
 		pNorth = new JPanel();
 		tfBusqueda = new RoundJTextField(40);
@@ -87,7 +87,7 @@ public class VistaRegistrado extends JFrame {
 		// pNorth.setVisible(true);
 		contenedor.add(pNorth, BorderLayout.NORTH);
 
-		// creamos panel este y sus elementos
+		// Creamos el panel este y sus elementos
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
@@ -130,11 +130,11 @@ public class VistaRegistrado extends JFrame {
 
 		contenedor.add(psouth, BorderLayout.SOUTH);
 
-		// Creamos panel central y sus elementos
+		// Creamos el panel central y sus elementos
 		pCenter = new JPanel();
 		JTabbedPane tpOptions = new JTabbedPane();
 
-		// panel de canciones
+		// Panel de canciones
 		JPanel tpTabSongs = new JPanel();
 		JScrollPane scrollPane = new JScrollPane();
 
@@ -158,7 +158,7 @@ public class VistaRegistrado extends JFrame {
 		scrollPane.setPreferredSize(new Dimension(650, 542));
 		tpTabSongs.add(scrollPane);
 
-		// panel de albumes
+		// Panel de albumes
 
 		JPanel tpTabAlbums = new JPanel();
 		JScrollPane scrollPaneAl = new JScrollPane();
@@ -180,7 +180,7 @@ public class VistaRegistrado extends JFrame {
 		scrollPaneAl.setPreferredSize(new Dimension(650, 542));
 		tpTabAlbums.add(scrollPaneAl);
 
-		// panel de Listas
+		// Panel de Listas
 
 		JPanel tpTabList = new JPanel();
 		JScrollPane scrollPaneList = new JScrollPane();
@@ -224,15 +224,15 @@ public class VistaRegistrado extends JFrame {
 		scrollPanePend.setPreferredSize(new Dimension(650, 542));
 		tpTabPendientes.add(scrollPanePend);
 
-		// Añadimos los paneles al contenedor con el método addTab(<título>,<panel>)
+		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
 		tpOptions.addTab("Albumes", tpTabAlbums);
 		tpOptions.addTab("Listas", tpTabList);
 		tpOptions.addTab("Pendientes", tpTabPendientes);
 		tpOptions.setPreferredSize(new Dimension(665, 580));
-		// Podemos seleccionar una pestaña del contendor con setSelectedIndex(<indice>)
+		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
-		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
+		// Para realizar acciones al cambiar de pestanas definiremos un ChangeListener
 		tpOptions.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -242,11 +242,11 @@ public class VistaRegistrado extends JFrame {
 			}
 		});
 
-		// crear panel central
+		// Crear panel central
 
 		pCenter.add(tpOptions);
 
-		// anadir componentes al contenedor
+		// Anadir componentes al contenedor
 		contenedor.add(pCenter, BorderLayout.CENTER);
 
 	}
@@ -381,5 +381,4 @@ public class VistaRegistrado extends JFrame {
 
 		addWindowListener(c);
 	}
-
 }

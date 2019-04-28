@@ -26,28 +26,28 @@ public class VistaAnonimo extends JFrame {
 
 	String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 
-	// contenedor Principal,
+	// Contenedor Principal,
 	private Container contenedor;
 
-	// elementos del panel norte
+	// Elementos del panel norte
 	JPanel pNorth;
 	private JTextField tfBusqueda;
 	private JComboBox<String> comboBusqueda;
 	private JButton btnBusqueda;
 
-	// elementos del panel este
+	// Elementos del panel este
 	JPanel pEast;
 	private JButton btnLogIn;
-	private JButton btnSingUp;
+	private JButton btnSignUp;
 
-	// elementos del panel sur
+	// Elementos del panel sur
 	JPanel psouth;
 	private JButton btnPlay;
 	private JButton btnStop;
 
-	// elementos del panel central
+	// Elementos del panel central
 	JPanel pCenter;
-	// tablas de los paneles
+	// Tablas de los paneles
 	private JTable tableSongs;
 
 	public VistaAnonimo() {
@@ -62,7 +62,7 @@ public class VistaAnonimo extends JFrame {
 		contenedor.setLayout(new BorderLayout());
 		setContentPane(contenedor);
 
-		// creamos panel norte y sus elementos
+		// Creamos el panel norte y sus elementos
 
 		pNorth = new JPanel();
 		tfBusqueda = new RoundJTextField(40);
@@ -77,19 +77,19 @@ public class VistaAnonimo extends JFrame {
 		// pNorth.setVisible(true);
 		contenedor.add(pNorth, BorderLayout.NORTH);
 
-		// creamos panel este y sus elementos
+		// Creamos el panel este y sus elementos
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
 		btnLogIn = new JButton("  Loguearse ");
-		btnSingUp = new JButton(" Registrarse");
+		btnSignUp = new JButton(" Registrarse");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
 
 		pBox.add(btnLogIn);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
-		pBox.add(btnSingUp);
+		pBox.add(btnSignUp);
 		pEast.add(pBox);
 
 		contenedor.add(pEast, BorderLayout.EAST);
@@ -113,10 +113,10 @@ public class VistaAnonimo extends JFrame {
 
 		contenedor.add(psouth, BorderLayout.SOUTH);
 
-		// Creamos panel central y sus elementos
+		// Creamos el panel central y sus elementos
 		pCenter = new JPanel();
 
-		// panel de canciones
+		// Panel de canciones
 		JScrollPane scrollPane = new JScrollPane();
 
 		tableSongs = new JTable();
@@ -142,7 +142,7 @@ public class VistaAnonimo extends JFrame {
 
 		pCenter.add(scrollPane);
 
-		// a�adir componentes al contenedor
+		// Anadir componentes al contenedor
 		contenedor.add(pCenter, BorderLayout.CENTER);
 
 	}
@@ -179,12 +179,12 @@ public class VistaAnonimo extends JFrame {
 		this.btnLogIn = btnLogIn;
 	}
 
-	public JButton getBtnSingUp() {
-		return btnSingUp;
+	public JButton getBtnSignUp() {
+		return btnSignUp;
 	}
 
-	public void setBtnSingUp(JButton btnSingUp) {
-		this.btnSingUp = btnSingUp;
+	public void setBtnSignUp(JButton btnSignUp) {
+		this.btnSignUp = btnSignUp;
 	}
 
 	public JButton getBtnPlay() {
@@ -215,7 +215,7 @@ public class VistaAnonimo extends JFrame {
 
 		btnBusqueda.addActionListener(c);
 		btnLogIn.addActionListener(c);
-		btnSingUp.addActionListener(c);
+		btnSignUp.addActionListener(c);
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
 

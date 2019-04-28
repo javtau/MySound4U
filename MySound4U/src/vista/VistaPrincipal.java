@@ -28,29 +28,29 @@ public class VistaPrincipal {
 
 		String[] searchTipes = { "Todo", "Titulo", "Autor", "Album" };
 		JFrame ventana = new JFrame("principal.prueba1");
-		// obtnener contenedor, asignar layout
+		// Obtener contenedor, asignar layout
 		Container contenedor = ventana.getContentPane();
 		contenedor.setLayout(new BorderLayout());
 
-		// elementos del panel norte
+		// Elementos del panel norte
 
 		JTextField tfBusqueda = new RoundJTextField(40);
 		JComboBox<String> comboBusqueda = new JComboBox<>(searchTipes);
 		JButton btnBusqueda = new JButton("Buscar");
 
-		// elementos del panel este
+		// Elementos del panel este
 		JButton btnLogIn = new JButton("  Loguearse ");
-		JButton btnSingUp = new JButton(" Registrarse");
+		JButton btnSignUp = new JButton(" Registrarse");
 
 		JButton btnSubir = new JButton("    Subir     ");
 		JButton btnDenunciar = new JButton("Denunciar");
 
-		// elementos del panel sur
+		// Elementos del panel sur
 
 		JButton btnPlay = new JButton("Play");
 		JButton btnStop = new JButton("Stop");
 
-		// elementos del panel central
+		// Elementos del panel central
 		// Creamos un panel por cada pestaña
 		final JPanel tpTab1 = new JPanel();
 		tpTab1.setLayout(new FlowLayout());
@@ -62,7 +62,7 @@ public class VistaPrincipal {
 		JPanel tpTabAlbums = new JPanel();
 		JTable tableSongs;
 
-		// panel productos///
+		// Panel productos
 
 		JScrollPane scrollPane = new JScrollPane();
 		tpTabSongs.add(scrollPane);
@@ -88,14 +88,14 @@ public class VistaPrincipal {
 		tpTabSongs.add(scrollPane);
 
 		JTabbedPane tpOptions = new JTabbedPane();
-		// Añadimos los paneles al contenedor con el método addTab(<título>,<panel>)
+		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
 		tpOptions.addTab("Albumes", tpTabAlbums);
 		tpOptions.addTab("Listas", tpTab1);
 		tpOptions.setPreferredSize(new Dimension(665, 580));
-		// Podemos seleccionar una pestaña del contendor con setSelectedIndex(<indice>)
+		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
-		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
+		// Para realizar acciones al cambiar de pestanas definiremos un ChangeListener
 		tpOptions.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -105,7 +105,7 @@ public class VistaPrincipal {
 			}
 		});
 
-		// crear panel norte
+		// Crear el panel norte
 		final JPanel pNorth = new JPanel();
 		pNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pNorth.add(tfBusqueda);
@@ -114,11 +114,11 @@ public class VistaPrincipal {
 
 		pNorth.setVisible(true);
 
-		// crear panel central
+		// Crear el panel central
 		final JPanel pCenter = new JPanel();
 		pCenter.add(tpOptions);
 
-		// crear panel este
+		// Crear el panel este
 		final JPanel pEast = new JPanel();
 		final JPanel pBox = new JPanel();
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -127,14 +127,14 @@ public class VistaPrincipal {
 		pBox.add(Box.createRigidArea(new Dimension(0, 20)));
 		pBox.add(btnLogIn);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
-		pBox.add(btnSingUp);
+		pBox.add(btnSignUp);
 		pBox.add(Box.createRigidArea(new Dimension(0, 440)));
 		pBox.add(btnSubir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnDenunciar);
 		pEast.add(pBox);
 
-		// crear panel sur
+		// Crear el panel sur
 		final JPanel psouth = new JPanel();
 		final JPanel psouthL = new JPanel();
 		final JPanel psouthR = new JPanel();
@@ -145,18 +145,17 @@ public class VistaPrincipal {
 		psouth.add(psouthL);
 		psouth.add(psouthR);
 
-		// a�adir componentes al contenedor
+		// Anadir componentes al contenedor
 		contenedor.add(pNorth, BorderLayout.NORTH);
 		contenedor.add(pCenter, BorderLayout.CENTER);
 		contenedor.add(pEast, BorderLayout.EAST);
 		contenedor.add(psouth, BorderLayout.SOUTH);
 
-		// mostrar ventana
+		// Mostrar ventana
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setSize(810, 700);
 		ventana.setResizable(false);
 		ventana.setVisible(true);
 
 	}
-
 }

@@ -15,6 +15,9 @@ import javax.swing.JTextField;
 import controlador.ControladorPremium;
 
 public class PremiumForm extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+
 	JLabel l1;
 	JTextField tf1;
 	JButton btn1;
