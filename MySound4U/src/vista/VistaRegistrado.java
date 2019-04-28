@@ -91,9 +91,9 @@ public class VistaRegistrado extends JFrame {
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
-		btnLogOut = new JButton(" Logout  ");
+		btnLogOut = new JButton("  Logout  ");
 		btnPremium = new JButton(" Premium");
-		btnSubir = new JButton("    Subir     ");
+		btnSubir = new JButton("    Subir    ");
 		btnDenunciar = new JButton("Denunciar");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
