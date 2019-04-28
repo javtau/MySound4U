@@ -66,5 +66,4 @@ public class ControladorLogin implements ActionListener {
 		login.setLocation(vista);
 		login.setVisible(true);
 	}
-
 }

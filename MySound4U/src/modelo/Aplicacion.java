@@ -174,15 +174,6 @@ public class Aplicacion implements Serializable {
 				return true;
 			}
 		}
-		if (d == false)
-			System.out.println("\nUsuario y/o contrasena erroneos\n");
-
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
 		return d;
 	}
 
