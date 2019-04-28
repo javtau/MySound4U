@@ -140,5 +140,4 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 		// TODO Auto-generated method stub
 
 	}
-
 }
