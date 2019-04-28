@@ -16,11 +16,10 @@ public class ControladorRegister implements ActionListener {
 	private boolean fechaCorrecta;
 	private boolean comprobacion;
 
-	public ControladorRegister(RegistroForm registro, Aplicacion api, VistaAnonimo vista) {
+	public ControladorRegister(RegistroForm registro, Aplicacion api) {
 		super();
 		this.registro = registro;
 		this.api = api;
-		this.vista = vista;
 	}
 
 	@Override

@@ -15,10 +15,9 @@ public class ControladorPremium implements ActionListener {
 	private VistaRegistrado vista;
 	private SesionUsuarios sesion;
 
-	public ControladorPremium(PremiumForm premium, Aplicacion api, VistaRegistrado vista) {
+	public ControladorPremium(PremiumForm premium, Aplicacion api) {
 		super();
 		this.premium = premium;
-		this.vista = vista;
 		sesion = (SesionUsuarios) api.getSesion();
 	}
 

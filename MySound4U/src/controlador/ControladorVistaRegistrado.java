@@ -66,7 +66,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			PremiumForm premium = new PremiumForm();
 			if (sesion.getUsuarioRegistrado().esPremium() == false) {
 			System.out.println("boton premium pulsado");
-			ControladorPremium controlP = new ControladorPremium(premium, api, vista);
+			ControladorPremium controlP = new ControladorPremium(premium, api);
 			premium.setControlador(controlP);
 			premium.setVisible(true);
 			controlP.start();
