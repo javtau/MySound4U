@@ -129,7 +129,7 @@ public class RegistroForm extends JFrame {
 	public void setLocation(VistaAnonimo vista) {
 		this.setLocationRelativeTo(vista);
 	}
-	
+
 	public JDateChooser getDcFecha() {
 		return dcFecha;
 	}

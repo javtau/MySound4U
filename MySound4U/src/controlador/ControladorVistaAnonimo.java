@@ -84,7 +84,6 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
 			rellenarTableSongs(elementos);
 		}
-
 	}
 
 	public void start() {
@@ -102,42 +101,35 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			api.save();
 			System.exit(0);
 		}
-
 	}
 
 	@Override
 	public void windowOpened(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowClosed(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowIconified(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeiconified(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowActivated(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeactivated(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 }

@@ -65,15 +65,13 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		} else if (component == vista.getBtnPremium()) {
 			PremiumForm premium = new PremiumForm();
 			if (sesion.getUsuarioRegistrado().esPremium() == false) {
-			System.out.println("boton premium pulsado");
-			ControladorPremium controlP = new ControladorPremium(premium, api);
-			premium.setControlador(controlP);
-			premium.setVisible(true);
-			controlP.start();
-			}
-			else {
-				JOptionPane.showMessageDialog(premium, "El usuario ya es premium", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				System.out.println("boton premium pulsado");
+				ControladorPremium controlP = new ControladorPremium(premium, api);
+				premium.setControlador(controlP);
+				premium.setVisible(true);
+				controlP.start();
+			} else {
+				JOptionPane.showMessageDialog(premium, "El usuario ya es premium", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 
 		} else if (component == vista.getBtnStop()) {

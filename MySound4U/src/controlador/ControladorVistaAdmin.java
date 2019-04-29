@@ -20,9 +20,9 @@ import modelo.Element;
 import modelo.SesionAdmin;
 import modelo.TIPO_BUSQUEDA;
 import modelo.Validacion;
+import vista.AjustesForm;
 import vista.DenunciaForm;
 import vista.ValidacionForm;
-import vista.AjustesForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
 
@@ -97,7 +97,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 
 		} else if (component == vista.getBtnStop()) {
 			sesion.stop();
-			
+
 		} else if (component == vista.getBtnPlay()) {
 			int selection = vista.getTableSongs().getSelectedRow();
 			elementos.get(selection).reproducir(sesion.getUsuario());
@@ -166,36 +166,30 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 }

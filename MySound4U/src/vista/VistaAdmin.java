@@ -213,7 +213,7 @@ public class VistaAdmin extends JFrame {
 		tpOptions.setSelectedIndex(0);
 		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
 		tpOptions.addChangeListener(new ChangeListener() {
-			
+
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				selectedTable = tpOptions.getSelectedIndex();
@@ -336,12 +336,12 @@ public class VistaAdmin extends JFrame {
 	}
 
 	public void setControlador(ControladorVistaAdmin c) {
-
 		btnBusqueda.addActionListener(c);
 		btnLogOut.addActionListener(c);
 		btnGestionar.addActionListener(c);
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
+		btnAjustes.addActionListener(c);
 
 		addWindowListener(c);
 	}

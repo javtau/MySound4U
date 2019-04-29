@@ -103,6 +103,5 @@ public class ValidacionForm extends JFrame {
 
 	public void setLocation(VistaAdmin vista) {
 		setLocationRelativeTo(vista);
-
 	}
 }

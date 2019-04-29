@@ -373,7 +373,6 @@ public class VistaRegistrado extends JFrame {
 	}
 
 	public void setControlador(ControladorVistaRegistrado c) {
-
 		btnBusqueda.addActionListener(c);
 		btnLogOut.addActionListener(c);
 		btnPremium.addActionListener(c);

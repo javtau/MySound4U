@@ -59,5 +59,4 @@ public class ControladorValidacion implements ActionListener {
 		formulario.setLocation(vista);
 		formulario.setVisible(true);
 	}
-
 }

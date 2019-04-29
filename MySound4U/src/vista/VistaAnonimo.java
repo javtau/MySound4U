@@ -212,7 +212,6 @@ public class VistaAnonimo extends JFrame {
 	}
 
 	public void setControlador(ControladorVistaAnonimo c) {
-
 		btnBusqueda.addActionListener(c);
 		btnLogIn.addActionListener(c);
 		btnSignUp.addActionListener(c);

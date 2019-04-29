@@ -156,6 +156,5 @@ public class VistaPrincipal {
 		ventana.setSize(810, 700);
 		ventana.setResizable(false);
 		ventana.setVisible(true);
-
 	}
 }

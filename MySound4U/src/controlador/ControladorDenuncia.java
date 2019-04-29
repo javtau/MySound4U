@@ -50,9 +50,8 @@ public class ControladorDenuncia implements ActionListener {
 			controlA.start();
 		}
 	}
-	
+
 	public void start() {
 		formulario.setVisible(true);
 	}
-
 }
