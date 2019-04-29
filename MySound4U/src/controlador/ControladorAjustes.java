@@ -32,11 +32,9 @@ public class ControladorAjustes implements ActionListener {
 			api.setUmbralPremium(umbral);
 			api.setLimiteReproducciones(limite);
 			api.avanzarSimulada(tiempo);
-			JOptionPane.showMessageDialog(ajustes, "Se han guardado los valores correctamente", "Ajustes",
+			JOptionPane.showMessageDialog(ajustes, "Los valores han sido guardados correctamente", "Ajustes",
 					JOptionPane.INFORMATION_MESSAGE);
 			ajustes.dispose();
-			System.out.println(api.getLimiteReproducciones());
-			System.out.println(api.getUmbralPremium());
 		}
 	}
 
