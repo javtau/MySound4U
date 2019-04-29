@@ -52,6 +52,7 @@ public class ControladorLogin implements ActionListener {
 					ControladorVistaRegistrado controlR = new ControladorVistaRegistrado(vistaR, api);
 					vistaR.setControlador(controlR);
 					controlR.start();
+					System.out.println(api.getSesion().getUsuario());
 				}
 
 			} else {
