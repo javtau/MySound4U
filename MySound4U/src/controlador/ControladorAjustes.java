@@ -29,8 +29,8 @@ public class ControladorAjustes implements ActionListener {
 		int tiempo = (Integer) ajustes.getSp3().getValue();
 
 		if (component == ajustes.getBtn1()) {
-			api.setLimiteReproducciones(umbral);
-			api.setUmbralPremium(limite);
+			api.setUmbralPremium(umbral);
+			api.setLimiteReproducciones(limite);
 			api.avanzarSimulada(tiempo);
 			JOptionPane.showMessageDialog(ajustes, "Se han guardado los valores correctamente", "Ajustes",
 					JOptionPane.INFORMATION_MESSAGE);
