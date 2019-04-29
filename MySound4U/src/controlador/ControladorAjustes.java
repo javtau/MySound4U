@@ -11,25 +11,25 @@ import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
 import modelo.UsuarioRegistrado;
-import vista.RegistroForm;
+import vista.AjustesForm;
 import vista.VistaAnonimo;
 
-/*public class ControladorAjustes implements ActionListener {
-	private RegistroForm registro;
+public class ControladorAjustes implements ActionListener {
+	private AjustesForm ajustes;
 	private Aplicacion api;
 	private VistaAnonimo vista;
 	// private boolean fechaCorrecta;
 	private boolean comprobacion;
 
-	public ControladorAjustes(RegistroForm registro, Aplicacion api) {
+	public ControladorAjustes(AjustesForm ajustes, Aplicacion api) {
 		super();
-		this.registro = registro;
+		this.ajustes = ajustes;
 		this.api = api;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object component = e.getSource();
+		/*Object component = e.getSource();
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
 		String uname = registro.getTf1().getText();
@@ -40,7 +40,6 @@ import vista.VistaAnonimo;
 			if (uname.contentEquals("") || pass.contentEquals("") || fecha.contentEquals("")) {
 				JOptionPane.showMessageDialog(registro, "Por favor, rellene el formulario correctamente", "Error",
 						JOptionPane.ERROR_MESSAGE);
-
 			} else {
 				try {
 					System.out.println("boton registrarse pulsado");
@@ -55,15 +54,15 @@ import vista.VistaAnonimo;
 								"El nombre de usuario ya esta usado, pruebe otro distinto", "Registro",
 								JOptionPane.INFORMATION_MESSAGE);
 				} catch (DateTimeParseException ex) {
-					JOptionPane.showMessageDialog(registro, "Fecha incorrecta, introducela de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(registro, "Fecha incorrecta, introducela de nuevo", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
-		}
+		}*/
 	}
 
 	public void start() {
-		registro.setLocation(vista);
-		registro.setVisible(true);
+		ajustes.setLocation(vista);
+		ajustes.setVisible(true);
 	}
-	
-}*/
+}

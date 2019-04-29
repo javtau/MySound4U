@@ -21,7 +21,9 @@ import modelo.SesionAdmin;
 import modelo.TIPO_BUSQUEDA;
 import modelo.Validacion;
 import vista.DenunciaForm;
+import vista.RegistroForm;
 import vista.ValidacionForm;
+import vista.AjustesForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
 
@@ -116,6 +118,13 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 				formV.setControlador(controlV);
 				controlV.start();
 
+			} else if (component == vista.getBtnAjustes()) {
+				AjustesForm ajustes = new AjustesForm();
+				ControladorAjustes controlA = new ControladorAjustes(ajustes, api);
+				ajustes.setControlador(controlA);
+				ajustes.setVisible(true);
+				controlA.start();
+				
 			} else if (vista.getTpOptionsIndex() == 1) {
 				DenunciaForm formD = new DenunciaForm();
 				int selection = vista.gettableDenuncias().getSelectedRow();
@@ -126,7 +135,6 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 				formD.getLbautor().setText(denuncias.get(selection).getCancion().getAutorNombre());
 				formD.setControlador(controlD);
 				controlD.start();
-
 			}
 		}
 
