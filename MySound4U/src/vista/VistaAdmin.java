@@ -222,7 +222,6 @@ public class VistaAdmin extends JFrame {
 		});
 
 		// Crear panel central
-
 		pCenter.add(tpOptions);
 
 		// Anadir componentes al contenedor

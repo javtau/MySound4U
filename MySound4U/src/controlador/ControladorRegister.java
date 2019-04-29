@@ -3,14 +3,11 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import modelo.UsuarioRegistrado;
 import vista.RegistroForm;
 import vista.VistaAnonimo;
 
@@ -18,7 +15,6 @@ public class ControladorRegister implements ActionListener {
 	private RegistroForm registro;
 	private Aplicacion api;
 	private VistaAnonimo vista;
-	// private boolean fechaCorrecta;
 	private boolean comprobacion;
 
 	public ControladorRegister(RegistroForm registro, Aplicacion api) {
@@ -40,7 +36,6 @@ public class ControladorRegister implements ActionListener {
 			if (uname.contentEquals("") || pass.contentEquals("") || fecha.contentEquals("")) {
 				JOptionPane.showMessageDialog(registro, "Por favor, rellene el formulario correctamente", "Error",
 						JOptionPane.ERROR_MESSAGE);
-
 			} else {
 				try {
 					System.out.println("boton registrarse pulsado");
@@ -55,7 +50,8 @@ public class ControladorRegister implements ActionListener {
 								"El nombre de usuario ya esta usado, pruebe otro distinto", "Registro",
 								JOptionPane.INFORMATION_MESSAGE);
 				} catch (DateTimeParseException ex) {
-					JOptionPane.showMessageDialog(registro, "Fecha incorrecta, introducela de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(registro, "Fecha incorrecta, introducela de nuevo", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

@@ -21,7 +21,6 @@ import modelo.SesionAdmin;
 import modelo.TIPO_BUSQUEDA;
 import modelo.Validacion;
 import vista.DenunciaForm;
-import vista.RegistroForm;
 import vista.ValidacionForm;
 import vista.AjustesForm;
 import vista.VistaAdmin;
@@ -98,6 +97,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 
 		} else if (component == vista.getBtnStop()) {
 			sesion.stop();
+			
 		} else if (component == vista.getBtnPlay()) {
 			int selection = vista.getTableSongs().getSelectedRow();
 			elementos.get(selection).reproducir(sesion.getUsuario());
@@ -117,27 +117,26 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 						validaciones.get(selection));
 				formV.setControlador(controlV);
 				controlV.start();
-
-			} else if (component == vista.getBtnAjustes()) {
-				AjustesForm ajustes = new AjustesForm();
-				ControladorAjustes controlA = new ControladorAjustes(ajustes, api);
-				ajustes.setControlador(controlA);
-				ajustes.setVisible(true);
-				controlA.start();
-				
-			} else if (vista.getTpOptionsIndex() == 1) {
-				DenunciaForm formD = new DenunciaForm();
-				int selection = vista.gettableDenuncias().getSelectedRow();
-				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
-				formD.getTextArea().setText(denuncias.get(selection).getComentario());
-				formD.getLbdenunciante().setText(denuncias.get(selection).getDenunciante().getNombre());
-				formD.getLbcancion().setText(denuncias.get(selection).getCancion().getNombre());
-				formD.getLbautor().setText(denuncias.get(selection).getCancion().getAutorNombre());
-				formD.setControlador(controlD);
-				controlD.start();
 			}
-		}
 
+		} else if (component == vista.getBtnAjustes()) {
+			AjustesForm ajustes = new AjustesForm();
+			ControladorAjustes controlA = new ControladorAjustes(ajustes, api);
+			ajustes.setControlador(controlA);
+			ajustes.setVisible(true);
+			controlA.start();
+
+		} else if (vista.getTpOptionsIndex() == 1) {
+			DenunciaForm formD = new DenunciaForm();
+			int selection = vista.gettableDenuncias().getSelectedRow();
+			ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
+			formD.getTextArea().setText(denuncias.get(selection).getComentario());
+			formD.getLbdenunciante().setText(denuncias.get(selection).getDenunciante().getNombre());
+			formD.getLbcancion().setText(denuncias.get(selection).getCancion().getNombre());
+			formD.getLbautor().setText(denuncias.get(selection).getCancion().getAutorNombre());
+			formD.setControlador(controlD);
+			controlD.start();
+		}
 	}
 
 	public void start() {
@@ -156,14 +155,12 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-
 		if (JOptionPane.showConfirmDialog(null, "Esta seguro de que desea salir?", "Atencion",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			api.desloguearse();
 			api.save();
 			System.exit(0);
 		}
-
 	}
 
 	@Override
@@ -201,5 +198,4 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 		// TODO Auto-generated method stub
 
 	}
-
 }

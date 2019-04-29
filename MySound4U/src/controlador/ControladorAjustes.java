@@ -2,24 +2,17 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import modelo.UsuarioRegistrado;
 import vista.AjustesForm;
-import vista.VistaAnonimo;
+import vista.VistaAdmin;
 
 public class ControladorAjustes implements ActionListener {
 	private AjustesForm ajustes;
 	private Aplicacion api;
-	private VistaAnonimo vista;
-	// private boolean fechaCorrecta;
-	private boolean comprobacion;
+	private VistaAdmin vista;
 
 	public ControladorAjustes(AjustesForm ajustes, Aplicacion api) {
 		super();
@@ -29,36 +22,22 @@ public class ControladorAjustes implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		/*Object component = e.getSource();
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Object component = e.getSource();
 
-		String uname = registro.getTf1().getText();
-		String pass = registro.getP1().getText();
-		String fecha = format.format(registro.getDcFecha().getDate());
+		int umbral = (Integer) ajustes.getSp1().getValue();
+		int limite = (Integer) ajustes.getSp2().getValue();
+		int tiempo = (Integer) ajustes.getSp3().getValue();
 
-		if (component == registro.getBtn1()) {
-			if (uname.contentEquals("") || pass.contentEquals("") || fecha.contentEquals("")) {
-				JOptionPane.showMessageDialog(registro, "Por favor, rellene el formulario correctamente", "Error",
-						JOptionPane.ERROR_MESSAGE);
-			} else {
-				try {
-					System.out.println("boton registrarse pulsado");
-					comprobacion = api.registrarse(uname, pass, fecha);
-
-					if (comprobacion == false) {
-						JOptionPane.showMessageDialog(registro, "Usuario registrado correctamente", "Registro",
-								JOptionPane.INFORMATION_MESSAGE);
-						registro.dispose();
-					} else
-						JOptionPane.showMessageDialog(registro,
-								"El nombre de usuario ya esta usado, pruebe otro distinto", "Registro",
-								JOptionPane.INFORMATION_MESSAGE);
-				} catch (DateTimeParseException ex) {
-					JOptionPane.showMessageDialog(registro, "Fecha incorrecta, introducela de nuevo", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		}*/
+		if (component == ajustes.getBtn1()) {
+			api.setLimiteReproducciones(umbral);
+			api.setUmbralPremium(limite);
+			api.avanzarSimulada(tiempo);
+			JOptionPane.showMessageDialog(ajustes, "Se han guardado los valores correctamente", "Ajustes",
+					JOptionPane.INFORMATION_MESSAGE);
+			ajustes.dispose();
+			System.out.println(api.getLimiteReproducciones());
+			System.out.println(api.getUmbralPremium());
+		}
 	}
 
 	public void start() {

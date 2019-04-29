@@ -142,5 +142,4 @@ public class DenunciaForm extends JFrame {
 	public JButton getBtn2() {
 		return btn2;
 	}
-
 }

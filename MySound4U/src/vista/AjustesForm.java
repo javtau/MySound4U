@@ -25,10 +25,10 @@ public class AjustesForm extends JFrame {
 	private JSpinner sp1, sp2, sp3;
 	JButton btn1;
 	private Container contenedor;
+	Aplicacion api = Aplicacion.getApi();
 
-	Aplicacion api;
 	public AjustesForm() {
-		setTitle("Registro");
+		setTitle("Ajustes");
 
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
@@ -36,16 +36,16 @@ public class AjustesForm extends JFrame {
 		setLocationRelativeTo(null);
 
 		setResizable(false);
- 
+
 		l2 = new JLabel("              Umbral premium:");
 		sp1 = new JSpinner();
-		sp1.setValue(api.getUmbralPremium());
+		sp1.setValue(Integer.valueOf(api.getUmbralPremium()));
 		l3 = new JLabel("Limite de reproducciones:");
 		sp2 = new JSpinner();
-		sp2.setValue(api.getUmbralPremium());
+		sp2.setValue(Integer.valueOf(api.getLimiteReproducciones()));
 		l4 = new JLabel("                   Pasar tiempo:");
 		sp3 = new JSpinner();
-		sp3.setValue(0);
+		sp3.setValue(Integer.valueOf(0));
 		btn1 = new JButton("Aceptar");
 
 		JPanel pl1 = new JPanel();
@@ -73,29 +73,36 @@ public class AjustesForm extends JFrame {
 		contenedor.add(pl3);
 		contenedor.add(pl4);
 
-		setSize(340, 220);
+		setSize(360, 220);
 	}
 
 	public void setControlador(ControladorAjustes c) {
 		sp1.addChangeListener(new ChangeListener() {
-			
+
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				sp1.setToolTipText(sp1.getValue().toString());	
-				sp2.setToolTipText(sp2.getValue().toString());	
+				sp1.setToolTipText(sp1.getValue().toString());
+			}
+		});
+		sp2.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				sp2.setToolTipText(sp2.getValue().toString());
+			}
+		});
+
+		sp3.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
 				sp3.setToolTipText(sp3.getValue().toString());
 			}
 		});
+
 		btn1.addActionListener(c);
 	}
 
-	public static void main(String[] args) {
-		AjustesForm ajustes = new AjustesForm();
-		// ControladorPrincipal Controlprincipal = new ControladorPrincipal(vp);
-		// vp.setControlador(Controlprincipal);
-		ajustes.setVisible(true);
-	}
-	
 	public JSpinner getSp1() {
 		return sp1;
 	}
@@ -134,7 +141,7 @@ public class AjustesForm extends JFrame {
 		this.btn1 = btn1;
 	}
 
-	public void setLocation(VistaAnonimo vista) {
+	public void setLocation(VistaAdmin vista) {
 		this.setLocationRelativeTo(vista);
 	}
 }
