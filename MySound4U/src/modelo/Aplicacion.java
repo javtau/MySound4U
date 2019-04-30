@@ -751,6 +751,7 @@ public class Aplicacion implements Serializable {
 	 */
 	public void avanzarSimulada(int dias) {
 		FechaSimulada.avanzar(dias);
+		revision();
 	}
 
 	/**

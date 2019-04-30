@@ -100,7 +100,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 
 		} else if (component == vista.getBtnPlay()) {
 			int selection = vista.getTableSongs().getSelectedRow();
-			elementos.get(selection).reproducir(sesion.getUsuario());
+			sesion.reproducir(elementos.get(selection));
 			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
 
 		} else if (component == vista.getBtnBusqueda()) {
@@ -117,6 +117,16 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 						validaciones.get(selection));
 				formV.setControlador(controlV);
 				controlV.start();
+			} else if (vista.getTpOptionsIndex() == 1) {
+				DenunciaForm formD = new DenunciaForm();
+				int selection = vista.gettableDenuncias().getSelectedRow();
+				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
+				formD.getTextArea().setText(denuncias.get(selection).getComentario());
+				formD.getLbdenunciante().setText(denuncias.get(selection).getDenunciante().getNombre());
+				formD.getLbcancion().setText(denuncias.get(selection).getCancion().getNombre());
+				formD.getLbautor().setText(denuncias.get(selection).getCancion().getAutorNombre());
+				formD.setControlador(controlD);
+				controlD.start();
 			}
 
 		} else if (component == vista.getBtnAjustes()) {
@@ -126,16 +136,6 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 			ajustes.setVisible(true);
 			controlA.start();
 
-		} else if (vista.getTpOptionsIndex() == 1) {
-			DenunciaForm formD = new DenunciaForm();
-			int selection = vista.gettableDenuncias().getSelectedRow();
-			ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
-			formD.getTextArea().setText(denuncias.get(selection).getComentario());
-			formD.getLbdenunciante().setText(denuncias.get(selection).getDenunciante().getNombre());
-			formD.getLbcancion().setText(denuncias.get(selection).getCancion().getNombre());
-			formD.getLbautor().setText(denuncias.get(selection).getCancion().getAutorNombre());
-			formD.setControlador(controlD);
-			controlD.start();
 		}
 	}
 

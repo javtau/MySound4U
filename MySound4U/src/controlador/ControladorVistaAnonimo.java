@@ -74,7 +74,7 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			sesion.stop();
 		} else if (component == vista.getBtnPlay()) {
 			int selection = vista.getTableSongs().getSelectedRow();
-			elementos.get(selection).reproducir(sesion.getUsuario());
+			sesion.reproducir(elementos.get(selection));
 			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
 
 		} else if (component == vista.getBtnBusqueda()) {

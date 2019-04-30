@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -7,6 +8,8 @@ import java.awt.FlowLayout;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,12 +19,13 @@ import javax.swing.event.ChangeListener;
 
 import controlador.ControladorAjustes;
 import modelo.Aplicacion;
+import utils.FechaSimulada;
 
 public class AjustesForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	JLabel l2, l3, l4;
+	JLabel l2, l3, l4, l5;
 	private JSpinner sp1, sp2, sp3;
 	JButton btn1;
 	private Container contenedor;
@@ -40,40 +44,63 @@ public class AjustesForm extends JFrame {
 		l2 = new JLabel("              Umbral premium:");
 		sp1 = new JSpinner();
 		sp1.setValue(Integer.valueOf(api.getUmbralPremium()));
+		JComponent mySpinnerEditor1 = sp1.getEditor();
+		JFormattedTextField jftf1 = ((JSpinner.DefaultEditor) mySpinnerEditor1).getTextField();
+		jftf1.setColumns(2);
 		l3 = new JLabel("Limite de reproducciones:");
 		sp2 = new JSpinner();
 		sp2.setValue(Integer.valueOf(api.getLimiteReproducciones()));
+		JComponent mySpinnerEditor2 = sp2.getEditor();
+		JFormattedTextField jftf2 = ((JSpinner.DefaultEditor) mySpinnerEditor2).getTextField();
+		jftf2.setColumns(2);
 		l4 = new JLabel("                   Pasar tiempo:");
 		sp3 = new JSpinner();
 		sp3.setValue(Integer.valueOf(0));
+		JComponent mySpinnerEditor3 = sp3.getEditor();
+		JFormattedTextField jftf3 = ((JSpinner.DefaultEditor) mySpinnerEditor3).getTextField();
+		jftf3.setColumns(2);
+		
 		btn1 = new JButton("Aceptar");
+		l5 = new JLabel("Hoy es: " + FechaSimulada.getHoy().toString());
+		l5.setForeground(Color.BLUE);
+		l5.setFont(new java.awt.Font("Tahoma", 0, 13));
 
 		JPanel pl1 = new JPanel();
 		JPanel pl2 = new JPanel();
 		JPanel pl3 = new JPanel();
 		JPanel pl4 = new JPanel();
+		JPanel pl5 = new JPanel();
 
 		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl2.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl3.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl4.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pl5.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 		pl1.add(l2);
 		pl1.add(sp1);
 		pl2.add(l3);
 		pl2.add(sp2);
+		pl3.add(l5);
 		pl3.add(l4);
 		pl3.add(sp3);
 		pl4.add(btn1);
+		pl5.add(l5);
 
 		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));
-
+		
 		contenedor.add(pl1);
 		contenedor.add(pl2);
 		contenedor.add(pl3);
 		contenedor.add(pl4);
+		contenedor.add(pl5);
 
-		setSize(360, 220);
+		setSize(360, 260);
+	}
+
+	public static void main(String[] args) {
+		AjustesForm aj = new AjustesForm();
+		aj.setVisible(true);
 	}
 
 	public void setControlador(ControladorAjustes c) {
