@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -61,7 +63,10 @@ public class AjustesForm extends JFrame {
 		jftf3.setColumns(2);
 		
 		btn1 = new JButton("Aceptar");
-		l5 = new JLabel("Hoy es: " + FechaSimulada.getHoy().toString());
+		LocalDate localDate = FechaSimulada.getHoy();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String fechaHoy = localDate.format(formatter);
+		l5 = new JLabel("Hoy es: " + fechaHoy);
 		l5.setForeground(Color.BLUE);
 		l5.setFont(new java.awt.Font("Tahoma", 0, 13));
 
