@@ -27,11 +27,16 @@ public class AjustesForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	JLabel l2, l3, l4, l5;
+	private JLabel l2, l3, l4, l5;
 	private JSpinner sp1, sp2, sp3;
-	JButton btn1;
+	private JButton btn1, btn2;
 	private Container contenedor;
-	Aplicacion api = Aplicacion.getApi();
+	private LocalDate localDate;
+	private DateTimeFormatter formatter;
+	private JComponent mySpinnerEditor1, mySpinnerEditor2, mySpinnerEditor3;
+	private JFormattedTextField jftf1, jftf2, jftf3;
+	private Aplicacion api = Aplicacion.getApi();
+	private String fechaHoy;
 
 	public AjustesForm() {
 		setTitle("Ajustes");
@@ -46,26 +51,30 @@ public class AjustesForm extends JFrame {
 		l2 = new JLabel("              Umbral premium:");
 		sp1 = new JSpinner();
 		sp1.setValue(Integer.valueOf(api.getUmbralPremium()));
-		JComponent mySpinnerEditor1 = sp1.getEditor();
-		JFormattedTextField jftf1 = ((JSpinner.DefaultEditor) mySpinnerEditor1).getTextField();
+		mySpinnerEditor1 = sp1.getEditor();
+		jftf1 = ((JSpinner.DefaultEditor) mySpinnerEditor1).getTextField();
 		jftf1.setColumns(2);
+
 		l3 = new JLabel("Limite de reproducciones:");
 		sp2 = new JSpinner();
 		sp2.setValue(Integer.valueOf(api.getLimiteReproducciones()));
-		JComponent mySpinnerEditor2 = sp2.getEditor();
-		JFormattedTextField jftf2 = ((JSpinner.DefaultEditor) mySpinnerEditor2).getTextField();
+		mySpinnerEditor2 = sp2.getEditor();
+		jftf2 = ((JSpinner.DefaultEditor) mySpinnerEditor2).getTextField();
 		jftf2.setColumns(2);
+
 		l4 = new JLabel("                   Pasar tiempo:");
 		sp3 = new JSpinner();
 		sp3.setValue(Integer.valueOf(0));
-		JComponent mySpinnerEditor3 = sp3.getEditor();
-		JFormattedTextField jftf3 = ((JSpinner.DefaultEditor) mySpinnerEditor3).getTextField();
+		mySpinnerEditor3 = sp3.getEditor();
+		jftf3 = ((JSpinner.DefaultEditor) mySpinnerEditor3).getTextField();
 		jftf3.setColumns(2);
-		
+
 		btn1 = new JButton("Aceptar");
-		LocalDate localDate = FechaSimulada.getHoy();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String fechaHoy = localDate.format(formatter);
+		btn2 = new JButton("Cancelar");
+
+		localDate = FechaSimulada.getHoy();
+		formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		fechaHoy = localDate.format(formatter);
 		l5 = new JLabel("Hoy es: " + fechaHoy);
 		l5.setForeground(Color.BLUE);
 		l5.setFont(new java.awt.Font("Tahoma", 0, 13));
@@ -90,10 +99,11 @@ public class AjustesForm extends JFrame {
 		pl3.add(l4);
 		pl3.add(sp3);
 		pl4.add(btn1);
+		pl4.add(btn2);
 		pl5.add(l5);
 
 		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));
-		
+
 		contenedor.add(pl1);
 		contenedor.add(pl2);
 		contenedor.add(pl3);
@@ -133,6 +143,7 @@ public class AjustesForm extends JFrame {
 		});
 
 		btn1.addActionListener(c);
+		btn2.addActionListener(c);
 	}
 
 	public JSpinner getSp1() {
@@ -171,6 +182,14 @@ public class AjustesForm extends JFrame {
 	 */
 	public void setBtn1(JButton btn1) {
 		this.btn1 = btn1;
+	}
+
+	public JButton getBtn2() {
+		return btn2;
+	}
+
+	public void setBtn2(JButton btn2) {
+		this.btn2 = btn2;
 	}
 
 	public void setLocation(VistaAdmin vista) {

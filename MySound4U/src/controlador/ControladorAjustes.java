@@ -39,8 +39,11 @@ public class ControladorAjustes implements ActionListener {
 			System.out.println(api.getUmbralPremium());
 			System.out.println(api.getLimiteReproducciones());
 			System.out.println(FechaSimulada.getHoy());
-			
-			
+		} else {
+			ajustes.dispose();
+			System.out.println(api.getUmbralPremium());
+			System.out.println(api.getLimiteReproducciones());
+			System.out.println(FechaSimulada.getHoy());
 		}
 	}
 

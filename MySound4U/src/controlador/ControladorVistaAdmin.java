@@ -135,7 +135,6 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 			ajustes.setControlador(controlA);
 			ajustes.setVisible(true);
 			controlA.start();
-
 		}
 	}
 

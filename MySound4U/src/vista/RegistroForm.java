@@ -22,12 +22,12 @@ public class RegistroForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	JLabel l2, l3, l4;
-	JTextField tf1;
-	JButton btn1;
-	JPasswordField p1;
+	private JLabel l2, l3, l4;
+	private JTextField tf1;
+	private JButton btn1;
+	private JPasswordField p1;
 	private Container contenedor;
-	JDateChooser dcFecha;
+	private JDateChooser dcFecha;
 
 	public RegistroForm() {
 		setTitle("Registro");
