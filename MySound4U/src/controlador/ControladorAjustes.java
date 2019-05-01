@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import utils.FechaSimulada;
 import vista.AjustesForm;
 import vista.VistaAdmin;
 
@@ -36,14 +35,8 @@ public class ControladorAjustes implements ActionListener {
 			JOptionPane.showMessageDialog(ajustes, "Los valores han sido guardados correctamente", "Ajustes",
 					JOptionPane.INFORMATION_MESSAGE);
 			ajustes.dispose();
-			System.out.println(api.getUmbralPremium());
-			System.out.println(api.getLimiteReproducciones());
-			System.out.println(FechaSimulada.getHoy());
 		} else {
 			ajustes.dispose();
-			System.out.println(api.getUmbralPremium());
-			System.out.println(api.getLimiteReproducciones());
-			System.out.println(FechaSimulada.getHoy());
 		}
 	}
 
