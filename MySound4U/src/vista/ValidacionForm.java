@@ -25,7 +25,7 @@ public class ValidacionForm extends JFrame {
 	private Container contenedor;
 
 	public ValidacionForm() {
-		setTitle("Gestionar Validacion");
+		setTitle("Gestionar validacion");
 		setResizable(false);
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));

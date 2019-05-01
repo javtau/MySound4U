@@ -21,6 +21,7 @@ import modelo.Element;
 import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
 import modelo.Validacion;
+import vista.DenunciarForm;
 import vista.PremiumForm;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
@@ -61,12 +62,11 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		table.getDataVector().removeAllElements();
 		table.fireTableDataChanged();
 		for (Validacion v : pendientes) {
-			table.addRow(new Object[] { v.getCancion().getNombre(), 
+			table.addRow(new Object[] { v.getCancion().getNombre(),
 					(v.getPlazo().equals(LocalDate.MAX)) ? "No caduca" : v.getPlazo().toString() });
 		}
 		vista.getTablePendientes().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -118,9 +118,14 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			}
 			elementos = api.getLastSongs();
 			rellenarTableSongs(elementos);
-
+		} else if (component == vista.getBtnDenunciar()) {
+			DenunciarForm denunciaF = new DenunciarForm();
+			int selection = vista.getTableSongs().getSelectedRow();
+			ControladorDenunciar controlD = new ControladorDenunciar(denunciaF, elementos.get(selection), sesion, vista,
+					api);
+			denunciaF.setControlador(controlD);
+			controlD.start();
 		}
-
 	}
 
 	public void start() {
@@ -133,49 +138,41 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-
 		if (JOptionPane.showConfirmDialog(null, "Esta seguro de que desea salir?", "Atencion",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			api.desloguearse();
 			api.save();
 			System.exit(0);
 		}
-
 	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 }
