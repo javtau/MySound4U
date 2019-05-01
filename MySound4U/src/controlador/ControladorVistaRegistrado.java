@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
@@ -19,6 +20,7 @@ import modelo.Cancion;
 import modelo.Element;
 import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
+import modelo.Validacion;
 import vista.PremiumForm;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
@@ -28,6 +30,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	private Aplicacion api;
 	private SesionUsuarios sesion;
 	private ArrayList<Element> elementos;
+	private ArrayList<Validacion> pendientes;
 
 	public ControladorVistaRegistrado(VistaRegistrado vista, Aplicacion api) {
 		super();
@@ -50,6 +53,20 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		}
 		vista.getTableSongs().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
+
+	// Metodo para rellenar la tabla de Validaciones
+	public void rellenarTablePendientes(ArrayList<Validacion> pendientes) {
+		// TODO Auto-generated method stub
+		DefaultTableModel table = (DefaultTableModel) vista.getTablePendientes().getModel();
+		table.getDataVector().removeAllElements();
+		table.fireTableDataChanged();
+		for (Validacion v : pendientes) {
+			table.addRow(new Object[] { v.getCancion().getNombre(), 
+					(v.getPlazo().equals(LocalDate.MAX)) ? "No caduca" : v.getPlazo().toString() });
+		}
+		vista.getTablePendientes().setRowSorter(new TableRowSorter<TableModel>(table));
+	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -108,7 +125,9 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 
 	public void start() {
 		elementos = api.getLastSongs();
+		pendientes = api.getValidacionesByUser(sesion.getUsuarioRegistrado());
 		rellenarTableSongs(elementos);
+		rellenarTablePendientes(pendientes);
 		vista.setVisible(true);
 	}
 
