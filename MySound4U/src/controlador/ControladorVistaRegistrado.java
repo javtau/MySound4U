@@ -109,6 +109,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			controlA.start();
 			System.out.println("pasar a anonimo");
 			vista.dispose();
+			sesion.stop();
 		} else if (component == vista.getBtnPremium()) {
 			PremiumForm premium = new PremiumForm();
 			if (sesion.getUsuarioRegistrado().esPremium() == false) {
