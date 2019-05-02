@@ -103,7 +103,7 @@ public class VistaRegistrado extends JFrame {
 		pBox.add(btnLogOut);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnPremium);
-		pBox.add(Box.createRigidArea(new Dimension(0, 440)));
+		pBox.add(Box.createRigidArea(new Dimension(0, 425)));
 		pBox.add(btnSubir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnDenunciar);
@@ -366,7 +366,6 @@ public class VistaRegistrado extends JFrame {
 	}
 
 	public void setControlador(ControladorVistaRegistrado c) {
-
 		btnBusqueda.addActionListener(c);
 		btnLogOut.addActionListener(c);
 		btnPremium.addActionListener(c);
@@ -374,6 +373,7 @@ public class VistaRegistrado extends JFrame {
 		btnStop.addActionListener(c);
 		btnSubir.addActionListener(c);
 		tpOptions.addChangeListener(c);
+		btnDenunciar.addActionListener(c);
 
 		addWindowListener(c);
 	}

@@ -30,11 +30,13 @@ public class ControladorPremium implements ActionListener {
 		if (component == premium.getBtn1() && tarjeta.length() == 16) {
 			System.out.println("boton premium pulsado");
 			sesion.pasarPremium(tarjeta);
-			JOptionPane.showMessageDialog(premium, "Pago realizado con exito, ahora eres un usuario premium", "Premium", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(premium, "Pago realizado con exito, ahora eres un usuario premium", "Premium",
+					JOptionPane.INFORMATION_MESSAGE);
 			premium.dispose();
 			System.out.println(sesion.getUsuarioRegistrado());
 		} else {
-			JOptionPane.showMessageDialog(premium, "Introduce un numero de tarjeta valido", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(premium, "Introduce un numero de tarjeta valido", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

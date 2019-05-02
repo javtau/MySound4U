@@ -55,12 +55,12 @@ public class DenunciaForm extends JFrame {
 		l5 = new JLabel("Cancion: ");
 		lbcancion = new JLabel("");
 
-		l7 = new JLabel("Autor: ");
+		l7 = new JLabel("                       Autor: ");
 		lbautor = new JLabel("");
 
 		l2 = new JLabel("Motivo: ");
 
-		textArea = new JTextArea(LEFTSPACE, 30);
+		textArea = new JTextArea(LEFTSPACE, 25);
 		JScrollPane scrollPane = new JScrollPane();
 
 		scrollPane.setViewportView(textArea);
@@ -142,5 +142,4 @@ public class DenunciaForm extends JFrame {
 	public JButton getBtn2() {
 		return btn2;
 	}
-
 }

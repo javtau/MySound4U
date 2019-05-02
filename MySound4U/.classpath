@@ -2,10 +2,18 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/home/javier/git/MySound4U/MySound4U/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="/home/javier/git/MySound4U/MySound4U/jl1.0.1.jar"/>
 	<classpathentry kind="lib" path="/home/javier/git/MySound4U/MySound4U/junit4.jar"/>
 	<classpathentry kind="lib" path="/home/javier/git/MySound4U/MySound4U/MP3Player.jar"/>
 	<classpathentry kind="lib" path="/home/javier/git/MySound4U/MySound4U/TeleChargeAndPaySystem8.jar"/>
+=======
+	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/junit4.jar"/>
+	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/MP3Player.jar"/>
+	<classpathentry kind="lib" path="/Users/ferbarroso14/git/MySound4U/MySound4U/TeleChargeAndPaySystem8.jar"/>
+>>>>>>> branch 'fer' of https://github.com/javtau/MySound4U.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>

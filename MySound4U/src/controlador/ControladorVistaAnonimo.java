@@ -80,7 +80,7 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			sesion.stop();
 		} else if (component == vista.getBtnPlay()) {
 			int selection = vista.getTableSongs().getSelectedRow();
-			elementos.get(selection).reproducir(sesion.getUsuario());
+			sesion.reproducir(elementos.get(selection));
 			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
 
 		} else if (component == vista.getBtnBusqueda()) {
@@ -90,7 +90,6 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
 			rellenarTableSongs(elementos);
 		}
-
 	}
 
 	public void start() {
@@ -108,42 +107,35 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			api.save();
 			System.exit(0);
 		}
-
 	}
 
 	@Override
 	public void windowOpened(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowClosed(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowIconified(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeiconified(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowActivated(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeactivated(java.awt.event.WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 }

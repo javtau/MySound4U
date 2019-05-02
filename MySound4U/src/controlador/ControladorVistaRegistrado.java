@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
@@ -23,6 +24,8 @@ import modelo.Lista;
 import modelo.SesionUsuarios;
 import modelo.TIPO_BUSQUEDA;
 import modelo.UsuarioRegistrado;
+import modelo.Validacion;
+import vista.DenunciarForm;
 import vista.PremiumForm;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
@@ -36,6 +39,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	private ArrayList<Album> albumes;
 	private ArrayList<Lista> listas;
 	private ArrayList<Cancion> pendientes;
+	private ArrayList<Validacion> pendientes;
 
 	public ControladorVistaRegistrado(VistaRegistrado vista, Aplicacion api) {
 		super();
@@ -89,6 +93,18 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			table.addRow(new Object[] { lista.getNombre(), lista.getNumElements() });
 		}
 		vista.getTableList().setRowSorter(new TableRowSorter<TableModel>(table));
+
+	// Metodo para rellenar la tabla de Validaciones
+	public void rellenarTablePendientes(ArrayList<Validacion> pendientes) {
+		// TODO Auto-generated method stub
+		DefaultTableModel table = (DefaultTableModel) vista.getTablePendientes().getModel();
+		table.getDataVector().removeAllElements();
+		table.fireTableDataChanged();
+		for (Validacion v : pendientes) {
+			table.addRow(new Object[] { v.getCancion().getNombre(),
+					(v.getPlazo().equals(LocalDate.MAX)) ? "No caduca" : v.getPlazo().toString() });
+		}
+		vista.getTablePendientes().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
 
 	@Override
@@ -117,31 +133,33 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		} else if (component == vista.getBtnStop()) {
 			sesion.stop();
 		} else if (component == vista.getBtnPlay()) {
+<<<<<<< HEAD
 			int selection = 0;
 			switch (vista.getTpOptions().getSelectedIndex()) {
 			case 0:
 				selection = vista.getTableSongs().getSelectedRow();
 				if (selection > -1)
-				elementos.get(selection).reproducir(sesion.getUsuario());
+					sesion.reproducir(elementos.get(selection));
 				break;
 			case 1:
 				selection = vista.getTableAlbums().getSelectedRow();
 				if (selection > -1)
-					albumes.get(selection).reproducir(sesion.getUsuario());
+					sesion.reproducir(albumes.get(selection));
 				break;
 			case 2:
 				selection = vista.getTableList().getSelectedRow();
 				if (selection > -1)
-					listas.get(selection).reproducir(sesion.getUsuario());
+					sesion.reproducir(listas.get(selection));
 				break;
 			case 3:
+
 
 				break;
 
 			default:
 				break;
 			}
-			
+			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
 		} else if (component == vista.getBtnBusqueda()) {
 			TIPO_BUSQUEDA filtro;
 			filtro = TIPO_BUSQUEDA.valueOf(vista.getComboBusqueda().getSelectedItem().toString().toUpperCase());
@@ -163,64 +181,67 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			elementos = new ArrayList<>(usuario.getCanciones());
 			//elementos = api.getLastSongs();
 			rellenarTableSongs(elementos);
-
+		} else if (component == vista.getBtnDenunciar()) {
+			DenunciarForm denunciaF = new DenunciarForm();
+			int selection = vista.getTableSongs().getSelectedRow();
+			ControladorDenunciar controlD = new ControladorDenunciar(denunciaF, elementos.get(selection), sesion, vista,
+					api);
+			denunciaF.setControlador(controlD);
+			controlD.start();
 		}
-
 	}
 
 	public void start() {
 		elementos = api.getLastSongs();
+		pendientes = api.getValidacionesByUser(sesion.getUsuarioRegistrado());
 		rellenarTableSongs(elementos);
 		vista.pack();
+		albumes = usuario.getAlbumes();
+		rellenarTableAlbums(albumes);
+		listas = usuario.getListas();
+		rellenarTableList(listas);
+		rellenarTablePendientes(pendientes);
 		vista.setVisible(true);
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-
 		if (JOptionPane.showConfirmDialog(null, "Esta seguro de que desea salir?", "Atencion",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			api.desloguearse();
 			api.save();
 			System.exit(0);
 		}
-
 	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -230,19 +251,19 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		if (component == vista.getTpOptions()) {
 			switch (vista.getTpOptions().getSelectedIndex()) {
 			case 0:
-				//elementos = new ArrayList<>(usuario.getCanciones());
-				elementos = api.getLastSongs();
+				elementos = new ArrayList<>(usuario.getCanciones());
+				//elementos = api.getLastSongs();
 				rellenarTableSongs(elementos);
 				vista.getBtnDenunciar().setVisible(true);
 				break;
 			case 1:
-				albumes = usuario.getAlbumes();
-				rellenarTableAlbums(albumes);
+				//albumes = usuario.getAlbumes();
+				//rellenarTableAlbums(albumes);
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 2:
-				listas = usuario.getListas();
-				rellenarTableList(listas);
+				//listas = usuario.getListas();
+				//rellenarTableList(listas);
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 3:
@@ -256,4 +277,5 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		}
 
 	}
+}
 }

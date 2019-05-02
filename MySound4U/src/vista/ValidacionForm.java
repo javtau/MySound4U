@@ -1,12 +1,16 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import controlador.ControladorValidacion;
 
@@ -15,38 +19,40 @@ public class ValidacionForm extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JLabel l1, l2, l3;
+	JLabel l2, l3;
 	JButton btn1, btn2;
 	JCheckBox check1;
+	private Container contenedor;
 
 	public ValidacionForm() {
-		l1 = new JLabel("Gestionar Validacion");
-		l1.setForeground(Color.BLACK);
-		l1.setFont(new Font("Serif", Font.BOLD, 20));
+		setTitle("Gestionar validacion");
+		setResizable(false);
+		contenedor = new JPanel();
+		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
+		setContentPane(contenedor);
+
+		JPanel pl1 = new JPanel();
+		JPanel pl2 = new JPanel();
+
+		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pl2.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+		btn1 = new JButton("  Validar  ");
+		btn2 = new JButton("Invalidar");
+
+		check1 = new JCheckBox();
 		l2 = new JLabel("Marcar como explicita: ");
 		l2.setForeground(Color.BLACK);
 		l2.setFont(new Font("Serif", Font.PLAIN, 16));
 
-		setResizable(false);
+		pl1.add(btn1);
+		pl1.add(btn2);
+		pl2.add(l2);
+		pl2.add(check1);
 
-		btn1 = new JButton("Validar");
-		btn2 = new JButton("Invalidar");
-		check1 = new JCheckBox();
-
-		l1.setBounds(100, 20, 200, 30);
-		btn1.setBounds(216, 100, 100, 30);
-		btn2.setBounds(66, 100, 100, 30);
-		l2.setBounds(66, 160, 160, 30);
-		check1.setBounds(240, 162, 160, 30);
-
-		this.add(check1);
-		this.add(l1);
-		this.add(l2);
-		this.add(btn1);
-		this.add(btn2);
-		this.add(check1);
-		this.setSize(400, 250);
-		this.setLayout(null);
+		contenedor.add(pl2);
+		contenedor.add(pl1);
+		setSize(240, 160);
 	}
 
 	public static void main(String[] args) {
@@ -59,14 +65,6 @@ public class ValidacionForm extends JFrame {
 		btn1.addActionListener(c);
 		btn2.addActionListener(c);
 		check1.addActionListener(c);
-	}
-
-	public JLabel getL1() {
-		return l1;
-	}
-
-	public void setL1(JLabel l1) {
-		this.l1 = l1;
 	}
 
 	public JLabel getL2() {
@@ -103,6 +101,5 @@ public class ValidacionForm extends JFrame {
 
 	public void setLocation(VistaAdmin vista) {
 		setLocationRelativeTo(vista);
-
 	}
 }

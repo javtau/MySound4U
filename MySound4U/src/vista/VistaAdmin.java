@@ -42,6 +42,7 @@ public class VistaAdmin extends JFrame {
 	JPanel pEast;
 	private JButton btnLogOut;
 	private JButton btnGestionar;
+	private JButton btnAjustes;
 
 	// Elementos del panel sur
 	JPanel psouth;
@@ -91,6 +92,7 @@ public class VistaAdmin extends JFrame {
 		JPanel pBox = new JPanel();
 		btnLogOut = new JButton("  Logout  ");
 		btnGestionar = new JButton("Gestionar");
+		btnAjustes = new JButton("  Ajustes  ");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
@@ -99,6 +101,8 @@ public class VistaAdmin extends JFrame {
 		pBox.add(btnLogOut);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnGestionar);
+		pBox.add(Box.createRigidArea(new Dimension(0, 460)));
+		pBox.add(btnAjustes);
 		pEast.add(pBox);
 
 		contenedor.add(pEast, BorderLayout.EAST);
@@ -209,7 +213,7 @@ public class VistaAdmin extends JFrame {
 		tpOptions.setSelectedIndex(0);
 		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
 		tpOptions.addChangeListener(new ChangeListener() {
-			
+
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				selectedTable = tpOptions.getSelectedIndex();
@@ -218,7 +222,6 @@ public class VistaAdmin extends JFrame {
 		});
 
 		// Crear panel central
-
 		pCenter.add(tpOptions);
 
 		// Anadir componentes al contenedor
@@ -324,13 +327,21 @@ public class VistaAdmin extends JFrame {
 		this.tableValidaciones = tableValidaciones;
 	}
 
-	public void setControlador(ControladorVistaAdmin c) {
+	public JButton getBtnAjustes() {
+		return btnAjustes;
+	}
 
+	public void setBtnAjustes(JButton btnAjustes) {
+		this.btnAjustes = btnAjustes;
+	}
+
+	public void setControlador(ControladorVistaAdmin c) {
 		btnBusqueda.addActionListener(c);
 		btnLogOut.addActionListener(c);
 		btnGestionar.addActionListener(c);
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
+		btnAjustes.addActionListener(c);
 
 		addWindowListener(c);
 	}

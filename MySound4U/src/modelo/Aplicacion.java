@@ -751,6 +751,7 @@ public class Aplicacion implements Serializable {
 	 */
 	public void avanzarSimulada(int dias) {
 		FechaSimulada.avanzar(dias);
+		revision();
 	}
 
 	/**
@@ -777,5 +778,16 @@ public class Aplicacion implements Serializable {
 			}
 		}
 		return null;
+	}
+
+	public ArrayList<Validacion> getValidacionesByUser(UsuarioRegistrado usuario) {
+		ArrayList<Validacion> pendientes;
+		pendientes = new ArrayList<Validacion>();
+		for (Validacion v : validaciones) {
+			if (v.getCancion().getAutor().equals(usuario)) {
+				pendientes.add(v);
+			}
+		}
+		return pendientes;
 	}
 }
