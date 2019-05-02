@@ -132,7 +132,7 @@ public class VistaRegistrado extends JFrame {
 
 		// Creamos el panel central y sus elementos
 		pCenter = new JPanel();
-		JTabbedPane tpOptions = new JTabbedPane();
+		tpOptions = new JTabbedPane();
 
 		// Panel de canciones
 		JPanel tpTabSongs = new JPanel();
@@ -166,19 +166,20 @@ public class VistaRegistrado extends JFrame {
 		JScrollPane scrollPaneAl = new JScrollPane();
 
 		tableAlbums = new JTable();
-		tableAlbums.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Canciones" }) {
+		tableAlbums.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Autor", "Canciones" }) {
 
 			private static final long serialVersionUID = 1L;
-			Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class };
+			Class[] columnTypes = new Class[] { String.class, String.class, Integer.class };
 
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
 
-		tableAlbums.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
 		scrollPaneAl.setViewportView(tableAlbums);
-
+		tableAlbums.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+		tableAlbums.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+		tableAlbums.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);
 		scrollPaneAl.setPreferredSize(new Dimension(650, 542));
 		tpTabAlbums.add(scrollPaneAl);
 
@@ -191,16 +192,16 @@ public class VistaRegistrado extends JFrame {
 		tableList.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Canciones" }) {
 
 			private static final long serialVersionUID = 1L;
-			Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class };
+			Class[] columnTypes = new Class[] { String.class, Integer.class };
 
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
 
+		scrollPaneList.setViewportView(tableList);
+		tableList.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
 		tableList.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
-		scrollPaneList.setViewportView(tableAlbums);
-
 		scrollPaneList.setPreferredSize(new Dimension(650, 542));
 		tpTabList.add(scrollPaneList);
 
@@ -220,11 +221,12 @@ public class VistaRegistrado extends JFrame {
 			}
 		});
 
-		tablePendientes.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
 		scrollPanePend.setViewportView(tablePendientes);
-
+		tablePendientes.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+		tablePendientes.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
 		scrollPanePend.setPreferredSize(new Dimension(650, 542));
 		tpTabPendientes.add(scrollPanePend);
+
 
 		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
@@ -234,15 +236,6 @@ public class VistaRegistrado extends JFrame {
 		tpOptions.setPreferredSize(new Dimension(665, 580));
 		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
-		// Para realizar acciones al cambiar de pestanas definiremos un ChangeListener
-		tpOptions.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println(tpOptions.getSelectedIndex());
-			}
-		});
 
 		// Crear panel central
 
@@ -380,6 +373,7 @@ public class VistaRegistrado extends JFrame {
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
 		btnSubir.addActionListener(c);
+		tpOptions.addChangeListener(c);
 
 		addWindowListener(c);
 	}

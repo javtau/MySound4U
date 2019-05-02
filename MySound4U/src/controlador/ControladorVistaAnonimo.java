@@ -35,17 +35,23 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 		sesion = (SesionAnonima) api.getSesion();
 	}
 
-	// Metodo para rellenar la tabla de proveedores
+	// Metodo para rellenar la tabla de canciones
 	public void rellenarTableSongs(ArrayList<Element> elements) {
 		// TODO Auto-generated method stub
 		DefaultTableModel table = (DefaultTableModel) vista.getTableSongs().getModel();
 		table.getDataVector().removeAllElements();
 		table.fireTableDataChanged();
 		for (Element e : elements) {
-			Cancion cancion = (Cancion) e;
-			Album album = cancion.getAlbum();
-			table.addRow(new Object[] { cancion.getNombre(), cancion.getDuracion(), cancion.getAutorNombre(),
-					(album != null) ? album.getNombre() : " " });
+			if (e.getClass().getSimpleName().equals("Album")) {
+				Album album = (Album) e;
+				table.addRow(new Object[] { album.getNombre(), " ", album.getAutor().getNombre(), " " });
+			} else {
+				Cancion cancion = (Cancion) e;
+				Album album = cancion.getAlbum();
+				table.addRow(new Object[] { cancion.getNombre(), cancion.getDuracion(), cancion.getAutorNombre(),
+						(album != null) ? album.getNombre() : " " });
+			}
+
 		}
 		vista.getTableSongs().setRowSorter(new TableRowSorter<TableModel>(table));
 	}

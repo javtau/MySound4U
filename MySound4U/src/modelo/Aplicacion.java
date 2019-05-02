@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import sun.util.resources.LocaleData;
 import utils.FechaSimulada;
 import utils.Reproductor;
 
@@ -114,7 +115,6 @@ public class Aplicacion implements Serializable {
 			bloqueados = new HashMap<UsuarioRegistrado, LocalDate>();
 			admin = new Administrador();
 			lastDate = FechaSimulada.getHoy();
-			;
 
 		} else {
 			loadFrom(DATA_PATH);
