@@ -97,7 +97,7 @@ public class VistaAdmin extends JFrame {
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
 
-		pBox.add(Box.createRigidArea(new Dimension(0, 20)));
+		pBox.add(Box.createRigidArea(new Dimension(0, 14)));
 		pBox.add(btnLogOut);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		btnGestionar.setVisible(false);
