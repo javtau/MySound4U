@@ -127,7 +127,6 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 			default:
 				break;
 			}
-			sesion.reproducir(elementos.get(selection));
 			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
 		} else if (component == vista.getBtnBusqueda()) {
 			TIPO_BUSQUEDA filtro;
