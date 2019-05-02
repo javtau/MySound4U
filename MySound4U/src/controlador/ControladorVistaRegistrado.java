@@ -4,11 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -19,6 +17,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.*;
 import vista.DenunciarForm;
 import vista.PremiumForm;
+import vista.SubirCancionForm;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
 
@@ -121,11 +120,9 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			} else {
 				JOptionPane.showMessageDialog(premium, "El usuario ya es premium", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-
 		} else if (component == vista.getBtnStop()) {
 			sesion.stop();
 		} else if (component == vista.getBtnPlay()) {
-
 			int selection = 0;
 			switch (vista.getTpOptions().getSelectedIndex()) {
 			case 0:
@@ -157,22 +154,16 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			filtro = TIPO_BUSQUEDA.valueOf(vista.getComboBusqueda().getSelectedItem().toString().toUpperCase());
 			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
 			rellenarTableSongs(elementos);
-
 		} else if (component == vista.getBtnSubir()) {
-			String nombre = "love";
+			SubirCancionForm subir = new SubirCancionForm();
+			ControladorSubirCancion controlS = new ControladorSubirCancion(subir, sesion, vista, api);
+			subir.setControlador(controlS);
+			controlS.start();
 
-			System.out.println("a subir");
-			JFileChooser fileChooser = new JFileChooser();
-			int returnVal = fileChooser.showOpenDialog(null);
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				File origen = fileChooser.getSelectedFile();
-				sesion.subirCancion(nombre, origen);
-			} else {
-				System.out.println("File access cancelled by user");
-			}
 			elementos = new ArrayList<>(usuario.getCanciones());
-			// elementos = api.getLastSongs();
+			elementos = api.getLastSongs();
 			rellenarTableSongs(elementos);
+
 		} else if (component == vista.getBtnDenunciar()) {
 			DenunciarForm denunciaF = new DenunciarForm();
 			int selection = vista.getTableSongs().getSelectedRow();
@@ -244,7 +235,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			switch (vista.getTpOptions().getSelectedIndex()) {
 			case 0:
 				elementos = new ArrayList<>(usuario.getCanciones());
-				// elementos = api.getLastSongs();
+				elementos = api.getLastSongs();
 				rellenarTableSongs(elementos);
 				vista.getBtnDenunciar().setVisible(true);
 				break;
@@ -259,7 +250,6 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 3:
-
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 
@@ -267,6 +257,5 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				break;
 			}
 		}
-
 	}
 }

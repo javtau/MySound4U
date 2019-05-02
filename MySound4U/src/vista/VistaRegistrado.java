@@ -227,7 +227,6 @@ public class VistaRegistrado extends JFrame {
 		scrollPanePend.setPreferredSize(new Dimension(650, 542));
 		tpTabPendientes.add(scrollPanePend);
 
-
 		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
 		tpOptions.addTab("Albumes", tpTabAlbums);
@@ -243,7 +242,6 @@ public class VistaRegistrado extends JFrame {
 
 		// Anadir componentes al contenedor
 		contenedor.add(pCenter, BorderLayout.CENTER);
-
 	}
 
 	public static void main(String[] args) {

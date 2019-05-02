@@ -10,23 +10,22 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
-import controlador.ControladorDenunciar;
+import controlador.ControladorSubirCancion;
 
-public class DenunciarForm extends JFrame {
+public class SubirCancionForm extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel l1;
 	private JButton btn1, btn2;
-	private JTextArea textArea;
+	private JTextField tf1;
 	private Container contenedor;
 
-	public DenunciarForm() {
-		setTitle("Denunciar");
+	public SubirCancionForm() {
+		setTitle("Subir cancion");
 		setResizable(false);
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
@@ -35,39 +34,35 @@ public class DenunciarForm extends JFrame {
 		JPanel pl1 = new JPanel();
 		JPanel pl2 = new JPanel();
 
-		pl1.setLayout(new FlowLayout(FlowLayout.LEFT));
+		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl2.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		l1 = new JLabel("Motivo: ");
-		textArea = new JTextArea(5, 25);
-		JScrollPane scrollPane = new JScrollPane();
+		l1 = new JLabel("Nombre de la cancion a subir: ");
+		tf1 = new JTextField(15);
 
-		btn1 = new JButton("Denunciar");
+		btn1 = new JButton("Explorar");
 		btn2 = new JButton(" Cancelar ");
 
-		scrollPane.setViewportView(textArea);
-		textArea.setEditable(true);
-
 		pl1.add(l1);
-		pl1.add(Box.createRigidArea(new Dimension(7, 0)));
-		pl1.add(textArea);
+		pl1.add(tf1);
 		pl2.add(btn1);
 		pl2.add(btn2);
 
+		contenedor.add(Box.createRigidArea(new Dimension(0, 25)));
 		contenedor.add(pl1);
 		contenedor.add(pl2);
 
-		setSize(310, 180);
+		setSize(450, 150);
 	}
 
 	public static void main(String[] args) {
-		DenunciarForm den = new DenunciarForm();
-		den.setVisible(true);
+		SubirCancionForm sub = new SubirCancionForm();
+		sub.setVisible(true);
 	}
 
-	public void setControlador(ControladorDenunciar c) {
-		btn1.addActionListener(c);
-		btn2.addActionListener(c);
+	public void setControlador(ControladorSubirCancion controlS) {
+		btn1.addActionListener(controlS);
+		btn2.addActionListener(controlS);
 	}
 
 	public JLabel getL1() {
@@ -94,12 +89,12 @@ public class DenunciarForm extends JFrame {
 		this.btn2 = btn2;
 	}
 
-	public JTextArea getTextArea() {
-		return textArea;
+	public JTextField getTf1() {
+		return tf1;
 	}
 
-	public void setTextArea(JTextArea textArea) {
-		this.textArea = textArea;
+	public void setTf1(JTextField tf1) {
+		this.tf1 = tf1;
 	}
 
 	public void setLocation(VistaRegistrado vista) {

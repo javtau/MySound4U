@@ -59,7 +59,6 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 				table.addRow(new Object[] { cancion.getNombre(), cancion.getDuracion(), cancion.getAutorNombre(),
 						(album != null) ? album.getNombre() : " " });
 			}
-
 		}
 		vista.getTableSongs().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
@@ -221,7 +220,6 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 	}
-	
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
@@ -243,6 +241,5 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 				break;
 			}
 		}
-
 	}
 }

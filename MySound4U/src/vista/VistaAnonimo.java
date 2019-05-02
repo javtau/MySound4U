@@ -144,7 +144,6 @@ public class VistaAnonimo extends JFrame {
 
 		// Anadir componentes al contenedor
 		contenedor.add(pCenter, BorderLayout.CENTER);
-
 	}
 
 	public JTextField getTfBusqueda() {

@@ -58,7 +58,6 @@ public class ValidacionForm extends JFrame {
 	public static void main(String[] args) {
 		ValidacionForm val = new ValidacionForm();
 		val.setVisible(true);
-
 	}
 
 	public void setControlador(ControladorValidacion c) {
