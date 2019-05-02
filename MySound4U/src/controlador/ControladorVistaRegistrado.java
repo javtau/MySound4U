@@ -164,7 +164,6 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			elementos = new ArrayList<>(usuario.getCanciones());
 			elementos = api.getLastSongs();
 			rellenarTableSongs(elementos);
-
 		} else if (component == vista.getBtnDenunciar()) {
 			DenunciarForm denunciaF = new DenunciarForm();
 			int selection = vista.getTableSongs().getSelectedRow();
