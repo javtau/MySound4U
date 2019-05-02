@@ -80,8 +80,8 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			sesion.stop();
 		} else if (component == vista.getBtnPlay()) {
 			int selection = vista.getTableSongs().getSelectedRow();
-			sesion.reproducir(elementos.get(selection));
-			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
+			if (selection > -1)
+				sesion.reproducir(elementos.get(selection));
 
 		} else if (component == vista.getBtnBusqueda()) {
 			TIPO_BUSQUEDA filtro;

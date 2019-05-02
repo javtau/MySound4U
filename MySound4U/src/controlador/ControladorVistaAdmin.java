@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -26,7 +28,7 @@ import vista.ValidacionForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
 
-public class ControladorVistaAdmin implements ActionListener, WindowListener {
+public class ControladorVistaAdmin implements ActionListener, WindowListener, ChangeListener {
 	private VistaAdmin vista;
 	private Aplicacion api;
 	private SesionAdmin sesion;
@@ -106,6 +108,28 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 
 		} else if (component == vista.getBtnPlay()) {
 			int selection = vista.getTableSongs().getSelectedRow();
+
+			switch (vista.getTpOptions().getSelectedIndex()) {
+			case 0:
+				selection = vista.getTableSongs().getSelectedRow();
+				if (selection > -1)
+					sesion.reproducir(elementos.get(selection));
+				break;
+			case 1:
+				selection = vista.gettableDenuncias().getSelectedRow();
+				if (selection > -1)
+					sesion.reproducir(denuncias.get(selection).getCancion());
+				break;
+			case 2:
+				selection = vista.gettableValidaciones().getSelectedRow();
+				if (selection > -1)
+					sesion.reproducir(validaciones.get(selection).getCancion());
+				break;
+
+			default:
+				break;
+			}
+
 			sesion.reproducir(elementos.get(selection));
 			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
 
@@ -196,5 +220,29 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener {
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
+	}
+	
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		Object component = e.getSource();
+
+		if (component == vista.getTpOptions()) {
+			switch (vista.getTpOptions().getSelectedIndex()) {
+			case 0:
+				vista.getBtnGestionar().setVisible(false);
+				break;
+			case 1:
+				vista.getBtnGestionar().setVisible(true);
+				break;
+			case 2:
+				vista.getBtnGestionar().setVisible(true);
+				break;
+
+			default:
+				break;
+			}
+		}
+
 	}
 }

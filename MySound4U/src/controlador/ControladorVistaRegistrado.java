@@ -16,15 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import modelo.Album;
-import modelo.Aplicacion;
-import modelo.Cancion;
-import modelo.Element;
-import modelo.Lista;
-import modelo.SesionUsuarios;
-import modelo.TIPO_BUSQUEDA;
-import modelo.UsuarioRegistrado;
-import modelo.Validacion;
+import modelo.*;
 import vista.DenunciarForm;
 import vista.PremiumForm;
 import vista.VistaAnonimo;
@@ -38,7 +30,6 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	private ArrayList<Element> elementos;
 	private ArrayList<Album> albumes;
 	private ArrayList<Lista> listas;
-	private ArrayList<Cancion> pendientes;
 	private ArrayList<Validacion> pendientes;
 
 	public ControladorVistaRegistrado(VistaRegistrado vista, Aplicacion api) {
@@ -93,6 +84,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			table.addRow(new Object[] { lista.getNombre(), lista.getNumElements() });
 		}
 		vista.getTableList().setRowSorter(new TableRowSorter<TableModel>(table));
+	}
 
 	// Metodo para rellenar la tabla de Validaciones
 	public void rellenarTablePendientes(ArrayList<Validacion> pendientes) {
@@ -133,7 +125,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		} else if (component == vista.getBtnStop()) {
 			sesion.stop();
 		} else if (component == vista.getBtnPlay()) {
-<<<<<<< HEAD
+
 			int selection = 0;
 			switch (vista.getTpOptions().getSelectedIndex()) {
 			case 0:
@@ -152,14 +144,14 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 					sesion.reproducir(listas.get(selection));
 				break;
 			case 3:
-
-
+				selection = vista.getTablePendientes().getSelectedRow();
+				if (selection > -1)
+					sesion.reproducir(pendientes.get(selection).getCancion());
 				break;
 
 			default:
 				break;
 			}
-			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
 		} else if (component == vista.getBtnBusqueda()) {
 			TIPO_BUSQUEDA filtro;
 			filtro = TIPO_BUSQUEDA.valueOf(vista.getComboBusqueda().getSelectedItem().toString().toUpperCase());
@@ -179,7 +171,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				System.out.println("File access cancelled by user");
 			}
 			elementos = new ArrayList<>(usuario.getCanciones());
-			//elementos = api.getLastSongs();
+			// elementos = api.getLastSongs();
 			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnDenunciar()) {
 			DenunciarForm denunciaF = new DenunciarForm();
@@ -247,23 +239,23 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		Object component = e.getSource();
-		
+
 		if (component == vista.getTpOptions()) {
 			switch (vista.getTpOptions().getSelectedIndex()) {
 			case 0:
 				elementos = new ArrayList<>(usuario.getCanciones());
-				//elementos = api.getLastSongs();
+				// elementos = api.getLastSongs();
 				rellenarTableSongs(elementos);
 				vista.getBtnDenunciar().setVisible(true);
 				break;
 			case 1:
-				//albumes = usuario.getAlbumes();
-				//rellenarTableAlbums(albumes);
+				// albumes = usuario.getAlbumes();
+				// rellenarTableAlbums(albumes);
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 2:
-				//listas = usuario.getListas();
-				//rellenarTableList(listas);
+				// listas = usuario.getListas();
+				// rellenarTableList(listas);
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 3:
@@ -277,5 +269,4 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		}
 
 	}
-}
 }

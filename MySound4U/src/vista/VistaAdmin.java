@@ -100,6 +100,7 @@ public class VistaAdmin extends JFrame {
 		pBox.add(Box.createRigidArea(new Dimension(0, 20)));
 		pBox.add(btnLogOut);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
+		btnGestionar.setVisible(false);
 		pBox.add(btnGestionar);
 		pBox.add(Box.createRigidArea(new Dimension(0, 460)));
 		pBox.add(btnAjustes);
@@ -128,7 +129,7 @@ public class VistaAdmin extends JFrame {
 
 		// Creamos el panel central y sus elementos
 		pCenter = new JPanel();
-		JTabbedPane tpOptions = new JTabbedPane();
+		tpOptions = new JTabbedPane();
 
 		// Panel de canciones
 		JPanel tpTabSongs = new JPanel();
@@ -212,14 +213,7 @@ public class VistaAdmin extends JFrame {
 		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
 		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
-		tpOptions.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				selectedTable = tpOptions.getSelectedIndex();
-				System.out.println(tpOptions.getSelectedIndex());
-			}
-		});
+		
 
 		// Crear panel central
 		pCenter.add(tpOptions);
@@ -342,6 +336,8 @@ public class VistaAdmin extends JFrame {
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
 		btnAjustes.addActionListener(c);
+
+		tpOptions.addChangeListener(c);
 
 		addWindowListener(c);
 	}
