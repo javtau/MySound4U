@@ -263,14 +263,20 @@ public class Cancion extends Element implements Serializable {
 	 */
 	@Override
 	public Boolean reproducir(Usuario usuario) {
+		UsuarioAnonimo usuario2 = new UsuarioAnonimo();
 		if (usuario.canListenSong(this)) {
 			return false;
 		}
 		if (Aplicacion.reproductor.reproducir(ruta)) {
-			usuario.aumentarReproducidas();
-			if ((usuario.getClass() == UsuarioRegistrado.class) && !esAutor((UsuarioRegistrado) usuario)) {
-				aumentarReproducciones();
-				autor.aumentarReproducciones();
+			if (usuario.getClass() == usuario2.getClass()) {
+				usuario.aumentarReproducidas();
+			} else {
+				if ((usuario.getClass() == UsuarioRegistrado.class) && !esAutor((UsuarioRegistrado) usuario)) {
+					usuario.aumentarReproducidas();
+					aumentarReproducciones();
+					autor.aumentarReproducciones();
+				}
+
 			}
 			return true;
 		}

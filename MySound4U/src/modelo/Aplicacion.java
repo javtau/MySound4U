@@ -23,7 +23,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import sun.util.resources.LocaleData;
 import utils.FechaSimulada;
 import utils.Reproductor;
 
@@ -393,8 +392,8 @@ public class Aplicacion implements Serializable {
 	public ArrayList<UsuarioRegistrado> getOtrosUsuarios() {
 		ArrayList<UsuarioRegistrado> otros;
 		otros = new ArrayList<UsuarioRegistrado>();
-		for(UsuarioRegistrado u: usuarios) {
-			if(!sesion.getUsuario().equals(u)) {
+		for (UsuarioRegistrado u : usuarios) {
+			if (!sesion.getUsuario().equals(u)) {
 				otros.add(u);
 			}
 		}

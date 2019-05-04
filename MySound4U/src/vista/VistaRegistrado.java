@@ -16,8 +16,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,6 +44,8 @@ public class VistaRegistrado extends JFrame {
 	private JButton btnUnfollow;
 	private JButton btnSubir;
 	private JButton btnDenunciar;
+	private JButton btnEditar;
+	private JButton btnBorrar;
 
 	// Elementos del panel sur
 	JPanel psouth;
@@ -101,6 +101,8 @@ public class VistaRegistrado extends JFrame {
 		btnSeguir = new JButton("   Seguir   ");
 		btnUnfollow = new JButton(" Unfollow ");
 		btnDenunciar = new JButton("Denunciar");
+		btnEditar = new JButton("   Editar   ");
+		btnBorrar = new JButton("   Borrar   ");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
@@ -109,7 +111,11 @@ public class VistaRegistrado extends JFrame {
 		pBox.add(btnLogOut);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnPremium);
-		pBox.add(Box.createRigidArea(new Dimension(0, 410)));
+		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
+		pBox.add(btnEditar);
+		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
+		pBox.add(btnBorrar);
+		pBox.add(Box.createRigidArea(new Dimension(0, 300)));
 		pBox.add(btnSeguir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnUnfollow);
@@ -236,50 +242,50 @@ public class VistaRegistrado extends JFrame {
 		tablePendientes.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
 		scrollPanePend.setPreferredSize(new Dimension(650, 542));
 		tpTabPendientes.add(scrollPanePend);
-		
+
 		// Panel de usuarios
 
-				JPanel tpTabUsuarios= new JPanel();
-				JScrollPane scrollPaneUs = new JScrollPane();
+		JPanel tpTabUsuarios = new JPanel();
+		JScrollPane scrollPaneUs = new JScrollPane();
 
-				tableUsuarios = new JTable();
-				tableUsuarios.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Estado"}) {
+		tableUsuarios = new JTable();
+		tableUsuarios.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Estado" }) {
 
-					private static final long serialVersionUID = 1L;
-					Class[] columnTypes = new Class[] { String.class, String.class };
+			private static final long serialVersionUID = 1L;
+			Class[] columnTypes = new Class[] { String.class, String.class };
 
-					public Class getColumnClass(int columnIndex) {
-						return columnTypes[columnIndex];
-					}
-				});
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
 
-				scrollPaneAl.setViewportView(tableUsuarios);
-				tableUsuarios.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
-				tableUsuarios.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
-				scrollPaneAl.setPreferredSize(new Dimension(650, 542));
-				tpTabUsuarios.add(scrollPaneAl);
+		scrollPaneAl.setViewportView(tableUsuarios);
+		tableUsuarios.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+		tableUsuarios.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+		scrollPaneAl.setPreferredSize(new Dimension(650, 542));
+		tpTabUsuarios.add(scrollPaneAl);
 
-				// Panel de noticias
+		// Panel de noticias
 
-				JPanel tpTabNoticias = new JPanel();
-				JScrollPane scrollPaneNot = new JScrollPane();
+		JPanel tpTabNoticias = new JPanel();
+		JScrollPane scrollPaneNot = new JScrollPane();
 
-				tableNoticias = new JTable();
-				tableNoticias.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Novedades"}) {
+		tableNoticias = new JTable();
+		tableNoticias.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Novedades" }) {
 
-					private static final long serialVersionUID = 1L;
-					Class[] columnTypes = new Class[] { String.class};
+			private static final long serialVersionUID = 1L;
+			Class[] columnTypes = new Class[] { String.class };
 
-					public Class getColumnClass(int columnIndex) {
-						return columnTypes[columnIndex];
-					}
-				});
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
 
-				scrollPaneNot.setViewportView(tableNoticias);
-				tableNoticias.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
-				scrollPaneNot.setPreferredSize(new Dimension(650, 542));
-				tpTabNoticias.add(scrollPaneNot);
-				
+		scrollPaneNot.setViewportView(tableNoticias);
+		tableNoticias.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+		scrollPaneNot.setPreferredSize(new Dimension(650, 542));
+		tpTabNoticias.add(scrollPaneNot);
+
 		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
 		tpOptions.addTab("Albumes", tpTabAlbums);
@@ -353,7 +359,7 @@ public class VistaRegistrado extends JFrame {
 	public void setBtnSeguir(JButton btnSeguir) {
 		this.btnSeguir = btnSeguir;
 	}
-	
+
 	public JButton getBtnUnfollow() {
 		return btnUnfollow;
 	}
@@ -398,6 +404,22 @@ public class VistaRegistrado extends JFrame {
 		return tpOptions;
 	}
 
+	public JButton getBtnEditar() {
+		return btnEditar;
+	}
+
+	public void setBtnEditar(JButton btnEditar) {
+		this.btnEditar = btnEditar;
+	}
+
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+
+	public void setBtnBorrar(JButton btnBorrar) {
+		this.btnBorrar = btnBorrar;
+	}
+
 	public void setTpOptions(JTabbedPane tpOptions) {
 		this.tpOptions = tpOptions;
 	}
@@ -413,7 +435,6 @@ public class VistaRegistrado extends JFrame {
 	public void setTableUsuarios(JTable tableUsuarios) {
 		this.tableUsuarios = tableUsuarios;
 	}
-	
 
 	public JTable getTableNoticias() {
 		return tableNoticias;
@@ -462,6 +483,8 @@ public class VistaRegistrado extends JFrame {
 		btnUnfollow.addActionListener(c);
 		tpOptions.addChangeListener(c);
 		btnDenunciar.addActionListener(c);
+		btnEditar.addActionListener(c);
+		btnBorrar.addActionListener(c);
 
 		addWindowListener(c);
 	}

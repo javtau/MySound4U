@@ -16,6 +16,7 @@ import javax.swing.table.TableRowSorter;
 
 import modelo.*;
 import vista.DenunciarForm;
+import vista.EditarCancionForm;
 import vista.PremiumForm;
 import vista.SubirCancionForm;
 import vista.VistaAnonimo;
@@ -204,7 +205,6 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				denunciaF.setControlador(controlD);
 				controlD.start();
 			}
-
 		} else if (component == vista.getBtnSeguir()) {
 			int selection = vista.getTableUsuarios().getSelectedRow();
 			if (selection > -1) {
@@ -212,13 +212,51 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				rellenarTableUsuarios(usuarios);
 				System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Seguido.");
 			}
-
 		} else if (component == vista.getBtnUnfollow()) {
 			int selection = vista.getTableUsuarios().getSelectedRow();
 			if (selection > -1) {
 				sesion.dejarDeSeguir(api.getOtrosUsuarios().get(selection));
 				rellenarTableUsuarios(usuarios);
 				System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Dejado se seguir.");
+			}
+		} else if (component == vista.getBtnEditar()) {
+			int selection = vista.getTableSongs().getSelectedRow();
+			if (selection > -1) {
+				if (((Cancion) elementos.get(selection)).getAutor() != usuario)
+					JOptionPane.showMessageDialog(null, "No se puede editar una cancion que no es tuya",
+							"Editar cancion", JOptionPane.ERROR_MESSAGE);
+				else if (((Cancion) elementos.get(selection)).esValidada() == true)
+					JOptionPane.showMessageDialog(null, "No se puede editar una cancion que ya ha sido validada",
+							"Editar cancion", JOptionPane.ERROR_MESSAGE);
+				else if (((Cancion) elementos.get(selection)).enRevision() == false)
+					JOptionPane.showMessageDialog(null, "La cancion esta en revision por el administrador",
+							"Editar cancion", JOptionPane.INFORMATION_MESSAGE);
+				else {
+					EditarCancionForm edit = new EditarCancionForm();
+					ControladorEditarCancion controlE = new ControladorEditarCancion(edit, sesion, vista, api,
+							((Cancion) elementos.get(selection)));
+					edit.setControlador(controlE);
+					controlE.start();
+					elementos = new ArrayList<>(usuario.getCanciones());
+					elementos = api.getLastSongs();
+					rellenarTableSongs(elementos);
+				}
+			}
+		} else if (component == vista.getBtnBorrar()) {
+			int selection = vista.getTableSongs().getSelectedRow();
+			if (selection > -1) {
+				if (((Cancion) elementos.get(selection)).getAutor() != usuario) {
+					JOptionPane.showMessageDialog(null, "No se puede borrar una cancion que no es tuya",
+							"Borrar cancion", JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (JOptionPane.showConfirmDialog(null, "Esta seguro de que desea borrar la cancion?", "Atencion",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						sesion.borrarCancion(((Cancion) elementos.get(selection)));
+						elementos = new ArrayList<>(usuario.getCanciones());
+						elementos = api.getLastSongs();
+						rellenarTableSongs(elementos);
+					}
+				}
 			}
 		}
 	}
@@ -292,6 +330,8 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				elementos = new ArrayList<>(usuario.getCanciones());
 				elementos = api.getLastSongs();
 				rellenarTableSongs(elementos);
+				vista.getBtnBorrar().setVisible(true);
+				vista.getBtnEditar().setVisible(true);
 				vista.getBtnSeguir().setVisible(false);
 				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(true);
@@ -299,6 +339,8 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			case 1:
 				// albumes = usuario.getAlbumes();
 				// rellenarTableAlbums(albumes);
+				vista.getBtnBorrar().setVisible(false);
+				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
 				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);
@@ -306,21 +348,26 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			case 2:
 				// listas = usuario.getListas();
 				// rellenarTableList(listas);
+				vista.getBtnBorrar().setVisible(false);
+				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
 				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 3:
+				vista.getBtnBorrar().setVisible(false);
+				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
 				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 4:
+				vista.getBtnBorrar().setVisible(false);
+				vista.getBtnEditar().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);
 				vista.getBtnSeguir().setVisible(true);
 				vista.getBtnUnfollow().setVisible(true);
 				break;
-
 			default:
 				break;
 			}
