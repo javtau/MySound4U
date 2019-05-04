@@ -2,9 +2,11 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -50,9 +52,11 @@ public class ValidacionForm extends JFrame {
 		pl2.add(l2);
 		pl2.add(check1);
 
+		contenedor.add(Box.createRigidArea(new Dimension(0, 20)));
 		contenedor.add(pl2);
+		contenedor.add(Box.createRigidArea(new Dimension(0, 5)));
 		contenedor.add(pl1);
-		setSize(240, 160);
+		setSize(240, 140);
 	}
 
 	public static void main(String[] args) {

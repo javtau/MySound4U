@@ -135,7 +135,6 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnGestionar()) {
 			switch (vista.getTpOptions().getSelectedIndex()) {
-
 			case 1:
 				DenunciaForm formD = new DenunciaForm();
 				int selec = vista.gettableDenuncias().getSelectedRow();

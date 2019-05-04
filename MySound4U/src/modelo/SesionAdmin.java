@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -78,7 +79,9 @@ public class SesionAdmin extends Sesion implements Serializable {
 	 * @param cancion a validar
 	 */
 	public void validar(Validacion validacion) {
-		String str = validacion.getCancion().getAutor().getNombre() + " ha subido la cancion " + validacion.getCancion().getNombre() + " el " + FechaSimulada.getHoy();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String str = validacion.getCancion().getAutor().getNombre() + " ha subido la cancion "
+				+ validacion.getCancion().getNombre() + " el " + FechaSimulada.getHoy().format(formatter);
 		validacion.getCancion().validar();
 		validacion.getCancion().getAutor().addNoticia(str);
 		api.deleteValidacion(validacion);

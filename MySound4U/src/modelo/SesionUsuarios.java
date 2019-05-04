@@ -88,7 +88,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		Album album = new Album(nombre, usuario);
 		api.addAlbum(album);
 		usuario.addAlbum(album);
-		usuario.addNoticia(usuario.getNombre() + "ha subido un album nuevo.");
+		usuario.addNoticia(usuario.getNombre() + "ha subido un album nuevo");
 	}
 
 	public void borrarCancion(Cancion cancion) {
@@ -119,7 +119,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			System.out.println("No se puede seguir a si mismo.");
 			return;
 		}
-
 		usuario.seguir(usuario2);
 	}
 
@@ -128,7 +127,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 			System.out.println("No sigue a este usuario.");
 			return;
 		}
-
 		usuario.dejarDeSeguir(usuario2);
 	}
 

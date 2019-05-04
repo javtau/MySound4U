@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.Box;
@@ -31,12 +30,10 @@ public class AjustesForm extends JFrame {
 	private JSpinner sp1, sp2, sp3;
 	private JButton btn1, btn2;
 	private Container contenedor;
-	private LocalDate localDate;
 	private DateTimeFormatter formatter;
 	private JComponent mySpinnerEditor1, mySpinnerEditor2, mySpinnerEditor3;
 	private JFormattedTextField jftf1, jftf2, jftf3;
 	private Aplicacion api = Aplicacion.getApi();
-	private String fechaHoy;
 
 	public AjustesForm() {
 		setTitle("Ajustes");
@@ -72,10 +69,8 @@ public class AjustesForm extends JFrame {
 		btn1 = new JButton("Aceptar");
 		btn2 = new JButton("Cancelar");
 
-		localDate = FechaSimulada.getHoy();
 		formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		fechaHoy = localDate.format(formatter);
-		l5 = new JLabel("Hoy es: " + fechaHoy);
+		l5 = new JLabel("Hoy es: " + FechaSimulada.getHoy().format(formatter));
 		l5.setForeground(Color.BLUE);
 		l5.setFont(new java.awt.Font("Tahoma", 0, 13));
 

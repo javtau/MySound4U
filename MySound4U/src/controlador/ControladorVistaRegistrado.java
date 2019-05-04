@@ -75,7 +75,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				seguido = true;
 			}
 			table.addRow(new Object[] { u.getNombre(),
-					(seguido == true) ? "Ya sigues a este usuario." : "Comienza a seguir a este usuario" });
+					(seguido == true) ? "Ya sigues a este usuario" : "Comienza a seguir a este usuario" });
 		}
 		vista.getTableUsuarios().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
@@ -90,7 +90,6 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		}
 		vista.getTableNoticias().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
-
 
 	// Metodo para rellenar la tabla de albumes
 	public void rellenarTableAlbums(ArrayList<Album> elements) {
@@ -205,21 +204,21 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				denunciaF.setControlador(controlD);
 				controlD.start();
 			}
-			
+
 		} else if (component == vista.getBtnSeguir()) {
 			int selection = vista.getTableUsuarios().getSelectedRow();
 			if (selection > -1) {
-			sesion.seguir(api.getOtrosUsuarios().get(selection));
-			rellenarTableUsuarios(usuarios);
-			System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Seguido.");
+				sesion.seguir(api.getOtrosUsuarios().get(selection));
+				rellenarTableUsuarios(usuarios);
+				System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Seguido.");
 			}
-			
+
 		} else if (component == vista.getBtnUnfollow()) {
 			int selection = vista.getTableUsuarios().getSelectedRow();
 			if (selection > -1) {
-			sesion.dejarDeSeguir(api.getOtrosUsuarios().get(selection));
-			rellenarTableUsuarios(usuarios);
-			System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Dejado se seguir.");
+				sesion.dejarDeSeguir(api.getOtrosUsuarios().get(selection));
+				rellenarTableUsuarios(usuarios);
+				System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Dejado se seguir.");
 			}
 		}
 	}
@@ -321,7 +320,6 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				vista.getBtnSeguir().setVisible(true);
 				vista.getBtnUnfollow().setVisible(true);
 				break;
-
 
 			default:
 				break;

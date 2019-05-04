@@ -55,7 +55,7 @@ public class DenunciaForm extends JFrame {
 		l5 = new JLabel("Cancion: ");
 		lbcancion = new JLabel("");
 
-		l7 = new JLabel("                       Autor: ");
+		l7 = new JLabel("             Autor: ");
 		lbautor = new JLabel("");
 
 		l2 = new JLabel("Motivo: ");

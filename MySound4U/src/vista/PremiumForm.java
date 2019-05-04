@@ -24,7 +24,7 @@ public class PremiumForm extends JFrame {
 	private Container contenedor;
 
 	public PremiumForm() {
-		setTitle("Registro");
+		setTitle("Premium");
 
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
