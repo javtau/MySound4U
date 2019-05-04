@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import es.uam.eps.padsof.telecard.OrderRejectedException;
 import es.uam.eps.padsof.telecard.TeleChargeAndPaySystem;
@@ -178,7 +179,8 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	@Override
 	public void reproducir(Element elemento) {
 		if ((!usuario.esPremium() && usuario.getReproducidas() >= api.getLimiteReproducciones())) {
-			System.out.println("Este usuario ha llegado al limite de reproducciones. Pasa a premium");
+			JOptionPane.showMessageDialog(null, "Has llegado al limite maximo. Pasa a premium", "Error",
+					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 

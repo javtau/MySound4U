@@ -8,6 +8,8 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import utils.ConsolaAnonimo;
 
 /**
@@ -41,7 +43,8 @@ public class SesionAnonima extends Sesion implements Serializable {
 	// @Override
 	public void reproducir(Element cancion) {
 		if (usuario.getReproducidas() >= api.getLimiteReproducciones()) {
-			System.out.println("No se puede reproducir");
+			JOptionPane.showMessageDialog(null, "Has llegado al limite de reproducciones maximo del usuario anonimo",
+					"Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		cancion.reproducir(usuario);
