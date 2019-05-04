@@ -27,6 +27,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	private SesionUsuarios sesion;
 	private UsuarioRegistrado usuario;
 	private ArrayList<Element> elementos;
+	private ArrayList<UsuarioRegistrado> usuarios;
 	private ArrayList<Album> albumes;
 	private ArrayList<Lista> listas;
 	private ArrayList<Validacion> pendientes;
@@ -58,6 +59,24 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 
 		}
 		vista.getTableSongs().setRowSorter(new TableRowSorter<TableModel>(table));
+	}
+
+	// Metodo para rellenar la tabla de usuarios
+	public void rellenarTableUsuarios(ArrayList<UsuarioRegistrado> usuarios) {
+		boolean seguido = false;
+		// TODO Auto-generated method stub
+		DefaultTableModel table = (DefaultTableModel) vista.getTableUsuarios().getModel();
+		table.getDataVector().removeAllElements();
+		table.fireTableDataChanged();
+		for (UsuarioRegistrado u : usuarios) {
+			seguido = false;
+			if (usuario.getSeguidos().contains(u)) {
+				seguido = true;
+			}
+			table.addRow(new Object[] { u.getNombre(),
+					(seguido == true) ? "Ya sigues a este usuario." : "Comienza a seguir a este usuario" });
+		}
+		vista.getTableUsuarios().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
 
 	// Metodo para rellenar la tabla de albumes
@@ -165,16 +184,37 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			elementos = api.getLastSongs();
 			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnDenunciar()) {
-			DenunciarForm denunciaF = new DenunciarForm();
 			int selection = vista.getTableSongs().getSelectedRow();
-			ControladorDenunciar controlD = new ControladorDenunciar(denunciaF, elementos.get(selection), sesion, vista,
-					api);
-			denunciaF.setControlador(controlD);
-			controlD.start();
+			if (selection > -1) {
+				DenunciarForm denunciaF = new DenunciarForm();
+				ControladorDenunciar controlD = new ControladorDenunciar(denunciaF, elementos.get(selection), sesion,
+						vista, api);
+				denunciaF.setControlador(controlD);
+				controlD.start();
+			}
+			
+		} else if (component == vista.getBtnSeguir()) {
+			int selection = vista.getTableUsuarios().getSelectedRow();
+			if (selection > -1) {
+			sesion.seguir(api.getOtrosUsuarios().get(selection));
+			rellenarTableUsuarios(usuarios);
+			System.out.println(sesion.getUsuarioRegistrado().getSeguidos());
+			}
+			
+		} else if (component == vista.getBtnUnfollow()) {
+			int selection = vista.getTableUsuarios().getSelectedRow();
+			if (selection > -1) {
+			sesion.dejarDeSeguir(api.getOtrosUsuarios().get(selection));
+			rellenarTableUsuarios(usuarios);
+			System.out.println(sesion.getUsuarioRegistrado().getSeguidos());
+			}
 		}
 	}
 
 	public void start() {
+		vista.getBtnSeguir().setVisible(false);
+		vista.getBtnUnfollow().setVisible(false);
+		usuarios = api.getOtrosUsuarios();
 		elementos = api.getLastSongs();
 		pendientes = api.getValidacionesByUser(sesion.getUsuarioRegistrado());
 		rellenarTableSongs(elementos);
@@ -184,6 +224,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		listas = usuario.getListas();
 		rellenarTableList(listas);
 		rellenarTablePendientes(pendientes);
+		rellenarTableUsuarios(usuarios);
 		vista.setVisible(true);
 	}
 
@@ -237,20 +278,33 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				elementos = new ArrayList<>(usuario.getCanciones());
 				elementos = api.getLastSongs();
 				rellenarTableSongs(elementos);
+				vista.getBtnSeguir().setVisible(false);
+				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(true);
 				break;
 			case 1:
 				// albumes = usuario.getAlbumes();
 				// rellenarTableAlbums(albumes);
+				vista.getBtnSeguir().setVisible(false);
+				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 2:
 				// listas = usuario.getListas();
 				// rellenarTableList(listas);
+				vista.getBtnSeguir().setVisible(false);
+				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 3:
+				vista.getBtnSeguir().setVisible(false);
+				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);
+				break;
+			case 4:
+				vista.getBtnDenunciar().setVisible(false);
+				vista.getBtnSeguir().setVisible(true);
+				vista.getBtnUnfollow().setVisible(true);
 				break;
 
 			default:

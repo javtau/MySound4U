@@ -334,4 +334,20 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	public boolean isAdmin() {
 		return false;
 	}
+
+
+	/**
+	 * Este metodo elimina un usuario registrado a la lista de usuarios seguidos
+	 * 
+	 * @param usuario Usuario que se quiere eliminar
+	 * @return Boolean True si se ha eliminado el usuario, false en caso contrario
+	 */
+	public Boolean dejarDeSeguir(UsuarioRegistrado usuario) {
+		if (seguidos.contains(usuario)) {
+			seguidos.remove(usuario);
+			return true;
+		}
+		return false;
+	}
+
 }

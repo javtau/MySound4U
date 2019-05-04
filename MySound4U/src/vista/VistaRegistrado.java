@@ -42,6 +42,8 @@ public class VistaRegistrado extends JFrame {
 	JPanel pEast;
 	private JButton btnLogOut;
 	private JButton btnPremium;
+	private JButton btnSeguir;
+	private JButton btnUnfollow;
 	private JButton btnSubir;
 	private JButton btnDenunciar;
 
@@ -59,6 +61,7 @@ public class VistaRegistrado extends JFrame {
 	private JTable tableAlbums;
 	private JTable tableList;
 	private JTable tablePendientes;
+	private JTable tableUsuarios;
 
 	public VistaRegistrado() {
 
@@ -94,6 +97,8 @@ public class VistaRegistrado extends JFrame {
 		btnLogOut = new JButton("  Logout  ");
 		btnPremium = new JButton(" Premium");
 		btnSubir = new JButton("    Subir    ");
+		btnSeguir = new JButton("   Seguir   ");
+		btnUnfollow = new JButton(" Unfollow ");
 		btnDenunciar = new JButton("Denunciar");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -103,7 +108,11 @@ public class VistaRegistrado extends JFrame {
 		pBox.add(btnLogOut);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnPremium);
-		pBox.add(Box.createRigidArea(new Dimension(0, 425)));
+		pBox.add(Box.createRigidArea(new Dimension(0, 410)));
+		pBox.add(btnSeguir);
+		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
+		pBox.add(btnUnfollow);
+		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnSubir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnDenunciar);
@@ -226,12 +235,36 @@ public class VistaRegistrado extends JFrame {
 		tablePendientes.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
 		scrollPanePend.setPreferredSize(new Dimension(650, 542));
 		tpTabPendientes.add(scrollPanePend);
+		
+		// Panel de usuarios
 
+				JPanel tpTabUsuarios= new JPanel();
+				JScrollPane scrollPaneUs = new JScrollPane();
+
+				tableUsuarios = new JTable();
+				tableUsuarios.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Estado"}) {
+
+					private static final long serialVersionUID = 1L;
+					Class[] columnTypes = new Class[] { String.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+				});
+
+				scrollPaneAl.setViewportView(tableUsuarios);
+				tableUsuarios.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+				tableUsuarios.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
+				scrollPaneAl.setPreferredSize(new Dimension(650, 542));
+				tpTabUsuarios.add(scrollPaneAl);
+
+				
 		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
 		tpOptions.addTab("Albumes", tpTabAlbums);
 		tpOptions.addTab("Listas", tpTabList);
 		tpOptions.addTab("Pendientes", tpTabPendientes);
+		tpOptions.addTab("Usuarios", tpTabUsuarios);
 		tpOptions.setPreferredSize(new Dimension(665, 580));
 		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
@@ -291,6 +324,22 @@ public class VistaRegistrado extends JFrame {
 		this.btnPremium = btnPremium;
 	}
 
+	public JButton getBtnSeguir() {
+		return btnSeguir;
+	}
+
+	public void setBtnSeguir(JButton btnSeguir) {
+		this.btnSeguir = btnSeguir;
+	}
+	
+	public JButton getBtnUnfollow() {
+		return btnUnfollow;
+	}
+
+	public void setBtnUnfollow(JButton btnUnfollow) {
+		this.btnUnfollow = btnUnfollow;
+	}
+
 	public JButton getBtnSubir() {
 		return btnSubir;
 	}
@@ -335,6 +384,14 @@ public class VistaRegistrado extends JFrame {
 		return tableSongs;
 	}
 
+	public JTable getTableUsuarios() {
+		return tableUsuarios;
+	}
+
+	public void setTableUsuarios(JTable tableUsuarios) {
+		this.tableUsuarios = tableUsuarios;
+	}
+
 	public void setTableSongs(JTable tableSongs) {
 		this.tableSongs = tableSongs;
 	}
@@ -370,6 +427,8 @@ public class VistaRegistrado extends JFrame {
 		btnPlay.addActionListener(c);
 		btnStop.addActionListener(c);
 		btnSubir.addActionListener(c);
+		btnSeguir.addActionListener(c);
+		btnUnfollow.addActionListener(c);
 		tpOptions.addChangeListener(c);
 		btnDenunciar.addActionListener(c);
 

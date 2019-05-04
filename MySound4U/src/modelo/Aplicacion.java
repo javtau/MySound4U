@@ -386,6 +386,22 @@ public class Aplicacion implements Serializable {
 	}
 
 	/**
+	 * Metodo que devuelve una lista con los usuarios registrados
+	 * 
+	 * @return songs Lista con los usuarios
+	 */
+	public ArrayList<UsuarioRegistrado> getOtrosUsuarios() {
+		ArrayList<UsuarioRegistrado> otros;
+		otros = new ArrayList<UsuarioRegistrado>();
+		for(UsuarioRegistrado u: usuarios) {
+			if(!sesion.getUsuario().equals(u)) {
+				otros.add(u);
+			}
+		}
+		return otros;
+	}
+
+	/**
 	 * Metodo que devuelve una lista con las denuncias realizadas
 	 * 
 	 * @return songs Lista con las denuncias

@@ -122,6 +122,16 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		usuario.seguir(usuario2);
 	}
 
+	public void dejarDeSeguir(UsuarioRegistrado usuario2) {
+		if (!usuario.getSeguidos().contains(usuario2)) {
+			System.out.println("No sigue a este usuario.");
+			return;
+		}
+
+		usuario.dejarDeSeguir(usuario2);
+	}
+
+
 	/**
 	 * Metodo que recibe un numero de tarjeta, lo comprueba y si se puede hacer el
 	 * cargo se pasa al usuario a premium
