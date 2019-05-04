@@ -134,23 +134,27 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
 			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnGestionar()) {
-			if (vista.getTpOptionsIndex() == 2) {
+			switch (vista.getTpOptions().getSelectedIndex()) {
+
+			case 1:
+				DenunciaForm formD = new DenunciaForm();
+				int selec = vista.gettableDenuncias().getSelectedRow();
+				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selec));
+				formD.getTextArea().setText(denuncias.get(selec).getComentario());
+				formD.getLbdenunciante().setText(denuncias.get(selec).getDenunciante().getNombre());
+				formD.getLbcancion().setText(denuncias.get(selec).getCancion().getNombre());
+				formD.getLbautor().setText(denuncias.get(selec).getCancion().getAutorNombre());
+				formD.setControlador(controlD);
+				controlD.start();
+				break;
+			case 2:
 				ValidacionForm formV = new ValidacionForm();
 				int selection = vista.gettableValidaciones().getSelectedRow();
 				ControladorValidacion controlV = new ControladorValidacion(formV, api, vista,
 						validaciones.get(selection));
 				formV.setControlador(controlV);
 				controlV.start();
-			} else if (vista.getTpOptionsIndex() == 1) {
-				DenunciaForm formD = new DenunciaForm();
-				int selection = vista.gettableDenuncias().getSelectedRow();
-				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selection));
-				formD.getTextArea().setText(denuncias.get(selection).getComentario());
-				formD.getLbdenunciante().setText(denuncias.get(selection).getDenunciante().getNombre());
-				formD.getLbcancion().setText(denuncias.get(selection).getCancion().getNombre());
-				formD.getLbautor().setText(denuncias.get(selection).getCancion().getAutorNombre());
-				formD.setControlador(controlD);
-				controlD.start();
+				break;
 			}
 		} else if (component == vista.getBtnAjustes()) {
 			AjustesForm ajustes = new AjustesForm();

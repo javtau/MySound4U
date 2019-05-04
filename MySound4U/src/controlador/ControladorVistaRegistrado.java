@@ -27,6 +27,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	private SesionUsuarios sesion;
 	private UsuarioRegistrado usuario;
 	private ArrayList<Element> elementos;
+	private ArrayList<String> noticias;
 	private ArrayList<UsuarioRegistrado> usuarios;
 	private ArrayList<Album> albumes;
 	private ArrayList<Lista> listas;
@@ -78,6 +79,18 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		}
 		vista.getTableUsuarios().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
+
+	// Metodo para rellenar la tabla de noticias
+	public void rellenarTableNoticias(ArrayList<String> noticias) {
+		DefaultTableModel table = (DefaultTableModel) vista.getTableNoticias().getModel();
+		table.getDataVector().removeAllElements();
+		table.fireTableDataChanged();
+		for (String n : noticias) {
+			table.addRow(new Object[] { n });
+		}
+		vista.getTableNoticias().setRowSorter(new TableRowSorter<TableModel>(table));
+	}
+
 
 	// Metodo para rellenar la tabla de albumes
 	public void rellenarTableAlbums(ArrayList<Album> elements) {
@@ -198,7 +211,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			if (selection > -1) {
 			sesion.seguir(api.getOtrosUsuarios().get(selection));
 			rellenarTableUsuarios(usuarios);
-			System.out.println(sesion.getUsuarioRegistrado().getSeguidos());
+			System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Seguido.");
 			}
 			
 		} else if (component == vista.getBtnUnfollow()) {
@@ -206,7 +219,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			if (selection > -1) {
 			sesion.dejarDeSeguir(api.getOtrosUsuarios().get(selection));
 			rellenarTableUsuarios(usuarios);
-			System.out.println(sesion.getUsuarioRegistrado().getSeguidos());
+			System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Dejado se seguir.");
 			}
 		}
 	}
@@ -216,6 +229,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		vista.getBtnUnfollow().setVisible(false);
 		usuarios = api.getOtrosUsuarios();
 		elementos = api.getLastSongs();
+		noticias = sesion.getMisNoticias();
 		pendientes = api.getValidacionesByUser(sesion.getUsuarioRegistrado());
 		rellenarTableSongs(elementos);
 		vista.pack();
@@ -223,6 +237,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		rellenarTableAlbums(albumes);
 		listas = usuario.getListas();
 		rellenarTableList(listas);
+		rellenarTableNoticias(noticias);
 		rellenarTablePendientes(pendientes);
 		rellenarTableUsuarios(usuarios);
 		vista.setVisible(true);
@@ -306,6 +321,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				vista.getBtnSeguir().setVisible(true);
 				vista.getBtnUnfollow().setVisible(true);
 				break;
+
 
 			default:
 				break;

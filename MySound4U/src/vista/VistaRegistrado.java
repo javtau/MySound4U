@@ -62,6 +62,7 @@ public class VistaRegistrado extends JFrame {
 	private JTable tableList;
 	private JTable tablePendientes;
 	private JTable tableUsuarios;
+	private JTable tableNoticias;
 
 	public VistaRegistrado() {
 
@@ -258,6 +259,26 @@ public class VistaRegistrado extends JFrame {
 				scrollPaneAl.setPreferredSize(new Dimension(650, 542));
 				tpTabUsuarios.add(scrollPaneAl);
 
+				// Panel de noticias
+
+				JPanel tpTabNoticias = new JPanel();
+				JScrollPane scrollPaneNot = new JScrollPane();
+
+				tableNoticias = new JTable();
+				tableNoticias.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Novedades"}) {
+
+					private static final long serialVersionUID = 1L;
+					Class[] columnTypes = new Class[] { String.class};
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+				});
+
+				scrollPaneNot.setViewportView(tableNoticias);
+				tableNoticias.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
+				scrollPaneNot.setPreferredSize(new Dimension(650, 542));
+				tpTabNoticias.add(scrollPaneNot);
 				
 		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
 		tpOptions.addTab("Canciones", tpTabSongs);
@@ -265,6 +286,7 @@ public class VistaRegistrado extends JFrame {
 		tpOptions.addTab("Listas", tpTabList);
 		tpOptions.addTab("Pendientes", tpTabPendientes);
 		tpOptions.addTab("Usuarios", tpTabUsuarios);
+		tpOptions.addTab("Noticias", tpTabNoticias);
 		tpOptions.setPreferredSize(new Dimension(665, 580));
 		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
@@ -390,6 +412,15 @@ public class VistaRegistrado extends JFrame {
 
 	public void setTableUsuarios(JTable tableUsuarios) {
 		this.tableUsuarios = tableUsuarios;
+	}
+	
+
+	public JTable getTableNoticias() {
+		return tableNoticias;
+	}
+
+	public void setTableNoticias(JTable tableNoticias) {
+		this.tableNoticias = tableNoticias;
 	}
 
 	public void setTableSongs(JTable tableSongs) {

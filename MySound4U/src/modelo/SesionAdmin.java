@@ -78,7 +78,9 @@ public class SesionAdmin extends Sesion implements Serializable {
 	 * @param cancion a validar
 	 */
 	public void validar(Validacion validacion) {
+		String str = validacion.getCancion().getAutor().getNombre() + " ha subido la cancion " + validacion.getCancion().getNombre() + " el " + FechaSimulada.getHoy();
 		validacion.getCancion().validar();
+		validacion.getCancion().getAutor().addNoticia(str);
 		api.deleteValidacion(validacion);
 
 	}

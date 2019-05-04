@@ -88,6 +88,7 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		Album album = new Album(nombre, usuario);
 		api.addAlbum(album);
 		usuario.addAlbum(album);
+		usuario.addNoticia(usuario.getNombre() + "ha subido un album nuevo.");
 	}
 
 	public void borrarCancion(Cancion cancion) {
@@ -130,7 +131,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 
 		usuario.dejarDeSeguir(usuario2);
 	}
-
 
 	/**
 	 * Metodo que recibe un numero de tarjeta, lo comprueba y si se puede hacer el
@@ -224,6 +224,23 @@ public class SesionUsuarios extends Sesion implements Serializable {
 
 	public UsuarioRegistrado getUsuarioRegistrado() {
 		return usuario;
+	}
+
+	/**
+	 * Este metodo devuelve las noticias que le salen a un usuario
+	 * 
+	 * @return lista de noticias
+	 */
+	public ArrayList<String> getMisNoticias() {
+		ArrayList<String> misnoticias = new ArrayList<String>();
+		for (UsuarioRegistrado u : usuario.getSeguidos()) {
+			if (u.getNoticias() != null) {
+				for (String n : u.getNoticias()) {
+					misnoticias.add(n);
+				}
+			}
+		}
+		return misnoticias;
 	}
 
 	/**

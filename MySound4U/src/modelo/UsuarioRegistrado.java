@@ -17,6 +17,14 @@ import utils.FechaSimulada;
 /**
  * Esta clase contiene todos los atributos y metodos de un usuario registrado
  */
+/**
+ * @author Usuario
+ *
+ */
+/**
+ * @author Usuario
+ *
+ */
 public class UsuarioRegistrado extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -45,6 +53,9 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	/** Lista con las listas creadas por el usuario */
 	private ArrayList<Lista> listas;
 
+	/** Noticias sobre el usuario */
+	private ArrayList<String> noticias;
+
 	/** Lista de los usuarios a los que sigue este usuario */
 	private ArrayList<UsuarioRegistrado> seguidos;
 
@@ -66,6 +77,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		canciones = new ArrayList<>();
 		albumes = new ArrayList<>();
 		listas = new ArrayList<>();
+		noticias = new ArrayList<String>();
 		seguidos = new ArrayList<>();
 	}
 
@@ -326,6 +338,31 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * 
 	 */
 
+	public ArrayList<String> getNoticias() {
+		return noticias;
+	}
+
+	/**
+	 * Este metodo anyade una noticia a la lista de noticias
+	 * 
+	 * @param string noticia
+	 */
+	public void addNoticia(String noticia) {
+		if(noticias == null) {
+			noticias = new ArrayList<String>();
+		}
+		if (noticia != null) {
+			noticias.add(noticia);
+		}
+	}
+
+	/**
+	 * Metodo que devuelve las noticias
+	 * 
+	 * @return noticias
+	 * 
+	 */
+
 	public ArrayList<Lista> getListas() {
 		return listas;
 	}
@@ -334,7 +371,6 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	public boolean isAdmin() {
 		return false;
 	}
-
 
 	/**
 	 * Este metodo elimina un usuario registrado a la lista de usuarios seguidos
