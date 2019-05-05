@@ -55,11 +55,6 @@ public class EditarCancionForm extends JFrame {
 		setSize(450, 150);
 	}
 
-	public static void main(String[] args) {
-		EditarCancionForm edit = new EditarCancionForm();
-		edit.setVisible(true);
-	}
-
 	public void setControlador(ControladorEditarCancion controlE) {
 		btn1.addActionListener(controlE);
 		btn2.addActionListener(controlE);

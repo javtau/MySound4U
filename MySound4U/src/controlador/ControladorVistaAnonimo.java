@@ -61,7 +61,6 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 		Object component = e.getSource();
 
 		if (component == vista.getBtnSignUp()) {
-			System.out.println("boton registro pulsado");
 			RegistroForm registro = new RegistroForm();
 			ControladorRegister controlR = new ControladorRegister(registro, api);
 			registro.setControlador(controlR);
@@ -69,7 +68,6 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			controlR.start();
 
 		} else if (component == vista.getBtnLogIn()) {
-			System.out.println("boton login pulsado");
 			LoginForm login = new LoginForm();
 			ControladorLogin controlL = new ControladorLogin(login, api, vista);
 			login.setControlador(controlL);
@@ -85,7 +83,6 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 
 		} else if (component == vista.getBtnBusqueda()) {
 			TIPO_BUSQUEDA filtro;
-			System.out.println("Buscando");
 			filtro = TIPO_BUSQUEDA.valueOf(vista.getComboBusqueda().getSelectedItem().toString().toUpperCase());
 			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
 			rellenarTableSongs(elementos);

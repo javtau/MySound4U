@@ -38,7 +38,6 @@ public class ControladorRegister implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				try {
-					System.out.println("boton registrarse pulsado");
 					comprobacion = api.registrarse(uname, pass, fecha);
 
 					if (comprobacion == false) {

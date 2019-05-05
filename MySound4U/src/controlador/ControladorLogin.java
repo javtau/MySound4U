@@ -31,32 +31,23 @@ public class ControladorLogin implements ActionListener {
 		String pass = login.getP1().getText();
 
 		if (component == login.getBtn1()) {
-			System.out.println("boton login pulsado");
-
 			if (api.loguearse(uname, pass) == true) {
 				login.dispose();
 				vista.dispose();
-				System.out.println("logueando a " + uname + "con password " + pass);
 
 				if (api.getSesion().getUsuario().isAdmin() == true) {
-					System.out.println("admin logueado");
-
 					VistaAdmin vistaA = new VistaAdmin();
 					ControladorVistaAdmin controlA = new ControladorVistaAdmin(vistaA, api);
 					vistaA.setControlador(controlA);
 					controlA.start();
 				} else {
-					System.out.println("usuario logueado");
-
 					VistaRegistrado vistaR = new VistaRegistrado();
 					ControladorVistaRegistrado controlR = new ControladorVistaRegistrado(vistaR, api);
 					vistaR.setControlador(controlR);
 					controlR.start();
-					System.out.println(api.getSesion().getUsuario());
 				}
 
 			} else {
-				System.out.println("no se pudo loguear");
 				JOptionPane.showMessageDialog(login, "Username o password incorrectos", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			}

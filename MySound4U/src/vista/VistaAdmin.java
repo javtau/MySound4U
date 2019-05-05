@@ -213,20 +213,12 @@ public class VistaAdmin extends JFrame {
 		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
 		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
-		
 
 		// Crear panel central
 		pCenter.add(tpOptions);
 
 		// Anadir componentes al contenedor
 		contenedor.add(pCenter, BorderLayout.CENTER);
-	}
-
-	public static void main(String[] args) {
-		VistaAdmin vp = new VistaAdmin();
-		// ControladorPrincipal Controlprincipal = new ControladorPrincipal(vp);
-		// vp.setControlador(Controlprincipal);
-		vp.setVisible(true);
 	}
 
 	public JTextField getTfBusqueda() {

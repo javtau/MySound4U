@@ -259,11 +259,11 @@ public class VistaRegistrado extends JFrame {
 			}
 		});
 
-		scrollPaneAl.setViewportView(tableUsuarios);
+		scrollPaneUs.setViewportView(tableUsuarios);
 		tableUsuarios.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
 		tableUsuarios.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
-		scrollPaneAl.setPreferredSize(new Dimension(650, 542));
-		tpTabUsuarios.add(scrollPaneAl);
+		scrollPaneUs.setPreferredSize(new Dimension(650, 542));
+		tpTabUsuarios.add(scrollPaneUs);
 
 		// Panel de noticias
 
@@ -303,13 +303,6 @@ public class VistaRegistrado extends JFrame {
 
 		// Anadir componentes al contenedor
 		contenedor.add(pCenter, BorderLayout.CENTER);
-	}
-
-	public static void main(String[] args) {
-		VistaRegistrado vp = new VistaRegistrado();
-		// ControladorPrincipal Controlprincipal = new ControladorPrincipal(vp);
-		// vp.setControlador(Controlprincipal);
-		vp.setVisible(true);
 	}
 
 	public JTextField getTfBusqueda() {

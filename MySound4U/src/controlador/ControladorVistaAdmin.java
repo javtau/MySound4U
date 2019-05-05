@@ -99,7 +99,6 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 			ControladorVistaAnonimo controlA = new ControladorVistaAnonimo(vistaR, api);
 			vistaR.setControlador(controlA);
 			controlA.start();
-			System.out.println("pasar a anonimo");
 			vista.dispose();
 			sesion.stop();
 		} else if (component == vista.getBtnStop()) {
@@ -127,11 +126,11 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 			default:
 				break;
 			}
-			System.out.println("reproduciendo " + elementos.get(selection).getNombre());
 		} else if (component == vista.getBtnBusqueda()) {
 			TIPO_BUSQUEDA filtro;
 			filtro = TIPO_BUSQUEDA.valueOf(vista.getComboBusqueda().getSelectedItem().toString().toUpperCase());
 			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
+			vista.getTpOptions().setSelectedIndex(0);
 			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnGestionar()) {
 			switch (vista.getTpOptions().getSelectedIndex()) {

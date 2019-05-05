@@ -55,11 +55,6 @@ public class SubirCancionForm extends JFrame {
 		setSize(450, 150);
 	}
 
-	public static void main(String[] args) {
-		SubirCancionForm sub = new SubirCancionForm();
-		sub.setVisible(true);
-	}
-
 	public void setControlador(ControladorSubirCancion controlS) {
 		btn1.addActionListener(controlS);
 		btn2.addActionListener(controlS);

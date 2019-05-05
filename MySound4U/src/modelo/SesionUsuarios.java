@@ -104,7 +104,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 
 	public void denunciar(Cancion cancion, String comentario) {
 		if (usuario.equals(cancion.getAutor())) {
-			System.out.println("No se puede denunciar a si mismo");
 			return;
 		}
 		Denuncia denuncia = new Denuncia(cancion, usuario, comentario);
@@ -114,10 +113,8 @@ public class SesionUsuarios extends Sesion implements Serializable {
 
 	public void seguir(UsuarioRegistrado usuario2) {
 		if (usuario.getSeguidos().contains(usuario2)) {
-			System.out.println("Ya sigue a este usuario.");
 			return;
 		} else if (usuario.equals(usuario2)) {
-			System.out.println("No se puede seguir a si mismo.");
 			return;
 		}
 		usuario.seguir(usuario2);
@@ -125,7 +122,6 @@ public class SesionUsuarios extends Sesion implements Serializable {
 
 	public void dejarDeSeguir(UsuarioRegistrado usuario2) {
 		if (!usuario.getSeguidos().contains(usuario2)) {
-			System.out.println("No sigue a este usuario.");
 			return;
 		}
 		usuario.dejarDeSeguir(usuario2);

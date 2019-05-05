@@ -45,14 +45,12 @@ public class ControladorEditarCancion implements ActionListener {
 			JOptionPane.showMessageDialog(editar, "La cancion ha sido editada con exito", "Editar cancion",
 					JOptionPane.INFORMATION_MESSAGE);
 			editar.dispose();
-			System.out.println(fileEditar);
 			VistaRegistrado vistaR = new VistaRegistrado();
 			ControladorVistaRegistrado controlR = new ControladorVistaRegistrado(vistaR, api);
 			vistaR.setControlador(controlR);
 			controlR.start();
 		} else if (component == editar.getBtn2())
 			editar.dispose();
-
 	}
 
 	public void start() {

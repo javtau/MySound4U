@@ -3,7 +3,7 @@ package vista;
 import controlador.ControladorVistaAnonimo;
 import modelo.Aplicacion;
 
-public class VistaTest {
+public class VistaMain {
 
 	public static void main(String[] args) {
 		Aplicacion api = Aplicacion.getApi();

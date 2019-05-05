@@ -108,11 +108,6 @@ public class AjustesForm extends JFrame {
 		setSize(360, 260);
 	}
 
-	public static void main(String[] args) {
-		AjustesForm aj = new AjustesForm();
-		aj.setVisible(true);
-	}
-
 	public void setControlador(ControladorAjustes c) {
 		sp1.addChangeListener(new ChangeListener() {
 

@@ -139,13 +139,11 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			ControladorVistaAnonimo controlA = new ControladorVistaAnonimo(vistaR, api);
 			vistaR.setControlador(controlA);
 			controlA.start();
-			System.out.println("pasar a anonimo");
 			vista.dispose();
 			sesion.stop();
 		} else if (component == vista.getBtnPremium()) {
 			PremiumForm premium = new PremiumForm();
 			if (sesion.getUsuarioRegistrado().esPremium() == false) {
-				System.out.println("boton premium pulsado");
 				ControladorPremium controlP = new ControladorPremium(premium, api);
 				premium.setControlador(controlP);
 				premium.setVisible(true);
@@ -186,6 +184,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			TIPO_BUSQUEDA filtro;
 			filtro = TIPO_BUSQUEDA.valueOf(vista.getComboBusqueda().getSelectedItem().toString().toUpperCase());
 			elementos = api.buscar(vista.getTfBusqueda().getText(), filtro);
+			vista.getTpOptions().setSelectedIndex(0);
 			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnSubir()) {
 			SubirCancionForm subir = new SubirCancionForm();
@@ -210,14 +209,12 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			if (selection > -1) {
 				sesion.seguir(api.getOtrosUsuarios().get(selection));
 				rellenarTableUsuarios(usuarios);
-				System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Seguido.");
 			}
 		} else if (component == vista.getBtnUnfollow()) {
 			int selection = vista.getTableUsuarios().getSelectedRow();
 			if (selection > -1) {
 				sesion.dejarDeSeguir(api.getOtrosUsuarios().get(selection));
 				rellenarTableUsuarios(usuarios);
-				System.out.println(api.getOtrosUsuarios().get(selection).getNombre() + " Dejado se seguir.");
 			}
 		} else if (component == vista.getBtnEditar()) {
 			int selection = vista.getTableSongs().getSelectedRow();

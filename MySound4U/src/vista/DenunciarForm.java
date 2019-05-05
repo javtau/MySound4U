@@ -60,11 +60,6 @@ public class DenunciarForm extends JFrame {
 		setSize(310, 180);
 	}
 
-	public static void main(String[] args) {
-		DenunciarForm den = new DenunciarForm();
-		den.setVisible(true);
-	}
-
 	public void setControlador(ControladorDenunciar c) {
 		btn1.addActionListener(c);
 		btn2.addActionListener(c);

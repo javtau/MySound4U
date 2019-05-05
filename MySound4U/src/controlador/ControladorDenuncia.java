@@ -28,9 +28,7 @@ public class ControladorDenuncia implements ActionListener {
 		Object component = e.getSource();
 
 		if (component == formulario.getBtn1()) {
-			System.out.println("boton aceptar pulsado");
 			((SesionAdmin) api.getSesion()).aceptarDenuncia(denuncia);
-			System.out.println("denucia aceptada");
 			formulario.dispose();
 			vista.dispose();
 			VistaAdmin vistaA = new VistaAdmin();
@@ -39,9 +37,7 @@ public class ControladorDenuncia implements ActionListener {
 			controlA.start();
 
 		} else if (component == formulario.getBtn2()) {
-			System.out.println("boton rechazar denuncia pulsado");
 			((SesionAdmin) api.getSesion()).rechazarDenuncia(denuncia);
-			System.out.println("denuncia rechzada");
 			formulario.dispose();
 			vista.dispose();
 			VistaAdmin vistaA = new VistaAdmin();

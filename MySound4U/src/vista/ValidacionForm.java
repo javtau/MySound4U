@@ -59,11 +59,6 @@ public class ValidacionForm extends JFrame {
 		setSize(240, 140);
 	}
 
-	public static void main(String[] args) {
-		ValidacionForm val = new ValidacionForm();
-		val.setVisible(true);
-	}
-
 	public void setControlador(ControladorValidacion c) {
 		btn1.addActionListener(c);
 		btn2.addActionListener(c);

@@ -35,8 +35,6 @@ public class ControladorDenunciar implements ActionListener {
 
 		String motivo = denunciaF.getTextArea().getText();
 		if (component == denunciaF.getBtn1()) {
-			System.out.println("boton denunciar pulsado");
-			System.out.println(cancion);
 			sesion.denunciar(cancion, motivo);
 			JOptionPane.showMessageDialog(denunciaF, "El usuario ha sido denunciado correctamente", "Denuncia",
 					JOptionPane.INFORMATION_MESSAGE);

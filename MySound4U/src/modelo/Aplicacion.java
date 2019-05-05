@@ -157,17 +157,13 @@ public class Aplicacion implements Serializable {
 		if (admin.validar(usuario, contrasena)) {
 			logueado = admin;
 			sesion = logueado.iniciarSesion(Aplicacion.myApi);
-			System.out.print("\nEl usuario " + admin.getNombre() + " se ha logueado correctamente\n\n");
 			return true;
 		}
 		for (UsuarioRegistrado u : usuarios) {
 			if (u.validar(usuario, contrasena)) {
 				if (u.estaBloqueado()) {
-					System.out.print("\nEl usuario " + u.getNombre()
-							+ " no puede entrar al sistema. Esta bloqueado hasta el: " + bloqueados.get(u) + "\n\n");
 					return false;
 				}
-				System.out.print("\nEl usuario " + u.getNombre() + " se ha logueado correctamente\n\n");
 				logueado = u;
 				sesion = logueado.iniciarSesion(Aplicacion.myApi);
 				return true;
@@ -334,10 +330,10 @@ public class Aplicacion implements Serializable {
 						&& !logueado.canListenSong(cancion)) {
 					match.add(cancion);
 				}
-				for (Element album : albumes) {
-					if (album.getNombre().toLowerCase().contains(busqueda.toLowerCase()))
-						match.add(album);
-				}
+			}
+			for (Element album : albumes) {
+				if (album.getNombre().toLowerCase().contains(busqueda.toLowerCase()))
+					match.add(album);
 			}
 			break;
 
@@ -366,7 +362,7 @@ public class Aplicacion implements Serializable {
 		Cancion cancion;
 		ArrayList<Element> songs = new ArrayList<>();
 
-		for (int c = 6, i = canciones.size() - 1; i >= 0 && c >= 0; i--, c--) {
+		for (int c = 20, i = canciones.size() - 1; i >= 0 && c >= 0; i--, c--) {
 			cancion = canciones.get(i);
 			if (!logueado.canListenSong(cancion)) {
 				songs.add(cancion);

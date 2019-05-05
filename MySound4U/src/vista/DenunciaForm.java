@@ -92,12 +92,6 @@ public class DenunciaForm extends JFrame {
 		contenedor.add(pl1);
 	}
 
-	public static void main(String[] args) {
-		DenunciaForm den = new DenunciaForm();
-		den.setVisible(true);
-
-	}
-
 	public void setControlador(ControladorDenuncia controlD) {
 		btn1.addActionListener(controlD);
 		btn2.addActionListener(controlD);
