@@ -122,7 +122,7 @@ public class Album extends Element implements Serializable {
 	public UsuarioRegistrado getAutor() {
 		return autor;
 	}
-	
+
 	/**
 	 * Metodo que devuelve el numero de canciones del album
 	 * 
@@ -131,8 +131,6 @@ public class Album extends Element implements Serializable {
 	public int getNumSongs() {
 		return canciones.size();
 	}
-	
-	
 
 	@Override
 	public String toString() {

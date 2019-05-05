@@ -46,6 +46,7 @@ public class VistaRegistrado extends JFrame {
 	private JButton btnDenunciar;
 	private JButton btnEditar;
 	private JButton btnBorrar;
+	private JButton btnPerfil;
 
 	// Elementos del panel sur
 	JPanel psouth;
@@ -82,6 +83,7 @@ public class VistaRegistrado extends JFrame {
 		tfBusqueda = new RoundJTextField(40);
 		comboBusqueda = new JComboBox<>(searchTipes);
 		btnBusqueda = new JButton("Buscar");
+		btnPerfil = new JButton("Perfil");
 
 		pNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
 

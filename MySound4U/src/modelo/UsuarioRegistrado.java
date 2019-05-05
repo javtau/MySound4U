@@ -348,7 +348,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * @param string noticia
 	 */
 	public void addNoticia(String noticia) {
-		if(noticias == null) {
+		if (noticias == null) {
 			noticias = new ArrayList<String>();
 		}
 		if (noticia != null) {

@@ -19,8 +19,8 @@ public class ControladorDenunciar implements ActionListener {
 	private VistaRegistrado vista;
 	private Aplicacion api;
 
-	public ControladorDenunciar(VistaDenunciarForm denunciaF, Element cancion, SesionUsuarios sesion, VistaRegistrado vista,
-			Aplicacion api) {
+	public ControladorDenunciar(VistaDenunciarForm denunciaF, Element cancion, SesionUsuarios sesion,
+			VistaRegistrado vista, Aplicacion api) {
 		super();
 		this.denunciaF = denunciaF;
 		this.cancion = (Cancion) cancion;

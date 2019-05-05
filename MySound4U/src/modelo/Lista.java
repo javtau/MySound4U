@@ -122,7 +122,7 @@ public class Lista extends Element implements Serializable {
 	public ArrayList<Element> getElementos() {
 		return elementos;
 	}
-	
+
 	/**
 	 * Metodo que devuelve el numero de canciones del album
 	 * 
