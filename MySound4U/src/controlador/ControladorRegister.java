@@ -29,7 +29,7 @@ public class ControladorRegister implements ActionListener {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
 		String uname = registro.getTf1().getText();
-		String pass = registro.getP1().getText();
+		String pass = new String(registro.getP1().getPassword());
 		String fecha = format.format(registro.getDcFecha().getDate());
 
 		if (component == registro.getBtn1()) {

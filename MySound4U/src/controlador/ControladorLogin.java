@@ -28,7 +28,7 @@ public class ControladorLogin implements ActionListener {
 		Object component = e.getSource();
 
 		String uname = login.getTf1().getText();
-		String pass = login.getP1().getText();
+		String pass = new String(login.getP1().getPassword());
 
 		if (component == login.getBtn1()) {
 			if (api.loguearse(uname, pass) == true) {
