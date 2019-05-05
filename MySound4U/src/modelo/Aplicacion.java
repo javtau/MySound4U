@@ -473,7 +473,6 @@ public class Aplicacion implements Serializable {
 	public void addAlbum(Album album) {
 		albumes.add(album);
 		((UsuarioRegistrado) logueado).addAlbum(album);
-		// album.getAutor().addAlbum(album);
 	}
 
 	/**

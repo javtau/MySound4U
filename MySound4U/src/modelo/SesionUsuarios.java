@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
 import es.uam.eps.padsof.telecard.OrderRejectedException;
 import es.uam.eps.padsof.telecard.TeleChargeAndPaySystem;
 import utils.ConsolaRegistrado;
+import utils.FechaSimulada;
 
 /**
  * Esta clase contiene todos los atributos y metodos de la sesion de usuario
@@ -86,10 +88,11 @@ public class SesionUsuarios extends Sesion implements Serializable {
 	 * @param nombre Nombre del album
 	 */
 	public void crearAlbum(String nombre) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Album album = new Album(nombre, usuario);
 		api.addAlbum(album);
-		usuario.addAlbum(album);
-		usuario.addNoticia(usuario.getNombre() + "ha subido un album nuevo");
+		usuario.addNoticia(usuario.getNombre() + " ha creado un album nuevo llamado " + album.getNombre() + " el "
+				+ FechaSimulada.getHoy().format(formatter));
 	}
 
 	public void borrarCancion(Cancion cancion) {

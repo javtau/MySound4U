@@ -50,6 +50,8 @@ public class VistaRegistrado extends JFrame {
 	private JButton btnEditar;
 	private JButton btnBorrar;
 	private JButton btnPerfil;
+	private JButton btnAddToAlbum;
+	private JButton btnCrearAlbum;
 	private ImageIcon imagen;
 	private Icon icono;
 
@@ -109,14 +111,17 @@ public class VistaRegistrado extends JFrame {
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
-		btnLogOut = new JButton("  Logout  ");
-		btnPremium = new JButton(" Premium");
-		btnSubir = new JButton("    Subir    ");
-		btnSeguir = new JButton("   Seguir   ");
-		btnUnfollow = new JButton(" Unfollow ");
-		btnDenunciar = new JButton("Denunciar");
-		btnEditar = new JButton("   Editar   ");
-		btnBorrar = new JButton("   Borrar   ");
+		btnLogOut = new JButton("    Logout    ");
+		btnPremium = new JButton("   Premium  ");
+		btnSubir = new JButton("      Subir     ");
+		btnSeguir = new JButton("     Seguir     ");
+		btnUnfollow = new JButton("   Unfollow   ");
+		btnDenunciar = new JButton("  Denunciar ");
+		btnEditar = new JButton("     Editar     ");
+		btnBorrar = new JButton("     Borrar     ");
+		btnAddToAlbum = new JButton("       Add       ");
+		btnAddToAlbum.setVisible(false);
+		btnCrearAlbum = new JButton("Crear album");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
@@ -136,6 +141,10 @@ public class VistaRegistrado extends JFrame {
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnSubir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
+		pBox.add(btnCrearAlbum);
+		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
+		pBox.add(btnAddToAlbum);
+		pBox.add(Box.createRigidArea(new Dimension(0, 2)));
 		pBox.add(btnDenunciar);
 		pEast.add(pBox);
 
@@ -435,6 +444,22 @@ public class VistaRegistrado extends JFrame {
 		this.btnPerfil = btnPerfil;
 	}
 
+	public JButton getBtnAddToAlbum() {
+		return btnAddToAlbum;
+	}
+
+	public void setBtnAddToAlbum(JButton btnAddToAlbum) {
+		this.btnAddToAlbum = btnAddToAlbum;
+	}
+
+	public JButton getBtnCrearAlbum() {
+		return btnCrearAlbum;
+	}
+
+	public void setBtnCrearAlbum(JButton btnCrearAlbum) {
+		this.btnCrearAlbum = btnCrearAlbum;
+	}
+
 	public void setTpOptions(JTabbedPane tpOptions) {
 		this.tpOptions = tpOptions;
 	}
@@ -501,6 +526,8 @@ public class VistaRegistrado extends JFrame {
 		btnEditar.addActionListener(c);
 		btnBorrar.addActionListener(c);
 		btnPerfil.addActionListener(c);
+		btnAddToAlbum.addActionListener(c);
+		btnCrearAlbum.addActionListener(c);
 
 		addWindowListener(c);
 	}

@@ -21,7 +21,9 @@ import vista.VistaPerfilForm;
 import vista.VistaPremiumForm;
 import vista.VistaSubirCancionForm;
 import vista.VistaAnonimo;
+import vista.VistaCrearAlbum;
 import vista.VistaRegistrado;
+import vista.VistaAddToAlbum;;
 
 public class ControladorVistaRegistrado implements ActionListener, WindowListener, ChangeListener {
 	private VistaRegistrado vista;
@@ -266,6 +268,24 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			ControladorPerfil controlP = new ControladorPerfil(perfil, vista);
 			perfil.setControlador(controlP);
 			controlP.start();
+		} else if (component == vista.getBtnAddToAlbum()) {
+			int selection = vista.getTableAlbums().getSelectedRow();
+			if (selection > -1) {
+				VistaAddToAlbum addAlbum = new VistaAddToAlbum();
+				ControladorAddToAlbum controlA = new ControladorAddToAlbum(addAlbum, api, albumes.get(selection));
+				addAlbum.setControlador(controlA);
+				controlA.start();
+			}
+		} else if (component == vista.getBtnCrearAlbum()) {
+			if (usuario.getCanciones().size() < 1)
+				JOptionPane.showMessageDialog(null, "No tienes subida ninguna cancion para añadir en el album",
+						"Crear album", JOptionPane.ERROR_MESSAGE);
+			else {
+				VistaCrearAlbum crearAlbum = new VistaCrearAlbum();
+				ControladorCrearAlbum controlC = new ControladorCrearAlbum(crearAlbum, sesion, vista, api);
+				crearAlbum.setControlador(controlC);
+				controlC.start();
+			}
 		}
 	}
 
@@ -338,6 +358,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				elementos = new ArrayList<>(usuario.getCanciones());
 				elementos = api.getLastSongs();
 				rellenarTableSongs(elementos);
+				vista.getBtnAddToAlbum().setVisible(false);
 				vista.getBtnBorrar().setVisible(true);
 				vista.getBtnEditar().setVisible(true);
 				vista.getBtnSeguir().setVisible(false);
@@ -347,6 +368,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			case 1:
 				// albumes = usuario.getAlbumes();
 				// rellenarTableAlbums(albumes);
+				vista.getBtnAddToAlbum().setVisible(true);
 				vista.getBtnBorrar().setVisible(false);
 				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
@@ -356,6 +378,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			case 2:
 				// listas = usuario.getListas();
 				// rellenarTableList(listas);
+				vista.getBtnAddToAlbum().setVisible(false);
 				vista.getBtnBorrar().setVisible(false);
 				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
@@ -363,6 +386,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 3:
+				vista.getBtnAddToAlbum().setVisible(false);
 				vista.getBtnBorrar().setVisible(false);
 				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
@@ -370,6 +394,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				vista.getBtnDenunciar().setVisible(false);
 				break;
 			case 4:
+				vista.getBtnAddToAlbum().setVisible(false);
 				vista.getBtnBorrar().setVisible(false);
 				vista.getBtnEditar().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);
