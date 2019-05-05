@@ -198,11 +198,16 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		} else if (component == vista.getBtnDenunciar()) {
 			int selection = vista.getTableSongs().getSelectedRow();
 			if (selection > -1) {
-				DenunciarForm denunciaF = new DenunciarForm();
-				ControladorDenunciar controlD = new ControladorDenunciar(denunciaF, elementos.get(selection), sesion,
-						vista, api);
-				denunciaF.setControlador(controlD);
-				controlD.start();
+				if (((Cancion) elementos.get(selection)).getAutor() == usuario)
+					JOptionPane.showMessageDialog(null, "No se puede denunciar a si mismo", "Denunciar",
+							JOptionPane.ERROR_MESSAGE);
+				else {
+					DenunciarForm denunciaF = new DenunciarForm();
+					ControladorDenunciar controlD = new ControladorDenunciar(denunciaF, elementos.get(selection),
+							sesion, vista, api);
+					denunciaF.setControlador(controlD);
+					controlD.start();
+				}
 			}
 		} else if (component == vista.getBtnSeguir()) {
 			int selection = vista.getTableUsuarios().getSelectedRow();
