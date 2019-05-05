@@ -6,16 +6,16 @@ import java.awt.event.ActionListener;
 import modelo.Aplicacion;
 import modelo.SesionAdmin;
 import modelo.Validacion;
-import vista.ValidacionForm;
+import vista.VistaValidacionForm;
 import vista.VistaAdmin;
 
 public class ControladorValidacion implements ActionListener {
-	private ValidacionForm formulario;
+	private VistaValidacionForm formulario;
 	private Aplicacion api;
 	private Validacion val;
 	private VistaAdmin vista;
 
-	public ControladorValidacion(ValidacionForm formulario, Aplicacion api, VistaAdmin vista, Validacion val) {
+	public ControladorValidacion(VistaValidacionForm formulario, Aplicacion api, VistaAdmin vista, Validacion val) {
 		super();
 		this.formulario = formulario;
 		this.api = api;

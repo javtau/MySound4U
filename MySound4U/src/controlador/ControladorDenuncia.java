@@ -6,16 +6,16 @@ import java.awt.event.ActionListener;
 import modelo.Aplicacion;
 import modelo.Denuncia;
 import modelo.SesionAdmin;
-import vista.DenunciaForm;
+import vista.VistaDenunciaForm;
 import vista.VistaAdmin;
 
 public class ControladorDenuncia implements ActionListener {
-	private DenunciaForm formulario;
+	private VistaDenunciaForm formulario;
 	private Aplicacion api;
 	private Denuncia denuncia;
 	private VistaAdmin vista;
 
-	public ControladorDenuncia(DenunciaForm formulario, Aplicacion api, VistaAdmin vista, Denuncia denuncia) {
+	public ControladorDenuncia(VistaDenunciaForm formulario, Aplicacion api, VistaAdmin vista, Denuncia denuncia) {
 		super();
 		this.formulario = formulario;
 		this.api = api;

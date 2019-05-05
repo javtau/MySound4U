@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import controlador.ControladorPremium;
 
-public class PremiumForm extends JFrame {
+public class VistaPremiumForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class PremiumForm extends JFrame {
 	JButton btn1;
 	private Container contenedor;
 
-	public PremiumForm() {
+	public VistaPremiumForm() {
 		setTitle("Premium");
 
 		contenedor = new JPanel();

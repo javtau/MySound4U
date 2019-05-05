@@ -6,15 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import vista.AjustesForm;
+import vista.VistaAjustesForm;
 import vista.VistaAdmin;
 
 public class ControladorAjustes implements ActionListener {
-	private AjustesForm ajustes;
+	private VistaAjustesForm ajustes;
 	private Aplicacion api;
 	private VistaAdmin vista;
 
-	public ControladorAjustes(AjustesForm ajustes, Aplicacion api) {
+	public ControladorAjustes(VistaAjustesForm ajustes, Aplicacion api) {
 		super();
 		this.ajustes = ajustes;
 		this.api = api;

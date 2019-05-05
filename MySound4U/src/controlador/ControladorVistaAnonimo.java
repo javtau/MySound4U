@@ -17,8 +17,8 @@ import modelo.Cancion;
 import modelo.Element;
 import modelo.SesionAnonima;
 import modelo.TIPO_BUSQUEDA;
-import vista.LoginForm;
-import vista.RegistroForm;
+import vista.VistaLoginForm;
+import vista.VistaRegistroForm;
 import vista.VistaAnonimo;
 
 public class ControladorVistaAnonimo implements ActionListener, WindowListener {
@@ -61,14 +61,14 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 		Object component = e.getSource();
 
 		if (component == vista.getBtnSignUp()) {
-			RegistroForm registro = new RegistroForm();
+			VistaRegistroForm registro = new VistaRegistroForm();
 			ControladorRegister controlR = new ControladorRegister(registro, api);
 			registro.setControlador(controlR);
 			registro.setVisible(true);
 			controlR.start();
 
 		} else if (component == vista.getBtnLogIn()) {
-			LoginForm login = new LoginForm();
+			VistaLoginForm login = new VistaLoginForm();
 			ControladorLogin controlL = new ControladorLogin(login, api, vista);
 			login.setControlador(controlL);
 			login.setVisible(true);

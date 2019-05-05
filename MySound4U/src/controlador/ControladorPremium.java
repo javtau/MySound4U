@@ -7,15 +7,15 @@ import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
 import modelo.SesionUsuarios;
-import vista.PremiumForm;
+import vista.VistaPremiumForm;
 import vista.VistaRegistrado;
 
 public class ControladorPremium implements ActionListener {
-	private PremiumForm premium;
+	private VistaPremiumForm premium;
 	private VistaRegistrado vista;
 	private SesionUsuarios sesion;
 
-	public ControladorPremium(PremiumForm premium, Aplicacion api) {
+	public ControladorPremium(VistaPremiumForm premium, Aplicacion api) {
 		super();
 		this.premium = premium;
 		sesion = (SesionUsuarios) api.getSesion();

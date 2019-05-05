@@ -12,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controlador.ControladorEditarCancion;
+import controlador.ControladorSubirCancion;
 
-public class EditarCancionForm extends JFrame {
+public class VistaSubirCancionForm extends JFrame {
 	/**
 	 * 
 	 */
@@ -24,8 +24,8 @@ public class EditarCancionForm extends JFrame {
 	private JTextField tf1;
 	private Container contenedor;
 
-	public EditarCancionForm() {
-		setTitle("Editar cancion");
+	public VistaSubirCancionForm() {
+		setTitle("Subir cancion");
 		setResizable(false);
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
@@ -37,10 +37,10 @@ public class EditarCancionForm extends JFrame {
 		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl2.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-		l1 = new JLabel("Nuevo nombre para la cancion: ");
+		l1 = new JLabel("Nombre de la cancion a subir: ");
 		tf1 = new JTextField(15);
 
-		btn1 = new JButton("Aceptar");
+		btn1 = new JButton("Explorar");
 		btn2 = new JButton(" Cancelar ");
 
 		pl1.add(l1);
@@ -55,9 +55,9 @@ public class EditarCancionForm extends JFrame {
 		setSize(450, 150);
 	}
 
-	public void setControlador(ControladorEditarCancion controlE) {
-		btn1.addActionListener(controlE);
-		btn2.addActionListener(controlE);
+	public void setControlador(ControladorSubirCancion controlS) {
+		btn1.addActionListener(controlS);
+		btn2.addActionListener(controlS);
 	}
 
 	public JLabel getL1() {

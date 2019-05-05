@@ -8,16 +8,16 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import vista.RegistroForm;
+import vista.VistaRegistroForm;
 import vista.VistaAnonimo;
 
 public class ControladorRegister implements ActionListener {
-	private RegistroForm registro;
+	private VistaRegistroForm registro;
 	private Aplicacion api;
 	private VistaAnonimo vista;
 	private boolean comprobacion;
 
-	public ControladorRegister(RegistroForm registro, Aplicacion api) {
+	public ControladorRegister(VistaRegistroForm registro, Aplicacion api) {
 		super();
 		this.registro = registro;
 		this.api = api;

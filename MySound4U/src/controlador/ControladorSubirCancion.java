@@ -10,17 +10,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modelo.Aplicacion;
 import modelo.SesionUsuarios;
-import vista.SubirCancionForm;
+import vista.VistaSubirCancionForm;
 import vista.VistaRegistrado;
 
 public class ControladorSubirCancion implements ActionListener {
-	private SubirCancionForm subir;
+	private VistaSubirCancionForm subir;
 	private SesionUsuarios sesion;
 	private VistaRegistrado vista;
 	private Aplicacion api;
 	private JFileChooser fileChooser;
 
-	public ControladorSubirCancion(SubirCancionForm subir, SesionUsuarios sesion, VistaRegistrado vista,
+	public ControladorSubirCancion(VistaSubirCancionForm subir, SesionUsuarios sesion, VistaRegistrado vista,
 			Aplicacion api) {
 		super();
 		this.subir = subir;

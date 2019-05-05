@@ -15,10 +15,10 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import modelo.*;
-import vista.DenunciarForm;
-import vista.EditarCancionForm;
-import vista.PremiumForm;
-import vista.SubirCancionForm;
+import vista.VistaDenunciarForm;
+import vista.VistaEditarCancionForm;
+import vista.VistaPremiumForm;
+import vista.VistaSubirCancionForm;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
 
@@ -142,7 +142,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			vista.dispose();
 			sesion.stop();
 		} else if (component == vista.getBtnPremium()) {
-			PremiumForm premium = new PremiumForm();
+			VistaPremiumForm premium = new VistaPremiumForm();
 			if (sesion.getUsuarioRegistrado().esPremium() == false) {
 				ControladorPremium controlP = new ControladorPremium(premium, api);
 				premium.setControlador(controlP);
@@ -187,7 +187,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			vista.getTpOptions().setSelectedIndex(0);
 			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnSubir()) {
-			SubirCancionForm subir = new SubirCancionForm();
+			VistaSubirCancionForm subir = new VistaSubirCancionForm();
 			ControladorSubirCancion controlS = new ControladorSubirCancion(subir, sesion, vista, api);
 			subir.setControlador(controlS);
 			controlS.start();
@@ -202,7 +202,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 					JOptionPane.showMessageDialog(null, "No se puede denunciar a si mismo", "Denunciar",
 							JOptionPane.ERROR_MESSAGE);
 				else {
-					DenunciarForm denunciaF = new DenunciarForm();
+					VistaDenunciarForm denunciaF = new VistaDenunciarForm();
 					ControladorDenunciar controlD = new ControladorDenunciar(denunciaF, elementos.get(selection),
 							sesion, vista, api);
 					denunciaF.setControlador(controlD);
@@ -234,7 +234,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 					JOptionPane.showMessageDialog(null, "La cancion esta en revision por el administrador",
 							"Editar cancion", JOptionPane.INFORMATION_MESSAGE);
 				else {
-					EditarCancionForm edit = new EditarCancionForm();
+					VistaEditarCancionForm edit = new VistaEditarCancionForm();
 					ControladorEditarCancion controlE = new ControladorEditarCancion(edit, sesion, vista, api,
 							((Cancion) elementos.get(selection)));
 					edit.setControlador(controlE);

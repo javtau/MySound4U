@@ -3,7 +3,6 @@ package vista;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.util.Calendar;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,23 +13,20 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.toedter.calendar.JDateChooser;
+import controlador.ControladorLogin;
 
-import controlador.ControladorRegister;
-
-public class RegistroForm extends JFrame {
+public class VistaLoginForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private JLabel l2, l3, l4;
-	private JTextField tf1;
-	private JButton btn1;
-	private JPasswordField p1;
+	JLabel l2, l3;
+	JTextField tf1;
+	JButton btn1;
+	JPasswordField p1;
 	private Container contenedor;
-	private JDateChooser dcFecha;
 
-	public RegistroForm() {
-		setTitle("Registro");
+	public VistaLoginForm() {
+		setTitle("Login");
 
 		contenedor = new JPanel();
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
@@ -39,46 +35,36 @@ public class RegistroForm extends JFrame {
 
 		setResizable(false);
 
-		l2 = new JLabel("                  Username:");
-		tf1 = new JTextField(9);
-		l3 = new JLabel("                  Password:");
-		p1 = new JPasswordField(9);
-		l4 = new JLabel("Fecha de nacimiento:");
-		dcFecha = new JDateChooser();
-		dcFecha.setCalendar(Calendar.getInstance());
-		dcFecha.setDateFormatString("dd/MM/yyyy");
-
-		btn1 = new JButton("Registrarse");
+		l2 = new JLabel("Username:");
+		l3 = new JLabel("Password:");
+		tf1 = new JTextField(10);
+		p1 = new JPasswordField(10);
+		btn1 = new JButton("Login");
 
 		JPanel pl1 = new JPanel();
 		JPanel pl2 = new JPanel();
 		JPanel pl3 = new JPanel();
-		JPanel pl4 = new JPanel();
 
 		pl1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl2.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pl3.setLayout(new FlowLayout(FlowLayout.CENTER));
-		pl4.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 		pl1.add(l2);
 		pl1.add(tf1);
 		pl2.add(l3);
 		pl2.add(p1);
-		pl3.add(l4);
-		pl3.add(dcFecha);
-		pl4.add(btn1);
+		pl3.add(btn1);
 
 		contenedor.add(Box.createRigidArea(new Dimension(0, 10)));
 
 		contenedor.add(pl1);
 		contenedor.add(pl2);
 		contenedor.add(pl3);
-		contenedor.add(pl4);
 
-		setSize(340, 220);
+		setSize(250, 160);
 	}
 
-	public void setControlador(ControladorRegister c) {
+	public void setControlador(ControladorLogin c) {
 		tf1.addActionListener(c);
 		p1.addActionListener(c);
 		btn1.addActionListener(c);
@@ -128,13 +114,5 @@ public class RegistroForm extends JFrame {
 
 	public void setLocation(VistaAnonimo vista) {
 		this.setLocationRelativeTo(vista);
-	}
-
-	public JDateChooser getDcFecha() {
-		return dcFecha;
-	}
-
-	public void setDcFecha(JDateChooser dcFecha) {
-		this.dcFecha = dcFecha;
 	}
 }

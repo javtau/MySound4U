@@ -9,17 +9,17 @@ import modelo.Aplicacion;
 import modelo.Cancion;
 import modelo.Element;
 import modelo.SesionUsuarios;
-import vista.DenunciarForm;
+import vista.VistaDenunciarForm;
 import vista.VistaRegistrado;
 
 public class ControladorDenunciar implements ActionListener {
-	private DenunciarForm denunciaF;
+	private VistaDenunciarForm denunciaF;
 	private SesionUsuarios sesion;
 	private Cancion cancion;
 	private VistaRegistrado vista;
 	private Aplicacion api;
 
-	public ControladorDenunciar(DenunciarForm denunciaF, Element cancion, SesionUsuarios sesion, VistaRegistrado vista,
+	public ControladorDenunciar(VistaDenunciarForm denunciaF, Element cancion, SesionUsuarios sesion, VistaRegistrado vista,
 			Aplicacion api) {
 		super();
 		this.denunciaF = denunciaF;

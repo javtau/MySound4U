@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import vista.LoginForm;
+import vista.VistaLoginForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
 import vista.VistaRegistrado;
 
 public class ControladorLogin implements ActionListener {
-	private LoginForm login;
+	private VistaLoginForm login;
 	private Aplicacion api;
 	private VistaAnonimo vista;
 
-	public ControladorLogin(LoginForm login, Aplicacion api, VistaAnonimo vista) {
+	public ControladorLogin(VistaLoginForm login, Aplicacion api, VistaAnonimo vista) {
 		super();
 		this.login = login;
 		this.api = api;

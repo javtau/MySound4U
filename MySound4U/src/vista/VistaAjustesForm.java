@@ -22,7 +22,7 @@ import controlador.ControladorAjustes;
 import modelo.Aplicacion;
 import utils.FechaSimulada;
 
-public class AjustesForm extends JFrame {
+public class VistaAjustesForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class AjustesForm extends JFrame {
 	private JFormattedTextField jftf1, jftf2, jftf3;
 	private Aplicacion api = Aplicacion.getApi();
 
-	public AjustesForm() {
+	public VistaAjustesForm() {
 		setTitle("Ajustes");
 
 		contenedor = new JPanel();

@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 import controlador.ControladorValidacion;
 
-public class ValidacionForm extends JFrame {
+public class VistaValidacionForm extends JFrame {
 	/**
 	 * 
 	 */
@@ -26,7 +26,7 @@ public class ValidacionForm extends JFrame {
 	JCheckBox check1;
 	private Container contenedor;
 
-	public ValidacionForm() {
+	public VistaValidacionForm() {
 		setTitle("Gestionar validacion");
 		setResizable(false);
 		contenedor = new JPanel();

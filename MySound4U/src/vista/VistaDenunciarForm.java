@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 
 import controlador.ControladorDenunciar;
 
-public class DenunciarForm extends JFrame {
+public class VistaDenunciarForm extends JFrame {
 	/**
 	 * 
 	 */
@@ -25,7 +25,7 @@ public class DenunciarForm extends JFrame {
 	private JTextArea textArea;
 	private Container contenedor;
 
-	public DenunciarForm() {
+	public VistaDenunciarForm() {
 		setTitle("Denunciar");
 		setResizable(false);
 		contenedor = new JPanel();

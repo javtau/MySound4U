@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 
 import controlador.ControladorDenuncia;
 
-public class DenunciaForm extends JFrame {
+public class VistaDenunciaForm extends JFrame {
 	/**
 	 * 
 	 */
@@ -27,7 +27,7 @@ public class DenunciaForm extends JFrame {
 	private Container contenedor;
 	private static final int LEFTSPACE = 5;
 
-	public DenunciaForm() {
+	public VistaDenunciaForm() {
 		setTitle("Gestionar denuncia");
 		setResizable(false);
 		setLocationRelativeTo(null);

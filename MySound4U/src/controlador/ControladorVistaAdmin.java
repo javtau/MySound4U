@@ -22,9 +22,9 @@ import modelo.Element;
 import modelo.SesionAdmin;
 import modelo.TIPO_BUSQUEDA;
 import modelo.Validacion;
-import vista.AjustesForm;
-import vista.DenunciaForm;
-import vista.ValidacionForm;
+import vista.VistaAjustesForm;
+import vista.VistaDenunciaForm;
+import vista.VistaValidacionForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
 
@@ -135,7 +135,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 		} else if (component == vista.getBtnGestionar()) {
 			switch (vista.getTpOptions().getSelectedIndex()) {
 			case 1:
-				DenunciaForm formD = new DenunciaForm();
+				VistaDenunciaForm formD = new VistaDenunciaForm();
 				int selec = vista.gettableDenuncias().getSelectedRow();
 				ControladorDenuncia controlD = new ControladorDenuncia(formD, api, vista, denuncias.get(selec));
 				formD.getTextArea().setText(denuncias.get(selec).getComentario());
@@ -146,7 +146,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 				controlD.start();
 				break;
 			case 2:
-				ValidacionForm formV = new ValidacionForm();
+				VistaValidacionForm formV = new VistaValidacionForm();
 				int selection = vista.gettableValidaciones().getSelectedRow();
 				ControladorValidacion controlV = new ControladorValidacion(formV, api, vista,
 						validaciones.get(selection));
@@ -155,7 +155,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 				break;
 			}
 		} else if (component == vista.getBtnAjustes()) {
-			AjustesForm ajustes = new AjustesForm();
+			VistaAjustesForm ajustes = new VistaAjustesForm();
 			ControladorAjustes controlA = new ControladorAjustes(ajustes, api);
 			ajustes.setControlador(controlA);
 			ajustes.setVisible(true);

@@ -9,17 +9,17 @@ import javax.swing.JOptionPane;
 import modelo.Aplicacion;
 import modelo.Cancion;
 import modelo.SesionUsuarios;
-import vista.EditarCancionForm;
+import vista.VistaEditarCancionForm;
 import vista.VistaRegistrado;
 
 public class ControladorEditarCancion implements ActionListener {
-	private EditarCancionForm editar;
+	private VistaEditarCancionForm editar;
 	private SesionUsuarios sesion;
 	private VistaRegistrado vista;
 	private Aplicacion api;
 	private Cancion cancion;
 
-	public ControladorEditarCancion(EditarCancionForm editar, SesionUsuarios sesion, VistaRegistrado vista,
+	public ControladorEditarCancion(VistaEditarCancionForm editar, SesionUsuarios sesion, VistaRegistrado vista,
 			Aplicacion api, Cancion cancion) {
 		super();
 		this.editar = editar;
