@@ -17,6 +17,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.*;
 import vista.VistaDenunciarForm;
 import vista.VistaEditarCancionForm;
+import vista.VistaPerfilForm;
 import vista.VistaPremiumForm;
 import vista.VistaSubirCancionForm;
 import vista.VistaAnonimo;
@@ -260,6 +261,11 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 					}
 				}
 			}
+		} else if (component == vista.getBtnPerfil()) {
+			VistaPerfilForm perfil = new VistaPerfilForm();
+			ControladorPerfil controlP = new ControladorPerfil(perfil, vista);
+			perfil.setControlador(controlP);
+			controlP.start();
 		}
 	}
 

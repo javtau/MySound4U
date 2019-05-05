@@ -4,9 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Image;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -47,6 +50,8 @@ public class VistaRegistrado extends JFrame {
 	private JButton btnEditar;
 	private JButton btnBorrar;
 	private JButton btnPerfil;
+	private ImageIcon imagen;
+	private Icon icono;
 
 	// Elementos del panel sur
 	JPanel psouth;
@@ -83,13 +88,20 @@ public class VistaRegistrado extends JFrame {
 		tfBusqueda = new RoundJTextField(40);
 		comboBusqueda = new JComboBox<>(searchTipes);
 		btnBusqueda = new JButton("Buscar");
-		btnPerfil = new JButton("Perfil");
+		btnPerfil = new JButton();
+		btnPerfil.setBounds(0, 0, 30, 30);
+		imagen = new ImageIcon("ImagenPerfil.png");
+		icono = new ImageIcon(
+				imagen.getImage().getScaledInstance(btnPerfil.getWidth(), btnPerfil.getHeight(), Image.SCALE_DEFAULT));
+		btnPerfil.setIcon(icono);
 
 		pNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		pNorth.add(tfBusqueda);
 		pNorth.add(comboBusqueda);
 		pNorth.add(btnBusqueda);
+		pNorth.add(Box.createHorizontalStrut(35));
+		pNorth.add(btnPerfil);
 		// pNorth.setVisible(true);
 		contenedor.add(pNorth, BorderLayout.NORTH);
 
@@ -415,6 +427,14 @@ public class VistaRegistrado extends JFrame {
 		this.btnBorrar = btnBorrar;
 	}
 
+	public JButton getBtnPerfil() {
+		return btnPerfil;
+	}
+
+	public void setBtnPerfil(JButton btnPerfil) {
+		this.btnPerfil = btnPerfil;
+	}
+
 	public void setTpOptions(JTabbedPane tpOptions) {
 		this.tpOptions = tpOptions;
 	}
@@ -480,6 +500,7 @@ public class VistaRegistrado extends JFrame {
 		btnDenunciar.addActionListener(c);
 		btnEditar.addActionListener(c);
 		btnBorrar.addActionListener(c);
+		btnPerfil.addActionListener(c);
 
 		addWindowListener(c);
 	}
