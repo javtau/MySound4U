@@ -397,6 +397,14 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				vista.getBtnSeguir().setVisible(true);
 				vista.getBtnUnfollow().setVisible(true);
 				break;
+			case 5:
+				vista.getBtnAddToAlbum().setVisible(false);
+				vista.getBtnBorrar().setVisible(false);
+				vista.getBtnEditar().setVisible(false);
+				vista.getBtnDenunciar().setVisible(false);
+				vista.getBtnSeguir().setVisible(false);
+				vista.getBtnUnfollow().setVisible(false);
+				break;
 			default:
 				break;
 			}

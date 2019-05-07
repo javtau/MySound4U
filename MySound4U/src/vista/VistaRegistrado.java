@@ -111,17 +111,17 @@ public class VistaRegistrado extends JFrame {
 
 		pEast = new JPanel();
 		JPanel pBox = new JPanel();
-		btnLogOut = new JButton("    Logout    ");
-		btnPremium = new JButton("   Premium  ");
-		btnSubir = new JButton("      Subir     ");
-		btnSeguir = new JButton("     Seguir     ");
-		btnUnfollow = new JButton("   Unfollow   ");
-		btnDenunciar = new JButton("  Denunciar ");
-		btnEditar = new JButton("     Editar     ");
-		btnBorrar = new JButton("     Borrar     ");
-		btnAddToAlbum = new JButton("       Add       ");
+		btnLogOut = new JButton("     Logout     ");
+		btnPremium = new JButton("    Premium   ");
+		btnSubir = new JButton("       Subir      ");
+		btnSeguir = new JButton("      Seguir      ");
+		btnUnfollow = new JButton("    Unfollow    ");
+		btnDenunciar = new JButton("   Denunciar  ");
+		btnEditar = new JButton("      Editar      ");
+		btnBorrar = new JButton("      Borrar      ");
+		btnAddToAlbum = new JButton("Add to album");
 		btnAddToAlbum.setVisible(false);
-		btnCrearAlbum = new JButton("Crear album");
+		btnCrearAlbum = new JButton(" Crear album ");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
