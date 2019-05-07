@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modelo.Aplicacion;
 import modelo.SesionUsuarios;
+import modelo.UsuarioRegistrado;
 import vista.VistaSubirCancionForm;
 import vista.VistaRegistrado;
 
@@ -19,26 +21,25 @@ public class ControladorSubirCancion implements ActionListener {
 	private VistaRegistrado vista;
 	private Aplicacion api;
 	private JFileChooser fileChooser;
+	private File origen;
+	private ControladorVistaRegistrado control;
 
 	public ControladorSubirCancion(VistaSubirCancionForm subir, SesionUsuarios sesion, VistaRegistrado vista,
-			Aplicacion api) {
+			Aplicacion api, ControladorVistaRegistrado control) {
 		super();
 		this.subir = subir;
 		this.sesion = sesion;
 		this.vista = vista;
 		this.api = api;
+		this.control = control;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object component = e.getSource();
+		String nombre = subir.getTf2().getText();
 
-		String nombre = subir.getTf1().getText();
-
-		if (nombre.isEmpty() && component == subir.getBtn1()) {
-			JOptionPane.showMessageDialog(subir, "El nombre de la cancion que deseas subir no puede estar vacio",
-					"Subir cancion", JOptionPane.ERROR_MESSAGE);
-		} else if ((!nombre.isEmpty() && component == subir.getBtn1())) {
+		if ((component == subir.getBtnExplorar())) {
 			fileChooser = new JFileChooser();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de musica", "mp3");
 			fileChooser.setFileFilter(filter);
@@ -46,17 +47,22 @@ public class ControladorSubirCancion implements ActionListener {
 			int returnVal = fileChooser.showOpenDialog(null);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				File origen = fileChooser.getSelectedFile();
-				sesion.subirCancion(nombre, origen);
-				JOptionPane.showMessageDialog(subir, "La cancion ha sido subida con exito", "Subir cancion",
-						JOptionPane.INFORMATION_MESSAGE);
-				subir.dispose();
-				VistaRegistrado vistaR = new VistaRegistrado();
-				ControladorVistaRegistrado controlR = new ControladorVistaRegistrado(vistaR, api);
-				vistaR.setControlador(controlR);
-				controlR.start();
+				origen = fileChooser.getSelectedFile();
+				subir.getTf1().setText(origen.getName());
+
 			}
-		} else if (component == subir.getBtn2())
+		} else if (component == subir.getBtn1() && !nombre.isEmpty()) {
+			sesion.subirCancion(nombre, origen);
+			JOptionPane.showMessageDialog(subir, "La cancion ha sido subida con exito", "Subir cancion",
+					JOptionPane.INFORMATION_MESSAGE);
+			subir.dispose();
+
+		} else if (component == subir.getBtn1() && nombre.isEmpty()) {
+			JOptionPane.showMessageDialog(subir, "El nombre de la cancion no puede estar vacio", "Subir cancion",
+					JOptionPane.ERROR_MESSAGE);
+			control.rellenarTableSongs(
+					new ArrayList<>((((UsuarioRegistrado) api.getSesion().getUsuario()).getCanciones())));
+		} else
 			subir.dispose();
 	}
 

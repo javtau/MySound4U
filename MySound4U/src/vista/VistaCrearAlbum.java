@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controlador.ControladorCrearAlbum;
-import controlador.ControladorSubirCancion;
 
 public class VistaCrearAlbum extends JFrame {
 	/**
