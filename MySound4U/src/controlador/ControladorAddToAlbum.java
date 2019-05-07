@@ -20,13 +20,15 @@ import vista.VistaAddToAlbum;
 public class ControladorAddToAlbum implements ActionListener, WindowListener {
 	private VistaAddToAlbum vista;
 	private UsuarioRegistrado user;
+	private ControladorVistaRegistrado cvr;
 	Aplicacion api;
 	private Album album;
 	private ArrayList<Cancion> canciones;
 
-	public ControladorAddToAlbum(VistaAddToAlbum vista, Aplicacion api, Album album) {
+	public ControladorAddToAlbum(VistaAddToAlbum vista, Aplicacion api, Album album, ControladorVistaRegistrado cvr) {
 		super();
 		this.vista = vista;
+		this.cvr = cvr;
 		this.api = api;
 		this.album = album;
 		user = (UsuarioRegistrado) api.getSesion().getUsuario();
@@ -65,6 +67,8 @@ public class ControladorAddToAlbum implements ActionListener, WindowListener {
 				for (int i = 0; i < songs.size(); i++) {
 					album.anadirCancion(canciones.get(i));
 				}
+				cvr.rellenarTableAlbums(user.getAlbumes());
+				cvr.changeTablePane(1);
 				vista.dispose();
 			}
 		}

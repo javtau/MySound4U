@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -22,8 +23,10 @@ import vista.VistaPremiumForm;
 import vista.VistaSubirCancionForm;
 import vista.VistaAnonimo;
 import vista.VistaCrearAlbum;
+import vista.VistaCrearLista;
 import vista.VistaRegistrado;
-import vista.VistaAddToAlbum;;
+import vista.VistaAddToAlbum;
+import vista.VistaAddToList;;
 
 public class ControladorVistaRegistrado implements ActionListener, WindowListener, ChangeListener {
 	private VistaRegistrado vista;
@@ -43,6 +46,11 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		this.api = api;
 		sesion = (SesionUsuarios) api.getSesion();
 		usuario = (UsuarioRegistrado) sesion.getUsuario();
+	}
+
+	// Metodo para cambiar de pestaña
+	public void changeTablePane(int index) {
+		vista.getTpOptions().setSelectedIndex(index);
 	}
 
 	// Metodo para rellenar la tabla de canciones
@@ -108,7 +116,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		vista.getTableAlbums().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
 
-	// Metodo para rellenar la tabla de albumes
+	// Metodo para rellenar la tabla de listas
 	public void rellenarTableList(ArrayList<Lista> elements) {
 		// TODO Auto-generated method stub
 		DefaultTableModel table = (DefaultTableModel) vista.getTableList().getModel();
@@ -161,18 +169,31 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			switch (vista.getTpOptions().getSelectedIndex()) {
 			case 0:
 				selection = vista.getTableSongs().getSelectedRow();
-				if (selection > -1)
+				if (selection > -1) {
 					sesion.reproducir(elementos.get(selection));
+				} else {
+					JOptionPane.showMessageDialog(null, "No tienes seleccionada ninguna cancion", "Atencion",
+							JOptionPane.ERROR_MESSAGE);
+				}
+
 				break;
 			case 1:
 				selection = vista.getTableAlbums().getSelectedRow();
-				if (selection > -1)
+				if (selection > -1) {
 					sesion.reproducir(albumes.get(selection));
+				} else {
+					JOptionPane.showMessageDialog(null, "No tienes seleccionado ningun album", "Atencion",
+							JOptionPane.ERROR_MESSAGE);
+				}
 				break;
 			case 2:
 				selection = vista.getTableList().getSelectedRow();
-				if (selection > -1)
+				if (selection > -1) {
 					sesion.reproducir(listas.get(selection));
+				} else {
+					JOptionPane.showMessageDialog(null, "No tienes seleccionada ninguna lista", "Atencion",
+							JOptionPane.ERROR_MESSAGE);
+				}
 				break;
 			case 3:
 				selection = vista.getTablePendientes().getSelectedRow();
@@ -211,18 +232,27 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 					denunciaF.setControlador(controlD);
 					controlD.start();
 				}
+			} else {
+				JOptionPane.showMessageDialog(null, "No tienes seleccionada ninguna cancion", "Atencion",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (component == vista.getBtnSeguir()) {
 			int selection = vista.getTableUsuarios().getSelectedRow();
 			if (selection > -1) {
 				sesion.seguir(api.getOtrosUsuarios().get(selection));
 				rellenarTableUsuarios(usuarios);
+			} else {
+				JOptionPane.showMessageDialog(null, "No tienes seleccionado ningun usuario", "Atencion",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (component == vista.getBtnUnfollow()) {
 			int selection = vista.getTableUsuarios().getSelectedRow();
 			if (selection > -1) {
 				sesion.dejarDeSeguir(api.getOtrosUsuarios().get(selection));
 				rellenarTableUsuarios(usuarios);
+			} else {
+				JOptionPane.showMessageDialog(null, "No tienes seleccionado ningun usuario", "Atencion",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (component == vista.getBtnEditar()) {
 			int selection = vista.getTableSongs().getSelectedRow();
@@ -246,6 +276,9 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 					elementos = api.getLastSongs();
 					rellenarTableSongs(elementos);
 				}
+			} else {
+				JOptionPane.showMessageDialog(null, "No tienes seleccionada ninguna cancion", "Atencion",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (component == vista.getBtnBorrar()) {
 			int selection = vista.getTableSongs().getSelectedRow();
@@ -262,6 +295,9 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 						rellenarTableSongs(elementos);
 					}
 				}
+			} else {
+				JOptionPane.showMessageDialog(null, "No tienes seleccionada ninguna cancion", "Atencion",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (component == vista.getBtnPerfil()) {
 			VistaPerfilForm perfil = new VistaPerfilForm();
@@ -269,12 +305,30 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			perfil.setControlador(controlP);
 			controlP.start();
 		} else if (component == vista.getBtnAddToAlbum()) {
-			int selection = vista.getTableAlbums().getSelectedRow();
-			if (selection > -1) {
-				VistaAddToAlbum addAlbum = new VistaAddToAlbum();
-				ControladorAddToAlbum controlA = new ControladorAddToAlbum(addAlbum, api, albumes.get(selection));
-				addAlbum.setControlador(controlA);
-				controlA.start();
+
+			if (vista.getTpOptions().getSelectedIndex() == 1) {
+				int selection = vista.getTableAlbums().getSelectedRow();
+				if (selection > -1) {
+					VistaAddToAlbum addAlbum = new VistaAddToAlbum();
+					ControladorAddToAlbum controlA = new ControladorAddToAlbum(addAlbum, api, albumes.get(selection),
+							this);
+					addAlbum.setControlador(controlA);
+					controlA.start();
+				} else {
+					JOptionPane.showMessageDialog(null, "No tienes seleccionada ningun Album", "Atencion",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			} else {
+				int selection = vista.getTableList().getSelectedRow();
+				if (selection > -1) {
+					VistaAddToList vl = new VistaAddToList();
+					ControladorAddToList cl = new ControladorAddToList(vl, api, new Lista("dd"), this);
+					vl.setControlador(cl);
+					cl.start();
+				} else {
+					JOptionPane.showMessageDialog(null, "No tienes seleccionada ninguna lista", "Atencion",
+							JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		} else if (component == vista.getBtnCrearAlbum()) {
 			if (usuario.getCanciones().size() < 1)
@@ -282,9 +336,24 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 						"Crear album", JOptionPane.ERROR_MESSAGE);
 			else {
 				VistaCrearAlbum crearAlbum = new VistaCrearAlbum();
-				ControladorCrearAlbum controlC = new ControladorCrearAlbum(crearAlbum, sesion, vista, api);
+				ControladorCrearAlbum controlC = new ControladorCrearAlbum(crearAlbum, sesion, vista, api, this);
 				crearAlbum.setControlador(controlC);
 				controlC.start();
+				VistaAddToList vl = new VistaAddToList();
+				ControladorAddToList cl = new ControladorAddToList(vl, api, new Lista("dd"), this);
+				vl.setControlador(cl);
+				cl.start();
+			}
+		} else if (component == vista.getBtnCrearList()) {
+			if (usuario.getCanciones().size() < 1 && usuario.getAlbumes().size() < 1 && usuario.getListas().size() < 1)
+				JOptionPane.showMessageDialog(null, "No tienes subido ninguna elemento que se pueda añadir en la lista",
+						"Crear lista", JOptionPane.ERROR_MESSAGE);
+			else {
+				VistaCrearLista vistaCL = new VistaCrearLista();
+				ControladorCrearLista controlC = new ControladorCrearLista(vistaCL, api, this);
+				vistaCL.setControlador(controlC);
+				controlC.start();
+
 			}
 		}
 	}

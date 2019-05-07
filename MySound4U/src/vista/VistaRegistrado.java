@@ -52,6 +52,8 @@ public class VistaRegistrado extends JFrame {
 	private JButton btnPerfil;
 	private JButton btnAddToAlbum;
 	private JButton btnCrearAlbum;
+	private JButton btnAddToList;
+	private JButton btnCrearList;
 	private ImageIcon imagen;
 	private Icon icono;
 
@@ -122,6 +124,7 @@ public class VistaRegistrado extends JFrame {
 		btnAddToAlbum = new JButton("       Add       ");
 		btnAddToAlbum.setVisible(false);
 		btnCrearAlbum = new JButton("Crear album");
+		btnCrearList= new JButton("Crear lista");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
@@ -142,6 +145,8 @@ public class VistaRegistrado extends JFrame {
 		pBox.add(btnSubir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnCrearAlbum);
+		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
+		pBox.add(btnCrearList);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnAddToAlbum);
 		pBox.add(Box.createRigidArea(new Dimension(0, 2)));
@@ -511,6 +516,11 @@ public class VistaRegistrado extends JFrame {
 	public void setTablePendientes(JTable tablePendientes) {
 		this.tablePendientes = tablePendientes;
 	}
+	
+
+	public JButton getBtnCrearList() {
+		return btnCrearList;
+	}
 
 	public void setControlador(ControladorVistaRegistrado c) {
 		btnBusqueda.addActionListener(c);
@@ -528,6 +538,7 @@ public class VistaRegistrado extends JFrame {
 		btnPerfil.addActionListener(c);
 		btnAddToAlbum.addActionListener(c);
 		btnCrearAlbum.addActionListener(c);
+		btnCrearList.addActionListener(c);
 
 		addWindowListener(c);
 	}

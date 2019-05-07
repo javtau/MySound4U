@@ -8,24 +8,25 @@ import javax.swing.JOptionPane;
 
 import modelo.Album;
 import modelo.Aplicacion;
+import modelo.Lista;
 import modelo.SesionUsuarios;
 import vista.VistaCrearAlbum;
+import vista.VistaCrearLista;
 import vista.VistaRegistrado;
 import vista.VistaAddToAlbum;
+import vista.VistaAddToList;
 
-public class ControladorCrearAlbum implements ActionListener {
-	private VistaCrearAlbum crear;
+public class ControladorCrearLista implements ActionListener {
+	private VistaCrearLista crear;
 	private SesionUsuarios sesion;
-	private VistaRegistrado vista;
 	private ControladorVistaRegistrado cvr;
 	private Aplicacion api;
 
-	public ControladorCrearAlbum(VistaCrearAlbum crear, SesionUsuarios sesion, VistaRegistrado vista, Aplicacion api, ControladorVistaRegistrado cvr) {
+	public ControladorCrearLista(VistaCrearLista crear, Aplicacion api, ControladorVistaRegistrado cvr) {
 		super();
 		this.crear = crear;
-		this.sesion = sesion;
-		this.vista = vista;
 		this.api = api;
+		sesion = (SesionUsuarios) api.getSesion();
 		this.cvr = cvr;
 	}
 
@@ -39,20 +40,27 @@ public class ControladorCrearAlbum implements ActionListener {
 			JOptionPane.showMessageDialog(crear, "El nombre del album que deseas crear no puede estar vacio",
 					"Crear album", JOptionPane.ERROR_MESSAGE);
 		else if ((!nombre.isEmpty() && component == crear.getBtn1())) {
-			ArrayList<Album> albumes;
-			sesion.crearAlbum(nombre);
-			albumes = sesion.getUsuarioRegistrado().getAlbumes();
-			VistaAddToAlbum vista2 = new VistaAddToAlbum();
-			ControladorAddToAlbum controlA = new ControladorAddToAlbum(vista2, api, albumes.get(albumes.size() - 1), cvr);
-			vista2.setControlador(controlA);
-			controlA.start();
+			ArrayList<Lista> Listas;
+			sesion.crearLista(nombre);
+			Listas = sesion.getUsuarioRegistrado().getListas();
+
+			if (JOptionPane.showConfirmDialog(null, "Desea añadir algun elemento a la lista?", "Atencion",
+					JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				VistaAddToList vista2 = new VistaAddToList();
+				ControladorAddToList controlA = new ControladorAddToList(vista2, api, Listas.get(Listas.size() - 1),
+						cvr);
+				vista2.setControlador(controlA);
+				controlA.start();
+
+			}
+
 			crear.dispose();
 		} else if (component == crear.getBtn2())
 			crear.dispose();
 	}
 
 	public void start() {
-		crear.setLocation(vista);
+		crear.setLocationRelativeTo(null);
 		crear.setVisible(true);
 	}
 }
