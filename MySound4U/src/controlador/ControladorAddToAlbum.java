@@ -92,7 +92,6 @@ public class ControladorAddToAlbum implements ActionListener, WindowListener {
 		if (album.getNumSongs() < 1) {
 			api.borrarAlbum(album);
 		}
-
 	}
 
 	@Override

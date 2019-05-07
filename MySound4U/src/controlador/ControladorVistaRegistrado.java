@@ -212,13 +212,9 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnSubir()) {
 			VistaSubirCancionForm subir = new VistaSubirCancionForm();
-			ControladorSubirCancion controlS = new ControladorSubirCancion(subir, sesion, vista, api);
+			ControladorSubirCancion controlS = new ControladorSubirCancion(subir, sesion, vista, api, this);
 			subir.setControlador(controlS);
 			controlS.start();
-
-			elementos = new ArrayList<>(usuario.getCanciones());
-			elementos = api.getLastSongs();
-			rellenarTableSongs(elementos);
 		} else if (component == vista.getBtnDenunciar()) {
 			int selection = vista.getTableSongs().getSelectedRow();
 			if (selection > -1) {
@@ -469,6 +465,14 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				vista.getBtnDenunciar().setVisible(false);
 				vista.getBtnSeguir().setVisible(true);
 				vista.getBtnUnfollow().setVisible(true);
+				break;
+			case 5:
+				vista.getBtnAddToAlbum().setVisible(false);
+				vista.getBtnBorrar().setVisible(false);
+				vista.getBtnEditar().setVisible(false);
+				vista.getBtnDenunciar().setVisible(false);
+				vista.getBtnSeguir().setVisible(false);
+				vista.getBtnUnfollow().setVisible(false);
 				break;
 			default:
 				break;

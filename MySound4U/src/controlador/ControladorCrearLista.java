@@ -53,7 +53,7 @@ public class ControladorCrearLista implements ActionListener {
 				controlA.start();
 
 			}
-
+			cvr.changeTablePane(2);
 			crear.dispose();
 		} else if (component == crear.getBtn2())
 			crear.dispose();
