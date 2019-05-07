@@ -489,11 +489,20 @@ public class Aplicacion implements Serializable {
 			if ((album = cancion.getAlbum()) != null) {
 				album.borrarCancion(cancion);
 				if (album.isEmpty()) {
-					albumes.remove(album);
-					((UsuarioRegistrado) logueado).borrarAlbum(album);
+					borrarAlbum(album);
 				}
 			}
 		}
+	}
+	/**
+	 * Este metodo elimina un album
+	 * 
+	 * @param Album album
+	 */
+	
+	public void borrarAlbum(Album album) {
+		albumes.remove(album);
+		((UsuarioRegistrado) logueado).borrarAlbum(album);
 	}
 
 	/**

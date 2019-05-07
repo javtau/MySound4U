@@ -2,6 +2,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -15,7 +17,7 @@ import modelo.Cancion;
 import modelo.UsuarioRegistrado;
 import vista.VistaAddToAlbum;
 
-public class ControladorAddToAlbum implements ActionListener {
+public class ControladorAddToAlbum implements ActionListener, WindowListener {
 	private VistaAddToAlbum vista;
 	private UsuarioRegistrado user;
 	Aplicacion api;
@@ -73,5 +75,49 @@ public class ControladorAddToAlbum implements ActionListener {
 		rellenarTableSongs(canciones);
 		vista.setLocationRelativeTo(null);
 		vista.setVisible(true);
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		if (album.getNumSongs() < 1) {
+			api.borrarAlbum(album);
+		}
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
