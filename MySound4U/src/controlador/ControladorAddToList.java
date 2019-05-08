@@ -3,6 +3,8 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +24,7 @@ public class ControladorAddToList implements ActionListener {
 	private ControladorVistaRegistrado cvr;
 	Aplicacion api;
 	private Lista list;
-	private ArrayList<Cancion> canciones;
+	private List<Cancion> canciones;
 	private ArrayList<Lista> listas;
 	private ArrayList<Album> albumes;
 
@@ -120,10 +122,10 @@ public class ControladorAddToList implements ActionListener {
 	}
 
 	public void start() {
-		canciones = user.getCanciones();
-		albumes = user.getAlbumes();
+		canciones = api.getCanciones().stream().filter(c -> c.esValidada()).collect(Collectors.toList());
+		albumes = api.getAlbumes();
 		listas = user.getListas();
-		rellenarTableSongs(canciones);
+		rellenarTableSongs(new ArrayList<Cancion>(canciones));
 		rellenarTableAlbums(albumes);
 		rellenarTableList(listas);
 		vista.setLocationRelativeTo(null);

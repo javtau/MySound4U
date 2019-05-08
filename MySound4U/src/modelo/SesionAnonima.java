@@ -84,7 +84,6 @@ public class SesionAnonima extends Sesion implements Serializable {
 				if (index > elementos.size() - 1 || index > 6 || index < 0) {
 					System.out.println("Ha introducido un numero de cancion incorrecto");
 				} else {
-					System.out.println("reproduccion anonima");
 					reproducir(elementos.get(index));
 				}
 			} catch (NumberFormatException e) {

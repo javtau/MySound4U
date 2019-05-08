@@ -103,7 +103,6 @@ public class Aplicacion implements Serializable {
 		reproductor = new Reproductor();
 		logueado = new UsuarioAnonimo();
 		if (!(new File(DATA_PATH)).exists()) {
-			System.out.println("Cargando datos base");
 			umbralPremium = UMBRAL_PREMIUM;
 			limiteReproducciones = REPRODUCCIONES_MAX;
 			canciones = new ArrayList<>();
@@ -197,7 +196,6 @@ public class Aplicacion implements Serializable {
 		for (UsuarioRegistrado u : usuarios) {
 			if (nombre.equalsIgnoreCase(u.getNombre())) {
 				encontrado = true;
-				System.out.println("El nombre de usuario ya esta usado, pruebe otro distinto");
 			}
 		}
 
@@ -207,7 +205,6 @@ public class Aplicacion implements Serializable {
 			if (encontrado == false) {
 				u1 = new UsuarioRegistrado(nombre, pass, d);
 				addUsuario(u1);
-				System.out.println(u1.toString());
 			}
 		} catch (DateTimeParseException e) {
 
@@ -799,6 +796,10 @@ public class Aplicacion implements Serializable {
 
 	public ArrayList<Cancion> getCanciones() {
 		return canciones;
+	}
+
+	public ArrayList<Album> getAlbumes() {
+		return albumes;
 	}
 
 	public Validacion getValidacionbySong(Cancion cancion) {
