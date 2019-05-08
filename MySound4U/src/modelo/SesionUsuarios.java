@@ -91,8 +91,8 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Album album = new Album(nombre, usuario);
 		api.addAlbum(album);
-		usuario.addNoticia(usuario.getNombre() + " ha creado un album nuevo llamado " + album.getNombre() + " el "
-				+ FechaSimulada.getHoy().format(formatter));
+		usuario.addNoticia(new Noticia(usuario.getNombre() + " ha creado un album nuevo llamado " + album.getNombre() + " el "
+				+ FechaSimulada.getHoy().format(formatter), FechaSimulada.getHoy()) );
 	}
 
 	public void borrarCancion(Cancion cancion) {
@@ -234,8 +234,10 @@ public class SesionUsuarios extends Sesion implements Serializable {
 		ArrayList<String> misnoticias = new ArrayList<String>();
 		for (UsuarioRegistrado u : usuario.getSeguidos()) {
 			if (u.getNoticias() != null) {
-				for (String n : u.getNoticias()) {
-					misnoticias.add(n);
+				for (Noticia n : u.getNoticias()) {
+					if(n.getFecha().isAfter(FechaSimulada.getHoy().minusDays(15))) {
+					misnoticias.add(n.getNoticia());
+					}
 				}
 			}
 		}

@@ -140,7 +140,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		}
 		vista.getTablePendientes().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
-
+// Metodo que captura las acciones realizadas por el usuario
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object component = e.getSource();
@@ -353,7 +353,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			}
 		}
 	}
-
+//Metodo que se debe ejecutar al abrir la vista
 	public void start() {
 		vista.getBtnSeguir().setVisible(false);
 		vista.getBtnUnfollow().setVisible(false);
@@ -372,7 +372,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		rellenarTableUsuarios(usuarios);
 		vista.setVisible(true);
 	}
-
+// Al cerrar la ventana pregunta que si esta seguro y guarda los cambios
 	@Override
 	public void windowClosing(WindowEvent e) {
 		if (JOptionPane.showConfirmDialog(null, "Esta seguro de que desea salir?", "Atencion",
@@ -412,7 +412,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 	}
-
+// Segun la subtabla en la que nos encontremos, los botones se hacen o dejan de hacerse visibles.
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		Object component = e.getSource();

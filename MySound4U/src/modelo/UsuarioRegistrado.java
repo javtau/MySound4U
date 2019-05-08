@@ -54,7 +54,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	private ArrayList<Lista> listas;
 
 	/** Noticias sobre el usuario */
-	private ArrayList<String> noticias;
+	private ArrayList<Noticia> noticias;
 
 	/** Lista de los usuarios a los que sigue este usuario */
 	private ArrayList<UsuarioRegistrado> seguidos;
@@ -77,7 +77,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 		canciones = new ArrayList<>();
 		albumes = new ArrayList<>();
 		listas = new ArrayList<>();
-		noticias = new ArrayList<String>();
+		noticias = new ArrayList<Noticia>();
 		seguidos = new ArrayList<>();
 	}
 
@@ -338,7 +338,7 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * 
 	 */
 
-	public ArrayList<String> getNoticias() {
+	public ArrayList<Noticia> getNoticias() {
 		return noticias;
 	}
 
@@ -347,9 +347,9 @@ public class UsuarioRegistrado extends Usuario implements Serializable {
 	 * 
 	 * @param string noticia
 	 */
-	public void addNoticia(String noticia) {
+	public void addNoticia(Noticia noticia) {
 		if (noticias == null) {
-			noticias = new ArrayList<String>();
+			noticias = new ArrayList<Noticia>();
 		}
 		if (noticia != null) {
 			noticias.add(noticia);

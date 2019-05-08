@@ -298,7 +298,7 @@ public class VistaRegistrado extends JFrame {
 		JScrollPane scrollPaneNot = new JScrollPane();
 
 		tableNoticias = new JTable();
-		tableNoticias.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Novedades" }) {
+		tableNoticias.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Novedades de los ultimos 15 dias" }) {
 
 			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] { String.class };

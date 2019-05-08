@@ -55,7 +55,7 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 		}
 		vista.getTableSongs().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
-
+// Metodo que captura la accion que ha realizado el usuario
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object component = e.getSource();
@@ -88,13 +88,13 @@ public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 			rellenarTableSongs(elementos);
 		}
 	}
-
+// Metodo a ejecutar cuando abrimos la vista de anonimo
 	public void start() {
 		elementos = api.getLastSongs();
 		rellenarTableSongs(elementos);
 		vista.setVisible(true);
 	}
-
+// Cuando se cierra la vista, pregunta si esta seguro y guarda los cambios realizados 
 	@Override
 	public void windowClosing(WindowEvent e) {
 

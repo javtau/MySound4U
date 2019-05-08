@@ -89,7 +89,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 		}
 		vista.gettableDenuncias().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
-
+ //metodo para capturar las acciones del usuario
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object component = e.getSource();
@@ -162,12 +162,12 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 			controlA.start();
 		}
 	}
-
+//Metodo a ejecutar al cargar esta vista
 	public void start() {
 		loadTable();
 		vista.setVisible(true);
 	}
-
+//Metodo que carga las subtablas de la vista
 	public void loadTable() {
 		validaciones = api.getValidaciones();
 		denuncias = api.getDenuncias();
@@ -176,7 +176,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 		rellenarTablevalidaciones(validaciones);
 		rellenarTabledenuncias(denuncias);
 	}
-
+//Cuando se cierra la ventana, pregunta si esta seguro y guarda los cambios
 	@Override
 	public void windowClosing(WindowEvent e) {
 		if (JOptionPane.showConfirmDialog(null, "Esta seguro de que desea salir?", "Atencion",
@@ -216,7 +216,7 @@ public class ControladorVistaAdmin implements ActionListener, WindowListener, Ch
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 	}
-
+// Los botones estan visibles o dejan de estarlo segun la subtabla en qeu nos encontremos
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		Object component = e.getSource();
