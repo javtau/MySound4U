@@ -335,10 +335,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				ControladorCrearAlbum controlC = new ControladorCrearAlbum(crearAlbum, sesion, vista, api, this);
 				crearAlbum.setControlador(controlC);
 				controlC.start();
-				VistaAddToList vl = new VistaAddToList();
-				ControladorAddToList cl = new ControladorAddToList(vl, api, new Lista("dd"), this);
-				vl.setControlador(cl);
-				cl.start();
+				
 			}
 		} else if (component == vista.getBtnCrearList()) {
 			if (usuario.getCanciones().size() < 1 && usuario.getAlbumes().size() < 1 && usuario.getListas().size() < 1)
@@ -434,6 +431,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				// albumes = usuario.getAlbumes();
 				// rellenarTableAlbums(albumes);
 				vista.getBtnAddToAlbum().setVisible(true);
+				vista.getBtnAddToAlbum().setText("add song");
 				vista.getBtnBorrar().setVisible(false);
 				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
@@ -443,7 +441,8 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			case 2:
 				// listas = usuario.getListas();
 				// rellenarTableList(listas);
-				vista.getBtnAddToAlbum().setVisible(false);
+				vista.getBtnAddToAlbum().setVisible(true);
+				vista.getBtnAddToAlbum().setText("add list");
 				vista.getBtnBorrar().setVisible(false);
 				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
