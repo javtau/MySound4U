@@ -1,0 +1,9 @@
+Usuarios:
+
+Fernando//1234
+Gonzalo//1234
+Javier//1234
+
+admin//admin
+
+Para quitar las revisiones hay que avanzar 15 días en el tiempo. Esto se puede hacer desde los ajustes en el administrador.
