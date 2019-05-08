@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import modelo.Aplicacion;
 import modelo.Denuncia;
 import modelo.SesionAdmin;
-import vista.VistaDenunciaForm;
 import vista.VistaAdmin;
+import vista.VistaDenunciaForm;
 
 public class ControladorDenuncia implements ActionListener {
 	private VistaDenunciaForm formulario;

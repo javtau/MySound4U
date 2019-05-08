@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import modelo.Aplicacion;
 import modelo.SesionAdmin;
 import modelo.Validacion;
-import vista.VistaValidacionForm;
 import vista.VistaAdmin;
+import vista.VistaValidacionForm;
 
 public class ControladorValidacion implements ActionListener {
 	private VistaValidacionForm formulario;

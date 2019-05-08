@@ -16,8 +16,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -212,7 +210,7 @@ public class VistaAdmin extends JFrame {
 		tpOptions.setPreferredSize(new Dimension(665, 580));
 		// Podemos seleccionar una pestana del contendor con setSelectedIndex(<indice>)
 		tpOptions.setSelectedIndex(0);
-		// Para realizar acciones al cambiar de pestañas definiremos un ChangeListener
+		// Para realizar acciones al cambiar de pestanas definiremos un ChangeListener
 
 		// Crear panel central
 		pCenter.add(tpOptions);

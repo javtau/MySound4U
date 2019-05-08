@@ -27,7 +27,7 @@ public class VistaAddToAlbum extends JFrame {
 	private JTable tableSongs;
 
 	public VistaAddToAlbum() {
-		setTitle("Añadir  canciones");
+		setTitle("Add songs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		contenedor = new JPanel();
@@ -37,7 +37,7 @@ public class VistaAddToAlbum extends JFrame {
 
 		setResizable(false);
 
-		btnaccept = new JButton("Añadir");
+		btnaccept = new JButton("Add");
 
 		// Panel de canciones
 		JPanel pnlSongs = new JPanel();
@@ -45,7 +45,7 @@ public class VistaAddToAlbum extends JFrame {
 
 		tableSongs = new JTable();
 		tableSongs.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "Titulo", "Duracion", "Autor", "Album", "Añadir" }) {
+				new String[] { "Titulo", "Duracion", "Autor", "Album", "Add" }) {
 
 			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class, Boolean.class };
@@ -78,6 +78,7 @@ public class VistaAddToAlbum extends JFrame {
 
 	public void setControlador(ControladorAddToAlbum c) {
 		btnaccept.addActionListener(c);
+		addWindowListener(c);
 	}
 
 	public JButton getBtnaccept() {

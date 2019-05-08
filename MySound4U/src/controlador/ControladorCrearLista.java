@@ -6,15 +6,12 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import modelo.Album;
 import modelo.Aplicacion;
 import modelo.Lista;
 import modelo.SesionUsuarios;
-import vista.VistaCrearAlbum;
-import vista.VistaCrearLista;
-import vista.VistaRegistrado;
-import vista.VistaAddToAlbum;
+import modelo.UsuarioRegistrado;
 import vista.VistaAddToList;
+import vista.VistaCrearLista;
 
 public class ControladorCrearLista implements ActionListener {
 	private VistaCrearLista crear;
@@ -44,15 +41,16 @@ public class ControladorCrearLista implements ActionListener {
 			sesion.crearLista(nombre);
 			Listas = sesion.getUsuarioRegistrado().getListas();
 
-			if (JOptionPane.showConfirmDialog(null, "Desea añadir algun elemento a la lista?", "Atencion",
+			if (JOptionPane.showConfirmDialog(null, "Desea anadir algun elemento a la lista?", "Atencion",
 					JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				VistaAddToList vista2 = new VistaAddToList();
 				ControladorAddToList controlA = new ControladorAddToList(vista2, api, Listas.get(Listas.size() - 1),
 						cvr);
 				vista2.setControlador(controlA);
 				controlA.start();
-
 			}
+			cvr.rellenarTableList(((UsuarioRegistrado) api.getSesion().getUsuario()).getListas());
+			cvr.setListas(((UsuarioRegistrado) api.getSesion().getUsuario()).getListas());
 			cvr.changeTablePane(2);
 			crear.dispose();
 		} else if (component == crear.getBtn2())

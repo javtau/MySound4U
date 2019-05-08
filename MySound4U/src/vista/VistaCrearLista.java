@@ -12,9 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controlador.ControladorCrearAlbum;
 import controlador.ControladorCrearLista;
-import controlador.ControladorSubirCancion;
 
 public class VistaCrearLista extends JFrame {
 	/**

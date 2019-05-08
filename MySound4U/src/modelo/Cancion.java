@@ -247,6 +247,17 @@ public class Cancion extends Element implements Serializable {
 		return numreproducciones;
 	}
 
+	/**
+	 * Metodo que pone el album a la cancion
+	 * 
+	 * @param album album
+	 */
+
+	public void setAlbum(Album album) {
+		if (this.album == null)
+			this.album = album;
+	}
+
 	@Override
 	public String toString() {
 		return "Cancion [Nombre: " + super.getNombre() + ", duracion = " + duracion + ", numero de reproducciones = "

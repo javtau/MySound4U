@@ -1,12 +1,12 @@
 package controlador;
 
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
@@ -15,18 +15,26 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import modelo.*;
+import modelo.Album;
+import modelo.Aplicacion;
+import modelo.Cancion;
+import modelo.Element;
+import modelo.Lista;
+import modelo.SesionUsuarios;
+import modelo.TIPO_BUSQUEDA;
+import modelo.UsuarioRegistrado;
+import modelo.Validacion;
+import vista.VistaAddToAlbum;
+import vista.VistaAddToList;
+import vista.VistaAnonimo;
+import vista.VistaCrearAlbum;
+import vista.VistaCrearLista;
 import vista.VistaDenunciarForm;
 import vista.VistaEditarCancionForm;
 import vista.VistaPerfilForm;
 import vista.VistaPremiumForm;
-import vista.VistaSubirCancionForm;
-import vista.VistaAnonimo;
-import vista.VistaCrearAlbum;
-import vista.VistaCrearLista;
 import vista.VistaRegistrado;
-import vista.VistaAddToAlbum;
-import vista.VistaAddToList;;
+import vista.VistaSubirCancionForm;;
 
 public class ControladorVistaRegistrado implements ActionListener, WindowListener, ChangeListener {
 	private VistaRegistrado vista;
@@ -48,7 +56,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		usuario = (UsuarioRegistrado) sesion.getUsuario();
 	}
 
-	// Metodo para cambiar de pestaña
+	// Metodo para cambiar de pestana
 	public void changeTablePane(int index) {
 		vista.getTpOptions().setSelectedIndex(index);
 	}
@@ -136,10 +144,11 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		table.fireTableDataChanged();
 		for (Validacion v : pendientes) {
 			table.addRow(new Object[] { v.getCancion().getNombre(),
-					(v.getPlazo().equals(LocalDate.MAX)) ? "No caduca" : v.getPlazo().toString() });
+					(v.getPlazo().equals(LocalDate.MAX)) ? "Pendiente de validacion" : v.getPlazo().toString() });
 		}
 		vista.getTablePendientes().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
+
 // Metodo que captura las acciones realizadas por el usuario
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -251,21 +260,16 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (component == vista.getBtnEditar()) {
-			int selection = vista.getTableSongs().getSelectedRow();
+			int selection = vista.getTablePendientes().getSelectedRow();
 			if (selection > -1) {
-				if (((Cancion) elementos.get(selection)).getAutor() != usuario)
-					JOptionPane.showMessageDialog(null, "No se puede editar una cancion que no es tuya",
-							"Editar cancion", JOptionPane.ERROR_MESSAGE);
-				else if (((Cancion) elementos.get(selection)).esValidada() == true)
-					JOptionPane.showMessageDialog(null, "No se puede editar una cancion que ya ha sido validada",
-							"Editar cancion", JOptionPane.ERROR_MESSAGE);
-				else if (((Cancion) elementos.get(selection)).enRevision() == false)
+				Cancion cancion = pendientes.get(selection).getCancion();
+				if (cancion.enRevision() == false)
 					JOptionPane.showMessageDialog(null, "La cancion esta en revision por el administrador",
 							"Editar cancion", JOptionPane.INFORMATION_MESSAGE);
 				else {
 					VistaEditarCancionForm edit = new VistaEditarCancionForm();
-					ControladorEditarCancion controlE = new ControladorEditarCancion(edit, sesion, vista, api,
-							((Cancion) elementos.get(selection)));
+					ControladorEditarCancion controlE = new ControladorEditarCancion(edit, sesion, vista, api, this,
+							pendientes.get(selection));
 					edit.setControlador(controlE);
 					controlE.start();
 					elementos = new ArrayList<>(usuario.getCanciones());
@@ -318,7 +322,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				int selection = vista.getTableList().getSelectedRow();
 				if (selection > -1) {
 					VistaAddToList vl = new VistaAddToList();
-					ControladorAddToList cl = new ControladorAddToList(vl, api, new Lista("dd"), this);
+					ControladorAddToList cl = new ControladorAddToList(vl, api, listas.get(selection), this);
 					vl.setControlador(cl);
 					cl.start();
 				} else {
@@ -327,29 +331,26 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				}
 			}
 		} else if (component == vista.getBtnCrearAlbum()) {
-			if (usuario.getCanciones().size() < 1)
-				JOptionPane.showMessageDialog(null, "No tienes subida ninguna cancion para añadir en el album",
+			if (usuario.getCanciones().stream().filter(c -> c.getAlbum() == null).collect(Collectors.toList())
+					.size() < 1)
+				JOptionPane.showMessageDialog(null, "No tienes ninguna cancion que se pueda meter en un album",
 						"Crear album", JOptionPane.ERROR_MESSAGE);
 			else {
 				VistaCrearAlbum crearAlbum = new VistaCrearAlbum();
 				ControladorCrearAlbum controlC = new ControladorCrearAlbum(crearAlbum, sesion, vista, api, this);
 				crearAlbum.setControlador(controlC);
 				controlC.start();
-				
-			}
-		} else if (component == vista.getBtnCrearList()) {
-			if (usuario.getCanciones().size() < 1 && usuario.getAlbumes().size() < 1 && usuario.getListas().size() < 1)
-				JOptionPane.showMessageDialog(null, "No tienes subido ninguna elemento que se pueda añadir en la lista",
-						"Crear lista", JOptionPane.ERROR_MESSAGE);
-			else {
-				VistaCrearLista vistaCL = new VistaCrearLista();
-				ControladorCrearLista controlC = new ControladorCrearLista(vistaCL, api, this);
-				vistaCL.setControlador(controlC);
-				controlC.start();
 
 			}
+		} else if (component == vista.getBtnCrearList()) {
+			VistaCrearLista vistaCL = new VistaCrearLista();
+			ControladorCrearLista controlC = new ControladorCrearLista(vistaCL, api, this);
+			vistaCL.setControlador(controlC);
+			controlC.start();
+
 		}
 	}
+
 //Metodo que se debe ejecutar al abrir la vista
 	public void start() {
 		vista.getBtnSeguir().setVisible(false);
@@ -369,6 +370,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 		rellenarTableUsuarios(usuarios);
 		vista.setVisible(true);
 	}
+
 // Al cerrar la ventana pregunta que si esta seguro y guarda los cambios
 	@Override
 	public void windowClosing(WindowEvent e) {
@@ -409,7 +411,25 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 	}
-// Segun la subtabla en la que nos encontremos, los botones se hacen o dejan de hacerse visibles.
+
+	public void setElementos(ArrayList<Element> elementos) {
+		this.elementos = elementos;
+	}
+
+	public void setAlbumes(ArrayList<Album> albumes) {
+		this.albumes = albumes;
+	}
+
+	public void setListas(ArrayList<Lista> listas) {
+		this.listas = listas;
+	}
+
+	public void setPendientes(ArrayList<Validacion> pendientes) {
+		this.pendientes = pendientes;
+	}
+
+	// Segun la subtabla en la que nos encontremos, los botones se hacen o dejan de
+	// hacerse visibles.
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		Object component = e.getSource();
@@ -422,7 +442,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				rellenarTableSongs(elementos);
 				vista.getBtnAddToAlbum().setVisible(false);
 				vista.getBtnBorrar().setVisible(true);
-				vista.getBtnEditar().setVisible(true);
+				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
 				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(true);
@@ -431,7 +451,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				// albumes = usuario.getAlbumes();
 				// rellenarTableAlbums(albumes);
 				vista.getBtnAddToAlbum().setVisible(true);
-				vista.getBtnAddToAlbum().setText("add song");
+				vista.getBtnAddToAlbum().setText("    Add song  ");
 				vista.getBtnBorrar().setVisible(false);
 				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
@@ -442,7 +462,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 				// listas = usuario.getListas();
 				// rellenarTableList(listas);
 				vista.getBtnAddToAlbum().setVisible(true);
-				vista.getBtnAddToAlbum().setText("add list");
+				vista.getBtnAddToAlbum().setText("     Add list   ");
 				vista.getBtnBorrar().setVisible(false);
 				vista.getBtnEditar().setVisible(false);
 				vista.getBtnSeguir().setVisible(false);
@@ -452,7 +472,7 @@ public class ControladorVistaRegistrado implements ActionListener, WindowListene
 			case 3:
 				vista.getBtnAddToAlbum().setVisible(false);
 				vista.getBtnBorrar().setVisible(false);
-				vista.getBtnEditar().setVisible(false);
+				vista.getBtnEditar().setVisible(true);
 				vista.getBtnSeguir().setVisible(false);
 				vista.getBtnUnfollow().setVisible(false);
 				vista.getBtnDenunciar().setVisible(false);

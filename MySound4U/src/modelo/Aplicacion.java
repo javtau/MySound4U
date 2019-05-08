@@ -494,15 +494,26 @@ public class Aplicacion implements Serializable {
 			}
 		}
 	}
+
 	/**
 	 * Este metodo elimina un album
 	 * 
 	 * @param Album album
 	 */
-	
+
 	public void borrarAlbum(Album album) {
 		albumes.remove(album);
 		((UsuarioRegistrado) logueado).borrarAlbum(album);
+	}
+
+	/**
+	 * Este metodo elimina una validacion
+	 * 
+	 * @param Validacion validacion
+	 */
+
+	public void borrarValidacion(Validacion validacion) {
+		validaciones.remove(validacion);
 	}
 
 	/**

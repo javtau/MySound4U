@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import vista.VistaLoginForm;
 import vista.VistaAdmin;
 import vista.VistaAnonimo;
+import vista.VistaLoginForm;
 import vista.VistaRegistrado;
 
 public class ControladorLogin implements ActionListener {

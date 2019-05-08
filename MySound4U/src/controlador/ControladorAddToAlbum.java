@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +25,7 @@ public class ControladorAddToAlbum implements ActionListener, WindowListener {
 	private ControladorVistaRegistrado cvr;
 	Aplicacion api;
 	private Album album;
-	private ArrayList<Cancion> canciones;
+	private List<Cancion> canciones;
 
 	public ControladorAddToAlbum(VistaAddToAlbum vista, Aplicacion api, Album album, ControladorVistaRegistrado cvr) {
 		super();
@@ -64,19 +66,22 @@ public class ControladorAddToAlbum implements ActionListener, WindowListener {
 				JOptionPane.showMessageDialog(vista, "Debe de seleccionar al menos una cancion", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			} else {
-				for (int i = 0; i < songs.size(); i++) {
+				for (int i : songs) {
 					album.anadirCancion(canciones.get(i));
+					canciones.get(i).setAlbum(album);
 				}
 				cvr.rellenarTableAlbums(user.getAlbumes());
 				cvr.changeTablePane(1);
+				cvr.rellenarTableSongs(api.getLastSongs());
+				cvr.setAlbumes(user.getAlbumes());
 				vista.dispose();
 			}
 		}
 	}
 
 	public void start() {
-		canciones = user.getCanciones();
-		rellenarTableSongs(canciones);
+		canciones = user.getCanciones().stream().filter(c -> c.getAlbum() == null).collect(Collectors.toList());
+		rellenarTableSongs(new ArrayList<Cancion>(canciones));
 		vista.setLocationRelativeTo(null);
 		vista.setVisible(true);
 	}
@@ -89,7 +94,7 @@ public class ControladorAddToAlbum implements ActionListener, WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		if (album.getNumSongs() < 1) {
+		if (album.getNumSongs() == 0) {
 			api.borrarAlbum(album);
 		}
 	}
@@ -97,7 +102,6 @@ public class ControladorAddToAlbum implements ActionListener, WindowListener {
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

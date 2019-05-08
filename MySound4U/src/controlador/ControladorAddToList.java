@@ -2,8 +2,6 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -16,7 +14,6 @@ import modelo.Aplicacion;
 import modelo.Cancion;
 import modelo.Lista;
 import modelo.UsuarioRegistrado;
-import vista.VistaAddToAlbum;
 import vista.VistaAddToList;
 
 public class ControladorAddToList implements ActionListener {
@@ -52,31 +49,31 @@ public class ControladorAddToList implements ActionListener {
 		}
 		vista.getTableSongs().setRowSorter(new TableRowSorter<TableModel>(table));
 	}
-	
+
 	// Metodo para rellenar la tabla de albumes
-		public void rellenarTableAlbums(ArrayList<Album> elements) {
-			// TODO Auto-generated method stub
-			DefaultTableModel table = (DefaultTableModel) vista.getTableAlbums().getModel();
-			table.getDataVector().removeAllElements();
-			table.fireTableDataChanged();
-			for (Album album : elements) {
-				table.addRow(new Object[] { album.getNombre(), album.getAutor().getNombre(), album.getNumSongs(), false });
+	public void rellenarTableAlbums(ArrayList<Album> elements) {
+		// TODO Auto-generated method stub
+		DefaultTableModel table = (DefaultTableModel) vista.getTableAlbums().getModel();
+		table.getDataVector().removeAllElements();
+		table.fireTableDataChanged();
+		for (Album album : elements) {
+			table.addRow(new Object[] { album.getNombre(), album.getAutor().getNombre(), album.getNumSongs(), false });
 
-			}
-			vista.getTableAlbums().setRowSorter(new TableRowSorter<TableModel>(table));
 		}
+		vista.getTableAlbums().setRowSorter(new TableRowSorter<TableModel>(table));
+	}
 
-		// Metodo para rellenar la tabla de listas
-		public void rellenarTableList(ArrayList<Lista> elements) {
-			// TODO Auto-generated method stub
-			DefaultTableModel table = (DefaultTableModel) vista.getTableList().getModel();
-			table.getDataVector().removeAllElements();
-			table.fireTableDataChanged();
-			for (Lista lista : elements) {
-				table.addRow(new Object[] { lista.getNombre(), lista.getNumElements(), false });
-			}
-			vista.getTableList().setRowSorter(new TableRowSorter<TableModel>(table));
+	// Metodo para rellenar la tabla de listas
+	public void rellenarTableList(ArrayList<Lista> elements) {
+		// TODO Auto-generated method stub
+		DefaultTableModel table = (DefaultTableModel) vista.getTableList().getModel();
+		table.getDataVector().removeAllElements();
+		table.fireTableDataChanged();
+		for (Lista lista : elements) {
+			table.addRow(new Object[] { lista.getNombre(), lista.getNumElements(), false });
 		}
+		vista.getTableList().setRowSorter(new TableRowSorter<TableModel>(table));
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -114,8 +111,9 @@ public class ControladorAddToList implements ActionListener {
 				for (int i : albums) {
 					list.addElemt(albumes.get(i));
 				}
-				cvr.rellenarTableAlbums(((UsuarioRegistrado)api.getSesion().getUsuario()).getAlbumes());
+				cvr.rellenarTableList(((UsuarioRegistrado) api.getSesion().getUsuario()).getListas());
 				cvr.changeTablePane(2);
+				cvr.setListas(((UsuarioRegistrado) api.getSesion().getUsuario()).getListas());
 				vista.dispose();
 			}
 		}

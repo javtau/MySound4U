@@ -17,9 +17,9 @@ import modelo.Cancion;
 import modelo.Element;
 import modelo.SesionAnonima;
 import modelo.TIPO_BUSQUEDA;
+import vista.VistaAnonimo;
 import vista.VistaLoginForm;
 import vista.VistaRegistroForm;
-import vista.VistaAnonimo;
 
 public class ControladorVistaAnonimo implements ActionListener, WindowListener {
 	private VistaAnonimo vista;

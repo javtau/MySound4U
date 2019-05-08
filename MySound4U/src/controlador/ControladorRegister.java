@@ -8,8 +8,8 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import vista.VistaRegistroForm;
 import vista.VistaAnonimo;
+import vista.VistaRegistroForm;
 
 public class ControladorRegister implements ActionListener {
 	private VistaRegistroForm registro;

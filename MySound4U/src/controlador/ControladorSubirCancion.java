@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -11,9 +10,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modelo.Aplicacion;
 import modelo.SesionUsuarios;
-import modelo.UsuarioRegistrado;
-import vista.VistaSubirCancionForm;
 import vista.VistaRegistrado;
+import vista.VistaSubirCancionForm;
 
 public class ControladorSubirCancion implements ActionListener {
 	private VistaSubirCancionForm subir;
@@ -49,19 +47,19 @@ public class ControladorSubirCancion implements ActionListener {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				origen = fileChooser.getSelectedFile();
 				subir.getTf1().setText(origen.getName());
-
 			}
 		} else if (component == subir.getBtn1() && !nombre.isEmpty()) {
 			sesion.subirCancion(nombre, origen);
 			JOptionPane.showMessageDialog(subir, "La cancion ha sido subida con exito", "Subir cancion",
 					JOptionPane.INFORMATION_MESSAGE);
 			subir.dispose();
-
+			control.rellenarTableSongs(api.getLastSongs());
+			control.setElementos(api.getLastSongs());
+			control.rellenarTablePendientes(api.getValidacionesByUser(sesion.getUsuarioRegistrado()));
+			control.changeTablePane(0);
 		} else if (component == subir.getBtn1() && nombre.isEmpty()) {
 			JOptionPane.showMessageDialog(subir, "El nombre de la cancion no puede estar vacio", "Subir cancion",
 					JOptionPane.ERROR_MESSAGE);
-			control.rellenarTableSongs(
-					new ArrayList<>((((UsuarioRegistrado) api.getSesion().getUsuario()).getCanciones())));
 		} else
 			subir.dispose();
 	}

@@ -52,7 +52,6 @@ public class VistaRegistrado extends JFrame {
 	private JButton btnPerfil;
 	private JButton btnAddToAlbum;
 	private JButton btnCrearAlbum;
-	private JButton btnAddToList;
 	private JButton btnCrearList;
 	private ImageIcon imagen;
 	private Icon icono;
@@ -122,8 +121,8 @@ public class VistaRegistrado extends JFrame {
 		btnEditar = new JButton("      Editar      ");
 		btnBorrar = new JButton("      Borrar      ");
 		btnAddToAlbum = new JButton("Add to album");
-		btnAddToAlbum.setVisible(false);btnCrearAlbum = new JButton("Crear album");
-		btnCrearList= new JButton("Crear lista");
+		btnAddToAlbum.setVisible(false);btnCrearAlbum = new JButton(" Crear album ");
+		btnCrearList= new JButton("  Crear lista   ");
 
 		pEast.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pBox.setLayout(new BoxLayout(pBox, BoxLayout.Y_AXIS));
@@ -136,7 +135,7 @@ public class VistaRegistrado extends JFrame {
 		pBox.add(btnEditar);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnBorrar);
-		pBox.add(Box.createRigidArea(new Dimension(0, 300)));
+		pBox.add(Box.createRigidArea(new Dimension(0, 260)));
 		pBox.add(btnSeguir);
 		pBox.add(Box.createRigidArea(new Dimension(0, 7)));
 		pBox.add(btnUnfollow);

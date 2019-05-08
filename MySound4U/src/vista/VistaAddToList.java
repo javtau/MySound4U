@@ -16,7 +16,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import controlador.ControladorAddToAlbum;
 import controlador.ControladorAddToList;
 
 public class VistaAddToList extends JFrame {
@@ -33,7 +32,7 @@ public class VistaAddToList extends JFrame {
 	private JTable tableList;
 
 	public VistaAddToList() {
-		setTitle("Añadir  canciones");
+		setTitle("Add songs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		contenedor = new JPanel();
@@ -43,10 +42,9 @@ public class VistaAddToList extends JFrame {
 
 		setResizable(false);
 
-		btnaccept = new JButton("Añadir");
+		btnaccept = new JButton("Add");
 
 		// Panel de canciones
-		
 
 		tpOptions = new JTabbedPane();
 
@@ -55,16 +53,16 @@ public class VistaAddToList extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 
 		tableSongs = new JTable();
-		tableSongs.setModel(
-				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Duracion", "Autor", "Album" , "Añadir" }) {
+		tableSongs.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "Titulo", "Duracion", "Autor", "Album", "Add" }) {
 
-					private static final long serialVersionUID = 1L;
-					Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class, Boolean.class };
+			private static final long serialVersionUID = 1L;
+			Class[] columnTypes = new Class[] { String.class, Double.class, String.class, String.class, Boolean.class };
 
-					public Class getColumnClass(int columnIndex) {
-						return columnTypes[columnIndex];
-					}
-				});
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
 		DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
 		modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
 		tableSongs.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
@@ -82,15 +80,16 @@ public class VistaAddToList extends JFrame {
 		JScrollPane scrollPaneAl = new JScrollPane();
 
 		tableAlbums = new JTable();
-		tableAlbums.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Autor", "Canciones" , "Añadir" }) {
+		tableAlbums.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Autor", "Canciones", "Add" }) {
 
-			private static final long serialVersionUID = 1L;
-			Class[] columnTypes = new Class[] { String.class, String.class, Integer.class, Boolean.class };
+					private static final long serialVersionUID = 1L;
+					Class[] columnTypes = new Class[] { String.class, String.class, Integer.class, Boolean.class };
 
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+				});
 
 		scrollPaneAl.setViewportView(tableAlbums);
 		tableAlbums.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);
@@ -105,7 +104,7 @@ public class VistaAddToList extends JFrame {
 		JScrollPane scrollPaneList = new JScrollPane();
 
 		tableList = new JTable();
-		tableList.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Canciones", "Añadir"  }) {
+		tableList.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Titulo", "Canciones", "Add" }) {
 
 			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] { String.class, Integer.class, Boolean.class };
@@ -120,12 +119,11 @@ public class VistaAddToList extends JFrame {
 		tableList.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);
 		scrollPaneList.setPreferredSize(new Dimension(780, 310));
 		tpTabList.add(scrollPaneList);
-		
+
 		// Anadimos los paneles al contenedor con el metodo addTab(<titulo>,<panel>)
-				tpOptions.addTab("Canciones", tpTabSongs);
-				tpOptions.addTab("Albumes", tpTabAlbums);
-				tpOptions.addTab("Listas", tpTabList);
-		
+		tpOptions.addTab("Canciones", tpTabSongs);
+		tpOptions.addTab("Albumes", tpTabAlbums);
+		tpOptions.addTab("Listas", tpTabList);
 
 		JPanel pl1 = new JPanel();
 
@@ -149,12 +147,6 @@ public class VistaAddToList extends JFrame {
 	public JTable getTableSongs() {
 		return tableSongs;
 	}
-	
-	public static void main(String[] args) {
-		VistaAddToList vista = new VistaAddToList();
-		vista.setVisible(true);
-		
-	}
 
 	public Container getContenedor() {
 		return contenedor;
@@ -171,6 +163,5 @@ public class VistaAddToList extends JFrame {
 	public JTable getTableList() {
 		return tableList;
 	}
-	
-	
+
 }

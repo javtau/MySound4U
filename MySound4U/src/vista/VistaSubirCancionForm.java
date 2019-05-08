@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controlador.ControladorSubirCancion;
@@ -27,7 +26,6 @@ public class VistaSubirCancionForm extends JFrame {
 	private JButton btn1, btn2, btnExplorar;
 	private JTextField tf1, tf2;
 	private Container contenedor;
-	private JTextArea textArea;
 	private ImageIcon imagen;
 	private Icon icono;
 

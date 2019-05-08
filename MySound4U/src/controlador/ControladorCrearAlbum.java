@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 import modelo.Album;
 import modelo.Aplicacion;
 import modelo.SesionUsuarios;
+import vista.VistaAddToAlbum;
 import vista.VistaCrearAlbum;
 import vista.VistaRegistrado;
-import vista.VistaAddToAlbum;
 
 public class ControladorCrearAlbum implements ActionListener {
 	private VistaCrearAlbum crear;

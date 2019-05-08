@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import modelo.Aplicacion;
-import vista.VistaAjustesForm;
 import vista.VistaAdmin;
+import vista.VistaAjustesForm;
 
 public class ControladorAjustes implements ActionListener {
 	private VistaAjustesForm ajustes;
